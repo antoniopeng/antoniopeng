@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://antoniopeng.com/2019/03/12/java/%E4%B8%80%E7%AB%99%E5%BC%8F%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A1%86%E6%9E%B6%20Spring/</loc>
+    <lastmod>2020-11-06</lastmod>
+  </url>
+  <url>
+    <loc>http://antoniopeng.com/2020/11/06/java/Java%20%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/</loc>
+    <lastmod>2020-11-06</lastmod>
+  </url>
+  <url>
     <loc>http://antoniopeng.com/2020/01/03/springboot/Spring%20Boot%20%E4%B8%AD%E7%9B%91%E5%90%AC%20Redis%20key%20%E5%A4%B1%E6%95%88%E4%BA%8B%E4%BB%B6%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</loc>
     <lastmod>2020-10-19</lastmod>
   </url>
@@ -30,10 +38,6 @@
   </url>
   <url>
     <loc>http://antoniopeng.com/2019/04/09/java/Java%20%E5%AE%9E%E7%8E%B0%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6-%E9%99%84%E5%8A%A0%E5%AF%86%E5%92%8C%E8%A7%A3%E5%AF%86/</loc>
-    <lastmod>2020-10-07</lastmod>
-  </url>
-  <url>
-    <loc>http://antoniopeng.com/2019/03/12/java/%E4%B8%80%E7%AB%99%E5%BC%8F%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A1%86%E6%9E%B6%20Spring/</loc>
     <lastmod>2020-10-07</lastmod>
   </url>
   <url>

@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://antoniopeng.com/2020/07/22/分布式/分布式 ID 生成方案之美团 Leaf/">
+  <link rel="canonical" href="http://antoniopeng.com/2020/11/06/java/Java 基础回顾/">
   <title>
     
-    分布式 ID 生成方案之美团 Leaf - 彭超的博客 | Antonio Blog
+    Java 基础回顾 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="http://antoniopeng.com/tags/#Leaf" title="Leaf">Leaf</a>
+              <a class="tag" href="http://antoniopeng.com/tags/#Java" title="Java">Java</a>
               
             </div>
-            <h1>分布式 ID 生成方案之美团 Leaf</h1>
+            <h1>Java 基础回顾</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 彭超 on
-              2020-07-22
+              2020-11-06
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">3</span> Minutes
+              Estimated Reading Time <span class="post-count">6</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.1k</span> In Total
+              Words <span class="post-count">1.5k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,82 +394,136 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="分布式主键"><a href="#分布式主键" class="headerlink" title="分布式主键"></a>分布式主键</h3><p>在庞大复杂的分布式系统中，通常需要对海量数据进行唯一标识，随着数据日渐增长，对数据分库分表以后需要有一个唯一 ID 来标识一条数据，而数据库的自增 ID 显然不能满足需求，此时就需要有一个能够生成全局唯一 ID 的系统，需要满足以下条件：</p>
+        <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>比特位数</th>
+<th>字节数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>byte</code>（字节型）</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>char</code>（字符型）</td>
+<td>16</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>short</code>（短整型）</td>
+<td>16</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>int</code>（整型）</td>
+<td>32</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>float</code>（浮点型）</td>
+<td>32</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>long</code>（长整型）</td>
+<td>64</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>double</code>（双精度浮点型）</td>
+<td>64</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>boolean</code>（布尔型）</td>
+<td>~</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h4><p>基本类型都有对应的包装类型，基本类型与包装类型之间的赋值通过装箱和拆箱完成，例如。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer x = <span class="number">100</span>;	<span class="comment">// 装箱 调用了 Integer.valueOf(2)</span></span><br><span class="line"><span class="keyword">int</span> y = x;    <span class="comment">// 拆箱 调用了 x.IntValue()</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="缓存池"><a href="#缓存池" class="headerlink" title="缓存池"></a>缓存池</h4><p><code>new Integer(100)</code> 与 <code>Integer.valueOf(100)</code> 的区别在于：</p>
 <ul>
-<li>全局唯一性：最基本的要求就是不能出现重复的 ID。</li>
-<li>递增：保证下一个 ID 一定大于上一个 ID。</li>
-<li>信息安全：如果 ID 是连续的，用户就可以按照顺序进行恶意爬取数据，所以 ID 生成无规则。</li>
+<li><code>new Integer(100)</code> 每次都会创建一个新对象。</li>
+<li><code>Integer.valueOf(100)</code> 会使用缓存池中的对象，多次调用会取得同一个对象的引用。</li>
 </ul>
-<blockquote>
-<p>上述的 2 和 3 点需求是互斥的，无法使用同一个方案满足。</p>
-</blockquote>
-<h3 id="生成方案"><a href="#生成方案" class="headerlink" title="生成方案"></a>生成方案</h3><h4 id="数据库生成"><a href="#数据库生成" class="headerlink" title="数据库生成"></a>数据库生成</h4><p>以 MySQL 为例，利用给字段设置 <code>auto_increment_increment</code> 和 <code>auto_increment_offset</code> 来实现 ID 自增。每次业务可以使用下列 SQL 进行读写得到 ID：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span>;</span><br><span class="line"><span class="keyword">REPLACE</span> <span class="keyword">INTO</span> Tickets64 (stub) <span class="keyword">VALUES</span> (<span class="string">'a'</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LAST_INSERT_ID</span>();</span><br><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">Integer b = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">System.out.printIn(a == b);    <span class="comment">// 输出为 false</span></span><br><span class="line"></span><br><span class="line">Integer x = Integer.valueOf(<span class="number">100</span>);</span><br><span class="line">Integer y = Integer.valueOf(<span class="number">100</span>);</span><br><span class="line">System.out.printIn(x == y);    <span class="comment">// 输出为 true</span></span><br></pre></td></tr></table></figure>
 
+<p><code>valueOf()</code> 实现很简单，就是先判断值是否在缓存池中，如果在的话就直接返回缓存池的内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 Java 8 中，<code>Integer</code> 缓存池的大小默认为 -128 ~ 127。编译器会在自动装箱过程调用 <code>valueOf()</code> 方法，因此多个值相同且值在缓存池范围内的 <code>Integer</code> 实例使用自动装箱来创建，那么就会引用相同的对象。</p>
+<p>部分基本类型对应的缓存池如下：</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>缓存池范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>byte</code>（字节型）</td>
+<td>all</td>
+</tr>
+<tr>
+<td><code>char</code>（字符型）</td>
+<td>\u0000 ~ \u007F</td>
+</tr>
+<tr>
+<td><code>short</code>（短整型）</td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td><code>int</code>（整型）</td>
+<td>-128-127</td>
+</tr>
+<tr>
+<td><code>boolean</code>（布尔型）</td>
+<td>true 和 false</td>
+</tr>
+</tbody></table>
+<p>在使用这些基本类型对应的包装类型时，如果该数值范围在缓存池范围内，就可以直接使用缓存池中的对象。在所有数值类缓冲池中，<code>Integer</code> 的缓冲池 <code>IntegerCache</code> 很特殊，这个缓冲池的下界是 -128，上界是 127，但是这个上界是可调的，在启动 JVM 的时候，通过 <code>-XX:AutoBoxCacheMax=&lt;size&gt;</code> 来指定这个缓冲池的大小，该选项在 JVM 初始化的时候会设定一个名为 <code>java.lang.IntegerCache.high</code> 系统属性，然后 <code>IntegerCache</code> 初始化的时候回读取该系统属性来决定上界。</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><p><code>String</code> 被声明为 <code>final</code>，因此它不可被继承。在 Java 8 中，<code>String</code> 内部使用 <code>char</code> 数组存储数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 Java 9 之后，<code>String</code> 类的实现改用 <code>byte</code> 数组存储字符串，同时使用 <code>coder</code> 来标识使用了那种编码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** The identifier of the encoding used to encode the bytes in &#123;<span class="doctag">@code</span> value&#125;. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span> coder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>value</code> 数组被声明为 <code>final</code>，这意味着 <code>value</code> 数组初始化之后就不能再引用其它数组。并且 <code>String</code> 内部没有改变 <code>value</code> 数组的方法，因此可以保证 <code>String</code> 不可变。</p>
+<h4 id="不可变的好处"><a href="#不可变的好处" class="headerlink" title="不可变的好处"></a>不可变的好处</h4><p><strong>可以缓存 hash 值</strong>：因为 String 的 hash 值经常被使用，例如 String 用做 HashMap 的 key。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。</p>
+<p><strong>String Pool 的需要</strong>：如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool。 </p>
+<p><strong>安全性</strong>：String 经常作为参数，String 不可变性可以保证参数不可变。如果 String 是可变的，那么在网络连接过程中，String 被改变，改变 String 的那一方以为现在连接的是其它主机，而实际情况却不一定是。</p>
+<p><strong>线程安全</strong>：String 不可变性天生具备线程安全，可以在多个线程中安全地使用。</p>
+<h4 id="String、StringBuffer-和-StringBuilder"><a href="#String、StringBuffer-和-StringBuilder" class="headerlink" title="String、StringBuffer 和 StringBuilder"></a>String、StringBuffer 和 StringBuilder</h4><p><strong>可变性</strong>：String 不可变，StringBuffer 和 StringBuilder 可变。</p>
+<p><strong>线程安全</strong>：String 不可变，因此天生线程安全。StringBuffer 也是线程安全的，内部使用 synchronized 进行同步。而 StringBuilder 不是线程安全的。</p>
+<h4 id="String-Pool"><a href="#String-Pool" class="headerlink" title="String Pool"></a>String Pool</h4><p>字符串常量池（String Pool）保存着所有字符串字面量，这些字面量在编译时期就确定。不仅如此。还可以使用 String 的 <code>intern()</code> 方法在运行过程中将字符串添加到 String Pool 中。</p>
+<p>当一个字符串调用 <code>intern()</code> 方法时，如果 String Pool 中已经存在一个字符串和该字符串值相等，那么就会返回 String Pool 中字符串的引用；否则，就会在 String Pool 中添加一个新的字符串，并返回这个新字符串的引用，如下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="keyword">new</span> String(<span class="string">"str1"</span>);</span><br><span class="line">String str2 = <span class="keyword">new</span> String(<span class="string">"str2"</span>);</span><br><span class="line">System.out.printIn(str1 == str2);	<span class="comment">// 输出为 false</span></span><br><span class="line"></span><br><span class="line">String str3 = str1.intern();</span><br><span class="line">String str4 = str2.intern();</span><br><span class="line">System.out.printIn(str3 == str4);    <span class="comment">// 输出为 true</span></span><br></pre></td></tr></table></figure>
+
+<p>如果是采用以下这种形式创建字符串，会自动地将字符串放入 String Pool 中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str5 = <span class="string">"str"</span>;</span><br><span class="line">String str6 = <span class="string">"str"</span></span><br><span class="line">System.out.printIn(str5 == str6);    <span class="comment">// 输出为 true</span></span><br></pre></td></tr></table></figure>
+
+<p>在 Java 7 之前，String Pool 被放在 <strong>运行时常量池</strong> 中，它属于永久代。而在 Java 7，String Pool 被移到 <strong>堆</strong> 中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 <code>OutOfMemoryError</code> 错误。</p>
+<h4 id="new-String-“str”"><a href="#new-String-“str”" class="headerlink" title="new String(“str”)"></a>new String(“str”)</h4><p>使用这种方式一共会创建两个字符串对象（前提是 Spring Pool 中还没有 “str” 字符串对象）。</p>
 <ul>
-<li>优点：使用非常简单，ID 单调递增。</li>
-<li>缺点：非常依赖数据库，当数据库异常时则整个系统不可用。</li>
+<li>“str” 属于字符串字面量，因此编译时期会在 String Pool 中创建一个字符串对象，指向这个 “str” 字符串字面量。</li>
+<li>而使用 new 的方式会在堆中创建一个字符串对象。</li>
 </ul>
-<h4 id="UUID"><a href="#UUID" class="headerlink" title="UUID"></a>UUID</h4><ul>
-<li>优点：本地生成，没有网络消耗，性能高。</li>
-<li>缺点：过长不易于存储；造成信息不安全，基于 MAC 地址生成可能会造成 MAC 地址泄露。</li>
-</ul>
-<h4 id="Snowflake"><a href="#Snowflake" class="headerlink" title="Snowflake"></a>Snowflake</h4><p><code>Snowflake</code>（雪花算法）是由 <code>Twitter</code> 发布的分布式 ID 生成算法，它能够保证不同进程主键的不重复性，以及相同进程主键的有序性。它是通过时间位实现单调递增，且各个服务器如果都做了时间同步，那么生成的 ID 可以认为是总体有序的。</p>
-<h4 id="Leaf"><a href="#Leaf" class="headerlink" title="Leaf"></a>Leaf</h4><p><code>Leaf</code> 最早期需求是各个业务线的订单 ID 生成需求。在美团早期，有的业务直接通过数据库自增的方式生成 ID，有的业务通过 Redis 缓存来生成 ID，也有的业务直接用 UUID 这种方式来生成 ID。以上的方式各自有各自的问题，因此决定实现一套分布式  ID 生成服务来满足需求。</p>
-<p><strong>Leaf-segment</strong></p>
-<p><code>Leaf-segment</code> 数据库方案，在使用数据库的方案上，做了以下改变：</p>
-<ul>
-<li>原方案每次获取 ID 都得读写一次数据库，造成数据库压力大。改为利用 proxy server 批量获取一个 segment 号段，用完之后再去数据库获取新的号段，大大减轻数据库的压力。</li>
-<li>各个业务不同的发号需求用 biz_tag 字段来区分，每个 big_tag 的 ID 获取相互隔离互不影响。</li>
-</ul>
-<p>优点：</p>
-<ul>
-<li>Leaf 服务可以很方便的线性扩展，性能完全能够支撑大多数业务场景。</li>
-<li>ID 是趋势递增的 8 字节的 64 位数字，满足数据库存储的主键要求。</li>
-<li>容灾性高：Leaf 服务内部有号段缓存，即使数据库宕机，短时间内仍能可以正常对外提供服务。</li>
-<li>可以自定义 max_id 大小。</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>ID 不够随机，能够泄露发号数量的信息，不安全。</li>
-<li>数据库宕机可能会造成整个系统不可用。</li>
-</ul>
-<p><strong>Leaf-snowflake</strong></p>
-<p>该方案完全沿用 <code>snowflake</code> 方案设计。对于 <code>workerID</code> 的分配，当服务器集群数量较小的情况下，完全可以手动配置。服务规模较大时，动手配置成本太高，所以使用 <code>Zookeeper</code> 持久顺序节点的特性自动对 <code>snowflake</code> 节点配置。</p>
-<p>启动步骤如下：</p>
-<ol>
-<li>启动 <code>Leaf-snowflake</code> 服务，连接 <code>Zookeeper</code>，在 <code>leaf_forever</code> 父节点下检查自己是否已经注册过。</li>
-<li>如果有注册过直接取回自己的 <code>workerID</code>，启动服务。</li>
-<li>如果没有注册过，就在该父节点下面创建一个持久顺序节点，创建成功后取回顺序号当做自己的 <code>workerID</code> 号。</li>
-</ol>
-<h3 id="使用-Leaf-生成-ID"><a href="#使用-Leaf-生成-ID" class="headerlink" title="使用 Leaf 生成 ID"></a>使用 Leaf 生成 ID</h3><h4 id="克隆项目"><a href="#克隆项目" class="headerlink" title="克隆项目"></a>克隆项目</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/antoniopeng/leaf.git</span><br></pre></td></tr></table></figure>
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><h4 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h4><p><strong>Java 的参数是以值传递的形式传入方法中，而不是引用传递。</strong>在将一个参数传入一个方法时，本质上是将对象的地址以值的形式传递到形参中。</p>
+<p>在方法中改变一个对象的字段值会改变原对象字段值，因为引用的是同一个对象。</p>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> leaf</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn clean install -DskipTests</span><br></pre></td></tr></table></figure>
-
-<h4 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> leaf-docker</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chmod +x build.sh</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./build.sh</span><br></pre></td></tr></table></figure>
-
-<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>生成地址：<a href="http://localhost:8080/api/snowflake/get/test" target="_blank" rel="noopener">http://localhost:8080/api/snowflake/get/test</a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://localhost:8080/api/snowflake/get/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/2020/07/25/计算机基础/操作系统核心概念总结/" data-toggle="tooltip" data-placement="top" title="操作系统核心概念总结">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/2020/07/20/分布式/分布式事务解决方案之 Alibaba Seata/" data-toggle="tooltip" data-placement="top" title="分布式事务解决方案之 Alibaba Seata">Next Post &rarr;</a>
+            <a href="/2020/09/02/redis/三分钟搭建 Redis 集群/" data-toggle="tooltip" data-placement="top" title="三分钟搭建 Redis 集群">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -512,7 +566,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=分布式 ID 生成方案之美团 Leaf&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2020/07/22/分布式/分布式 ID 生成方案之美团 Leaf/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Java 基础回顾&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2020/11/06/java/Java 基础回顾/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -552,7 +606,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分布式主键"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">分布式主键</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#生成方案"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">生成方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据库生成"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">数据库生成</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UUID"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">UUID</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Snowflake"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">Snowflake</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Leaf"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">Leaf</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用-Leaf-生成-ID"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">使用 Leaf 生成 ID</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#克隆项目"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">克隆项目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#构建"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">构建</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#启动"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">启动</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#测试"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">测试</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据类型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">数据类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#基本类型"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">基本类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#包装类型"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">包装类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#缓存池"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">缓存池</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#String"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">String</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#概览"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">概览</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#不可变的好处"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">不可变的好处</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#String、StringBuffer-和-StringBuilder"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">String、StringBuffer 和 StringBuilder</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#String-Pool"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">String Pool</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#new-String-“str”"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">new String(“str”)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运算"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">运算</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#参数传递"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">参数传递</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -574,7 +628,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Leaf" title="Leaf">Leaf</a>
+            <a class="tag" href="/tags/#Java" title="Java">Java</a>
             
           </div>
         </section>
