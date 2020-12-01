@@ -354,13 +354,6 @@
 
   
   <url>
-    <loc>http://antoniopeng.com/tags/Docker/</loc>
-    <lastmod>2020-12-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://antoniopeng.com/tags/Docker-Compose/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
@@ -375,6 +368,13 @@
   </url>
   
   <url>
+    <loc>http://antoniopeng.com/tags/Docker/</loc>
+    <lastmod>2020-12-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://antoniopeng.com/tags/Docker-Registry/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
@@ -382,14 +382,14 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/Java/</loc>
+    <loc>http://antoniopeng.com/tags/Spring-MVC/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/Spring-MVC/</loc>
+    <loc>http://antoniopeng.com/tags/Java/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -417,14 +417,14 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/MQ/</loc>
+    <loc>http://antoniopeng.com/tags/MySQL/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/MySQL/</loc>
+    <loc>http://antoniopeng.com/tags/MQ/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -445,13 +445,6 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/Spring-Cloud/</loc>
-    <lastmod>2020-12-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://antoniopeng.com/tags/Spring-Boot/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
@@ -459,7 +452,14 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/%E6%BC%AB%E7%94%BB/</loc>
+    <loc>http://antoniopeng.com/tags/Spring-Cloud/</loc>
+    <lastmod>2020-12-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://antoniopeng.com/tags/Spring-Cloud-Alibaba/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -480,14 +480,7 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/Spring-Cloud-Alibaba/</loc>
-    <lastmod>2020-12-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://antoniopeng.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+    <loc>http://antoniopeng.com/tags/%E6%BC%AB%E7%94%BB/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -495,6 +488,13 @@
   
   <url>
     <loc>http://antoniopeng.com/tags/MyCat/</loc>
+    <lastmod>2020-12-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://antoniopeng.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -524,14 +524,14 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/categories/%E6%9D%82%E8%AE%B0/</loc>
+    <loc>http://antoniopeng.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>http://antoniopeng.com/categories/%E6%9D%82%E8%AE%B0/</loc>
     <lastmod>2020-12-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
