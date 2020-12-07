@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -373,6 +373,42 @@
 
       <!-- Main Content -->
 
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/06/15/mq/谈谈消息队列的流派/">
+    <h2 class="post-title">
+      谈谈消息队列的流派
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      关于 MQ 的定义Message Queue（MQ）消息队列中间件，通常我们在网上看到的对其定义是将消息的发送和接受分离来实现应用程序的异步和解耦，给人的直觉是 MQ 是异步的，用来解耦的。但这个只是 MQ 的效果，而不是目的。MQ 真正的目的是为了通讯，屏蔽底层复杂的通讯协议，定义了一套应用层上更加简单的通讯协议。
+一套分布式系统中两个模块之间通讯要么是 HTTP，要么是 TCP，但这两种......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-06-15
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MQ" title="MQ">MQ</a>
+    
+  </div>
+  
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -722,49 +758,6 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2019/12/08/mysql/MySQL 性能优化小结/">
-    <h2 class="post-title">
-      MySQL 性能优化小结
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      基础概念简述锁数据库通过锁机制来解决并发场景 — 共享锁（读锁）和排他锁（写锁）。读锁是不阻塞的，多个客户端可以在同一时刻读取同一个资源；写锁是排他的，并且会阻塞其他的读锁和写锁。
-简单提下乐观锁和悲观锁：
-
-乐观锁：通常用于数据竞争不激烈的场景，多读少写，通过版本号和时间戳实现
-悲观锁：通常用于数据竞争激烈的场景，每次操作都会锁定数据
-
-要锁定数据需要一定的锁策略来配合。
-
-表锁：锁定整张......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-12-08
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -907,11 +900,11 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#Docker" title="Docker" rel="3">Docker</a>
-    
-    
-    
     <a href="/tags/#Nexus" title="Nexus" rel="1">Nexus</a>
+    
+    
+    
+    <a href="/tags/#Docker" title="Docker" rel="3">Docker</a>
     
     
     
@@ -919,7 +912,11 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
+    <a href="/tags/#Java" title="Java" rel="2">Java</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="1">Spring MVC</a>
     
     
     
@@ -927,11 +924,7 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#Java" title="Java" rel="2">Java</a>
-    
-    
-    
-    <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
+    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
     
     
     
@@ -939,7 +932,7 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="1">Spring MVC</a>
+    <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
     
     
     
@@ -955,11 +948,11 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="8">Spring Cloud</a>
-    
-    
-    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="7">Spring Boot</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="8">Spring Cloud</a>
     
     
     
@@ -967,19 +960,19 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
-    
-    
-    
     <a href="/tags/#漫画" title="漫画" rel="3">漫画</a>
     
     
     
-    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
-    
-    
-    
     <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
+    
+    
+    
+    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
+    
+    
+    
+    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
     
     
     
@@ -988,6 +981,10 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     <a href="/tags/#Web" title="Web" rel="1">Web</a>
+    
+    
+    
+    <a href="/tags/#闲聊" title="闲聊" rel="1">闲聊</a>
     
     
   </div>
@@ -1033,7 +1030,7 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/08/">August 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/03/">March 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../2020/12/">December 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/08/">August 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/03/">March 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
