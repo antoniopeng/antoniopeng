@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -399,11 +399,11 @@
 <p>而 <code>MQ</code> 所要做就是在基于这些现有的协议之上构建一个更简单的通讯（生产者/消费者）模型。它定义了两个对象 —发送数据的叫生产者，接受数据的叫消费者，提供一个 SDK 给我们自己定义生产者和消费者实现消息通讯，且无视底层通讯协议。</p>
 <h3 id="带-Broker-的流派"><a href="#带-Broker-的流派" class="headerlink" title="带 Broker 的流派"></a>带 Broker 的流派</h3><p>这个流派通常有一台服务器作为 <code>Broker</code>，所有的消息都通过它进行中转。生产者把消息发送给它就结束自己的任务了，最后 <code>Broker</code> 则把消息主动推送给消费者（或者消费者主动轮询）。</p>
 <h4 id="重-Topic-的-MQ"><a href="#重-Topic-的-MQ" class="headerlink" title="重 Topic 的 MQ"></a>重 Topic 的 MQ</h4><p><code>Kafka</code>、<code>Active MQ</code> 就属于这个流派：生产者发送 <code>key</code> 和数据到 <code>Broker</code>，由 <code>Broker</code> 比较 <code>key</code> 之后决定给哪个消费者。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E8%B0%88%E8%B0%88%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E6%B5%81%E6%B4%BE-01.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E8%B0%88%E8%B0%88%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E6%B5%81%E6%B4%BE01.png-watermark" alt=""></p>
 <p>在这种模式下，<code>Topic（主题消息）</code> 往往是一个比较大的概念，甚至一个系统中就可能只有一个 <code>Topic</code>。</p>
 <p>虽然这两种消息队列的架构一样，但是 <code>Kafka</code> 的性能要比 <code>Active MQ</code> 的性能不知道高到多少倍，所以基本这种类型的 <code>MQ</code> 只有 <code>Kafka</code>一种备选方案。</p>
 <h4 id="轻-Topic-的-MQ"><a href="#轻-Topic-的-MQ" class="headerlink" title="轻 Topic 的 MQ"></a>轻 Topic 的 MQ</h4><p>这种的代表是 <code>RabbitMQ</code>（<code>AMQP</code>）。生产者发送 <code>key</code> 和数据，<code>Borker</code> 收到数据之后会根据 <code>key</code> 通过一定的逻辑计算出相应的队列，最后消费者订阅队列。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E8%B0%88%E8%B0%88%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E6%B5%81%E6%B4%BE-02.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E8%B0%88%E8%B0%88%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E6%B5%81%E6%B4%BE02.png-watermark" alt=""></p>
 <p>在这种架构中 <code>Queue</code> 是非常轻量级的（在 <code>RabbitMQ</code> 中它的上限取决于你的内存），消费者关心的只是自己的 <code>Queue</code>；生产者不必关心数据最终给谁，只要指定 <code>key</code> 就行了。中间的那层映射在 <code>AMQP</code> 中叫 <code>exchange（交换机）</code>。</p>
 <p><code>AMQP</code> 中有四种 <code>exchange</code>：</p>
 <ul>
@@ -414,7 +414,7 @@
 </ul>
 <p>这种架构给通讯带来了极大的灵活性，我们能想到的通讯方式都可以用这四种 <code>exchange</code> 表达出来。</p>
 <h3 id="不带-Broker-的流派"><a href="#不带-Broker-的流派" class="headerlink" title="不带 Broker 的流派"></a>不带 Broker 的流派</h3><h4 id="ZeroMQ"><a href="#ZeroMQ" class="headerlink" title="ZeroMQ"></a>ZeroMQ</h4><p>不带 <code>Broker</code> 的 <code>MQ</code> 代表就是 <code>ZeroMQ</code>。可以说是解决通讯问题的更高级 <code>Socket</code>，它被设计成了一个 “库” 而不是一个中间件，这种实现也可以达到没有 <code>Broker</code> 的目的。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E8%B0%88%E8%B0%88%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E6%B5%81%E6%B4%BE-03.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E8%B0%88%E8%B0%88%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E6%B5%81%E6%B4%BE03.png-watermark" alt=""></p>
 <p>各节点之间的通讯都是发送到彼此的队列中，每个节点即是生产者也是消费者。类似于一套 <code>Socket</code> 的 <code>API</code>，可以完成发送和读取数据。</p>
 
 
@@ -659,15 +659,6 @@
 
           
 		  
-		  
-		  <li>
-			<a target="_blank" title="Email" href="mailto:antoniopeng@foxmail.com">
-			  <span class="fa-stack fa-lg">
-				<i class="fa fa-circle fa-stack-2x"></i>
-				<i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 24x; height: 24px; background: url('https://qiniuyun.antoniopeng.com/email4.png') no-repeat;margin: 15px 0px 0px 15px"></i>
-			  </span>
-			</a>
-		  </li>
 		  
 
         </ul>

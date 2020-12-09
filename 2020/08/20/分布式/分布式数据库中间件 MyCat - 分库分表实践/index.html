@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -416,14 +416,14 @@
 </li>
 </ul>
 <h4 id="垂直切分"><a href="#垂直切分" class="headerlink" title="垂直切分"></a>垂直切分</h4><p>一个数据库由很多表构成，每个表对应着不同的业务，垂直切分就是按照业务将表进行分类，从而分布到不同的数据库上面，这样也就将压力分担到不同的数据库上，如图。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E9%97%B4%E4%BB%B6%20MyCat%20-%20%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%AE%9E%E8%B7%B5-01.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E9%97%B4%E4%BB%B6%20MyCat%20-%20%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%AE%9E%E8%B7%B501.jpg-watermark" alt=""></p>
 <p> 一个架构设计好的系统其总体功能通常是由多个功能模块所组成的，而每一个功能模块的数据对应到数据库中就是一个或多个表。而在架构设计中，各个功能模块相互之间的交互点越少和越统一，系统的耦合度就越低，系统各个模块的维护性以及扩展性也就越好，这样的系统也就越容易实现垂直切分。</p>
 <p>但是往往系统中有些表难以做到完全的独立，存在跨库 <code>join</code> 的情况，对于这类分库，可以共用一个数据源，业务之间通过接口来调用。</p>
 <p><strong>优点</strong>：规则明确、业务清晰、更易于整合和扩展、维护简单。</p>
 <p><strong>缺点</strong>：部分业务表无法 <code>join</code>，需要通过业务接口方式解决，提高系统复杂度；各业务存在单库性能瓶颈，不易于数据扩展和性能提高；事务处理复杂问题。</p>
 <p>由于垂直切分是将表按照业务分类切分到不同的单库中，所有导致某些业务表过于庞大，存在单库读写与存储瓶颈，则需要水平切分来解决。</p>
 <h4 id="水平切分"><a href="#水平切分" class="headerlink" title="水平切分"></a>水平切分</h4><p>水平切分不是将表按照业务分类，而是按照某个字段的某种规则分散到多个库中，每个表中包含一部分数据，如图。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E9%97%B4%E4%BB%B6%20MyCat%20-%20%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%AE%9E%E8%B7%B5-02.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E9%97%B4%E4%BB%B6%20MyCat%20-%20%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%AE%9E%E8%B7%B502.jpg-watermark" alt=""></p>
 <p>拆分数据需要定义分片规则，拆分的第一原则是找到 <strong>拆分维度</strong>。比如：从会员的角度来分析，需要查询会员某天某月某个订单，那么就需要按照日期来拆分，不同的数据按照会员 ID 做分组。</p>
 <p><strong>优点</strong>：拆分规则抽象好；不存在单库数据瓶颈问题；提高系统稳定性和负载能力。</p>
 <p><strong>缺点</strong>：事务一致性难以解决；数据扩展和维护的难度极大；跨库 join 性能差。</p>
@@ -739,15 +739,6 @@
 
           
 		  
-		  
-		  <li>
-			<a target="_blank" title="Email" href="mailto:antoniopeng@foxmail.com">
-			  <span class="fa-stack fa-lg">
-				<i class="fa fa-circle fa-stack-2x"></i>
-				<i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 24x; height: 24px; background: url('https://qiniuyun.antoniopeng.com/email4.png') no-repeat;margin: 15px 0px 0px 15px"></i>
-			  </span>
-			</a>
-		  </li>
 		  
 
         </ul>

@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -402,7 +402,7 @@
 </ul>
 <h3 id="B-S-网络架构概述"><a href="#B-S-网络架构概述" class="headerlink" title="B/S 网络架构概述"></a>B/S 网络架构概述</h3><p><code>B/S</code> 基于统一的应用层协议 <code>HTTP</code> 来交互数据，与大多数 <code>C/S</code> 互联网应用程序采用的长连接的交互模式不同。<code>HTTP</code> 采用无状态的短连接的通信方式，通常情况下，一次请求就完成了一次数据交互，然后这次通信连接就断开了。采用这种方式可以有效应对更多的用户请求。</p>
 <p>当在浏览器里输入 <a href="https://antoniopeng.com">antoniopeng.com</a> 这个 <code>URL</code> 并按下回车键时，会发生很多操作：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B-01.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B01.png-watermark" alt=""></p>
 <ol>
 <li>首先请求 <code>DNS</code> 把这个域名解析成对应的 <code>IP</code> 地址。</li>
 <li>然后根据这个 <code>IP</code> 地址在互联网上找到对应的服务器，向这个服务器发起一个（GET/POST/…）请求。由这个服务器返回默认的数据资源给访问的用户，在服务端也可能还有很复杂的业务逻辑。<ul>
@@ -522,15 +522,15 @@
 </tr>
 </tbody></table>
 <h4 id="查看-HTTP-信息"><a href="#查看-HTTP-信息" class="headerlink" title="查看 HTTP 信息"></a>查看 HTTP 信息</h4><p>要看一个 <code>HTTP</code> 请求的请求头和响应头可以通过 F12 快捷键打开浏览器的调试工具查看，例如我们正在访问 <a href="www.baidu.com">百度</a>，按下 F12 并打开 <code>Network</code> 调试栏可以看到以下 <code>HTTP Header</code> 内容</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B-02.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B02.png-watermark" alt=""></p>
 <h4 id="浏览器缓存机制"><a href="#浏览器缓存机制" class="headerlink" title="浏览器缓存机制"></a>浏览器缓存机制</h4><p>当浏览一个网页发现有异常时，通常要考虑的就是是不是浏览器做了缓存，所以一般的做法就是按 <code>Ctrl + F5</code> 组合键重新请求一次这个页面，这样的话请求的肯定是最新的页面。因为按 <code>Ctrl + F5</code> 组合键会直接向目标 <code>URL</code> 发送请求，而不会使用浏览器缓存的数据。</p>
 <p>如图所示，这次请求没有到服务端，使用的是浏览器的缓存数据</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B-03.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B03.png-watermark" alt=""></p>
 <p>按 <code>Ctrl + F5</code> 组合键刷新页面后，会发现在 <code>HTTP</code> 的请求头中通常多了两个参数，分别是 <code>Cache-Control:no-cache</code> 和 <code>Pragma:no-cache</code>，该参数作用就是请求内容不会被缓存</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B-04.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B04.png-watermark" alt=""></p>
 <h3 id="DNS-域名解析"><a href="#DNS-域名解析" class="headerlink" title="DNS 域名解析"></a>DNS 域名解析</h3><p>互联网是通过 URL（统一资源定位符）来发布和请求资源的，而 <code>URL</code> 中的域名需要解析成 <code>IP</code> 地址才能与远程主机建立连接，如何将域名解析成 IP 地址就属于 DNS 解析的工作范畴。</p>
 <p>当用户在浏览器里输入 <a href="antoniopeng.com">antoniopeng.com</a> 时，DNS 解析的工作步骤大体如下</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B-05.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B05.png-watermark" alt=""></p>
 <ol>
 <li>首先浏览器会先检查缓存中有没有这个域名对应的解析过的 IP 地址。如果缓存中有，这个解析过程就将结束。域名的缓存时间限制可以通过 <code>TTL</code> 属性来设置。</li>
 <li>如果浏览器缓存中没有，会检查操作系统中是否有这个域名对应的 <code>DNS</code> 解析结果，在 Windows 中可以通过 <code>C:\Windows\System32\drivers\etc\hosts</code> 文件来设置，在 Linux 中这个配置文件是 <code>/etc/hosts</code>，修改这个文件同样可以配置域名解析的 IP 结果。</li>
@@ -552,7 +552,7 @@
 </ul>
 <h3 id="CDN-工作机制"><a href="#CDN-工作机制" class="headerlink" title="CDN 工作机制"></a>CDN 工作机制</h3><p><code>CDN</code> 也就是内容分布网络，以缓存网站中的静态数据为主，如 CSS、JS、IMG 等数据。用户先从主站服务器请求到动态内容后，再从 <code>CDN</code> 上下载这些静态数据，从而加速网页数据内容的下载速度。</p>
 <p>通常来说 <code>CDN</code> 要达到可扩展性、安全性、可靠性几个目标。工作步骤如下：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B-06.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%20Web%20%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B06.png-watermark" alt=""></p>
 <ul>
 <li>首先向 <code>Local DNS Server</code> 本地域名解析服务器发起请求，一般经过迭代解析后回到这个域名的注册服务商去解析。</li>
 <li>通常会有一台 <code>DNS</code> 解析服务器会把这个域名重新 <code>CNAME</code> 解析到另外一个域名，而这个域名最终会被指向 <code>CDN</code> 全局中的 <code>DNS</code> 负载均衡服务器，再由 <code>GTM</code> 根据访问用户的地址，返回给离这个访问用户最近的 <code>CDN</code> 节点。</li>
@@ -818,15 +818,6 @@
 
           
 		  
-		  
-		  <li>
-			<a target="_blank" title="Email" href="mailto:antoniopeng@foxmail.com">
-			  <span class="fa-stack fa-lg">
-				<i class="fa fa-circle fa-stack-2x"></i>
-				<i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 24x; height: 24px; background: url('https://qiniuyun.antoniopeng.com/email4.png') no-repeat;margin: 15px 0px 0px 15px"></i>
-			  </span>
-			</a>
-		  </li>
 		  
 
         </ul>

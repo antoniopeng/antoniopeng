@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -410,11 +410,11 @@
 </ul>
 <p>在 <code>ACID</code> 事务中对隔离性的要求很高，在事务执行过程中，必须将所有的资源锁定。而柔性事务的理念则是通过业务逻辑将互斥锁操作从资源层面移至业务层面。通过放宽对 <strong>强一致性</strong> 的要求，来换取系统吞吐量的提升。</p>
 <h3 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h3><h4 id="什么是分布式事务"><a href="#什么是分布式事务" class="headerlink" title="什么是分布式事务"></a>什么是分布式事务</h4><p>我们可以把一个分布式事务理解成一个包含了 <strong>若干分支事务的全局事务</strong>，全局事务的职责是协调其下管辖的分支事务达成一致，要么一起成功提交，要么一起失败回滚。此外，通常分支事务本身就是一个满足 <code>ACID</code> 的本地事务。这是我们对分布式事务结构的基本认识，与 <code>XA</code> 是一致的。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B%20Alibaba%20Seata-01.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B%20Alibaba%20Seata01.png-watermark" alt=""></p>
 <h4 id="产生的原因"><a href="#产生的原因" class="headerlink" title="产生的原因"></a>产生的原因</h4><p>传统的单体应用中，一个业务操作可能需要调用三个模块完成，此时数据的一致性有本地事务来保证。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B%20Alibaba%20Seata-02.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B%20Alibaba%20Seata02.png-watermark" alt=""></p>
 <p>随着业务需求的变化，单体应用被拆分成微服务应用，业务操作需要调用三个服务来完成，原来的三个模块被拆分成三个独立的应用，分别使用独立的数据源。此时每个服务内部的数据一致性由本地事务来保证，但是全局的数据一致性问题无法保证。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B%20Alibaba%20Seata-03.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B%20Alibaba%20Seata03.png-watermark" alt=""></p>
 <p>在微服务分布式架构中由于全局数据一致性没法保证所产生的问题就是分布式事务问题。简单来说，一次业务操作需要操作多个数据源或需要进行远程调用，就会产生分布式事务问题。</p>
 <h4 id="制造一个分布式事务问题"><a href="#制造一个分布式事务问题" class="headerlink" title="制造一个分布式事务问题"></a>制造一个分布式事务问题</h4><p>这里我们会创建三个服务，分别是订单服务、库存服务、账户服务。当用户下单时，会在 <strong>订单服务</strong> 中创建一个订单，然后通过远程调用 <strong>库存服务</strong> 扣减当前商品的库存，再通过远程调用  <strong>账户服务</strong> 来扣减用户账户里面的余额。该业务操作通过两次远程调用，跨越三个数据库，明显存在分布式事务问题。</p>
 <h3 id="Alibaba-Seata-简介"><a href="#Alibaba-Seata-简介" class="headerlink" title="Alibaba Seata 简介"></a>Alibaba Seata 简介</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p><code>Seata</code> 是一款开源的分布式事务解决方案，提供高性能和简单易用的分布式事务服务，提供了 <code>AT</code>、<code>SAGA</code> 和 <code>XA</code> 事务模式。</p>
@@ -449,7 +449,7 @@
 
 <p>最后还需要在每个数据库的表中创建创建事务日志表，运行在 <code>seata server</code> 安装包中的 <code>/conf/db_undo_log.sql</code> 文件。</p>
 <p>完成后所有数据库表如图所示：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B%20Alibaba%20Seata-04.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B%20Alibaba%20Seata04.png-watermark" alt=""></p>
 <h4 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h4><p>对 <code>seata-order-service</code>、<code>seata-storage-service</code> 和 <code>seata-account-service</code> 三个服务进行配置大致相同，以 <code>seata-account-service</code> 为例。</p>
 <ul>
 <li><p>在 <code>application.yml</code> 文件中主要加入以下配置：</p>
@@ -720,15 +720,6 @@
 
           
 		  
-		  
-		  <li>
-			<a target="_blank" title="Email" href="mailto:antoniopeng@foxmail.com">
-			  <span class="fa-stack fa-lg">
-				<i class="fa fa-circle fa-stack-2x"></i>
-				<i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 24x; height: 24px; background: url('https://qiniuyun.antoniopeng.com/email4.png') no-repeat;margin: 15px 0px 0px 15px"></i>
-			  </span>
-			</a>
-		  </li>
 		  
 
         </ul>
