@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -423,7 +423,7 @@
 <p>然后在 <code>Sentinel</code> 控制台中根据注解 <code>@SentinelResource</code> 的 <code>value</code> 值进行对应的配置。</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E5%88%9D%E6%8E%A2%20Spring%20Cloud%20Alibaba%20Sentinel%20%E6%9C%8D%E5%8A%A1%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E5%8F%B003.png-watermark" alt=""></p>
 <p>最后快速访问上面的接口，可以发现返回限流处理信息：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%9D%E6%8E%A2%20Spring%20Cloud%20Alibaba%20Sentinel%20%E6%9C%8D%E5%8A%A1%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E5%8F%B0-04.png" alt=""></p>
+<p><img src="https://qiniuyun.antoniopeng.com/%E5%88%9D%E6%8E%A2%20Spring%20Cloud%20Alibaba%20Sentinel%20%E6%9C%8D%E5%8A%A1%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E5%8F%B004.png-watermark" alt=""></p>
 <h5 id="根据-URL-限流"><a href="#根据-URL-限流" class="headerlink" title="根据 URL 限流"></a>根据 URL 限流</h5><p>除了以上的方式，还可以根据 <code>url</code> 配置流控规则：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E5%88%9D%E6%8E%A2%20Spring%20Cloud%20Alibaba%20Sentinel%20%E6%9C%8D%E5%8A%A1%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E5%8F%B005.png-watermark" alt=""></p>
 <h4 id="自定义限流处理逻辑"><a href="#自定义限流处理逻辑" class="headerlink" title="自定义限流处理逻辑"></a>自定义限流处理逻辑</h4><p>同样我们也可以实现自己的一套限流处理逻辑，然后在 <code>@SentinelResource</code> 注解中指定即可。</p>
