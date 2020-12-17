@@ -383,49 +383,6 @@
   
 
 
-  <a href="/2019/12/08/mysql/MySQL 性能优化小结/">
-    <h2 class="post-title">
-      MySQL 性能优化小结
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      基础概念简述锁数据库通过锁机制来解决并发场景 — 共享锁（读锁）和排他锁（写锁）。读锁是不阻塞的，多个客户端可以在同一时刻读取同一个资源；写锁是排他的，并且会阻塞其他的读锁和写锁。
-简单提下乐观锁和悲观锁：
-
-乐观锁：通常用于数据竞争不激烈的场景，多读少写，通过版本号和时间戳实现
-悲观锁：通常用于数据竞争激烈的场景，每次操作都会锁定数据
-
-要锁定数据需要一定的锁策略来配合。
-
-表锁：锁定整张......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-12-08
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
   <a href="/2019/12/03/springcloud/Spring Cloud 中使用 Zipkin 链路追踪服务/">
     <h2 class="post-title">
       Spring Cloud 中使用 Zipkin 链路追踪服务
@@ -747,6 +704,46 @@ nginx 反向代理服务器：192.168.127.130......
 </div>
 <hr>
 
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2019/09/13/springcloud/使用 Spring Cloud Netflix Eureka 作为服务注册与发现中心/">
+    <h2 class="post-title">
+      使用 Spring Cloud Netflix Eureka 作为服务注册与发现中心
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      Eureka 介绍Eureka 是 Spring Cloud 的组件 Spring Cloud Netflix 中的一个模块，负责完成对微服务架构的服务治理功能。
+Eureka 服务的三个角色Eureka 服务端
+Eureka 提供的服务端，负责服务的注册与发现功能，一般称为 eureka server。
+服务提供者
+提供服务的应用，将自己提供的服务注册到 Eureka，以供其他应用发现。
+......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2019-09-13
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
 
 
   <!-- Pager -->
@@ -900,10 +897,6 @@ nginx 反向代理服务器：192.168.127.130......
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="1">Spring</a>
-    
-    
-    
     <a href="/tags/#Jersey" title="Jersey" rel="1">Jersey</a>
     
     
@@ -912,7 +905,15 @@ nginx 反向代理服务器：192.168.127.130......
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="1">Spring</a>
+    
+    
+    
     <a href="/tags/#SSM" title="SSM" rel="1">SSM</a>
+    
+    
+    
+    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
     
     
     
@@ -924,15 +925,11 @@ nginx 反向代理服务器：192.168.127.130......
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
-    
-    
-    
-    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
-    
-    
-    
     <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
+    
+    
+    
+    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
     
     
     
@@ -940,11 +937,11 @@ nginx 反向代理服务器：192.168.127.130......
     
     
     
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="8">Spring Cloud</a>
-    
-    
-    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="7">Spring Boot</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="8">Spring Cloud</a>
     
     
     
@@ -952,15 +949,19 @@ nginx 反向代理服务器：192.168.127.130......
     
     
     
-    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
-    
-    
-    
     <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
     
     
     
-    <a href="/tags/#漫画" title="漫画" rel="3">漫画</a>
+    <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
+    
+    
+    
+    <a href="/tags/#漫画" title="漫画" rel="2">漫画</a>
+    
+    
+    
+    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
     
     
     
@@ -969,10 +970,6 @@ nginx 反向代理服务器：192.168.127.130......
     
     
     <a href="/tags/#闲聊" title="闲聊" rel="1">闲聊</a>
-    
-    
-    
-    <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
     
     
     
@@ -1022,7 +1019,7 @@ nginx 反向代理服务器：192.168.127.130......
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../2020/12/">December 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/08/">August 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/03/">March 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../2020/12/">December 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2019/03/">March 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
