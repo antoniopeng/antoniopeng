@@ -217,13 +217,6 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/tags/">Tags</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -367,9 +367,9 @@
         
         <a href="#后端技术" title="后端技术" rel="25">后端技术</a>
         
-        <a href="#数据库" title="数据库" rel="3">数据库</a>
-        
         <a href="#杂记" title="杂记" rel="6">杂记</a>
+        
+        <a href="#数据库" title="数据库" rel="3">数据库</a>
         
         <a href="#计算机基础" title="计算机基础" rel="2">计算机基础</a>
         
@@ -381,6 +381,21 @@
         <span class="fa fa-tag listing-seperator" id="运维">
           <span class="tag-text">运维</span>
         </span>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/2019/07/21/docker/使用 Docker Compose 部署 MySQL & Tomcat/">
+            <h2 class="post-title">
+              使用 Docker Compose 部署 MySQL & Tomcat
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
         
         <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
@@ -432,21 +447,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2019/07/06/docker/基于 Ubuntu 安装 Docker/">
-            <h2 class="post-title">
-              基于 Ubuntu 安装 Docker
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
           <a href="/2019/10/08/docker/使用 Docker Compose 搭建 Registry 镜像管理平台及使用配置/">
             <h2 class="post-title">
               使用 Docker Compose 搭建 Registry 镜像管理平台及使用配置
@@ -462,9 +462,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2019/07/21/docker/使用 Docker Compose 部署 MySQL & Tomcat/">
+          <a href="/2019/07/06/docker/基于 Ubuntu 安装 Docker/">
             <h2 class="post-title">
-              使用 Docker Compose 部署 MySQL & Tomcat
+              基于 Ubuntu 安装 Docker
             </h2>
             
           </a>
@@ -492,9 +492,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2019/09/08/nginx/使用 Docker Compose 部署 Nginx 配置虚拟主机/">
+          <a href="/2019/09/30/nginx/Nginx 实现反向代理及负载均衡配置/">
             <h2 class="post-title">
-              使用 Docker Compose 部署 Nginx 配置虚拟主机
+              Nginx 实现反向代理及负载均衡配置
             </h2>
             
           </a>
@@ -507,9 +507,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2019/09/30/nginx/Nginx 实现反向代理及负载均衡配置/">
+          <a href="/2019/09/08/nginx/使用 Docker Compose 部署 Nginx 配置虚拟主机/">
             <h2 class="post-title">
-              Nginx 实现反向代理及负载均衡配置
+              使用 Docker Compose 部署 Nginx 配置虚拟主机
             </h2>
             
           </a>
@@ -544,21 +544,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2020/12/22/java/Java 持久层框架之 MyBatis/">
-            <h2 class="post-title">
-              Java 持久层框架之 MyBatis
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
           <a href="/2019/04/09/java/Java 实现上传文件-附加密和解密/">
             <h2 class="post-title">
               Java 实现上传文件（附加密和解密）
@@ -577,6 +562,21 @@
           <a href="/2019/03/18/java/Spring MVC 入门就这一篇/">
             <h2 class="post-title">
               Spring MVC 入门就这一篇
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/2020/12/22/java/Java 持久层框架之 MyBatis/">
+            <h2 class="post-title">
+              Java 持久层框架之 MyBatis
             </h2>
             
           </a>
@@ -634,9 +634,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2019/08/18/springboot/Spring Boot 中 Redis 的使用/">
+          <a href="/2020/01/03/springboot/Spring Boot 中监听 Redis key 失效事件实现定时任务/">
             <h2 class="post-title">
-              Spring Boot 中 Redis 的使用
+              Spring Boot 中监听 Redis key 失效事件实现定时任务
             </h2>
             
           </a>
@@ -664,39 +664,24 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
+          <a href="/2019/08/18/springboot/Spring Boot 中 Redis 的使用/">
+            <h2 class="post-title">
+              Spring Boot 中 Redis 的使用
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
           <a href="/2019/06/14/springboot/Spring Boot 整合 Shiro 实现登录认证与权限控制/">
             <h2 class="post-title">
               Spring Boot 整合 Shiro 实现登录认证与权限控制
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/2020/01/03/springboot/Spring Boot 中监听 Redis key 失效事件实现定时任务/">
-            <h2 class="post-title">
-              Spring Boot 中监听 Redis key 失效事件实现定时任务
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/2019/11/25/springcloud/Spring Cloud Config 分布式配置中心/">
-            <h2 class="post-title">
-              Spring Cloud Config 分布式配置中心
             </h2>
             
           </a>
@@ -739,9 +724,24 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2019/10/29/springcloud/Spring Cloud Netflix Feign 声明式服务调用/">
+          <a href="/2019/11/25/springcloud/Spring Cloud Config 分布式配置中心/">
             <h2 class="post-title">
-              Spring Cloud Netflix Feign 声明式服务调用
+              Spring Cloud Config 分布式配置中心
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/2019/10/18/springcloud/Spring Cloud Netflix Ribbon & RestTemplate 负载均衡调用服务/">
+            <h2 class="post-title">
+              Spring Cloud Netflix Ribbon & RestTemplate 负载均衡调用服务
             </h2>
             
           </a>
@@ -784,9 +784,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2019/10/18/springcloud/Spring Cloud Netflix Ribbon & RestTemplate 负载均衡调用服务/">
+          <a href="/2019/12/03/springcloud/Spring Cloud 中使用 Zipkin 链路追踪服务/">
             <h2 class="post-title">
-              Spring Cloud Netflix Ribbon & RestTemplate 负载均衡调用服务
+              Spring Cloud 中使用 Zipkin 链路追踪服务
             </h2>
             
           </a>
@@ -799,9 +799,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2019/12/03/springcloud/Spring Cloud 中使用 Zipkin 链路追踪服务/">
+          <a href="/2019/10/29/springcloud/Spring Cloud Netflix Feign 声明式服务调用/">
             <h2 class="post-title">
-              Spring Cloud 中使用 Zipkin 链路追踪服务
+              Spring Cloud Netflix Feign 声明式服务调用
             </h2>
             
           </a>
@@ -844,39 +844,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2020/01/28/springcloudalibaba/使用 Spring Cloud Alibaba Nacos Config 作为配置中心/">
-            <h2 class="post-title">
-              使用 Spring Cloud Alibaba Nacos Config 作为配置中心
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
           <a href="/2020/01/16/springcloudalibaba/使用 Spring Cloud Alibaba Nacos Discovery 实现服务注册与发现/">
             <h2 class="post-title">
               使用 Spring Cloud Alibaba Nacos Discovery 实现服务注册与发现
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/2020/02/02/springcloudalibaba/初探 Spring Cloud Alibaba Sentinel 服务流量控制台/">
-            <h2 class="post-title">
-              初探 Spring Cloud Alibaba Sentinel 服务流量控制台
             </h2>
             
           </a>
@@ -904,61 +874,39 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
+          <a href="/2020/01/28/springcloudalibaba/使用 Spring Cloud Alibaba Nacos Config 作为配置中心/">
+            <h2 class="post-title">
+              使用 Spring Cloud Alibaba Nacos Config 作为配置中心
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/2020/02/02/springcloudalibaba/初探 Spring Cloud Alibaba Sentinel 服务流量控制台/">
+            <h2 class="post-title">
+              初探 Spring Cloud Alibaba Sentinel 服务流量控制台
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
           <a href="/2020/08/20/分布式/分布式事务解决方案之 Alibaba Seata/">
             <h2 class="post-title">
               分布式事务解决方案之 Alibaba Seata
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="数据库">
-          <span class="tag-text">数据库</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/2019/05/15/mysql/一文快速入门 MySQL 索引/">
-            <h2 class="post-title">
-              一文快速入门 MySQL 索引
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/2019/12/08/mysql/MySQL 性能优化小结/">
-            <h2 class="post-title">
-              MySQL 性能优化小结
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/2020/07/20/分布式/分布式数据库中间件 MyCat - 分库分表实践/">
-            <h2 class="post-title">
-              分布式数据库中间件 MyCat - 分库分表实践
             </h2>
             
           </a>
@@ -1023,21 +971,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/2020/08/07/漫画/这个奇葩需求听了沉默/">
-            <h2 class="post-title">
-              这个奇葩需求听了沉默...
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
           <a href="/2020/08/05/漫画/中国程序员VS美国程序员，太形象了/">
             <h2 class="post-title">
               中国程序员 VS 美国程序员，太形象了...
@@ -1053,9 +986,76 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
+          <a href="/2020/08/07/漫画/这个奇葩需求听了沉默/">
+            <h2 class="post-title">
+              这个奇葩需求听了沉默...
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
           <a href="/2020/12/07/闲聊/普通人的一生经历/">
             <h2 class="post-title">
               普通人的一生平淡经历
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+      </div>
+      
+      <div class="one-tag-list">
+        <span class="fa fa-tag listing-seperator" id="数据库">
+          <span class="tag-text">数据库</span>
+        </span>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/2019/12/08/mysql/MySQL 性能优化小结/">
+            <h2 class="post-title">
+              MySQL 性能优化小结
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/2019/05/15/mysql/一文快速入门 MySQL 索引/">
+            <h2 class="post-title">
+              一文快速入门 MySQL 索引
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/2020/07/20/分布式/分布式数据库中间件 MyCat - 分库分表实践/">
+            <h2 class="post-title">
+              分布式数据库中间件 MyCat - 分库分表实践
             </h2>
             
           </a>
