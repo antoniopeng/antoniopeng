@@ -83,12 +83,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../../../../../css/highlight.css">
-<link rel="stylesheet" href="../../../../../css/widget.css">
-<link rel="stylesheet" href="../../../../../css/rocket.css">
-<link rel="stylesheet" href="../../../../../css/signature.css">
-<link rel="stylesheet" href="../../../../../css/catalog.css">
-<link rel="stylesheet" href="../../../../../css/livemylife.css">
+<link rel="stylesheet" href="../../css/highlight.css">
+<link rel="stylesheet" href="../../css/widget.css">
+<link rel="stylesheet" href="../../css/rocket.css">
+<link rel="stylesheet" href="../../css/signature.css">
+<link rel="stylesheet" href="../../css/catalog.css">
+<link rel="stylesheet" href="../../css/livemylife.css">
 
 
   
@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://antoniopeng.com/2019/07/28/springboot/Spring Boot 集成 Swagger2 构建 RESTful API 文档/">
+  <link rel="canonical" href="http://antoniopeng.com/tags/Shiro/">
   <title>
     
-    Spring Boot 集成 Swagger2 构建 RESTful API 文档 - 彭超的博客 | Antonio Blog
+    彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/work-731198_1920.jpg');
+       /*page*/
+        background-image: url('');
       
     }
 
@@ -312,42 +312,10 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="post-heading">
-            <div class="tags">
-              
-              <a class="tag" href="http://antoniopeng.com/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-              
-              <a class="tag" href="http://antoniopeng.com/tags/#Swagger" title="Swagger">Swagger</a>
-              
-            </div>
-            <h1>Spring Boot 集成 Swagger2 构建 RESTful API 文档</h1>
-            <h2 class="subheading"></h2>
-            <span class="meta">
-              Posted by 暮夏有五 on
-              2019-07-28
-            </span>
-
-
-            
-            <!-- WordCount start -->
-            <div class="blank_box"></div>
-            <span class="meta">
-              Estimated Reading Time <span class="post-count">2</span> Minutes
-            </span>
-            <div class="blank_box"></div>
-            <span class="meta">
-              Words <span class="post-count">526</span> In Total
-            </span>
-            <div class="blank_box"></div>
-            <!-- 不蒜子统计 start -->
-            <span class="meta">
-              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
-            </span>
-            <!-- 不蒜子统计 end -->
-            <!-- WordCount end -->
-            
-
-
+          <div class="site-heading">
+            <h1>彭超</h1>
+            <!--<hr class="small">-->
+            <span class="subheading">个人博客</span>
           </div>
           
         </div>
@@ -388,232 +356,360 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Modify by Yu-Hsuan Yen -->
-<!-- Post Content -->
-<article>
-  <div class="container">
-    <div class="row">
-      <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+	<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    
 
-        <h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><p>在 <code>pom.xml</code> 中添加 <code>io.springfox:springfox-swagger2</code> 和 <code>io.springfox:springfox-swagger-ui</code> 依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    <!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
 
-<h3 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h3><p>创建 <code>Swagger2Config</code> 配置类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.PathSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.ApiInfo;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spi.DocumentationType;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spring.web.plugins.Docket;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swagger2Config</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">createRestApi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .apiInfo(apiInfo())</span><br><span class="line">                .select()</span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(<span class="string">"&#123;Controler 扫描路径&#125;"</span>))</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">"&#123;标题&#125;"</span>)</span><br><span class="line">                .description(<span class="string">"&#123;描述&#125;"</span>)</span><br><span class="line">                .termsOfServiceUrl(<span class="string">"&#123;网址&#125;"</span>)</span><br><span class="line">                .version(<span class="string">"&#123;版本号&#125;"</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <!-- Main Content -->
 
-<p><strong>注意：需要在 <code>RequestHandlerSelectors.basePackage</code> 参数中设置 <code>Controller</code> 包路径，否则生成的文档扫描不到接口。</strong></p>
-<p>在 <code>Application</code> 中添加 <code>@EnableSwagger2</code> 注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableSwagger</span>2</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceAdminApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(ServiceAdminApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="使用-Swagger2"><a href="#使用-Swagger2" class="headerlink" title="使用 Swagger2"></a>使用 Swagger2</h3><p>在 <code>Controller</code> 中的请求接口里加入以下常用 <code>Swagger</code> 注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/api/v2/user"</span>)</span><br><span class="line"><span class="meta">@Api</span>(tags = <span class="string">"用户管理"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">UserController</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@ApiOperation</span>(value = <span class="string">"分页查询用户列表"</span>)</span><br><span class="line">	<span class="meta">@ApiImplicitParams</span>(&#123;</span><br><span class="line">			<span class="meta">@ApiImplicitParam</span>(name = <span class="string">"pageNum"</span>, value = <span class="string">"页码"</span>, required = <span class="keyword">true</span>, dataType = <span class="string">"int"</span>, paramType = <span class="string">"path"</span>),</span><br><span class="line">			<span class="meta">@ApiImplicitParam</span>(name = <span class="string">"pageSize"</span>, value = <span class="string">"页数"</span>, required = <span class="keyword">true</span>, dataType = <span class="string">"int"</span>, paramType = <span class="string">"path"</span>),</span><br><span class="line">			<span class="meta">@ApiImplicitParam</span>(name = <span class="string">"UserJson"</span>, value = <span class="string">"对象 JSON 字符串"</span>, required = <span class="keyword">false</span>, dataTypeClass = String<span class="class">.<span class="keyword">class</span>, <span class="title">paramType</span> </span>= <span class="string">"json"</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"page/&#123;pageNum&#125;/&#123;pageSize&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> BaseResult <span class="title">page</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">		@PathVariable(required = <span class="keyword">true</span>)</span> <span class="keyword">int</span> pageNum, </span></span><br><span class="line"><span class="function">		@<span class="title">PathVariable</span><span class="params">(required = <span class="keyword">true</span>)</span> <span class="keyword">int</span> pageSize,</span></span><br><span class="line"><span class="function">		@<span class="title">RequestParam</span><span class="params">(required = <span class="keyword">false</span>)</span> String UserJson</span></span><br><span class="line"><span class="function">	)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="post-preview">
 
-<h3 id="Swagger-注解使用说明"><a href="#Swagger-注解使用说明" class="headerlink" title="Swagger 注解使用说明"></a>Swagger 注解使用说明</h3><ul>
-<li><code>@Api</code>：修饰整个类，描述 <code>Controller</code> 的作用</li>
-<li><code>@ApiOperation</code>：描述一个类的一个方法，或者说一个接口</li>
-<li><code>@ApiImplicitParam</code>：一个请求参数</li>
-<li><code>@ApiImplicitParams</code>：多个请求参数</li>
-<li><code>@ApiParam</code>：单个参数描述</li>
-<li><code>@ApiModel</code>：用对象来接收参数</li>
-<li><code>@ApiProperty</code>：用对象接收参数时，描述对象的一个字段</li>
-<li><code>@ApiResponse</code>：<code>HTTP</code> 响应其中 1 个描述</li>
-<li><code>@ApiResponses</code>：<code>HTTP</code> 响应整体描述</li>
-<li><code>@ApiIgnore</code>：使用该注解忽略这个 <code>API</code></li>
-<li><code>@ApiError</code>：发生错误返回的信息</li>
-</ul>
-<p>启动项目，访问 <code>Swagger</code> 地址：http://{ip}:{port}/swagger-ui.html</p>
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2019/06/14/springboot/Spring Boot 整合 Shiro 实现登录认证与权限控制/">
+    <h2 class="post-title">
+      Spring Boot 整合 Shiro 实现登录认证与权限控制
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      用户角色权限数据库设计数据库这里以 MySQL 为例
+创建数据库所需表如下：
+
+user：用户表
+role：角色表
+perm：权限菜单表
+user_role：用户与角色关联的中间表
+role_prem：角色与权限菜单关联的中间表
+
+执行数据库脚本12345678910111213141516171819202122232425262728293031323334353637383940414......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2019-06-14
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
+    
+    <a href="/tags/#Shiro" title="Shiro">Shiro</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+
+
+  <!-- Pager -->
+  <ul class="pager">
+    
+    
+  </ul>
+
+
+      <!-- 如果开启评论功能 -->
+      
+    </div>
+
+    <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        
+<!-- <h5>VISITORS</h5> -->
+<h5>VISITORS</h5>
+<div class="widget">
+  <span>
+    本站总访问量 <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 次
+  </span>
+  <br />
+  <span>
+    本站总访客数 <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 人
+  </span>
+</div>
 
 
         <hr>
-        <!-- Pager -->
-        <ul class="pager">
-          
-          <li class="previous">
-            <a href="/2019/08/02/docker/Linux 安装 Docker Compose 及常用命令汇总/" data-toggle="tooltip" data-placement="top" title="Linux 安装 Docker Compose 及常用命令汇总">&larr; Previous Post</a>
-          </li>
-          
-          
-          <li class="next">
-            <a href="/2019/07/21/docker/使用 Docker Compose 部署 MySQL & Tomcat/" data-toggle="tooltip" data-placement="top" title="使用 Docker Compose 部署 MySQL & Tomcat">Next Post &rarr;</a>
-          </li>
-          
-        </ul>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+  <h5>ABOUT ME</h5>
+  <div class="short-about">
 
-        
-        <!-- tip start -->
-        <div class="tip">
-          <p>
-            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
-          </p>
-        </div>
-        <!-- tip end -->
-        
+    
+    <img id="avatar_pic" src="https://qiniuyun.antoniopeng.com/my_photo.png" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
+    
 
-        
-        <!-- Sharing Srtart -->
-        <!-- Social Social Share Post -->
-<!-- Docs:https://github.com/overtrue/share.js -->
+    
+    <!--<p>我究竟拿时间换了什么 Self discipline produces joy</p>-->
+	<p>
+		<span>我究竟拿时间换了什么</span>
+		<br>
+		<span>Self discipline produces joy</span>
+	</p>
+    
 
-<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
-  <ul class="list-inline text-center social-share-ul">
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-twitter">
-        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a class="social-share-icon icon-wechat">
-        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-weibo">
-        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-qq">
-        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Spring Boot 集成 Swagger2 构建 RESTful API 文档&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2019/07/28/springboot/Spring Boot 集成 Swagger2 构建 RESTful API 文档/">
-        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
+    <!-- SNS Link -->
+    <ul class="list-inline">
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="微信" href="https://qiniuyun.antoniopeng.com/my_wx.png">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 20px; height: 20px; background: url('https://qiniuyun.antoniopeng.com/wx01.png') no-repeat;margin: 8px 0px 0px 9px"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="CSDN" href="https://blog.csdn.net/monianqing">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/csdn.png') no-repeat;margin: 10px 0px 0px 11px"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+      <li>
+        <a target="_blank" title="GitHub" href="https://github.com/antoniopeng">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a target="_blank" title="知乎" href="https://www.zhihu.com/people/antoniopeng8">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/zhihu.png') no-repeat;margin: 10px 0px 0px 11px"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+	  
+	  
+
+    </ul>
+  </div>
+</section>
+
+        <hr>
+    
+        <!-- Featured Tags -->
+
+<section>
+  <!-- no hr -->
+  <h5><a href="/tags/">FEATURED TAGS</a></h5>
+  <div class="tags">
+    
+    
+    <a href="/tags/#Docker" title="Docker" rel="5">Docker</a>
+    
+    
+    
+    <a href="/tags/#Nexus" title="Nexus" rel="1">Nexus</a>
+    
+    
+    
+    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
+    
+    
+    
+    <a href="/tags/#Jersey" title="Jersey" rel="1">Jersey</a>
+    
+    
+    
+    <a href="/tags/#MyBatis" title="MyBatis" rel="1">MyBatis</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="1">Spring MVC</a>
+    
+    
+    
+    <a href="/tags/#Spring" title="Spring" rel="1">Spring</a>
+    
+    
+    
+    <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
+    
+    
+    
+    <a href="/tags/#SSM" title="SSM" rel="1">SSM</a>
+    
+    
+    
+    <a href="/tags/#MQ" title="MQ" rel="1">MQ</a>
+    
+    
+    
+    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
+    
+    
+    
+    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
+    
+    
+    
+    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
+    
+    
+    
+    <a href="/tags/#Spring Boot" title="Spring Boot" rel="7">Spring Boot</a>
+    
+    
+    
+    <a href="/tags/#Shiro" title="Shiro" rel="1">Shiro</a>
+    
+    
+    
+    <a href="/tags/#Swagger" title="Swagger" rel="1">Swagger</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="8">Spring Cloud</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba" rel="4">Spring Cloud Alibaba</a>
+    
+    
+    
+    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
+    
+    
+    
+    <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
+    
+    
+    
+    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
+    
+    
+    
+    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#漫画" title="漫画" rel="2">漫画</a>
+    
+    
+    
+    <a href="/tags/#Web" title="Web" rel="1">Web</a>
+    
+    
+    
+    <a href="/tags/#闲聊" title="闲聊" rel="1">闲聊</a>
+    
+    
+  </div>
+</section>
+
+
+        <hr>
+    
+        <!-- Categories -->
+
+<!-- <h5>categories</h5> -->
+<h5><a href="/categories/">CATEGORIES</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="/categories/#运维">
+      <li>运维</li>
+    </a>
+    
+    <a href="/categories/#后端技术">
+      <li>后端技术</li>
+    </a>
+    
+    <a href="/categories/#杂记">
+      <li>杂记</li>
+    </a>
+    
+    <a href="/categories/#数据库">
+      <li>数据库</li>
+    </a>
+    
+    <a href="/categories/#计算机基础">
+      <li>计算机基础</li>
+    </a>
+    
   </ul>
 </div>
 
-<!-- css & js -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
-<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <!-- Sharing End -->
-        
         <hr>
-
-        <!-- comments start -->
-        <!-- 1. gitalk comment -->
-
-
-
-
-<!-- 2. gitment comment -->
-
-
-
-<!-- 3. disqus comment -->
-
-
-        <!-- comments end -->
-        <hr>
-
-      </div>
-
-      <!-- Catalog: Tabe of Content -->
-      <!-- Table of Contents -->
-
     
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#引入依赖"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用-Swagger2"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">使用 Swagger2</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Swagger-注解使用说明"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Swagger 注解使用说明</span></a></li></ol>
-        
-        </div>
-      </aside>
-    
-
-
-      <!-- Sidebar Container -->
-      <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-        <!-- Featured Tags -->
-        
-        <section>
-          <!-- no hr -->
-          <h5>
-            <a href="/tags/">FEATURED TAGS</a>
-          </h5>
-          <div class="tags">
-            
-            <a class="tag" href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-            
-            <a class="tag" href="/tags/#Swagger" title="Swagger">Swagger</a>
-            
-          </div>
-        </section>
-        
-
-        <!-- Friends Blog -->
-        
-        <hr>
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
-
-          
-          <li>
-            <a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a>
-          </li>
-          
-        </ul>
-        
-      </div>
+    <!-- <h5>ARCHIVES</h5> -->
+    <h5><a href="/archive/">ARCHIVES</a></h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/04/">April 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
+
+
+        <hr>
+    
+</div>
+
+    
   </div>
-</article>
-
-
-
-<!-- anchorjs start -->
-<!-- async load function -->
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script type="text/javascript">
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function(e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  };
-</script>
-<script type="text/javascript">
-  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
-  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
-    anchors.options = {
-      visible: 'hover',
-      placement: 'left',
-      // icon: 'ℬ'
-      icon: '❡'
-    };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-  });
-</script>
-<style>
-  /* place left on bigger screen */
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-      font-size: 1.1em;
-      margin-top: -0.1em;
-    }
-  }
-</style>
-
-<!-- anchorjs end -->
-
+</div>
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->
