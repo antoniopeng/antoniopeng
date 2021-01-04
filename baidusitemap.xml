@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://antoniopeng.com/2021/01/04/spring/Spring%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20JdbcTemplate%20%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C%20MySQL/</loc>
+    <lastmod>2021-01-04</lastmod>
+  </url>
+  <url>
     <loc>http://antoniopeng.com/2021/01/04/mybatis/%E5%86%8D%E8%B0%88%20MyBatis%20%E5%A4%8D%E6%9D%82%E6%9F%A5%E8%AF%A2/</loc>
     <lastmod>2021-01-04</lastmod>
   </url>
@@ -18,10 +22,6 @@
   </url>
   <url>
     <loc>http://antoniopeng.com/2021/01/04/spring/Spring%20%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
-    <lastmod>2021-01-04</lastmod>
-  </url>
-  <url>
-    <loc>http://antoniopeng.com/2021/01/04/spring/Spring%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20JdbcTemplate%20%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2021-01-04</lastmod>
   </url>
   <url>
