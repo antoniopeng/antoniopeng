@@ -217,13 +217,6 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/tags/">Tags</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -383,37 +383,310 @@
   
 
 
-  <a href="/2019/06/14/springboot/Spring Boot 整合 Shiro 实现登录认证与权限控制/">
+  <a href="/2020/08/20/seata/分布式事务解决方案之 Alibaba Seata/">
     <h2 class="post-title">
-      Spring Boot 整合 Shiro 实现登录认证与权限控制
+      分布式事务解决方案之 Alibaba Seata
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      用户角色权限数据库设计数据库这里以 MySQL 为例
-创建数据库所需表如下：
+      关于事务的几点常识本地事务该类事务需要满足四大特性：ACID（原子性、一致性、隔离性、持久性），仅限于对单一数据库资源的访问控制。
 
-user：用户表
-role：角色表
-perm：权限菜单表
-user_role：用户与角色关联的中间表
-role_prem：角色与权限菜单关联的中间表
-
-执行数据库脚本12345678910111213141516171819202122232425262728293031323334353637383940414......
+原子性（Atomicity）：指事务作为整体来执行，要么全部执行，要么全部不执行。
+一致性（Consistency）：指事务应确保数据从一个一致的状态转变为另一个一致状态。
+隔离性（Isolation）：指多个事务并发时，一个事务的执行不应影响其它事务的执行。......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2019-06-14
+    2020-08-20
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Seata" title="Seata">Seata</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/07/22/leaf/分布式 ID 生成方案之美团 Leaf/">
+    <h2 class="post-title">
+      分布式 ID 生成方案之美团 Leaf
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      分布式主键在庞大复杂的分布式系统中，通常需要对海量数据进行唯一标识，随着数据日渐增长，对数据分库分表以后需要有一个唯一 ID 来标识一条数据，而数据库的自增 ID 显然不能满足需求，此时就需要有一个能够生成全局唯一 ID 的系统，需要满足以下条件：
+
+全局唯一性：最基本的要求就是不能出现重复的 ID。
+递增：保证下一个 ID 一定大于上一个 ID。
+信息安全：如果 ID 是连续的，用户就可以......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-07-22
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Leaf" title="Leaf">Leaf</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/07/18/mq/深入浅出 RabbitMQ/">
+    <h2 class="post-title">
+      深入浅出 RabbitMQ
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      什么是 RabbitMQ简介（优点）
+基于 ErLang 语言开发有高可用高并发的优点，适合集群。
+开源、稳定、易用、跨平台、支持多种语言、文档齐全。
+有消息确认机制和持久化机制，可靠性高。
+
+基本概念生产者和消费者
+
+Producer：消息的生产者
+Consumer：消息的消费者
+
+Queue
+
+消息队列提供了 FIFO 的处理机制，具有缓存消息的能力。在 RabbitMQ 中，队列消息可......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-07-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#RabbitMQ" title="RabbitMQ">RabbitMQ</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/02/13/springcloudalibaba/SpringCloudAlibaba与Dubbo的完美融合/">
+    <h2 class="post-title">
+      Spring Cloud Alibaba 与 Dubbo 的完美融合
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      本文主要实践 Spring Cloud Alibaba 体系的服务注册与发现组件 Nacos 与 Dubbo 的结合使用场景，实现对内 RPC 通信、对外 HTTP 通信的更高效率服务调用方式。
+统一依赖版本管理创建一个名为 hello-dubbo-nacos-dependencies 的依赖管理项目，pom.xml 如下。
+123456789101112131415161718192021......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-02-13
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba">Spring Cloud Alibaba</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/02/02/springcloudalibaba/初探 Spring Cloud Alibaba Sentinel 服务流量控制台/">
+    <h2 class="post-title">
+      初探 Spring Cloud Alibaba Sentinel 服务流量控制台
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      简介Sentinel 控制台提供一个轻量级的控制台，Sentinel 以流量为切入点，提供 机器发现、单机资源实时监控、集群资源汇总，以及 规则管理 的功能。
+部署 Sentinel 控制台
+下载官方提供的 Jar 包：sentinel-dashboard.jar
+
+运行 Jar
+1$ java -jar sentinel-dashboard.jar
+
+访问控制台 http://localh......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-02-02
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba">Spring Cloud Alibaba</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/01/28/springcloudalibaba/使用 Spring Cloud Alibaba Nacos Config 作为配置中心/">
+    <h2 class="post-title">
+      使用 Spring Cloud Alibaba Nacos Config 作为配置中心
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      什么是 Nacos Config在分布式系统中，由于服务数量巨多，为了方便服务 配置文件统一管理，实时更新，所以需要分布式配置中心组件。
+Spring Cloud Alibaba Nacos Config 是 Spring Cloud Config 的替代方案。
+Nacos Config 的存储配置功能为分布式系统中的外部化配置提供服务器端和客户端支持，可以在 Nacos 中集中管理 Spr......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-01-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba">Spring Cloud Alibaba</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/01/16/springcloudalibaba/使用 Spring Cloud Alibaba Nacos Discovery 实现服务注册与发现/">
+    <h2 class="post-title">
+      使用 Spring Cloud Alibaba Nacos Discovery 实现服务注册与发现
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      什么是 NacosNacos 是 Spring Cloud Alibaba 生态中的重要组件之一，用于发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，可以快速实现 动态服务发现、服务配置、服务元数据及流量管理。
+部署 Nacos 控制台
+下载地址：https://github.com/alibaba/nacos/releases
+
+解压后启动服务
+12345$ cd bin#......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-01-16
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba">Spring Cloud Alibaba</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/01/03/springboot/Spring Boot 中监听 Redis key 失效事件实现定时任务/">
+    <h2 class="post-title">
+      Spring Boot 中监听 Redis key 失效事件实现定时任务
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      业务场景我们以订单功能为例说明下：
+生成订单后一段时间不支付订单会自动关闭。最简单的想法是设置定时任务轮询，但是每个订单的创建时间不一样，定时任务的规则无法设定，如果将定时任务执行的间隔设置的过短，太影响效率。
+还有一种想法，在用户进入订单界面的时候，判断时间执行相关操作。方式可能有很多，在这里介绍一种监听 Redis 键值对过期时间来实现订单自动关闭。
+实现思路在生成订单时，向 Redis......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-01-03
   </p>
   <div class="tags">
     
     <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
-    <a href="/tags/#Shiro" title="Shiro">Shiro</a>
-    
   </div>
   
 
@@ -429,22 +702,23 @@ role_prem：角色与权限菜单关联的中间表
   
 
 
-  <a href="/2019/06/09/springboot/Spring Boot 中使用 TKMybatis 和 PageHelper/">
+  <a href="/2019/12/12/springboot/使用 Spring Boot Admin 监控服务/">
     <h2 class="post-title">
-      Spring Boot 中使用 TKMybatis 和 PageHelper
+      使用 Spring Boot Admin 监控服务
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      整合 Druid 数据源引入依赖在 pom.xml 中引入 druid-spring-boot-starter 和 mysql-connector-java 依赖
-1234567891011121314&lt;!-- druid-spring-boot-starter --&gt;&lt;dependency&gt;    &lt;groupId&gt;com.alibaba&lt;/gro......
+      Spring Boot Admin 简介随着开发周期的推移，项目会不断变大，切分出的服务也会越来越多，这时一个个的微服务构成了错综复杂的系统。
+对于各个微服务系统的健康状态、会话数量、并发数、服务资源、延迟等度量信息的收集就成为了一个挑战。 Spring Boot Admin 就是基于这些需求开发出的一套功能强大的监控管理系统。
+同样，Spring Boot Admin 也是由两个角色组成，......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2019-06-09
+    2019-12-12
   </p>
   <div class="tags">
     
@@ -465,184 +739,28 @@ role_prem：角色与权限菜单关联的中间表
   
 
 
-  <a href="/2019/04/25/java/集成 Spring & Spring MVC & MyBatis 搭建 Java 企业级应用/">
+  <a href="/2019/12/03/springcloud/Spring Cloud 中使用 Zipkin 链路追踪服务/">
     <h2 class="post-title">
-      集成 Spring & Spring MVC & MyBatis 搭建 Java 企业级应用
+      Spring Cloud 中使用 Zipkin 链路追踪服务
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      
-这里使用 Maven 项目管理工具构建项目
-
-初始化项目
-打开 Intellij  IDEA，点击 Create New Project
-
-选择 Maven 构建项目
-
-选择 JDK 版本
-
-选择 maven-archetype-webapp 模板（Java Web 项目）
-
-
-填写项目在 Maven 仓库中的坐标（在 Maven 仓库中根据这个坐标才能找到该项目），具体命名规则根据公司决......
+      Zipkin 简介ZipKin 是一个开放源代码的分布式跟踪系统，用于收集服务的定时数据，以解决微服务架构中的延迟问题。包括数据的收集、存储、查找和展现。
+每个服务向 Zipkin 报告计时数据，Zipkin 会根据调用关系通过 Zipkin UI 生成依赖关系图，显示了多少跟踪请求通过每个服务。该组件可以让我们通过一个 Web 前端轻松的收集和分析数据。例如用户每次请求服务的处理时间等，可......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2019-04-25
+    2019-12-03
   </p>
   <div class="tags">
     
-    <a href="/tags/#SSM" title="SSM">SSM</a>
+    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
     
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2019/04/20/java/Java 持久层框架之 MyBatis/">
-    <h2 class="post-title">
-      Java 持久层框架之 MyBatis
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      MyBatis 简介MyBatis 是一个基于 Java 的持久层框架，它内部封装了 JDBC，使开发者只需关注 SQL 语句本身，而不用再花费精力去处理诸如注册驱动、创建 Connection、配置 Statement 等繁杂过程。
-Mybatis 通过 xml 或注解的方式将要执行的各种 Statement、PreparedStatement 等配置起来，并通过 Java 对象和 Sta......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-04-20
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2019/04/09/java/Java 中使用 Jersey 实现上传文件-附加密和解密/">
-    <h2 class="post-title">
-      Java 中使用 Jersey 实现上传文件（附加密和解密）
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Jersey 简介Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
-引入依赖在 pom.xml 中添加 Jersey 相关依赖
-12345&lt;depend......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-04-09
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Jersey" title="Jersey">Jersey</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2019/03/18/java/Spring MVC 入门就这一篇/">
-    <h2 class="post-title">
-      Spring MVC 入门就这一篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring MVC 概述Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的一部分。
- MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 Web 应用程序的组件......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-03-18
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2019/03/12/java/一站式轻量级框架 Spring/">
-    <h2 class="post-title">
-      一站式轻量级框架 Spring
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring 简介Spring 是一个轻量级的 Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。Spring 的核心是控制反转（IoC）和面向切面编程（AOP）。简单来说，Spring 是一个分层的 Java EE 一站式轻量级开源框架。
-Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
-在一个系统中，根据功能的不同，代码分为 主业务逻辑 与 系统级业务逻辑 两类......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-03-12
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#Zipkin" title="Zipkin">Zipkin</a>
     
   </div>
   
@@ -659,6 +777,10 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
       <a href="/categories/后端技术/archives/2/">&larr; Newer Posts</a>
     </li>
     
+    
+    <li class="next">
+      <a href="/categories/后端技术/archives/4/">Older Posts &rarr;</a>
+    </li>
     
   </ul>
 
@@ -795,31 +917,11 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
-    <a href="/tags/#Jersey" title="Jersey" rel="1">Jersey</a>
-    
-    
-    
     <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
     
     
     
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="1">Spring MVC</a>
-    
-    
-    
-    <a href="/tags/#MyBatis" title="MyBatis" rel="1">MyBatis</a>
-    
-    
-    
-    <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
-    
-    
-    
-    <a href="/tags/#Spring" title="Spring" rel="1">Spring</a>
-    
-    
-    
-    <a href="/tags/#MQ" title="MQ" rel="1">MQ</a>
+    <a href="/tags/#Java" title="Java" rel="6">Java</a>
     
     
     
@@ -827,7 +929,23 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
+    <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
+    
+    
+    
+    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
+    
+    
+    
     <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
+    
+    
+    
+    <a href="/tags/#MyBatis" title="MyBatis" rel="4">MyBatis</a>
+    
+    
+    
+    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
     
     
     
@@ -843,6 +961,22 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
+    <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
+    
+    
+    
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="8">Spring Cloud</a>
+    
+    
+    
+    <a href="/tags/#Zipkin" title="Zipkin" rel="1">Zipkin</a>
+    
+    
+    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="8">Spring Boot</a>
     
     
@@ -855,23 +989,11 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
+    
+    
+    
     <a href="/tags/#Swagger" title="Swagger" rel="1">Swagger</a>
-    
-    
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="8">Spring Cloud</a>
-    
-    
-    
-    <a href="/tags/#Zipkin" title="Zipkin" rel="1">Zipkin</a>
-    
-    
-    
-    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
-    
-    
-    
-    <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
     
     
     
@@ -879,23 +1001,19 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
-    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
-    
-    
-    
     <a href="/tags/#漫画" title="漫画" rel="2">漫画</a>
     
     
     
-    <a href="/tags/#闲聊" title="闲聊" rel="1">闲聊</a>
-    
-    
-    
-    <a href="/tags/#Web" title="Web" rel="1">Web</a>
+    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
     
     
     
     <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#Web" title="Web" rel="1">Web</a>
     
     
   </div>
@@ -919,12 +1037,12 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
       <li>后端技术</li>
     </a>
     
-    <a href="/categories/#杂记">
-      <li>杂记</li>
-    </a>
-    
     <a href="/categories/#数据库">
       <li>数据库</li>
+    </a>
+    
+    <a href="/categories/#杂记">
+      <li>杂记</li>
     </a>
     
     <a href="/categories/#计算机基础">
@@ -941,7 +1059,7 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/04/">April 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/01/">January 2021</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/04/">April 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
