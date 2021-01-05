@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/docker/docker_registry镜像管理平台/">
+  <link rel="canonical" href="https://antoniopeng.com/fastdfs/分布式文件系统fastdfs服务端的部署/">
   <title>
     
-    Docker Registry 镜像管理平台 - 彭超的博客 | Antonio Blog
+    分布式文件系统 FastDFS 服务端的部署 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#Docker" title="Docker">Docker</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#FastDFS" title="FastDFS">FastDFS</a>
               
             </div>
-            <h1>Docker Registry 镜像管理平台</h1>
+            <h1>分布式文件系统 FastDFS 服务端的部署</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2019-10-08
+              2020-12-23
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">2</span> Minutes
+              Estimated Reading Time <span class="post-count">7</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">550</span> In Total
+              Words <span class="post-count">1.8k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,85 +394,85 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="Docker-Registry-简介"><a href="#Docker-Registry-简介" class="headerlink" title="Docker Registry 简介"></a>Docker Registry 简介</h3><p><a href="https://hub.docker.com" target="_blank" rel="noopener">Docker Hub</a> 是 Docker 官方提供的一个管理公共镜像的镜像仓库，我们可以从上面拉取我们想要的镜像，也可以推送自己的镜像上去。但有时候，在无法访问互联网的情况下或者不希望将自己的镜像推送到公网上时，那么 Docker Registry （镜像私服）就可以用来存储管理自己的镜像。</p>
-<h3 id="部署-Docker-Registry"><a href="#部署-Docker-Registry" class="headerlink" title="部署 Docker Registry"></a>部署 Docker Registry</h3><blockquote>
-<p>采用 Docker Compose 编排部署应用容器。服务器地址：192.168.100.1</p>
+        <h3 id="FastDFS-简介"><a href="#FastDFS-简介" class="headerlink" title="FastDFS 简介"></a>FastDFS 简介</h3><p><code>FastDFS</code> 服务端有两个角色：<strong>跟踪器</strong>（<code>tracker</code>）和<strong>存储节点</strong>（<code>storage</code>）。跟踪器主要做调度工作，在访问上起负载均衡的作用；存储节点存储文件，完成文件管理的所有功能。</p>
+<p><code>FastDFS</code> 同时对文件的 <code>metadata</code> 进行管理。所谓文件的 <code>metadata</code> 就是文件的相关属性，以键值对方式表示，如：width=1024，其中的 <code>key</code> 为 width，<code>value</code> 为 1024。文件 <code>metadata</code> 是文件属性列表，可以包含多个键值对。</p>
+<p>跟踪器和存储节点都可以由一台或多台服务器构成。跟踪器和存储节点中的服务器均可以随时增加或下线而不会影响线上服务。其中跟踪器中的所有服务器都是对等的，可以根据服务器的压力情况随时增加或减少。</p>
+<p>为了支持大容量，存储节点（服务器）采用了 <strong>分卷</strong>（或分组）的组织方式。存储系统由一个或多个卷组成，卷与卷之间的文件是相互独立的，所有卷的文件容量累加就是整个存储系统中的文件容量。一个卷可以由一台或多台存储服务器组成，一个卷下的存储服务器中的文件都是相同的，卷中的多台存储服务器起到了冗余备份和负载均衡的作用。</p>
+<p>在卷中增加服务器时，同步已有的文件由系统自动完成，同步完成后，系统自动将新增服务器切换到线上提供服务。</p>
+<p>当存储空间不足或即将耗尽时，可以动态添加卷。只需要增加一台或多台服务器，并将它们配置为一个新的卷，这样就扩大了存储系统的容量。</p>
+<p><code>FastDFS</code> 中的文件标识分为两个部分：<strong>卷名</strong> 和 <strong>文件名</strong>，二者缺一不可。</p>
+<h3 id="文件交互过程"><a href="#文件交互过程" class="headerlink" title="文件交互过程"></a>文件交互过程</h3><h4 id="上传交互过程"><a href="#上传交互过程" class="headerlink" title="上传交互过程"></a>上传交互过程</h4><ol>
+<li>client 询问 <code>tracker</code> 上传到的 <code>storage</code>，不需要附加参数；</li>
+<li><code>tracker</code> 返回一台可用的 <code>storage</code>；</li>
+<li>client 直接和 <code>storage</code> 通讯完成文件上传。</li>
+</ol>
+<h4 id="下载交互过程"><a href="#下载交互过程" class="headerlink" title="下载交互过程"></a>下载交互过程</h4><ol>
+<li>client 询问 <code>tracker</code> 下载文件的 <code>storage</code>，参数为文件标识（卷名和文件名）；</li>
+<li><code>tracker</code> 返回一台可用的 <code>storage</code>；</li>
+<li>client 直接和 <code>storage</code> 通讯完成文件下载。</li>
+</ol>
+<h3 id="FastDFS-为什么要结合-Nginx"><a href="#FastDFS-为什么要结合-Nginx" class="headerlink" title="FastDFS 为什么要结合 Nginx"></a>FastDFS 为什么要结合 Nginx</h3><p>我们在使用 <code>FastDFS</code> 部署一个分布式文件系统的时候，通过 <code>FastDFS</code> 的客户端 API 来进行文件的上传、下载、删除等操作。同时通过 <code>FastDFS</code> 的 HTTP 服务器来提供 HTTP 服务。但是 <code>FastDFS</code> 的 HTTP 服务较为简单，无法提供负载均衡等高性能的服务，我们使用 <code>FastDFS</code> 的 <code>Nginx</code> 模块来弥补这一缺陷。</p>
+<p><code>FastDFS</code> 通过 <code>tracker</code> 服务器，将文件放在 <code>Storage</code> 服务器存储，但是同组之间的服务器需要复制文件，有延迟的问题。假设 <code>tracker</code> 服务器将文件上传到了 192.168.1.100，文件 ID 已经返回客户端，这时后台会将这个文件复制到 192.168.1.100，如果复制没有完成，客户端就用这个 ID 在 192.168.1.100 取文件，肯定会出现错误。而 <code>fastdfs-nginx-module</code> 可以重定向连接到源服务器取文件，避免客户端由于复制延迟的问题出现错误。</p>
+<h3 id="部署-FastDFS-服务端"><a href="#部署-FastDFS-服务端" class="headerlink" title="部署 FastDFS 服务端"></a>部署 FastDFS 服务端</h3><blockquote>
+<p>服务器地址：192.168.1.100</p>
 </blockquote>
-<p>创建 docker-compose.yml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">registry:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">registry</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">registry</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5000</span><span class="string">:5000</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/usr/local/docker/registry/data:/var/lib/registry</span></span><br></pre></td></tr></table></figure>
+<p>所需环境配置文件已上传至百度网盘。</p>
+<blockquote>
+<p>提取链接：<a href="https://pan.baidu.com/s/1ptM7psDH9IJuH4P7Cd0L9A" target="_blank" rel="noopener">https://pan.baidu.com/s/1ptM7psDH9IJuH4P7Cd0L9A</a></p>
+<p>提取码：qdxe </p>
+</blockquote>
+<p>在 Linux 服务器上创建 <code>/usr/local/docker/fastdfs</code> 目录和  <code>/usr/local/docker/fastdfs/environment</code> 目录</p>
+<p><strong>目录说明：</strong></p>
+<ul>
+<li><code>/usr/local/docker/fastdfs</code>：用于存放 <code>docker-compose.yml</code> 文件和 <code>FastDFS</code> 的数据卷。</li>
+<li><code>/usr/local/docker/fastdfs/environment</code>：用于存放 <code>Dockerfile</code> 文件和刚刚提取的环境文件。</li>
+</ul>
+<p><strong>注意</strong>：因为 Shell 创建后是无法直接使用的，所以将 <code>entrypoint.sh</code> 文件拷贝到服务器目录里以后，需要赋予执行的权限，执行以下命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chmod +x entrypoint.sh</span><br></pre></td></tr></table></figure>
 
-<p>启动 docker compose</p>
+<h4 id="各环境配置文件说明"><a href="#各环境配置文件说明" class="headerlink" title="各环境配置文件说明"></a>各环境配置文件说明</h4><h5 id="tracker-conf"><a href="#tracker-conf" class="headerlink" title="tracker.conf"></a>tracker.conf</h5><p><code>FastDFS</code> 跟踪器配置，容器中路径为：<code>/etc/fdfs</code>，修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_path&#x3D;&#x2F;fastdfs&#x2F;tracker</span><br></pre></td></tr></table></figure>
+
+<h5 id="storage-conf"><a href="#storage-conf" class="headerlink" title="storage.conf"></a>storage.conf</h5><p><code>FastDFS</code> 存储配置，容器中路径为：<code>/etc/fdfs</code>，修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">base_path&#x3D;&#x2F;fastdfs&#x2F;storage</span><br><span class="line">store_path0&#x3D;&#x2F;fastdfs&#x2F;storage</span><br><span class="line">tracker_server&#x3D;192.168.1.100:22122</span><br><span class="line">http.server_port&#x3D;8888</span><br></pre></td></tr></table></figure>
+
+<h5 id="client-conf"><a href="#client-conf" class="headerlink" title="client.conf"></a>client.conf</h5><p><code>FastDFS</code> 客户端配置，容器中路径为：<code>/etc/fdfs</code>，修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">base_path&#x3D;&#x2F;fastdfs&#x2F;tracker</span><br><span class="line">tracker_server&#x3D;192.168.1.100:22122</span><br></pre></td></tr></table></figure>
+
+<h5 id="config"><a href="#config" class="headerlink" title="config"></a>config</h5><p><code>fastdfs-nginx-module</code> 配置文件，容器中路径为：<code>/usr/local/src/fastdfs-nginx-module/src</code>，修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 修改前</span><br><span class="line">CORE_INCS&#x3D;&quot;$CORE_INCS &#x2F;usr&#x2F;local&#x2F;include&#x2F;fastdfs &#x2F;usr&#x2F;local&#x2F;include&#x2F;fastcommon&#x2F;&quot;</span><br><span class="line">CORE_LIBS&#x3D;&quot;$CORE_LIBS -L&#x2F;usr&#x2F;local&#x2F;lib -lfastcommon -lfdfsclient&quot;</span><br><span class="line"></span><br><span class="line"># 修改后</span><br><span class="line">CORE_INCS&#x3D;&quot;$CORE_INCS &#x2F;usr&#x2F;include&#x2F;fastdfs &#x2F;usr&#x2F;include&#x2F;fastcommon&#x2F;&quot;</span><br><span class="line">CORE_LIBS&#x3D;&quot;$CORE_LIBS -L&#x2F;usr&#x2F;lib -lfastcommon -lfdfsclient&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="mod-fastdfs-conf"><a href="#mod-fastdfs-conf" class="headerlink" title="mod_fastdfs.conf"></a>mod_fastdfs.conf</h5><p><code>fastdfs-nginx-module</code> 配置文件，容器中路径为：<code>/usr/local/src/fastdfs-nginx-module/src</code>，修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">connect_timeout&#x3D;10</span><br><span class="line">tracker_server&#x3D;192.168.1.100:22122</span><br><span class="line">url_have_group_name &#x3D; true</span><br><span class="line">store_path0&#x3D;&#x2F;fastdfs&#x2F;storage</span><br></pre></td></tr></table></figure>
+
+<h5 id="nginx-conf"><a href="#nginx-conf" class="headerlink" title="nginx.conf"></a>nginx.conf</h5><p><code>Nginx</code> 配置文件，容器中路径为：<code>/usr/local/src/nginx-1.13.6/conf</code>，修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">user  root;</span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application&#x2F;octet-stream;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line"></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       8888;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location ~&#x2F;group([0-9])&#x2F;M00 &#123;</span><br><span class="line">            ngx_fastdfs_module;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        error_page   500 502 503 504  &#x2F;50x.html;</span><br><span class="line">        location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h4><p>在 <code>/usr/local/docker/fastdfs/environment</code> 目录下创建 Dockerfile 文件：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:xenial</span><br><span class="line"><span class="keyword">MAINTAINER</span> antoniopeng@foxmail.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新数据源</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /etc/apt</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse'</span> &gt; sources.list</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse'</span> &gt;&gt; sources.list</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse'</span> &gt;&gt; sources.list</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse'</span> &gt;&gt; sources.list</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get install make gcc libpcre3-dev zlib1g-dev --assume-yes</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制工具包</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> fastdfs-5.11.tar.gz /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> fastdfs-nginx-module_v1.16.tar.gz /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> libfastcommon.tar.gz /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> nginx-1.13.6.tar.gz /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 libfastcommon</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /usr/<span class="built_in">local</span>/src/libfastcommon</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> ./make.sh &amp;&amp; ./make.sh install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 FastDFS</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /usr/<span class="built_in">local</span>/src/fastdfs-5.11</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> ./make.sh &amp;&amp; ./make.sh install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 FastDFS 跟踪器</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> tracker.conf /etc/fdfs</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /fastdfs/tracker</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 FastDFS 存储</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> storage.conf /etc/fdfs</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /fastdfs/storage</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 FastDFS 客户端</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> client.conf /etc/fdfs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 fastdfs-nginx-module</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> config /usr/<span class="built_in">local</span>/src/fastdfs-nginx-module/src</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># FastDFS 与 Nginx 集成</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /usr/<span class="built_in">local</span>/src/nginx-1.13.6</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> ./configure --add-module=/usr/<span class="built_in">local</span>/src/fastdfs-nginx-module/src</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> make &amp;&amp; make install</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> mod_fastdfs.conf /etc/fdfs</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /usr/<span class="built_in">local</span>/src/fastdfs-5.11/conf</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> cp http.conf mime.types /etc/fdfs/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 Nginx</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> nginx.conf /usr/<span class="built_in">local</span>/nginx/conf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> entrypoint.sh /usr/<span class="built_in">local</span>/bin/</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [<span class="string">"/usr/local/bin/entrypoint.sh"</span>]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8888</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"/bin/bash"</span>]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h4><p>在 <code>/usr/local/docker/fastdfs/environment</code> 目录下创建 docker-compose.yml 文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">fastdfs:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">environment</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">fastdfs</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./storage:/fastdfs/storage</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">host</span></span><br></pre></td></tr></table></figure>
+
+<p>启动容器</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
 
-<p>访问地址：<a href="http://192.168.100.1:5000/v2/" target="_blank" rel="noopener">http://192.168.100.1:5000/v2/</a></p>
-<h4 id="配置-Docker-Registry"><a href="#配置-Docker-Registry" class="headerlink" title="配置 Docker Registry"></a>配置 Docker Registry</h4><p><code>Docker Registry</code> 服务启动以后还需要以下配置：</p>
-<ul>
-<li><p>编辑 <code>daemon.json</code> （如果不存在则新建）</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>完整文件如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [</span><br><span class="line">    <span class="string">"&#123;镜像加速器地址&#125;"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"insecure-registries"</span>: [</span><br><span class="line">    <span class="string">"&#123;docker registry ip&#125;:5000"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启服务</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<h4 id="服务端上传文件"><a href="#服务端上传文件" class="headerlink" title="服务端上传文件"></a>服务端上传文件</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 交互式进入容器</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it fastdfs /bin/bash</span><br><span class="line"><span class="comment"># 上传测试文件</span></span><br><span class="line">$ /usr/bin/fdfs_upload_file /etc/fdfs/client.conf /usr/<span class="built_in">local</span>/src/fastdfs-5.11/INSTALL</span><br><span class="line"><span class="comment"># 服务器反馈的上传后地址</span></span><br><span class="line">group1/M00/00/00/wKhLi1oHVMCAT2vrAAAeSwu9TgM3976771</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>检查配置是否生效</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>出现以下内容，说明配置成功</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Insecure Registries:</span><br><span class="line"> 192.168.100.1:5000</span><br></pre></td></tr></table></figure>
+<p>结合服务器反馈的信息，得出文件上传后地址为：<a href="http://192.168.1.100:8888/group1/M00/00/00/wKhLi1oHVMCAT2vrAAAeSwu9TgM3976771" target="_blank" rel="noopener">http://192.168.1.100:8888/group1/M00/00/00/wKhLi1oHVMCAT2vrAAAeSwu9TgM3976771</a></p>
 
-
-
-</li>
-</ul>
-<h3 id="部署-Docker-Registry-UI"><a href="#部署-Docker-Registry-UI" class="headerlink" title="部署 Docker Registry UI"></a>部署 Docker Registry UI</h3><p><code>Docker Registry</code> 安装成功之后，不太方便只管地查看仓库中的镜像，可以使用 <code>Web UI</code> 界面工具管理镜像，<code>docker-registry-frontend</code> 就是其中之一</p>
-<p>创建 <code>docker-compose.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">konradkleine/docker-registry-frontend:v2</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.crt:/etc/apache2/server.crt:ro</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.key:/etc/apache2/server.key:ro</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_HOST=&#123;docker</span> <span class="string">registy</span> <span class="string">ip&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_PORT=&#123;docker</span> <span class="string">registy</span> <span class="string">port&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>上述文件需要修改的配置：</p>
-<ul>
-<li><p><code>ENV_DOCKER_REGISTRY_HOST</code>：安装的 Docker Registry 访问 IP</p>
-</li>
-<li><p><code>ENV_DOCKER_REGISTRY_PORT</code>：安装的 Docker Registry 访问端口</p>
-</li>
-</ul>
-<p>启动 Docker Ccompose</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose up -d</span></span><br></pre></td></tr></table></figure>
-
-<p>访问地址：<a href="http://192.168.100.1:8080" target="_blank" rel="noopener">http://192.168.100.1:8080</a></p>
-<ul>
-<li>首页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE01.png-watermark" alt=""></li>
-<li>镜像列表页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE02.png-watermark" alt=""></li>
-</ul>
-<h3 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h3><p>从 Docker Hub 公网拉取一个镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull tomcat</span><br></pre></td></tr></table></figure>
-
-<p>标记该镜像指向Docker Registry 私服仓库</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag tomcat 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
-
-<p>推送镜像到仓库</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker push 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
-
-<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>删除从 Docker Hub 公网上拉取的镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
-
-<p>从 Docker Registry 私服中拉取镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
           <li class="previous">
-            <a href="/mysql/mysql性能优化小结/" data-toggle="tooltip" data-placement="top" title="MySQL 性能优化小结">&larr; Previous Post</a>
+            <a href="/fastdfs/实战fastdfs-java客户端上传文件/" data-toggle="tooltip" data-placement="top" title="实战 FastDFS Java 客户端上传文件">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/nginx/nginx实现反向代理及负载均衡配置/" data-toggle="tooltip" data-placement="top" title="Nginx 实现反向代理及负载均衡配置">Next Post &rarr;</a>
+            <a href="/闲聊/普通人的一生经历/" data-toggle="tooltip" data-placement="top" title="普通人的一生平淡经历">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -515,7 +515,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Docker Registry 镜像管理平台&body=Hi,I found this website and thought you might like it https://antoniopeng.com/docker/docker_registry镜像管理平台/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=分布式文件系统 FastDFS 服务端的部署&body=Hi,I found this website and thought you might like it https://antoniopeng.com/fastdfs/分布式文件系统fastdfs服务端的部署/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -556,7 +556,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker-Registry-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Docker Registry 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-Docker-Registry"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">部署 Docker Registry</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置-Docker-Registry"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">配置 Docker Registry</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-Docker-Registry-UI"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">部署 Docker Registry UI</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#推送镜像"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">推送镜像</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#拉取镜像"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">拉取镜像</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#FastDFS-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">FastDFS 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#文件交互过程"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">文件交互过程</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#上传交互过程"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">上传交互过程</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#下载交互过程"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">下载交互过程</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#FastDFS-为什么要结合-Nginx"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">FastDFS 为什么要结合 Nginx</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-FastDFS-服务端"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">部署 FastDFS 服务端</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#各环境配置文件说明"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">各环境配置文件说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#tracker-conf"><span class="toc-nav-number">4.1.1.</span> <span class="toc-nav-text">tracker.conf</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#storage-conf"><span class="toc-nav-number">4.1.2.</span> <span class="toc-nav-text">storage.conf</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#client-conf"><span class="toc-nav-number">4.1.3.</span> <span class="toc-nav-text">client.conf</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#config"><span class="toc-nav-number">4.1.4.</span> <span class="toc-nav-text">config</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#mod-fastdfs-conf"><span class="toc-nav-number">4.1.5.</span> <span class="toc-nav-text">mod_fastdfs.conf</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#nginx-conf"><span class="toc-nav-number">4.1.6.</span> <span class="toc-nav-text">nginx.conf</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Dockerfile"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">Dockerfile</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#docker-compose-yml"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">docker-compose.yml</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#服务端上传文件"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">服务端上传文件</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -578,7 +578,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+            <a class="tag" href="/tags/#FastDFS" title="FastDFS">FastDFS</a>
             
           </div>
         </section>

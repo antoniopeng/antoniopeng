@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://antoniopeng.com/docker/%E4%BD%BF%E7%94%A8docker-compose%E7%BC%96%E6%8E%92%E9%83%A8%E7%BD%B2mysql&tomcat%E5%A4%9A%E5%AE%B9%E5%99%A8%E5%AE%9E%E4%BE%8B/</loc>
+    <lastmod>2021-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://antoniopeng.com/mycat/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E9%97%B4%E4%BB%B6mycat-%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2021-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://antoniopeng.com/nexus/maven%E4%BE%9D%E8%B5%96%E7%A7%81%E6%9C%8Dnexus%E7%9A%84%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%BA%94%E7%94%A8/</loc>
+    <lastmod>2021-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://antoniopeng.com/fastdfs/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9Ffastdfs%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2021-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://antoniopeng.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%B7%B1%E5%85%A5web%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B/</loc>
+    <lastmod>2021-01-05</lastmod>
+  </url>
+  <url>
     <loc>https://antoniopeng.com/spring/java%E6%A1%86%E6%9E%B6%E9%A2%86%E5%9F%9F%E4%BD%BC%E4%BD%BC%E8%80%85spring%E5%88%9D%E8%AF%86%E7%AF%87/</loc>
     <lastmod>2021-01-05</lastmod>
   </url>
   <url>
-    <loc>https://antoniopeng.com/seata/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8Balibaba_seata/</loc>
+    <loc>https://antoniopeng.com/seata/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8Balibaba-seata/</loc>
     <lastmod>2021-01-05</lastmod>
   </url>
   <url>
@@ -21,19 +41,11 @@
     <lastmod>2021-01-05</lastmod>
   </url>
   <url>
-    <loc>https://antoniopeng.com/nexus/maven%E4%BE%9D%E8%B5%96%E7%A7%81%E6%9C%8Dnexus/</loc>
-    <lastmod>2021-01-05</lastmod>
-  </url>
-  <url>
     <loc>https://antoniopeng.com/mysql/mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%B0%8F%E7%BB%93/</loc>
     <lastmod>2021-01-05</lastmod>
   </url>
   <url>
     <loc>https://antoniopeng.com/mysql/%E4%B8%80%E6%96%87%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8mysql%E7%B4%A2%E5%BC%95/</loc>
-    <lastmod>2021-01-05</lastmod>
-  </url>
-  <url>
-    <loc>https://antoniopeng.com/mycat/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E9%97%B4%E4%BB%B6mycat-%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%AE%9E%E8%B7%B5/</loc>
     <lastmod>2021-01-05</lastmod>
   </url>
   <url>
@@ -73,27 +85,15 @@
     <lastmod>2021-01-05</lastmod>
   </url>
   <url>
-    <loc>https://antoniopeng.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%B7%B1%E5%85%A5web%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B/</loc>
+    <loc>https://antoniopeng.com/docker/docker-registry%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/</loc>
     <lastmod>2021-01-05</lastmod>
   </url>
   <url>
-    <loc>https://antoniopeng.com/fastdfs/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B9%8Bfastdfs/</loc>
+    <loc>https://antoniopeng.com/fastdfs/%E5%AE%9E%E6%88%98fastdfs-java%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</loc>
     <lastmod>2021-01-05</lastmod>
   </url>
   <url>
-    <loc>https://antoniopeng.com/docker/%E4%BD%BF%E7%94%A8docker_compose%E7%BC%96%E6%8E%92mysql&tomcat%E5%A4%9A%E5%AE%B9%E5%99%A8%E5%AE%9E%E4%BE%8B/</loc>
-    <lastmod>2021-01-05</lastmod>
-  </url>
-  <url>
-    <loc>https://antoniopeng.com/docker/docker_registry%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/</loc>
-    <lastmod>2021-01-05</lastmod>
-  </url>
-  <url>
-    <loc>https://antoniopeng.com/fastdfs/%E5%AE%9E%E6%88%98fastdfs_java%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</loc>
-    <lastmod>2021-01-05</lastmod>
-  </url>
-  <url>
-    <loc>https://antoniopeng.com/docker/docker%E7%BC%96%E6%8E%92%E5%88%A9%E5%99%A8docker_compose/</loc>
+    <loc>https://antoniopeng.com/docker/docker%E7%BC%96%E6%8E%92%E5%88%A9%E5%99%A8docker-compose/</loc>
     <lastmod>2021-01-05</lastmod>
   </url>
   <url>
