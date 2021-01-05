@@ -228,6 +228,13 @@
   </url>
   
   <url>
+    <loc>http://antoniopeng.com/tags/Leaf/</loc>
+    <lastmod>2021-01-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://antoniopeng.com/tags/Java/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
@@ -242,7 +249,7 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/Leaf/</loc>
+    <loc>http://antoniopeng.com/tags/RabbitMQ/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -256,28 +263,7 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/RabbitMQ/</loc>
-    <lastmod>2021-01-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://antoniopeng.com/tags/Nexus/</loc>
-    <lastmod>2021-01-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://antoniopeng.com/tags/MyCat/</loc>
-    <lastmod>2021-01-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://antoniopeng.com/tags/Redis/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -291,7 +277,7 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/Spring/</loc>
+    <loc>http://antoniopeng.com/tags/Nexus/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -305,7 +291,14 @@
   </url>
   
   <url>
-    <loc>http://antoniopeng.com/tags/%E9%97%B2%E8%81%8A/</loc>
+    <loc>http://antoniopeng.com/tags/Redis/</loc>
+    <lastmod>2021-01-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://antoniopeng.com/tags/Spring/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -327,6 +320,13 @@
   
   <url>
     <loc>http://antoniopeng.com/tags/Seata/</loc>
+    <lastmod>2021-01-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://antoniopeng.com/tags/%E9%97%B2%E8%81%8A/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
