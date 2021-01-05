@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">829</span> In Total
+              Words <span class="post-count">835</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,10 +394,7 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <blockquote>
-<p>本文中采用 Docker Compose 快速编排部署应用</p>
-</blockquote>
-<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>nginx 作为负载均衡服务器，用户请求先到达 nginx，再由 nginx 根据负载配置将请求分发至 tomcat 服务器</p>
+        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>nginx 作为负载均衡服务器，用户请求先到达 nginx，再由 nginx 根据负载配置将请求分发至 tomcat 服务器</p>
 <ul>
 <li>Tomcat 服务器一：192.168.127.130:8080</li>
 <li>Tomcat 服务器二：192.168.127.130:8081</li>
@@ -406,7 +403,10 @@
 </ul>
 <h3 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a>什么是反向代理</h3><p>反向代理可以防止外网对内网服务器的恶性攻击、缓存以减少服务器的压力和访问安全控制之外，还可以进行负载均衡，将用户请求分配给多个服务器</p>
 <h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>负载均衡是一种用于优化资源利用率，最大化吞吐量，减少延迟和确保容错配置的常用技术。可以将 <strong>nginx</strong> 用作非常有效的 <strong>HTTP</strong> 负载平衡器，以将流量分配到多个应用程序服务器，并使用 <strong>nginx</strong> 改善 <strong>Web</strong> 应用程序的性能，可伸缩性和可靠性。</p>
-<h3 id="部署-Tomcat-集群"><a href="#部署-Tomcat-集群" class="headerlink" title="部署 Tomcat 集群"></a>部署 Tomcat 集群</h3><p>创建 docker-compose.yml，定义 Tomcat 服务集群，分别对外映射端口 8080，8081 和 8082：</p>
+<h3 id="部署-Tomcat-集群"><a href="#部署-Tomcat-集群" class="headerlink" title="部署 Tomcat 集群"></a>部署 Tomcat 集群</h3><blockquote>
+<p>采用 Docker Compose 编排部署应用容器。服务器地址：192.168.127.130</p>
+</blockquote>
+<p>创建 docker-compose.yml，定义 Tomcat 服务集群，分别对外映射端口 8080，8081 和 8082：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">tomcat1:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tomcat1</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:8080</span></span><br><span class="line">  <span class="attr">tomcat2:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tomcat2</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8081</span><span class="string">:8080</span></span><br><span class="line">  <span class="attr">tomcat3:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tomcat3</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8082</span><span class="string">:8080</span></span><br></pre></td></tr></table></figure>
 
 <p>启动容器</p>
