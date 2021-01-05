@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://antoniopeng.com/2021/01/04/mybatis/MyBatis 的 Mapper 映射文件详解/">
+  <link rel="canonical" href="http://antoniopeng.com/archives/2021/01/archives/3/">
   <title>
     
-    MyBatis 的 Mapper 映射文件详解（入坑系列更新中） - 彭超的博客 | Antonio Blog
+    彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -217,13 +217,6 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/categories/">Categories</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
+       /*page*/
+        background-image: url('');
       
     }
 
@@ -312,40 +312,10 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="post-heading">
-            <div class="tags">
-              
-              <a class="tag" href="http://antoniopeng.com/tags/#MyBatis" title="MyBatis">MyBatis</a>
-              
-            </div>
-            <h1>MyBatis 的 Mapper 映射文件详解（入坑系列更新中）</h1>
-            <h2 class="subheading"></h2>
-            <span class="meta">
-              Posted by 暮夏有五 on
-              2021-01-04
-            </span>
-
-
-            
-            <!-- WordCount start -->
-            <div class="blank_box"></div>
-            <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
-            </span>
-            <div class="blank_box"></div>
-            <span class="meta">
-              Words <span class="post-count">0</span> In Total
-            </span>
-            <div class="blank_box"></div>
-            <!-- 不蒜子统计 start -->
-            <span class="meta">
-              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
-            </span>
-            <!-- 不蒜子统计 end -->
-            <!-- WordCount end -->
-            
-
-
+          <div class="site-heading">
+            <h1>彭超</h1>
+            <!--<hr class="small">-->
+            <span class="subheading">生命不息，奋斗不止</span>
           </div>
           
         </div>
@@ -386,207 +356,456 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Modify by Yu-Hsuan Yen -->
-<!-- Post Content -->
-<article>
-  <div class="container">
-    <div class="row">
-      <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+	<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    
 
+    <!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+
+      <!-- Main Content -->
+
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2021/01/04/java/Java 容器系列概览/">
+    <h2 class="post-title">
+      【入坑系列更新中】Java 容器系列概览
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      ...
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-04
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Java" title="Java">Java</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2021/01/04/java/Java 基础知识总结/">
+    <h2 class="post-title">
+      【入坑系列更新中】Java 基础知识总结
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      数据类型基本类型
+
+
+基本类型
+字节数
+占位数
+
+
+
+byte
+1
+8
+
+
+char
+2
+16
+
+
+short
+2
+16
+
+
+int
+4
+32
+
+
+float
+4
+32
+
+
+long
+8
+64
+
+
+double
+8
+64
+
+
+boolean
+~
+~
+
+
+boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boole......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-04
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Java" title="Java">Java</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+
+
+  <!-- Pager -->
+  <ul class="pager">
+    
+    <li class="previous">
+      <a href="/archives/2021/01/archives/2/">&larr; Newer Posts</a>
+    </li>
+    
+    
+  </ul>
+
+
+      <!-- 如果开启评论功能 -->
+      
+    </div>
+
+    <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
         
+<!-- <h5>VISITORS</h5> -->
+<h5>VISITORS</h5>
+<div class="widget">
+  <span>
+    本站总访问量 <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 次
+  </span>
+  <br />
+  <span>
+    本站总访客数 <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 人
+  </span>
+</div>
+
 
         <hr>
-        <!-- Pager -->
-        <ul class="pager">
-          
-          <li class="previous">
-            <a href="/2021/01/04/mybatis/再谈 MyBatis 复杂查询/" data-toggle="tooltip" data-placement="top" title="再谈 MyBatis 复杂查询（入坑系列更新中）">&larr; Previous Post</a>
-          </li>
-          
-          
-          <li class="next">
-            <a href="/2021/01/04/mybatis/MyBatis 逆向工程生成代码/" data-toggle="tooltip" data-placement="top" title="MyBatis 逆向工程生成代码（入坑系列更新中）">Next Post &rarr;</a>
-          </li>
-          
-        </ul>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+  <h5>ABOUT ME</h5>
+  <div class="short-about">
 
-        
-        <!-- tip start -->
-        <div class="tip">
-          <p>
-            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
-          </p>
-        </div>
-        <!-- tip end -->
-        
+    
+    <img id="avatar_pic" src="https://qiniuyun.antoniopeng.com/my_photo.png" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
+    
 
-        
-        <!-- Sharing Srtart -->
-        <!-- Social Social Share Post -->
-<!-- Docs:https://github.com/overtrue/share.js -->
+    
+    <!--<p>我究竟拿时间换了什么 Self discipline produces joy</p>-->
+	<p>
+		<span>我究竟拿时间换了什么</span>
+		<br>
+		<span>Self discipline produces joy</span>
+	</p>
+    
 
-<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
-  <ul class="list-inline text-center social-share-ul">
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-twitter">
-        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a class="social-share-icon icon-wechat">
-        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-weibo">
-        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-qq">
-        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=MyBatis 的 Mapper 映射文件详解（入坑系列更新中）&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2021/01/04/mybatis/MyBatis 的 Mapper 映射文件详解/">
-        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
+    <!-- SNS Link -->
+    <ul class="list-inline">
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="微信" href="https://qiniuyun.antoniopeng.com/my_wx.png">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 20px; height: 20px; background: url('https://qiniuyun.antoniopeng.com/wx01.png') no-repeat;margin: 8px 0px 0px 9px"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="CSDN" href="https://blog.csdn.net/monianqing">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/csdn.png') no-repeat;margin: 10px 0px 0px 11px"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+      <li>
+        <a target="_blank" title="GitHub" href="https://github.com/antoniopeng">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a target="_blank" title="知乎" href="https://www.zhihu.com/people/antoniopeng8">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/zhihu.png') no-repeat;margin: 10px 0px 0px 11px"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+	  
+	  
+
+    </ul>
+  </div>
+</section>
+
+        <hr>
+    
+        <!-- Featured Tags -->
+
+<section>
+  <!-- no hr -->
+  <h5><a href="/tags/">FEATURED TAGS</a></h5>
+  <div class="tags">
+    
+    
+    <a href="/tags/#Docker" title="Docker" rel="5">Docker</a>
+    
+    
+    
+    <a href="/tags/#Nexus" title="Nexus" rel="1">Nexus</a>
+    
+    
+    
+    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
+    
+    
+    
+    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    
+    
+    
+    <a href="/tags/#SSM" title="SSM" rel="1">SSM</a>
+    
+    
+    
+    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
+    
+    
+    
+    <a href="/tags/#MyBatis" title="MyBatis" rel="5">MyBatis</a>
+    
+    
+    
+    <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
+    
+    
+    
+    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
+    
+    
+    
+    <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
+    
+    
+    
+    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
+    
+    
+    
+    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
+    
+    
+    
+    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
+    
+    
+    
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
+    
+    
+    
+    <a href="/tags/#Spring Boot" title="Spring Boot" rel="8">Spring Boot</a>
+    
+    
+    
+    <a href="/tags/#Quartz" title="Quartz" rel="1">Quartz</a>
+    
+    
+    
+    <a href="/tags/#Shiro" title="Shiro" rel="1">Shiro</a>
+    
+    
+    
+    <a href="/tags/#Swagger" title="Swagger" rel="1">Swagger</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="8">Spring Cloud</a>
+    
+    
+    
+    <a href="/tags/#Zipkin" title="Zipkin" rel="1">Zipkin</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba" rel="4">Spring Cloud Alibaba</a>
+    
+    
+    
+    <a href="/tags/#漫画" title="漫画" rel="2">漫画</a>
+    
+    
+    
+    <a href="/tags/#Web" title="Web" rel="1">Web</a>
+    
+    
+    
+    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
+    
+    
+    
+    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+  </div>
+</section>
+
+
+        <hr>
+    
+        <!-- Categories -->
+
+<!-- <h5>categories</h5> -->
+<h5><a href="/categories/">CATEGORIES</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="/categories/#运维">
+      <li>运维</li>
+    </a>
+    
+    <a href="/categories/#后端技术">
+      <li>后端技术</li>
+    </a>
+    
+    <a href="/categories/#数据库">
+      <li>数据库</li>
+    </a>
+    
+    <a href="/categories/#杂记">
+      <li>杂记</li>
+    </a>
+    
+    <a href="/categories/#计算机基础">
+      <li>计算机基础</li>
+    </a>
+    
   </ul>
 </div>
 
-<!-- css & js -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
-<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <!-- Sharing End -->
-        
         <hr>
-
-        <!-- comments start -->
-        <!-- 1. gitalk comment -->
-
-
-
-
-<!-- 2. gitment comment -->
-
-
-
-<!-- 3. disqus comment -->
-
-
-        <!-- comments end -->
-        <hr>
-
-      </div>
-
-      <!-- Catalog: Tabe of Content -->
-      <!-- Table of Contents -->
-
     
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
         
-          <ol class="nav">none</ol>
-        
-        </div>
-      </aside>
-    
-
-
-      <!-- Sidebar Container -->
-      <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-        <!-- Featured Tags -->
-        
-        <section>
-          <!-- no hr -->
-          <h5>
-            <a href="/tags/">FEATURED TAGS</a>
-          </h5>
-          <div class="tags">
-            
-            <a class="tag" href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-            
-          </div>
-        </section>
-        
-
-        <!-- Friends Blog -->
-        
-        <hr>
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
-
-          
-          <li>
-            <a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a>
-          </li>
-          
-          <li>
-            <a href="https://lusongsong.com/" target="_blank">卢松松博客</a>
-          </li>
-          
-        </ul>
-        
-      </div>
+    <!-- <h5>ARCHIVES</h5> -->
+    <h5><a href="/archive/">ARCHIVES</a></h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../">January 2021</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2019/04/">April 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
+
+
+        <hr>
+    
+        <!-- Friends Blog -->
+
+<!-- <h5>FRIENDS</h5> -->
+<h5><a href="javascript:void(0)">FRIENDS</a></h5>
+<ul class="list-inline">
+  
+  <li><a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a></li>
+  
+  <li><a href="https://lusongsong.com/" target="_blank">卢松松博客</a></li>
+  
+</ul>
+
+
+        <hr>
+    
+</div>
+
+    
   </div>
-</article>
-
-
-
-<!-- anchorjs start -->
-<!-- async load function -->
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script type="text/javascript">
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function(e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  };
-</script>
-<script type="text/javascript">
-  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
-  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
-    anchors.options = {
-      visible: 'hover',
-      placement: 'left',
-      // icon: 'ℬ'
-      icon: '❡'
-    };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-  });
-</script>
-<style>
-  /* place left on bigger screen */
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-      font-size: 1.1em;
-      margin-top: -0.1em;
-    }
-  }
-</style>
-
-<!-- anchorjs end -->
-
+</div>
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->

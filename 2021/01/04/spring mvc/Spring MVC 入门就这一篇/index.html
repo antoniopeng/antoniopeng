@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://antoniopeng.com/2019/03/12/spring/一站式轻量级框架 Spring/">
+  <link rel="canonical" href="http://antoniopeng.com/2021/01/04/spring mvc/Spring MVC 入门就这一篇/">
   <title>
     
-    一站式轻量级框架 Spring - 彭超的博客 | Antonio Blog
+    Spring MVC 入门就这一篇 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -217,13 +217,6 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/categories/">Categories</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -290,7 +290,7 @@
   <style type="text/css">
     header.intro-header {
        /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/work-731198_1920.jpg');
+        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
       
     }
 
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="http://antoniopeng.com/tags/#Spring" title="Spring">Spring</a>
+              <a class="tag" href="http://antoniopeng.com/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
               
             </div>
-            <h1>一站式轻量级框架 Spring</h1>
+            <h1>Spring MVC 入门就这一篇</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2019-03-12
+              2021-01-04
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">5</span> Minutes
+              Estimated Reading Time <span class="post-count">7</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.4k</span> In Total
+              Words <span class="post-count">1.7k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,54 +394,77 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="Spring-简介"><a href="#Spring-简介" class="headerlink" title="Spring 简介"></a>Spring 简介</h3><p><code>Spring</code> 是一个轻量级的 Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。<code>Spring</code> 的核心是控制反转（<code>IoC</code>）和面向切面编程（<code>AOP</code>）。简单来说，<code>Spring</code> 是一个分层的 <code>Java EE</code> 一站式轻量级开源框架。</p>
-<p><code>Spring</code> 的主要作用就是为代码 <strong>解耦</strong>，降低代码间的耦合度。</p>
-<p>在一个系统中，根据功能的不同，代码分为 <strong>主业务逻辑</strong> 与 <strong>系统级业务逻辑</strong> 两类。它们各自具有鲜明的特点：主业务代码间逻辑联系紧密，有具体的专业业务应用场景，复用性相对较低；系统级业务相对功能独立，没有具体的专业业务应用场景，主要是为主业务提供系统级服务，如日志、安全、事务等，复用性强。</p>
-<p><code>Spring</code> 根据代码的功能特点，将降低耦合度的方式分为了以下两类。</p>
+        <h3 id="Spring-MVC-概述"><a href="#Spring-MVC-概述" class="headerlink" title="Spring MVC 概述"></a>Spring MVC 概述</h3><p><code>Spring MVC</code> 也叫 <code>Spring Web MVC</code>，属于展示层框架，是 <code>Spring</code> 框架的一部分。</p>
+<p> <code>MVC</code> 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 <code>Spring MVC</code> 框架分别对应为其提供了 <strong>模型（Model）</strong>、<strong>视图（View）</strong>、<strong>控制器（Controller）</strong> 三层架构和用于开发灵活和松散耦合的 Web 应用程序的组件，同时提供这些元素之间的松散耦合的实现。</p>
 <ul>
-<li><code>IoC</code>：使得主业务在相互调用过程中，不用再自己维护关系了，即不用再自己创建要使用的对象了，而是由 <code>Spring</code> 容器统一管理，实现自动 <strong>注入</strong>。</li>
-<li><code>AOP</code>：使得系统级服务得到了最大复用，且不用再手工将系统级服务混杂到主业务逻辑中了，而是由 <code>Spring</code> 容器统一完成 <strong>织入</strong>。</li>
+<li>模型（Model）：封装了应用程序数据，通常它们将由 <code>POJO</code> 类组成。</li>
+<li>视图（View）：负责渲染模型数据，一般来说它生成客户端浏览器可以解释 <code>HTML</code> 输出。</li>
+<li>控制器（Controller）：负责处理用户请求并构建适当的模型，并将其传递给视图进行渲染。</li>
 </ul>
-<h3 id="Spring-体系结构"><a href="#Spring-体系结构" class="headerlink" title="Spring 体系结构"></a>Spring 体系结构</h3><p><code>Spring</code> 由 20 多个模块组成，它们可以分为数据访问/集成（Data Access/Integration）、Web、面向切面编程（AOP, Aspects）、应用服务器设备管理（Instrumentation）、消息发送（Messaging）、核心容器（Core Container）和测试（Test）。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/FssC3_VsborQ330iyZp0pWHoSjQe" alt="file"></p>
-<h3 id="Spring-的特点"><a href="#Spring-的特点" class="headerlink" title="Spring 的特点"></a>Spring 的特点</h3><h4 id="非侵入式"><a href="#非侵入式" class="headerlink" title="非侵入式"></a>非侵入式</h4><p>所谓非侵入式是指，<code>Spring</code> 框架的 API 不会在业务逻辑上出现，即业务逻辑是 POJO。由于业务逻辑中没有 Spring 的 API，所以业务逻辑可以从 <code>Spring</code> 框架快速的移植到其他框架， 即与环境无关。</p>
-<h4 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h4><p><code>Spring</code> 作为一个容器，可以管理对象的生命周期、对象与对象之间的依赖关系。可以通过配置文件，来定义对象，以及设置与其他对象的依赖关系。</p>
-<h4 id="控制反转（IoC）"><a href="#控制反转（IoC）" class="headerlink" title="控制反转（IoC）"></a>控制反转（IoC）</h4><p>控制反转（Inversion of Control），即创建被调用者的实例不是由调用者完成，而是由 <code>Spring</code> 容器完成，并注入调用者。一个对象依赖的其它对象会通过被动的方式传递进来，而不是这个对象自己创建或者查找依赖对象。即，不是对象从容器中查找依赖，而是容器在对象初始化时不等对象请求就主动将依赖传递给它。</p>
-<h4 id="面向切面编程（AOP）"><a href="#面向切面编程（AOP）" class="headerlink" title="面向切面编程（AOP）"></a>面向切面编程（AOP）</h4><p>面向切面编程（Aspect Orient Programming），是一种编程思想，是面向对象编程 <code>OOP</code> 的补充。允许通过分离应用的业务逻辑与系统级服务（例如日志和事务管理）进行开发。开发者只要专注实现业务逻辑，并不需要负责其它的系统级关注点，例如日志或事务支持。</p>
-<h3 id="Spring-核心-IoC"><a href="#Spring-核心-IoC" class="headerlink" title="Spring 核心 IoC"></a>Spring 核心 IoC</h3><p>控制反转的核心功能在于通过将程序代码获取对象调用权，来实现对象的装配和管理。控制反转就是对对象控制权的转移，从程序代码本身反转到了外部容器。</p>
-<p>当前比较流行的实现方式有两种： 依赖注入和依赖查找，依赖注入方式应用更为广泛。</p>
+<p><code>Spring MVC</code> 框架是围绕 <code>DispatcherServlet</code> 设计的，它处理所有的 <code>HTTP</code> 请求和响应。 </p>
+<p><code>Spring MVC</code> 的请求处理工作流如下图所示：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/Spring%20MVC%20%E5%85%A5%E9%97%A8%E5%B0%B1%E8%BF%99%E4%B8%80%E7%AF%8701.png-watermark" alt=""></p>
+<p>以下是对应于到 <code>DispatcherServlet</code> 的传入 <code>HTTP</code> 请求的事件顺序：</p>
 <ul>
-<li>依赖查找（DL）：Dependency Lookup，容器提供回调接口和上下文环境给组件，程序代码则需要提供具体的查找方式。</li>
-<li>依赖注入（DI）：Dependency Injection，指程序运行过程中，若需要调用另一个对象协助时，无须在代码中创建被调用者，而是依赖于外部容器，由外部容器创建后传递给程序。</li>
+<li>在接收到 <code>HTTP</code> 请求后，<code>DispatcherServlet</code> 会查询 <code>HandlerMapping</code> 以调用相应的 <code>Controller</code>。</li>
+<li><code>Controller</code> 接受请求并根据使用的 GET 或 POST 方法调用相应的服务方法。 服务方法将基于定义的业务逻辑设置模型数据，并将视图名称返回给 <code>DispatcherServlet</code>。</li>
+<li><code>DispatcherServlet</code> 将从 <code>ViewResolver</code> 获取请求的定义视图。</li>
+<li>当视图完成，<code>DispatcherServlet</code> 将模型数据传递到最终的视图，并在浏览器上呈现。</li>
 </ul>
-<p>依赖注入是目前最优秀的解耦方式。依赖注入让 Spring 的 Bean 之间以配置文件的方式组织在一起，而不是以硬编码的方式耦合在一起的。</p>
-<h3 id="第一个-Spring-程序"><a href="#第一个-Spring-程序" class="headerlink" title="第一个 Spring 程序"></a>第一个 Spring 程序</h3><h4 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h4><p>在 <code>pom.xml</code> 中引入 <code>Spring</code> 核心依赖 <code>org.springframework:spring-context</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.2.15.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="业务代码"><a href="#业务代码" class="headerlink" title="业务代码"></a>业务代码</h4><p>创建 <code>HiSpringService</code> 业务接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloSpringService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helloSpring</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述的组件 <code>HandlerMapping</code>、<code>Controller</code> 和 <code>ViewResolver</code> 是 <code>WebApplicationContext</code> 的一部分，它是普通 <code>ApplicationContext</code> 的扩展，带有 <code>Web</code> 应用程序所需的一些额外功能。</p>
+<h3 id="Spring-整合-Spring-MVC"><a href="#Spring-整合-Spring-MVC" class="headerlink" title="Spring 整合 Spring MVC"></a>Spring 整合 Spring MVC</h3><h4 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h4><p>在 <code>pom.xml</code> 中添加主要依赖 <code>org.springframework:spring-webmvc</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3.17.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>创建实现类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloSpringService</span> <span class="keyword">implements</span> <span class="title">HelloSpringServiceImpl</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helloSpring</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello Spring"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h4><p>在 <code>web.xml</code> 中配置 <code>DispatchServlet</code> 处理所有的 <code>HTTP</code> 请求和响应：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath*:/spring-mvc*.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在 <code>web.xml</code> 中还需配置字符集过滤器，用于解决中文编码问题：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>encodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>encodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>创建一个 <code>spring-mvc</code> 配置文件，用于配置 <code>MVC</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>Spring MVC Configuration<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 使用 Annotation 自动注册 Bean,只扫描 @Controller --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.lusifer.myshop"</span> <span class="attr">use-default-filters</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 注解映射的支持 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 定义视图文件解析 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views/"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 静态资源映射 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/static/**"</span> <span class="attr">location</span>=<span class="string">"/static/"</span> <span class="attr">cache-period</span>=<span class="string">"31536000"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h4><p>在 <code>src/main/resources</code> 目录下创建 <code>spring-context.xml</code> 配置文件，从现在开始类的实例化工作交给 Spring 容器管理（IoC），配置文件如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"helloSpringService"</span> <span class="attr">class</span>=<span class="string">"com.antoniopeng.hello.spring.service.impl.HelloSpringServiceImpl"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<p>上述配置说明：</p>
 <ul>
-<li><code>bean</code>：用于定义一个实例对象。一个实例对应一个 <code>bean</code> 元素。</li>
-<li><code>id</code>：该属性是 <code>Bean</code> 实例的唯一标识，程序通过 id  属性访问Bean，Bean 与 Bean 间的依赖关系也是通过 id 属性关联的。</li>
-<li><code>class</code>：指定该 <code>Bean</code> 所属的类，注意这里只能是类，不能是接口。</li>
+<li><code>context:component-scan</code>：当前配置文件为 MVC 相关，故只需要扫描包含 <code>@Controller</code> 的注解即可，由于 <code>spring-context.xml</code> 配置文件中也配置了包扫描，所以还需要排除 <code>@Controller</code> 的注解扫描。</li>
+<li><code>InternalResourceViewResolver</code>：视图文件解析器的一种，用于配置视图资源的路径和需要解释的视图资源文件类型，这里有两个需要配置的属性 <code>prefix</code>（前缀）以及 <code>suffix</code>（后缀）。<ul>
+<li><code>prefix</code>：配置视图资源路径，如：<code>/WEB-INF/views/</code>。</li>
+<li><code>suffix</code>：配置视图资源类型，如：<code>.jsp</code>。</li>
 </ul>
-<h4 id="使用-Spring-IoC"><a href="#使用-Spring-IoC" class="headerlink" title="使用 Spring IoC"></a>使用 Spring IoC</h4><p>创建一个 <code>IoCTest</code> 测试类，测试对象是否能够通过 <code>Spring</code> 来创建，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IoCTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取 Spring 容器</span></span><br><span class="line">        ApplicationContext applicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring-context.xml"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 从 Spring 容器中获取对象</span></span><br><span class="line">        HelloSpringService helloSpringService = (HelloSpringService) applicationContext.getBean(<span class="string">"HelloSpringService"</span>);</span><br><span class="line">        HelloSpringService.helloSpring();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><code>mvc:resources</code>：静态资源映射，主要用于配置静态资源文件存放路径，如：JS、CSS、IMG 等。</li>
+</ul>
+<h3 id="第一个-Controller-控制器"><a href="#第一个-Controller-控制器" class="headerlink" title="第一个 Controller 控制器"></a>第一个 Controller 控制器</h3><p>创建 <code>IndexController</code> 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> HelloSpringService helloSpringService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123;<span class="string">""</span>, <span class="string">"/index"</span>&#125;, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"login"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(@RequestParam(required = <span class="keyword">true</span>)</span> String email, @<span class="title">RequestParam</span><span class="params">(required = <span class="keyword">true</span>)</span> String password) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"redirect:/main"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h4><p>在 <code>Spring MVC</code> 中，控制器 <code>Controller</code> 负责处理由 <code>DispatcherServlet</code> 分发的请求，它把用户请求的数据经过业务处理层处理之后封装成一个 <code>Model</code> ，然后再把该 <code>Model</code> 返回给对应的 <code>View</code> 进行展示。</p>
+<p>在 <code>Spring MVC</code> 中提供了一个非常简便的定义 <code>Controller</code> 的方法，你无需继承特定的类或实现特定的接口，只需使用 <code>@Controller</code> 标记一个类是控制器，然后使用 <code>@RequestMapping</code> 和 <code>@RequestParam</code> 等一些注解用以定义 <code>URL</code> 请求和 <code>Controller</code> 方法之间的映射，这样的 <code>Controller</code> 就能被外界访问到。此外 <code>Controller</code> 不会直接依赖于 <code>HttpServletRequest</code> 和 <code>HttpServletResponse</code> 等 <code>HttpServlet</code> 对象，它们可以通过 <code>Controller</code> 的方法参数灵活的获取到。</p>
+<p>但 <code>@Controller</code> 只是定义了一个控制器类，而使用 <code>@RequestMapping</code> 注解的方法才是真正处理请求的处理器。</p>
+<h4 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h4><p><code>@RequestMapping</code> 是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。</p>
+<p><code>@RequestMapping</code> 注解有六个属性：</p>
+<ul>
+<li><code>value</code>：指定请求的实际地址。</li>
+<li><code>method</code>：指定请求的类型，如 GET、POST、PUT、DELETE 等。</li>
+<li><code>consumes</code>：指定处理请求的提交内容类型（Content-Type），如 <code>application/json</code> 和 <code>text/html</code>。</li>
+<li><code>produces</code>: 指定返回的内容类型。</li>
+<li><code>params</code>：指定请求的参数值。</li>
+<li><code>headers</code>：指定请求中的 <code>header</code> 值。</li>
+</ul>
+<h4 id="ResponseBody"><a href="#ResponseBody" class="headerlink" title="@ResponseBody"></a>@ResponseBody</h4><p>该注解用于将 <code>Controller</code> 的方法返回的对象，通过适当的 <code>HttpMessageConverter</code> 转换为指定格式后，直接写入 <code>HTTP</code> 响应正文中。</p>
+<p>如果需要返回自定义对象为 <code>JSON</code> 格式，需要添加以下依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Json Begin --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-annotations<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jackson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Json End --&gt;</span></span><br></pre></td></tr></table></figure>
+
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
           <li class="previous">
-            <a href="/2019/03/18/spring mvc/Spring MVC 入门就这一篇/" data-toggle="tooltip" data-placement="top" title="Spring MVC 入门就这一篇">&larr; Previous Post</a>
+            <a href="/2021/01/04/spring mvc/Spring MVC 核心组件 DispatcherServlet 详解/" data-toggle="tooltip" data-placement="top" title="【入坑系列更新中】Spring MVC 核心组件 DispatcherServlet 详解">&larr; Previous Post</a>
           </li>
           
+          
+          <li class="next">
+            <a href="/2021/01/04/spring/Spring 事务解决方案/" data-toggle="tooltip" data-placement="top" title="【入坑系列更新中】Spring 事务解决方案">Next Post &rarr;</a>
+          </li>
           
         </ul>
 
@@ -483,7 +506,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=一站式轻量级框架 Spring&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2019/03/12/spring/一站式轻量级框架 Spring/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Spring MVC 入门就这一篇&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2021/01/04/spring mvc/Spring MVC 入门就这一篇/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -524,7 +547,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Spring 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-体系结构"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Spring 体系结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-的特点"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Spring 的特点</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#非侵入式"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">非侵入式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#容器"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">容器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制反转（IoC）"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">控制反转（IoC）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#面向切面编程（AOP）"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">面向切面编程（AOP）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-核心-IoC"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Spring 核心 IoC</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第一个-Spring-程序"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">第一个 Spring 程序</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#业务代码"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">业务代码</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用-Spring-IoC"><span class="toc-nav-number">5.4.</span> <span class="toc-nav-text">使用 Spring IoC</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-MVC-概述"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Spring MVC 概述</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-整合-Spring-MVC"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Spring 整合 Spring MVC</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">相关配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第一个-Controller-控制器"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">第一个 Controller 控制器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Controller"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">@Controller</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#RequestMapping"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">@RequestMapping</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#ResponseBody"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">@ResponseBody</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -546,7 +569,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Spring" title="Spring">Spring</a>
+            <a class="tag" href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
             
           </div>
         </section>

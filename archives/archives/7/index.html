@@ -217,13 +217,6 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/categories/">Categories</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -383,6 +383,174 @@
   
 
 
+  <a href="/2019/07/15/docker/Docker 常用命令汇总/">
+    <h2 class="post-title">
+      Docker 常用命令汇总
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      Docker 镜像命令列出镜像列表
+1$ docker images
+
+1$ docker image ls -a
+
+运行 Docker 镜像（守护态方式）
+1$ docker run -d &#123;镜像名&#125;
+
+删除指定 Docker 镜像
+1$ docker  image rm &#123;镜像名&#125;
+
+删除 Docker 虚悬镜像
+1$ docker image p......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2019-07-15
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Docker" title="Docker">Docker</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2019/07/06/docker/基于 Ubuntu 安装 Docker/">
+    <h2 class="post-title">
+      基于 Ubuntu 安装 Docker
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      什么是 DockerDocker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。
+
+
+传统虚拟机（VM）和虚拟化容器（Docker）的区别：
+传统的 VM 虚拟机不能共享资源 , 比如在 VMWare 中安装了一个内存为 4GB 的 Linux 操作系统 , 意味着该Linux系统使用了宿主机中固定的 4GB 内存且不能与宿主机或其它虚拟系统共享该资源 , 可......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2019-07-06
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Docker" title="Docker">Docker</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2019/06/14/springboot/Spring Boot 整合 Shiro 实现登录认证与权限控制/">
+    <h2 class="post-title">
+      Spring Boot 整合 Shiro 实现登录认证与权限控制
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      用户角色权限数据库设计数据库这里以 MySQL 为例
+创建数据库所需表如下：
+
+user：用户表
+role：角色表
+perm：权限菜单表
+user_role：用户与角色关联的中间表
+role_prem：角色与权限菜单关联的中间表
+
+执行数据库脚本12345678910111213141516171819202122232425262728293031323334353637383940414......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2019-06-14
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
+    
+    <a href="/tags/#Shiro" title="Shiro">Shiro</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2019/06/09/springboot/Spring Boot 中使用 TKMybatis 和 PageHelper/">
+    <h2 class="post-title">
+      Spring Boot 中使用 TKMybatis 和 PageHelper
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      整合 Druid 数据源引入依赖在 pom.xml 中引入 druid-spring-boot-starter 和 mysql-connector-java 依赖
+1234567891011121314&lt;!-- druid-spring-boot-starter --&gt;&lt;dependency&gt;    &lt;groupId&gt;com.alibaba&lt;/gro......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2019-06-09
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/2019/05/30/linux/Ubuntu 入门操作指北/">
     <h2 class="post-title">
       Ubuntu 入门操作指北
@@ -507,42 +675,6 @@ Ubuntu 官网下载
   
 
 
-  <a href="/2019/04/20/mybatis/Java 持久层框架之 MyBatis/">
-    <h2 class="post-title">
-      Java 持久层框架之 MyBatis
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      MyBatis 简介MyBatis 是一个基于 Java 的持久层框架，它内部封装了 JDBC，使开发者只需关注 SQL 语句本身，而不用再花费精力去处理诸如注册驱动、创建 Connection、配置 Statement 等繁杂过程。
-Mybatis 通过 xml 或注解的方式将要执行的各种 Statement、PreparedStatement 等配置起来，并通过 Java 对象和 Sta......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-04-20
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
   <a href="/2019/04/09/java/Java 中使用 Jersey 实现上传文件-附加密和解密/">
     <h2 class="post-title">
       Java 中使用 Jersey 实现上传文件（附加密和解密）
@@ -564,79 +696,6 @@ Mybatis 通过 xml 或注解的方式将要执行的各种 Statement、PreparedS
   <div class="tags">
     
     <a href="/tags/#Java" title="Java">Java</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2019/03/18/spring mvc/Spring MVC 入门就这一篇/">
-    <h2 class="post-title">
-      Spring MVC 入门就这一篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring MVC 概述Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的一部分。
- MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 Web 应用程序的组件......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-03-18
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2019/03/12/spring/一站式轻量级框架 Spring/">
-    <h2 class="post-title">
-      一站式轻量级框架 Spring
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring 简介Spring 是一个轻量级的 Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。Spring 的核心是控制反转（IoC）和面向切面编程（AOP）。简单来说，Spring 是一个分层的 Java EE 一站式轻量级开源框架。
-Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
-在一个系统中，根据功能的不同，代码分为 主业务逻辑 与 系统级业务逻辑 两类......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-03-12
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
     
   </div>
   
@@ -793,15 +852,7 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
-    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
-    
-    
-    
     <a href="/tags/#Java" title="Java" rel="6">Java</a>
-    
-    
-    
-    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
     
     
     
@@ -809,7 +860,11 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="4">MyBatis</a>
+    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
+    
+    
+    
+    <a href="/tags/#MyBatis" title="MyBatis" rel="5">MyBatis</a>
     
     
     
@@ -817,19 +872,7 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
-    
-    
-    
-    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
-    
-    
-    
-    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
-    
-    
-    
-    <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
+    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
     
     
     
@@ -837,7 +880,27 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
+    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
+    
+    
+    
+    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
+    
+    
+    
+    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
+    
+    
+    
     <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -849,19 +912,11 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
-    <a href="/tags/#Swagger" title="Swagger" rel="1">Swagger</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
-    
-    
-    
     <a href="/tags/#Shiro" title="Shiro" rel="1">Shiro</a>
     
     
     
-    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba" rel="4">Spring Cloud Alibaba</a>
+    <a href="/tags/#Swagger" title="Swagger" rel="1">Swagger</a>
     
     
     
@@ -873,11 +928,15 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
+    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba" rel="4">Spring Cloud Alibaba</a>
+    
+    
+    
     <a href="/tags/#漫画" title="漫画" rel="2">漫画</a>
     
     
     
-    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    <a href="/tags/#Web" title="Web" rel="1">Web</a>
     
     
     
@@ -885,7 +944,7 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     
     
     
-    <a href="/tags/#Web" title="Web" rel="1">Web</a>
+    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
     
     
   </div>
@@ -931,7 +990,7 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/04/">April 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/03/">March 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/04/">April 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 

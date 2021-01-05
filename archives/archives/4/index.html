@@ -217,13 +217,6 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/categories/">Categories</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -373,6 +373,168 @@
 
       <!-- Main Content -->
 
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/07/25/计算机基础/操作系统核心概念总结/">
+    <h2 class="post-title">
+      操作系统核心概念总结
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      操作系统基础什么是操作系统操作系统是管理 计算机硬件 与 软件资源 的程序，是计算机系统的内核与基石，本质上是运行在计算机上的软件程序，为用户提供一个与系统交互的操作界面。它分为内核和外壳，内核是能操作硬件的程序，而外壳即围绕着内核的应用程序。
+
+什么是系统调用介绍系统调用之前，先了解一下 用户态 和 系统态。根据进程访问资源的特点，可以把进程在系统上的运行分为以下两个级别：
+
+用户态：运行......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-07-25
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#操作系统" title="操作系统">操作系统</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/07/22/leaf/分布式 ID 生成方案之美团 Leaf/">
+    <h2 class="post-title">
+      分布式 ID 生成方案之美团 Leaf
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      分布式主键在庞大复杂的分布式系统中，通常需要对海量数据进行唯一标识，随着数据日渐增长，对数据分库分表以后需要有一个唯一 ID 来标识一条数据，而数据库的自增 ID 显然不能满足需求，此时就需要有一个能够生成全局唯一 ID 的系统，需要满足以下条件：
+
+全局唯一性：最基本的要求就是不能出现重复的 ID。
+递增：保证下一个 ID 一定大于上一个 ID。
+信息安全：如果 ID 是连续的，用户就可以......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-07-22
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Leaf" title="Leaf">Leaf</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/07/20/mycat/分布式数据库中间件 MyCat - 分库分表实践/">
+    <h2 class="post-title">
+      分布式数据库中间件 MyCat - 分库分表实践
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      
+
+MyCat 简介MyCat 是一个功能强大的分布式数据库中间件，是一个实现了 MySQL 协议的 Server，前端人员可以把它看做是一个数据库代理中间件，用 MySQL 客户端工具和命令行访问；而后端人员可以用 MySQL 原生协议与多个 MySQL 服务器通信，也可以用 JDBC 协议与大多数主流数据库服务器通信。可以用作 读写分离、分库分表（分片）、容灾备份、多租户应用开发、大数据......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-07-20
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MyCat" title="MyCat">MyCat</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/2020/07/18/mq/深入浅出 RabbitMQ/">
+    <h2 class="post-title">
+      深入浅出 RabbitMQ
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      什么是 RabbitMQ简介（优点）
+基于 ErLang 语言开发有高可用高并发的优点，适合集群。
+开源、稳定、易用、跨平台、支持多种语言、文档齐全。
+有消息确认机制和持久化机制，可靠性高。
+
+基本概念生产者和消费者
+
+Producer：消息的生产者
+Consumer：消息的消费者
+
+Queue
+
+消息队列提供了 FIFO 的处理机制，具有缓存消息的能力。在 RabbitMQ 中，队列消息可......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-07-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#RabbitMQ" title="RabbitMQ">RabbitMQ</a>
+    
+  </div>
+  
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -607,157 +769,6 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2020/01/16/springcloudalibaba/使用 Spring Cloud Alibaba Nacos Discovery 实现服务注册与发现/">
-    <h2 class="post-title">
-      使用 Spring Cloud Alibaba Nacos Discovery 实现服务注册与发现
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      什么是 NacosNacos 是 Spring Cloud Alibaba 生态中的重要组件之一，用于发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，可以快速实现 动态服务发现、服务配置、服务元数据及流量管理。
-部署 Nacos 控制台
-下载地址：https://github.com/alibaba/nacos/releases
-
-解压后启动服务
-12345$ cd bin#......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-01-16
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba">Spring Cloud Alibaba</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2020/01/03/springboot/Spring Boot 中监听 Redis key 失效事件实现定时任务/">
-    <h2 class="post-title">
-      Spring Boot 中监听 Redis key 失效事件实现定时任务
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      业务场景我们以订单功能为例说明下：
-生成订单后一段时间不支付订单会自动关闭。最简单的想法是设置定时任务轮询，但是每个订单的创建时间不一样，定时任务的规则无法设定，如果将定时任务执行的间隔设置的过短，太影响效率。
-还有一种想法，在用户进入订单界面的时候，判断时间执行相关操作。方式可能有很多，在这里介绍一种监听 Redis 键值对过期时间来实现订单自动关闭。
-实现思路在生成订单时，向 Redis......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-01-03
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2019/12/27/springcloud/拜托！面试请不要再问我 Spring Cloud 底层原理/">
-    <h2 class="post-title">
-      拜托！面试请不要再问我 Spring Cloud 底层原理
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      概述毫无疑问，Spring Cloud 是目前微服务架构领域的翘楚，无数的书籍博客都在讲解这个技术。不过大多数讲解还停留在对 Spring Cloud 功能使用的层面，其底层的很多原理，很多人可能并不知晓。因此本文将通过大量的手绘图，给大家谈谈 Spring Cloud 微服务架构的底层原理。
-实际上，Spring Cloud 是一个全家桶式的技术栈，包含了很多组件。本文先从其最核心的几个组......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-12-27
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2019/12/12/springboot/使用 Spring Boot Admin 监控服务/">
-    <h2 class="post-title">
-      使用 Spring Boot Admin 监控服务
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring Boot Admin 简介随着开发周期的推移，项目会不断变大，切分出的服务也会越来越多，这时一个个的微服务构成了错综复杂的系统。
-对于各个微服务系统的健康状态、会话数量、并发数、服务资源、延迟等度量信息的收集就成为了一个挑战。 Spring Boot Admin 就是基于这些需求开发出的一套功能强大的监控管理系统。
-同样，Spring Boot Admin 也是由两个角色组成，......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2019-12-12
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -911,15 +922,7 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
-    
-    
-    
     <a href="/tags/#Java" title="Java" rel="6">Java</a>
-    
-    
-    
-    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
     
     
     
@@ -927,7 +930,11 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="4">MyBatis</a>
+    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
+    
+    
+    
+    <a href="/tags/#MyBatis" title="MyBatis" rel="5">MyBatis</a>
     
     
     
@@ -935,19 +942,7 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
-    
-    
-    
-    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
-    
-    
-    
-    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
-    
-    
-    
-    <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
+    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
     
     
     
@@ -955,7 +950,27 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
+    <a href="/tags/#MyCat" title="MyCat" rel="1">MyCat</a>
+    
+    
+    
+    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
+    
+    
+    
+    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
+    
+    
+    
     <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -967,19 +982,11 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#Swagger" title="Swagger" rel="1">Swagger</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
-    
-    
-    
     <a href="/tags/#Shiro" title="Shiro" rel="1">Shiro</a>
     
     
     
-    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba" rel="4">Spring Cloud Alibaba</a>
+    <a href="/tags/#Swagger" title="Swagger" rel="1">Swagger</a>
     
     
     
@@ -991,11 +998,15 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
+    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba" rel="4">Spring Cloud Alibaba</a>
+    
+    
+    
     <a href="/tags/#漫画" title="漫画" rel="2">漫画</a>
     
     
     
-    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    <a href="/tags/#Web" title="Web" rel="1">Web</a>
     
     
     
@@ -1003,7 +1014,7 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     
     
     
-    <a href="/tags/#Web" title="Web" rel="1">Web</a>
+    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
     
     
   </div>
@@ -1049,7 +1060,7 @@ Nacos Config 的存储配置功能为分布式系统中的外部化配置提供�
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/04/">April 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/03/">March 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/04/">April 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 

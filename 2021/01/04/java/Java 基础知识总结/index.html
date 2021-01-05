@@ -148,7 +148,7 @@
   <link rel="canonical" href="http://antoniopeng.com/2021/01/04/java/Java 基础知识总结/">
   <title>
     
-    Java 基础知识总结（入坑系列更新中） - 彭超的博客 | Antonio Blog
+    【入坑系列更新中】Java 基础知识总结 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -217,13 +217,6 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/categories/">Categories</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/tags/">Tags</a>
           </li>
           
           
@@ -318,7 +318,7 @@
               <a class="tag" href="http://antoniopeng.com/tags/#Java" title="Java">Java</a>
               
             </div>
-            <h1>Java 基础知识总结（入坑系列更新中）</h1>
+            <h1>【入坑系列更新中】Java 基础知识总结</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">2</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">0</span> In Total
+              Words <span class="post-count">611</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,14 +394,109 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        
+        <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>字节数</th>
+<th>占位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>byte</code></td>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>2</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>2</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>4</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>4</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>8</td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>8</td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>~</td>
+<td>~</td>
+</tr>
+</tbody></table>
+<p><code>boolean</code> 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 <code>boolean</code> 类型的数据转换为 <code>int</code>，使用 1 来表示 true，0 表示 false。JVM 支持 boolean 数组，但是是通过读写 byte 数组来实现的。</p>
+<h4 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h4><p>基本类型都有对应的包装类型，基本类型与其对应的包装类型之间的赋值使用自动装箱与拆箱来完成。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="number">1</span>;    <span class="comment">// 装箱操作，调用了 Integer,valueOf(1)</span></span><br><span class="line"><span class="keyword">int</span> b = a;     <span class="comment">// 拆线操作，调用了 a,intValue()</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="附：缓存池"><a href="#附：缓存池" class="headerlink" title="附：缓存池"></a>附：缓存池</h4><p><code>new Integer(123)</code> 与 <code>Integer.valueOf(123)</code> 的区别在于：前者会新建一个对象，而后者会使用缓存池中的对象，多次调用会取得同一个对象的引用。如下代码所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line">Integer b = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line">System.out.println(a == b);    <span class="comment">// false</span></span><br><span class="line">Integer c = Integer.valueOf(<span class="number">2</span>);</span><br><span class="line">Integer d = Integer.valueOf(<span class="number">2</span>);</span><br><span class="line">System.out.println(c == d);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p><code>valueOf()</code> 方法的实现比较简单，就是先判断值是否在缓存池中，如果在的话就直接返回缓存池的内容。源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译器会在 <strong>自动装箱</strong> 过程调用 <code>valueOf()</code> 方法，因此多个值相同且值在缓存池范围内的 <code>Integer</code> 实例使用自动装箱来创建，那么就会引用相同的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="number">1</span>;</span><br><span class="line">Integer b = <span class="number">1</span>;</span><br><span class="line">System.out.println(a == b);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用这些基本类型对应的包装类型时，如果该数值范围在缓冲池范围内，就可以直接使用缓冲池中的对象。基本类型对应的缓冲池范围如下：</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>缓冲池范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean</code></td>
+<td>true/false</td>
+</tr>
+<tr>
+<td><code>byte</code></td>
+<td>all values</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>\u0000 to \u007F</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>在 JDK 1.8 所有的数值类缓冲池中，Integer 的缓冲池 IntegerCache 很特殊，这个缓冲池的下界是 - 128，上界默认是 127，但是这个上界是可调的，在启动 JVM 的时候，通过 <code>-XX:AutoBoxCacheMax=&lt;size&gt;</code> 来指定 Integer 缓冲池的上界。</p>
+</blockquote>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><p>String 被声明为 <code>final</code>，因此它不可被继承。在 Java 8 中，<code>String</code> 内部使用 <code>char</code> 数组存储数据。</p>
+
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
           <li class="previous">
-            <a href="/2021/01/04/java/Java 容器系列概览/" data-toggle="tooltip" data-placement="top" title="Java 容器系列概览（入坑系列更新中）">&larr; Previous Post</a>
+            <a href="/2021/01/04/java/Java 容器系列概览/" data-toggle="tooltip" data-placement="top" title="【入坑系列更新中】Java 容器系列概览">&larr; Previous Post</a>
           </li>
           
           
@@ -449,7 +544,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Java 基础知识总结（入坑系列更新中）&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2021/01/04/java/Java 基础知识总结/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=【入坑系列更新中】Java 基础知识总结&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2021/01/04/java/Java 基础知识总结/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -490,7 +585,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据类型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">数据类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#基本类型"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">基本类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#包装类型"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">包装类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#附：缓存池"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">附：缓存池</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#String"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">String</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#概览"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">概览</span></a></li></ol></li></ol>
         
         </div>
       </aside>
