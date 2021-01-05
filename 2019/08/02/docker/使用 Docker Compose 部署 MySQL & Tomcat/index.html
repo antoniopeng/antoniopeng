@@ -217,6 +217,13 @@
 
           
           <li>
+            <a href="/archive/">Archives</a>
+          </li>
+          
+          
+
+          
+          <li>
             <a href="/categories/">Categories</a>
           </li>
           
@@ -225,13 +232,6 @@
           
           <li>
             <a href="/tags/">Tags</a>
-          </li>
-          
-          
-
-          
-          <li>
-            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">232</span> In Total
+              Words <span class="post-count">260</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,7 +394,10 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="容器编排模板文件"><a href="#容器编排模板文件" class="headerlink" title="容器编排模板文件"></a>容器编排模板文件</h3><p>创建 <code>docker-compose.yml</code> 模板文件</p>
+        <blockquote>
+<p>服务器地址：192.168.100.1</p>
+</blockquote>
+<h3 id="容器编排模板文件"><a href="#容器编排模板文件" class="headerlink" title="容器编排模板文件"></a>容器编排模板文件</h3><p>创建模板文件 docker-compose.yml</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir docker-compose.yml</span><br></pre></td></tr></table></figure>
 
 <p>文件内容如下</p>
@@ -408,43 +411,43 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>version</td>
+<td><code>version</code></td>
 <td>指定 Docker Compose 版本</td>
 </tr>
 <tr>
-<td>services</td>
+<td><code>services</code></td>
 <td>所有容器服务的父节点</td>
 </tr>
 <tr>
-<td>tomcat / mysql</td>
+<td><code>tomcat / mysql</code></td>
 <td>容器服务名</td>
 </tr>
 <tr>
-<td>restart</td>
+<td><code>restart</code></td>
 <td>开机是否自动启动</td>
 </tr>
 <tr>
-<td>image</td>
+<td><code>image</code></td>
 <td>指定镜像名</td>
 </tr>
 <tr>
-<td>container_name</td>
+<td><code>container_name</code></td>
 <td>声明容器名</td>
 </tr>
 <tr>
-<td>ports</td>
+<td><code>ports</code></td>
 <td>端口开放映射</td>
 </tr>
 <tr>
-<td>volumes</td>
+<td><code>volumes</code></td>
 <td>数据卷（宿主机路径 : 容器内路径）</td>
 </tr>
 <tr>
-<td>environment</td>
+<td><code>environment</code></td>
 <td>环境变量</td>
 </tr>
 <tr>
-<td>command</td>
+<td><code>command</code></td>
 <td>其它配置</td>
 </tr>
 </tbody></table>
@@ -453,6 +456,9 @@
 
 <p>列出正在运行的容器</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container ps</span><br></pre></td></tr></table></figure>
+
+<p>MySQL 地址：192.168.100.1:3306，Tomcat 访问地址：<a href="http://192.168.100.1:8080" target="_blank" rel="noopener">http://192.168.100.1:8080</a></p>
+
 
         <hr>
         <!-- Pager -->

@@ -217,6 +217,13 @@
 
           
           <li>
+            <a href="/archive/">Archives</a>
+          </li>
+          
+          
+
+          
+          <li>
             <a href="/categories/">Categories</a>
           </li>
           
@@ -225,13 +232,6 @@
           
           <li>
             <a href="/tags/">Tags</a>
-          </li>
-          
-          
-
-          
-          <li>
-            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -400,7 +400,7 @@
 <h3 id="安装-FastDFS-Java-客户端"><a href="#安装-FastDFS-Java-客户端" class="headerlink" title="安装 FastDFS Java 客户端"></a>安装 FastDFS Java 客户端</h3><p>先从 GitHub 上将项目源码克隆下来：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/happyfish100/fastdfs-client-java.git</span><br></pre></td></tr></table></figure>
 
-<p>然后不要忘了部署到 Nexus 依赖私服：</p>
+<p>然后不要忘了部署到 Maven 依赖私服：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn clean install deploy</span><br></pre></td></tr></table></figure>
 
 <p>最后在需要用到的项目中添加 POM 依赖即可：</p>
