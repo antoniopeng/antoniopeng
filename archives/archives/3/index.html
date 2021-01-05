@@ -383,25 +383,27 @@
   
 
 
-  <a href="/2021/01/04/java/Java 容器系列概览/">
+  <a href="/2019/07/21/docker/Linux 安装 Docker Compose 及常用命令汇总/">
     <h2 class="post-title">
-      【更新中】Java 容器系列概览
+      Docker 编排利器 Docker Compose
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      ...
+      Docker Compose 简介Docker Compose 是 Docker 官方的编排项目之一，负责实现对 Docker 容器集群的快速编排
+Compose 的定位：定义和运行多个 Docker 个容器的应用
+在日常工作中，经常会碰到多个容器相互配合来完成某项任务的情况，例如，要实现一个 Web 项目时，除了 Web 服务容器本身以外，往往还需要加上后端的数据库、负载均衡服务容器等多个......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2021-01-04
+    2019-07-21
   </p>
   <div class="tags">
     
-    <a href="/tags/#Java" title="Java">Java</a>
+    <a href="/tags/#Docker" title="Docker">Docker</a>
     
   </div>
   
@@ -418,74 +420,29 @@
   
 
 
-  <a href="/2021/01/04/java/Java 基础知识总结/">
+  <a href="/2019/07/06/docker/基于 Ubuntu 安装 Docker/">
     <h2 class="post-title">
-      【更新中】Java 基础知识总结
+      容器化技术大杀器 Docker
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      数据类型基本类型
+      什么是 DockerDocker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。
 
 
-基本类型
-字节数
-占位数
-
-
-
-byte
-1
-8
-
-
-char
-2
-16
-
-
-short
-2
-16
-
-
-int
-4
-32
-
-
-float
-4
-32
-
-
-long
-8
-64
-
-
-double
-8
-64
-
-
-boolean
-~
-~
-
-
-boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boole......
+传统虚拟机（VM）和虚拟化容器（Docker）的区别：
+传统的 VM 虚拟机不能共享资源 , 比如在 VMWare 中安装了一个内存为 4GB 的 Linux 操作系统 , 意味着该Linux系统使用了宿主机中固定的 4GB 内存且不能与宿主机或其它虚拟系统共享该资源 , 可......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2021-01-04
+    2019-07-06
   </p>
   <div class="tags">
     
-    <a href="/tags/#Java" title="Java">Java</a>
+    <a href="/tags/#Docker" title="Docker">Docker</a>
     
   </div>
   
@@ -502,28 +459,29 @@ boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是�
   
 
 
-  <a href="/2020/12/24/springboot/Spring Boot 中使用 Quartz 实现任务调度/">
+  <a href="/2019/05/30/linux/Ubuntu 入门操作指北/">
     <h2 class="post-title">
-      Spring Boot 中使用 Quartz 实现任务调度
+      Ubuntu 入门操作指北
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Quartz 概述Quartz 是 OpenSymphony 开源组织在 Job Scheduling 领域又一个开源项目，它可以与 J2EE、 J2SE 应用程序相结合也可以单独使用。Quartz 可以用来创建简单或为运行十个，百个，甚至是好几万个 Jobs 这样复杂的程序。Jobs 可以做成标准的 Java 组件或 EJBs。
-Quartz 使用场景Quartz 是一个任务调度框架。比如......
+      下载
+Ubuntu 官网下载
+
+简介Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、CentOS、Debian 等。
+远程控制管理XShell：是一个强大的安全......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2020-12-24
+    2019-05-30
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-    <a href="/tags/#Quartz" title="Quartz">Quartz</a>
+    <a href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
     
   </div>
   
@@ -540,155 +498,27 @@ Quartz 使用场景Quartz 是一个任务调度框架。比如......
   
 
 
-  <a href="/2020/12/23/fastdfs/实战 FastDFS Java 客户端上传文件/">
+  <a href="/2019/05/15/mysql/一文快速入门 MySQL 索引/">
     <h2 class="post-title">
-      实战 FastDFS Java 客户端上传文件
+      一文快速入门 MySQL 索引
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      
-FastDFS 服务端安装参考文章：分布式文件系统之 FastDFS
-
-安装 FastDFS Java 客户端先从 GitHub 上将项目源码克隆下来：
-1$ git clone https://github.com/happyfish100/fastdfs-client-java.git
-
-然后不要忘了部署到 Nexus 依赖私服：
-1$ mvn clean install deploy......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-12-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#FastDFS" title="FastDFS">FastDFS</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2020/12/23/fastdfs/分布式文件系统之 FastDFS/">
-    <h2 class="post-title">
-      分布式文件系统之 FastDFS
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      FastDFS 简介FastDFS 服务端有两个角色：跟踪器（tracker）和存储节点（storage）。跟踪器主要做调度工作，在访问上起负载均衡的作用；存储节点存储文件，完成文件管理的所有功能。
-FastDFS 同时对文件的 metadata 进行管理。所谓文件的 metadata 就是文件的相关属性，以键值对方式表示，如：width=1024，其中的 key 为 width，value......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-12-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#FastDFS" title="FastDFS">FastDFS</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2020/12/07/闲聊/普通人的一生经历/">
-    <h2 class="post-title">
-      普通人的一生平淡经历
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      
-
-17 岁那年你高二结束开始悔恨自己前两年幼稚的行为，于是开始努力。
-22 岁你毕业了却发现找不到一份令自己满意的工作。
-26 岁你看着身边的人都结了婚父母从带你串亲戚变成了带你去见相亲对象，见了十几个姑娘，你每次都觉得和那个她比差了点。
-28 岁那年你遇到了一个和你差不多的姑娘你们有一塔没一搭地聊着，她说你还不错，你回了一句，你还不确定喜不喜欢她，双方家长就已经摆好了订婚宴，结婚的前一周......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-12-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#闲聊" title="闲聊">闲聊</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2020/09/02/redis/三分钟搭建 Redis 集群/">
-    <h2 class="post-title">
-      三分钟搭建 Redis 集群
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Redis 简介Redis 是用  C 语言开发的一个开源的高性能键值对（key-value）数据库。它通过提供多种键值数据类型来适应不同场景下的存储需求，目前为止 Redis 支持的键值数据类型如下：
-
-字符串类型
-散列类型
-列表类型
-集合类型
-有序集合类型
-
-Redis 的应用场景
-缓存（数据查询、新闻内容、商品内容等等）
-分布式集群架构中的 session 分离
-聊天室的在线好友列表
+      什么是索引MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 索引的本质就是数据结构。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。
+可简单理解为 排好序的快速查找数据结构。在数据之外，数据库系统还维护着 满足特定算法查询的数据结构，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引。
 ......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2020-09-02
+    2019-05-15
   </p>
   <div class="tags">
     
-    <a href="/tags/#Redis" title="Redis">Redis</a>
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
     
   </div>
   
@@ -705,101 +535,27 @@ Redis 的应用场景
   
 
 
-  <a href="/2020/08/20/seata/分布式事务解决方案之 Alibaba Seata/">
+  <a href="/2019/04/09/java/Java 中使用 Jersey 实现上传文件-附加密和解密/">
     <h2 class="post-title">
-      分布式事务解决方案之 Alibaba Seata
+      Java 中使用 Jersey 实现上传文件（附加密和解密）
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      关于事务的几点常识本地事务该类事务需要满足四大特性：ACID（原子性、一致性、隔离性、持久性），仅限于对单一数据库资源的访问控制。
-
-原子性（Atomicity）：指事务作为整体来执行，要么全部执行，要么全部不执行。
-一致性（Consistency）：指事务应确保数据从一个一致的状态转变为另一个一致状态。
-隔离性（Isolation）：指多个事务并发时，一个事务的执行不应影响其它事务的执行。......
+      Jersey 简介Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
+引入依赖在 pom.xml 中添加 Jersey 相关依赖
+12345&lt;depend......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2020-08-20
+    2019-04-09
   </p>
   <div class="tags">
     
-    <a href="/tags/#Seata" title="Seata">Seata</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2020/08/07/漫画/这个奇葩需求听了沉默/">
-    <h2 class="post-title">
-      这个奇葩需求听了沉默...
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      程序员：我给你出四个解决方案
-...
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-08-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#漫画" title="漫画">漫画</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/2020/08/05/漫画/中国程序员VS美国程序员，太形象了/">
-    <h2 class="post-title">
-      中国程序员 VS 美国程序员，太形象了...
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      差异到底有多大
-...
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-08-05
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#漫画" title="漫画">漫画</a>
+    <a href="/tags/#Java" title="Java">Java</a>
     
   </div>
   
@@ -816,10 +572,6 @@ Redis 的应用场景
       <a href="/archives/archives/2/">&larr; Newer Posts</a>
     </li>
     
-    
-    <li class="next">
-      <a href="/archives/archives/4/">Older Posts &rarr;</a>
-    </li>
     
   </ul>
 
@@ -952,27 +704,11 @@ Redis 的应用场景
     
     
     
-    <a href="/tags/#Docker" title="Docker" rel="5">Docker</a>
-    
-    
-    
-    <a href="/tags/#Nexus" title="Nexus" rel="1">Nexus</a>
-    
-    
-    
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
-    
-    
-    
     <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
     
     
     
-    <a href="/tags/#SSM" title="SSM" rel="1">SSM</a>
-    
-    
-    
-    <a href="/tags/#MyBatis" title="MyBatis" rel="5">MyBatis</a>
+    <a href="/tags/#Docker" title="Docker" rel="4">Docker</a>
     
     
     
@@ -980,7 +716,15 @@ Redis 的应用场景
     
     
     
+    <a href="/tags/#Java" title="Java" rel="1">Java</a>
+    
+    
+    
     <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
+    
+    
+    
+    <a href="/tags/#Nexus" title="Nexus" rel="1">Nexus</a>
     
     
     
@@ -996,7 +740,11 @@ Redis 的应用场景
     
     
     
-    <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
+    <a href="/tags/#Spring" title="Spring" rel="1">Spring</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="1">Redis</a>
     
     
     
@@ -1004,43 +752,7 @@ Redis 的应用场景
     
     
     
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
-    
-    
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="8">Spring Cloud</a>
-    
-    
-    
-    <a href="/tags/#Zipkin" title="Zipkin" rel="1">Zipkin</a>
-    
-    
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot" rel="8">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Quartz" title="Quartz" rel="1">Quartz</a>
-    
-    
-    
-    <a href="/tags/#Shiro" title="Shiro" rel="1">Shiro</a>
-    
-    
-    
-    <a href="/tags/#Swagger" title="Swagger" rel="1">Swagger</a>
-    
-    
-    
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
-    
-    
-    
     <a href="/tags/#漫画" title="漫画" rel="2">漫画</a>
-    
-    
-    
-    <a href="/tags/#Spring Cloud Alibaba" title="Spring Cloud Alibaba" rel="4">Spring Cloud Alibaba</a>
     
     
     
@@ -1098,7 +810,7 @@ Redis 的应用场景
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/08/">August 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/07/">July 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/04/">April 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/07/">July 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2019/04/">April 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 

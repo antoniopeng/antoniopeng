@@ -148,7 +148,7 @@
   <link rel="canonical" href="http://antoniopeng.com/2019/10/08/docker/使用 Docker Compose 搭建 Registry 镜像管理平台及使用配置/">
   <title>
     
-    使用 Docker Compose 搭建 Registry 镜像管理平台及使用配置 - 彭超的博客 | Antonio Blog
+    Docker Registry 镜像管理平台 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -290,7 +290,7 @@
   <style type="text/css">
     header.intro-header {
        /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/work-731198_1920.jpg');
+        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
       
     }
 
@@ -318,7 +318,7 @@
               <a class="tag" href="http://antoniopeng.com/tags/#Docker" title="Docker">Docker</a>
               
             </div>
-            <h1>使用 Docker Compose 搭建 Registry 镜像管理平台及使用配置</h1>
+            <h1>Docker Registry 镜像管理平台</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">533</span> In Total
+              Words <span class="post-count">549</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,34 +394,18 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="Docker-Registry-简介"><a href="#Docker-Registry-简介" class="headerlink" title="Docker Registry 简介"></a>Docker Registry 简介</h3><p><a href="https://hub.docker.com" target="_blank" rel="noopener">Docker Hub</a> 是 Docker 官方提供的一个管理公共镜像的镜像仓库，我们可以从上面拉取我们想要的镜像，也可以推送自己的镜像上去。但有时候，在无法访问互联网的情况下或者不希望将自己的镜像推送到公网上时，那么 Docker Registry （镜像私服）就可以用来存储管理自己的镜像。</p>
-<h3 id="安装-Docker-Registry"><a href="#安装-Docker-Registry" class="headerlink" title="安装 Docker Registry"></a>安装 Docker Registry</h3><p>创建 <code>docker-compose.yml</code></p>
+        <blockquote>
+<p>本文中采用 Docker Compose 快速部署应用。服务器：192.168.100.1</p>
+</blockquote>
+<h3 id="Docker-Registry-简介"><a href="#Docker-Registry-简介" class="headerlink" title="Docker Registry 简介"></a>Docker Registry 简介</h3><p><a href="https://hub.docker.com" target="_blank" rel="noopener">Docker Hub</a> 是 Docker 官方提供的一个管理公共镜像的镜像仓库，我们可以从上面拉取我们想要的镜像，也可以推送自己的镜像上去。但有时候，在无法访问互联网的情况下或者不希望将自己的镜像推送到公网上时，那么 Docker Registry （镜像私服）就可以用来存储管理自己的镜像。</p>
+<h3 id="部署-Docker-Registry"><a href="#部署-Docker-Registry" class="headerlink" title="部署 Docker Registry"></a>部署 Docker Registry</h3><p>创建 docker-compose.yml</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">registry:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">registry</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">registry</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5000</span><span class="string">:5000</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/usr/local/docker/registry/data:/var/lib/registry</span></span><br></pre></td></tr></table></figure>
 
 <p>启动 docker compose</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
 
-<p>访问：<a href="http://{ip}:5000/v2/" target="_blank" rel="noopener">http://{ip}:5000/v2/</a></p>
-<h3 id="安装-Docker-Registry-UI"><a href="#安装-Docker-Registry-UI" class="headerlink" title="安装 Docker Registry UI"></a>安装 Docker Registry UI</h3><p><code>Docker Registry</code> 安装成功之后，不太方便只管地查看仓库中的镜像，可以使用 <code>Web UI</code> 界面工具管理镜像，<code>docker-registry-frontend</code> 就是其中之一</p>
-<p>创建 <code>docker-compose.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">konradkleine/docker-registry-frontend:v2</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.crt:/etc/apache2/server.crt:ro</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.key:/etc/apache2/server.key:ro</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_HOST=&#123;docker</span> <span class="string">registy</span> <span class="string">ip&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_PORT=&#123;docker</span> <span class="string">registy</span> <span class="string">port&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>上述文件需要修改的配置：</p>
-<ul>
-<li><p><code>ENV_DOCKER_REGISTRY_HOST</code>：安装的 Docker Registry 访问 IP</p>
-</li>
-<li><p><code>ENV_DOCKER_REGISTRY_PORT</code>：安装的 Docker Registry 访问端口</p>
-</li>
-</ul>
-<p>启动 Docker Ccompose</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose up -d</span></span><br></pre></td></tr></table></figure>
-
-<p>访问 <a href="http://{ip}:8080" target="_blank" rel="noopener">http://{ip}:8080</a></p>
-<ul>
-<li>首页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE01.png-watermark" alt=""></li>
-<li>镜像列表页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE02.png-watermark" alt=""></li>
-</ul>
-<h3 id="Linux-配置-Docker-Registry"><a href="#Linux-配置-Docker-Registry" class="headerlink" title="Linux 配置 Docker Registry"></a>Linux 配置 Docker Registry</h3><p><code>Registry</code> 服务启动以后还需要以下配置：</p>
+<p>访问地址：<a href="http://192.168.100.1:5000/v2/" target="_blank" rel="noopener">http://192.168.100.1:5000/v2/</a></p>
+<h4 id="配置-Docker-Registry"><a href="#配置-Docker-Registry" class="headerlink" title="配置 Docker Registry"></a>配置 Docker Registry</h4><p><code>Docker Registry</code> 服务启动以后还需要以下配置：</p>
 <ul>
 <li><p>编辑 <code>daemon.json</code> （如果不存在则新建）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
@@ -438,31 +422,52 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>出现以下内容，说明配置成功</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Insecure Registries:</span><br><span class="line"> &#123;docker registry ip&#125;:5000</span><br><span class="line"> 127.0.0.0/8</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Insecure Registries:</span><br><span class="line"> 192.168.100.1:5000</span><br></pre></td></tr></table></figure>
+
+
 
 </li>
 </ul>
-<h3 id="测试推送镜像"><a href="#测试推送镜像" class="headerlink" title="测试推送镜像"></a>测试推送镜像</h3><p>从 Docker Hub 公网拉取一个镜像</p>
+<h3 id="部署-Docker-Registry-UI"><a href="#部署-Docker-Registry-UI" class="headerlink" title="部署 Docker Registry UI"></a>部署 Docker Registry UI</h3><p><code>Docker Registry</code> 安装成功之后，不太方便只管地查看仓库中的镜像，可以使用 <code>Web UI</code> 界面工具管理镜像，<code>docker-registry-frontend</code> 就是其中之一</p>
+<p>创建 <code>docker-compose.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">konradkleine/docker-registry-frontend:v2</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.crt:/etc/apache2/server.crt:ro</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.key:/etc/apache2/server.key:ro</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_HOST=&#123;docker</span> <span class="string">registy</span> <span class="string">ip&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_PORT=&#123;docker</span> <span class="string">registy</span> <span class="string">port&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>上述文件需要修改的配置：</p>
+<ul>
+<li><p><code>ENV_DOCKER_REGISTRY_HOST</code>：安装的 Docker Registry 访问 IP</p>
+</li>
+<li><p><code>ENV_DOCKER_REGISTRY_PORT</code>：安装的 Docker Registry 访问端口</p>
+</li>
+</ul>
+<p>启动 Docker Ccompose</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose up -d</span></span><br></pre></td></tr></table></figure>
+
+<p>访问地址：<a href="http://192.168.100.1:8080" target="_blank" rel="noopener">http://192.168.100.1:8080</a></p>
+<ul>
+<li>首页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE01.png-watermark" alt=""></li>
+<li>镜像列表页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE02.png-watermark" alt=""></li>
+</ul>
+<h3 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h3><p>从 Docker Hub 公网拉取一个镜像</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull tomcat</span><br></pre></td></tr></table></figure>
 
 <p>标记该镜像指向Docker Registry 私服仓库</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag tomcat &#123;docker registry ip&#125;:5000/tomcat</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag tomcat 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
 
 <p>推送镜像到仓库</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker push &#123;docker registry ip&#125;:5000/tomcat</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker push 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
 
-<h3 id="测试拉取镜像"><a href="#测试拉取镜像" class="headerlink" title="测试拉取镜像"></a>测试拉取镜像</h3><p>删除从 Docker Hub 公网上拉取的镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm &#123;docker registry ip&#125;:5000/tomcat</span><br></pre></td></tr></table></figure>
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>删除从 Docker Hub 公网上拉取的镜像</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
 
 <p>从 Docker Registry 私服中拉取镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull &#123;docker registry ip&#125;:5000/tomcat</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
           <li class="previous">
-            <a href="/2019/10/18/springcloud/Spring Cloud Netflix Ribbon & RestTemplate 负载均衡调用服务/" data-toggle="tooltip" data-placement="top" title="Spring Cloud Netflix Ribbon & RestTemplate 负载均衡调用服务">&larr; Previous Post</a>
+            <a href="/2019/12/08/mysql/MySQL 性能优化小结/" data-toggle="tooltip" data-placement="top" title="MySQL 性能优化小结">&larr; Previous Post</a>
           </li>
           
           
@@ -510,7 +515,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=使用 Docker Compose 搭建 Registry 镜像管理平台及使用配置&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2019/10/08/docker/使用 Docker Compose 搭建 Registry 镜像管理平台及使用配置/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Docker Registry 镜像管理平台&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2019/10/08/docker/使用 Docker Compose 搭建 Registry 镜像管理平台及使用配置/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -551,7 +556,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker-Registry-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Docker Registry 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装-Docker-Registry"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">安装 Docker Registry</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装-Docker-Registry-UI"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">安装 Docker Registry UI</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Linux-配置-Docker-Registry"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Linux 配置 Docker Registry</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#测试推送镜像"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">测试推送镜像</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#测试拉取镜像"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">测试拉取镜像</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker-Registry-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Docker Registry 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-Docker-Registry"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">部署 Docker Registry</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置-Docker-Registry"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">配置 Docker Registry</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-Docker-Registry-UI"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">部署 Docker Registry UI</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#推送镜像"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">推送镜像</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#拉取镜像"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">拉取镜像</span></a></li></ol>
         
         </div>
       </aside>

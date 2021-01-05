@@ -148,7 +148,7 @@
   <link rel="canonical" href="http://antoniopeng.com/2020/07/18/mq/深入浅出 RabbitMQ/">
   <title>
     
-    深入浅出 RabbitMQ - 彭超的博客 | Antonio Blog
+    一文带你上手使用 RabbitMQ - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -318,7 +318,7 @@
               <a class="tag" href="http://antoniopeng.com/tags/#RabbitMQ" title="RabbitMQ">RabbitMQ</a>
               
             </div>
-            <h1>深入浅出 RabbitMQ</h1>
+            <h1>一文带你上手使用 RabbitMQ</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
@@ -394,7 +394,7 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="什么是-RabbitMQ"><a href="#什么是-RabbitMQ" class="headerlink" title="什么是 RabbitMQ"></a>什么是 RabbitMQ</h3><h4 id="简介（优点）"><a href="#简介（优点）" class="headerlink" title="简介（优点）"></a>简介（优点）</h4><ul>
+        <h3 id="什么是-RabbitMQ"><a href="#什么是-RabbitMQ" class="headerlink" title="什么是 RabbitMQ"></a>什么是 RabbitMQ</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><ul>
 <li>基于 <code>ErLang</code> 语言开发有高可用高并发的优点，适合集群。</li>
 <li>开源、稳定、易用、跨平台、支持多种语言、文档齐全。</li>
 <li>有消息确认机制和持久化机制，可靠性高。</li>
@@ -426,27 +426,23 @@
 <li>客户端投递消息到 <code>ExChange</code>。</li>
 <li><code>ExChange</code> 接收到消息后，就根据消息的 <code>key</code> 和已经设置的 <code>bingding</code>，进行消息路由，将消息投递到一个或多个队列里。</li>
 </ol>
-<h3 id="部署-RabbitMQ"><a href="#部署-RabbitMQ" class="headerlink" title="部署 RabbitMQ"></a>部署 RabbitMQ</h3><h4 id="使用-Docker-Compose-部署"><a href="#使用-Docker-Compose-部署" class="headerlink" title="使用 Docker Compose 部署"></a>使用 Docker Compose 部署</h4><p>创建 <code>docker-compose.yml</code> 文件</p>
+<h3 id="部署-RabbitMQ"><a href="#部署-RabbitMQ" class="headerlink" title="部署 RabbitMQ"></a>部署 RabbitMQ</h3><h4 id="使用-Docker-Compose-部署"><a href="#使用-Docker-Compose-部署" class="headerlink" title="使用 Docker Compose 部署"></a>使用 Docker Compose 部署</h4><blockquote>
+<p>服务器：192.168.100.1</p>
+</blockquote>
+<p>创建 docker-compose.yml 文件</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">rabbitmq:management</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">rabbitmq</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5672</span><span class="string">:5672</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">15672</span><span class="string">:15672</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line">      <span class="attr">RABBITMQ_DEFAULT_USER:</span> <span class="string">rabbit</span></span><br><span class="line">      <span class="attr">RABBITMQ_DEFAULT_PASS:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data:/var/lib/rabbitmq</span></span><br></pre></td></tr></table></figure>
 
 <p>启动容器</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
 
-<h4 id="RabbitMQ-WebUI-界面"><a href="#RabbitMQ-WebUI-界面" class="headerlink" title="RabbitMQ WebUI 界面"></a>RabbitMQ WebUI 界面</h4><ul>
-<li><p>访问地址：<a href="http://{ip}:15672" target="_blank" rel="noopener">http://{ip}:15672</a></p>
-</li>
-<li><p>首页</p>
+<h4 id="RabbitMQ-WebUI-界面"><a href="#RabbitMQ-WebUI-界面" class="headerlink" title="RabbitMQ WebUI 界面"></a>RabbitMQ WebUI 界面</h4><p>访问地址：<a href="http://192.168.100.1:15672" target="_blank" rel="noopener">http://192.168.100.1:15672</a></p>
+<p>首页</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20RabbitMQ01.png-watermark" alt=""></p>
-</li>
-<li><p><code>Global counts</code> 页</p>
+<p><code>Global counts</code> 页</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20RabbitMQ02.png-watermark" alt=""></p>
-</li>
-<li><p>交换机页</p>
+<p>交换机页</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20RabbitMQ03.png-watermark" alt=""></p>
-</li>
-<li><p>队列页</p>
-</li>
-<li><p><code>Name</code>：消息队列的名称，这里是通过程序创建的</p>
+<p>队列页：<code>Name</code> 指的是消息队列的名称，可以通过 Java 创建</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20RabbitMQ04.png-watermark" alt=""></p>
 <ul>
 <li><p><code>Features</code>：消息队列的类型，durable:true 为会持久化消息</p>
@@ -458,24 +454,17 @@
 <li><p><code>Total</code>：全部消息</p>
 </li>
 </ul>
-<blockquote>
-<p>如果都为 0 则说明全部消息处理完成</p>
-</blockquote>
-</li>
-</ul>
+<p><strong>如果都为 0 则说明全部消息处理完成</strong></p>
 <h3 id="使用-RabbitMQ"><a href="#使用-RabbitMQ" class="headerlink" title="使用 RabbitMQ"></a>使用 RabbitMQ</h3><h4 id="创建生产者"><a href="#创建生产者" class="headerlink" title="创建生产者"></a>创建生产者</h4><p>创建一个名为 <code>spring-boot-amqp-provider</code> 的生产者项目。</p>
-<h5 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h5><ul>
-<li><p>创建 <code>application.yml</code> 文件</p>
+<h5 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h5><p>创建 <code>application.yml</code> 文件</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">spring-boot-amqp</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.75</span><span class="number">.133</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">rabbit</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建队列</p>
+
+<p>创建队列</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.Queue;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 队列配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitMQConfiguration</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Queue <span class="title">queue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Queue(<span class="string">"helloRabbitMQ"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建消息提供者</p>
+
+<p>创建消息提供者</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.AmqpTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 消息提供者</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitMQProvider</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AmqpTemplate amqpTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String context = <span class="string">"hello"</span> + <span class="keyword">new</span> Date();</span><br><span class="line">        System.out.println(<span class="string">"Provider: "</span> + context);</span><br><span class="line">        amqpTemplate.convertAndSend(<span class="string">"helloRabbitMQ"</span>, context);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
 <h5 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h5><p>创建测试用例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.lusifer.spring.boot.amqp.Application;</span><br><span class="line"><span class="keyword">import</span> com.lusifer.spring.boot.amqp.provider.HelloRabbitProvider;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">SpringBootTest</span>(<span class="title">classes</span> </span>= Application<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">AmqpTest</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> HelloRabbitProvider helloRabbitProvider;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            RabbitMQProvider.send();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -539,7 +528,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=深入浅出 RabbitMQ&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2020/07/18/mq/深入浅出 RabbitMQ/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=一文带你上手使用 RabbitMQ&body=Hi,I found this website and thought you might like it http://antoniopeng.com/2020/07/18/mq/深入浅出 RabbitMQ/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -580,7 +569,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是-RabbitMQ"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是 RabbitMQ</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#简介（优点）"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">简介（优点）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#基本概念"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">基本概念</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用过程"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">使用过程</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-RabbitMQ"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">部署 RabbitMQ</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用-Docker-Compose-部署"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">使用 Docker Compose 部署</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#RabbitMQ-WebUI-界面"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">RabbitMQ WebUI 界面</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用-RabbitMQ"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">使用 RabbitMQ</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建生产者"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">创建生产者</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">3.1.1.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#发送消息"><span class="toc-nav-number">3.1.2.</span> <span class="toc-nav-text">发送消息</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建消费者"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">创建消费者</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#相关配置-1"><span class="toc-nav-number">3.2.1.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#订阅消息"><span class="toc-nav-number">3.2.2.</span> <span class="toc-nav-text">订阅消息</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是-RabbitMQ"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是 RabbitMQ</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#简介"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">简介</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#基本概念"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">基本概念</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用过程"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">使用过程</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-RabbitMQ"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">部署 RabbitMQ</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用-Docker-Compose-部署"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">使用 Docker Compose 部署</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#RabbitMQ-WebUI-界面"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">RabbitMQ WebUI 界面</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用-RabbitMQ"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">使用 RabbitMQ</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建生产者"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">创建生产者</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">3.1.1.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#发送消息"><span class="toc-nav-number">3.1.2.</span> <span class="toc-nav-text">发送消息</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建消费者"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">创建消费者</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#相关配置-1"><span class="toc-nav-number">3.2.1.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#订阅消息"><span class="toc-nav-number">3.2.2.</span> <span class="toc-nav-text">订阅消息</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
