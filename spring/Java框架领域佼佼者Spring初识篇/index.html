@@ -322,7 +322,7 @@
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2020-08-20
+              2021-01-06
             </span>
 
 
@@ -435,17 +435,15 @@
 <h4 id="使用-Spring-IoC"><a href="#使用-Spring-IoC" class="headerlink" title="使用 Spring IoC"></a>使用 Spring IoC</h4><p>创建一个 <code>IoCTest</code> 测试类，测试对象是否能够通过 <code>Spring</code> 来创建，代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IoCTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取 Spring 容器</span></span><br><span class="line">        ApplicationContext applicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring-context.xml"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 从 Spring 容器中获取对象</span></span><br><span class="line">        HelloSpringService helloSpringService = (HelloSpringService) applicationContext.getBean(<span class="string">"HelloSpringService"</span>);</span><br><span class="line">        HelloSpringService.helloSpring();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/redis/redis集群部署及常用命令汇总/" data-toggle="tooltip" data-placement="top" title="Redis 集群部署及常用命令汇总">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/seata/分布式事务解决方案之alibaba-seata/" data-toggle="tooltip" data-placement="top" title="分布式事务解决方案之 Alibaba Seata">Next Post &rarr;</a>
+            <a href="/fastdfs/实战fastdfs-java客户端上传文件/" data-toggle="tooltip" data-placement="top" title="实战 FastDFS Java 客户端上传文件">Next Post &rarr;</a>
           </li>
           
         </ul>
