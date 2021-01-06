@@ -5,5 +5,6 @@ $(window).scroll(function() {
   var scrollAvail = pageHeight - windowHeight // 可滚动的高度
   var scrollTop = document.documentElement.scrollTop || document.body.scrollTop // 获取滚动条的高度
   var ratio = (scrollTop / scrollAvail) * 100 + '%'
+ 
   $('#progress > .line').css('width', ratio)
 })

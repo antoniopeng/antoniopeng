@@ -11,3 +11,8 @@ $("#rocket").click(function() {
     });
     return false;
 });
+
+$(function() {
+	alert();
+	$(".gitter-open-chat-button").text("打开讨论区");
+});
