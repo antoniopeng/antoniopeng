@@ -221,6 +221,13 @@
   </url>
   
   <url>
+    <loc>https://antoniopeng.com/tags/Leaf/</loc>
+    <lastmod>2021-01-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://antoniopeng.com/tags/FastDFS/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
@@ -242,7 +249,7 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/Leaf/</loc>
+    <loc>https://antoniopeng.com/tags/MyCat/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -256,35 +263,7 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/Nexus/</loc>
-    <lastmod>2021-01-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://antoniopeng.com/tags/MyCat/</loc>
-    <lastmod>2021-01-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://antoniopeng.com/tags/MySQL/</loc>
-    <lastmod>2021-01-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://antoniopeng.com/tags/Seata/</loc>
-    <lastmod>2021-01-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://antoniopeng.com/tags/Redis/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -298,7 +277,21 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/%E6%BC%AB%E7%94%BB/</loc>
+    <loc>https://antoniopeng.com/tags/Nexus/</loc>
+    <lastmod>2021-01-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://antoniopeng.com/tags/Redis/</loc>
+    <lastmod>2021-01-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://antoniopeng.com/tags/Seata/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -312,7 +305,7 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+    <loc>https://antoniopeng.com/tags/%E6%BC%AB%E7%94%BB/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -320,6 +313,13 @@
   
   <url>
     <loc>https://antoniopeng.com/tags/%E9%97%B2%E8%81%8A/</loc>
+    <lastmod>2021-01-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://antoniopeng.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2021-01-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
