@@ -214,13 +214,6 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/FastDFS/</loc>
-    <lastmod>2021-01-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://antoniopeng.com/tags/Java/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
@@ -228,7 +221,7 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/Leaf/</loc>
+    <loc>https://antoniopeng.com/tags/FastDFS/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -242,13 +235,6 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/MyCat/</loc>
-    <lastmod>2021-01-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://antoniopeng.com/tags/MySQL/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
@@ -256,14 +242,21 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/Nexus/</loc>
+    <loc>https://antoniopeng.com/tags/Leaf/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/RabbitMQ/</loc>
+    <loc>https://antoniopeng.com/tags/MyCat/</loc>
+    <lastmod>2021-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://antoniopeng.com/tags/Nexus/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -291,6 +284,13 @@
   </url>
   
   <url>
+    <loc>https://antoniopeng.com/tags/RabbitMQ/</loc>
+    <lastmod>2021-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://antoniopeng.com/tags/Redis/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
@@ -312,14 +312,14 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/%E9%97%B2%E8%81%8A/</loc>
+    <loc>https://antoniopeng.com/tags/Web/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/Web/</loc>
+    <loc>https://antoniopeng.com/tags/%E9%97%B2%E8%81%8A/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
