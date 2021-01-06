@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/nginx/nginx实现虚拟主机/">
+  <link rel="canonical" href="https://antoniopeng.com/mysql/一文快速入门mysql索引 /">
   <title>
     
-    Nginx 实现虚拟主机 - 彭超的博客 | Antonio Blog
+    一文快速入门 MySQL 索引 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#Nginx" title="Nginx">Nginx</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#MySQL" title="MySQL">MySQL</a>
               
             </div>
-            <h1>Nginx 实现虚拟主机</h1>
+            <h1>一文快速入门 MySQL 索引</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2019-09-08
+              2019-05-15
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">2</span> Minutes
+              Estimated Reading Time <span class="post-count">3</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">708</span> In Total
+              Words <span class="post-count">986</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,34 +394,74 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="Nginx-简介"><a href="#Nginx-简介" class="headerlink" title="Nginx 简介"></a>Nginx 简介</h3><p><code>Nginx</code> 是一款高性能的 <code>HTTP</code> 服务器、反向代理服务器及电子邮件（<code>IMAP/POP3</code>）代理服务器。官方测试 <code>Nginx</code> 能够支撑 5 万并发链接，并且 <code>CPU</code>、内存等资源消耗却非常低，运行非常稳定。</p>
-<h3 id="Nginx-的应用场景"><a href="#Nginx-的应用场景" class="headerlink" title="Nginx 的应用场景"></a>Nginx 的应用场景</h3><ul>
-<li><code>HTTP</code> 服务器：<code>Nginx</code> 是一个 <code>HTTP</code> 服务可以独立提供 <code>HTTP</code> 服务。可以做网页静态服务器。</li>
-<li>虚拟主机：可以实现在一台服务器虚拟出多个网站。</li>
-<li>反向代理 + 负载均衡：当网站的访问量达到一定程度后，单台服务器不能满足用户的请求时，需要用多台服务器集群可以使用 <code>Nginx</code> 做反向代理。并且多台服务器可以平均分担负载，不会因为某台服务器负载高宕机而某台服务器闲置的情况。</li>
+        <h3 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h3><p>MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 <strong>索引的本质就是数据结构</strong>。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。</p>
+<p>可简单理解为 <strong>排好序的快速查找数据结构</strong>。在数据之外，数据库系统还维护着 <strong>满足特定算法查询的数据结构</strong>，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引。</p>
+<p>一般来说，索引比较大，不可能全部存储在内存中，因此索引往往以 <strong>索引文件</strong> 的形式存储在磁盘上。</p>
+<p>平常所说的索引，如果没有特别指明，都是 B 树索引。其中聚集索引、次要索引、覆盖索引、前缀索引、唯一索引默认都是用 B 树。</p>
+<p>可以通过命令 <code>show index from table_name</code> 查看表的索引情况</p>
+<h3 id="索引的优缺点"><a href="#索引的优缺点" class="headerlink" title="索引的优缺点"></a>索引的优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>类似于大学图书馆的书目索引，提高数据的检索效率，降低数据库的 IO 成本</li>
+<li>通过索引列对数据进行排序，降低数据的排序成本，从而降低 CPU 的消耗</li>
 </ul>
-<h3 id="什么是虚拟主机"><a href="#什么是虚拟主机" class="headerlink" title="什么是虚拟主机"></a>什么是虚拟主机</h3><p>虚拟主机是一种特殊的软硬件技术，它可以将网络上的每一台计算机分成多个虚拟主机，每个虚拟主机可以独立对外提供 <code>www</code> 服务，这样就可以实现一台主机对外提供多个 <code>web</code> 服务，每个虚拟主机之间是独立的，互不影响的。</p>
-<p>通过 <code>Nginx</code> 可以实现虚拟主机的配置，<code>Nginx</code> 支持三种类型的虚拟主机配置</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>索引实际上也是一张表，该表保存了主键与索引字段，并指向实体表的记录，所以索引列也要占用空间</li>
+<li>虽然索引大大提高了查询效率，但是降低了更新表的速度，如 insert、update 和 delete 操作。因为更新表时，MySQL 不仅要保存数据，还要保存索引文件每次更新的索引列字段，并且在更新操作后，会更新相应字段索引的信息</li>
+<li>索引只是提高查询效率的一个因素，如果你的 MySQL 有大量的数据表，就需要花时间研究建立最优秀的索引或优化查询语句</li>
+</ul>
+<h3 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h3><p>索引主要分为以下三类：</p>
 <ul>
-<li>基于 IP 的虚拟主机</li>
-<li>基于域名的虚拟主机</li>
-<li>基于端口的虚拟主机</li>
+<li>单值索引：一个索引只包含单个列，一个表可以有多个单值索引</li>
+<li>唯一索引：索引列的值必须唯一，但允许有空值，主键就是唯一索引</li>
+<li>复合索引：一个索引包含多个列</li>
 </ul>
-<h3 id="功能需求"><a href="#功能需求" class="headerlink" title="功能需求"></a>功能需求</h3><p><code>Nginx</code> 对外提供 80 和 8080 两个端口监听服务，实现两台虚拟主机，请求 80 端口则访问 <code>html80</code> 目录下的 html 文件，请求 8080 端口则访问 <code>html8080</code> 目录下的 html 文件。</p>
-<h3 id="部署-Nginx"><a href="#部署-Nginx" class="headerlink" title="部署 Nginx"></a>部署 Nginx</h3><blockquote>
-<p>采用 Docker Compose 编排部署应用容器。服务器地址：192.168.230.130</p>
-</blockquote>
-<p>在 <code>/usr/local/docker/nginx/wwwroot</code> 目录下创建 <code>html80</code> 和 <code>html8080</code> 两个目录，并分别创建两个 index.html 文件。</p>
-<p>创建 docker-compose.yml</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nginx:</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">80</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./conf/nginx.conf:/etc/nginx/nginx.conf</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./wwwroot:/usr/share/nginx/wwwroot</span></span><br></pre></td></tr></table></figure>
+<p>以索引的结构划分为以下四类：</p>
+<ul>
+<li>BTREE 索引</li>
+<li>Hash 索引</li>
+<li>Full-Text 索引</li>
+<li>R-Text 索引</li>
+</ul>
+<h3 id="基本语法使用"><a href="#基本语法使用" class="headerlink" title="基本语法使用"></a>基本语法使用</h3><h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><p>创建一个普通索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name <span class="keyword">ON</span> table_name (column_name(<span class="keyword">length</span>))</span><br></pre></td></tr></table></figure>
 
-<p>在 <code>/usr/local/docker/nginx/conf</code> 目录下创建 <code>nginx.conf</code>，挂载 Nginx 配置文件：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span>  nginx;</span><br><span class="line"><span class="comment"># 指定使用 CPU 资源数量</span></span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="comment"># 连接数</span></span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line">    </span><br><span class="line">	<span class="comment"># 虚拟主机一配置</span></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="comment"># 指定端口</span></span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">        <span class="comment"># 指定 IP （可以是域名）</span></span><br><span class="line">        <span class="attribute">server_name</span>  <span class="number">192.168.230.130</span>;</span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="comment"># 虚拟主机内的资源访问路径</span></span><br><span class="line">            <span class="attribute">root</span>   /usr/share/nginx/wwwroot/html8080;</span><br><span class="line">            <span class="comment"># 首页</span></span><br><span class="line">            <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 虚拟主机二配置</span></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">8080</span>;</span><br><span class="line">        <span class="attribute">server_name</span>  <span class="number">192.168.230.130</span>;</span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">root</span>   /usr/share/nginx/wwwroot/html8080;</span><br><span class="line">            <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以通过修改表结构的方式来添加索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name (column_name(<span class="keyword">length</span>))</span><br></pre></td></tr></table></figure>
 
-<p>每个 <code>server</code> 节点代表一个虚拟主机，最后启动容器：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose up -d</span></span><br></pre></td></tr></table></figure>
+<p><strong>注：如果是 char、varchar 类型的字段，length 可以小于字段实际长度；如果是blob、text 类型，必须指定 length</strong></p>
+<h4 id="其它创建索引的方式"><a href="#其它创建索引的方式" class="headerlink" title="其它创建索引的方式"></a>其它创建索引的方式</h4><p>添加主键索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span> (column_name)</span><br></pre></td></tr></table></figure>
 
-<p>打开浏览器分别访问 <a href="http://192.168.230.130" target="_blank" rel="noopener">http://192.168.230.130</a> 和 <a href="http://192.168.230.130:8080" target="_blank" rel="noopener">http://192.168.230.130:8080</a></p>
+<p>添加唯一索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> (column_name)</span><br></pre></td></tr></table></figure>
+
+<p>添加全文索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> FULLTEXT (column_name)</span><br></pre></td></tr></table></figure>
+
+<p>添加普通索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name (column_name)</span><br></pre></td></tr></table></figure>
+
+<p>添加组合索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name (column_name_1, column_name_2, column_name_3)</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> index_name <span class="keyword">ON</span> table_name</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">INDEX</span> <span class="keyword">FROM</span> table_name</span><br></pre></td></tr></table></figure>
+
+<h3 id="需要建立索引的情况"><a href="#需要建立索引的情况" class="headerlink" title="需要建立索引的情况"></a>需要建立索引的情况</h3><ul>
+<li>主键自动建立唯一索引</li>
+<li>频繁作为 <strong>查询条件</strong> 的字段</li>
+<li>查询中与其它表关联的字段：外键关系建立索引</li>
+<li><strong>高并发</strong> 下趋向创建 <strong>组合索引</strong></li>
+<li>查询中 <strong>排序</strong> 的字段。排序字段若通过索引去访问将大大提高排序速度</li>
+<li>查询中 <strong>分组</strong> 字段</li>
+</ul>
+<h3 id="不需要建立索引的情况"><a href="#不需要建立索引的情况" class="headerlink" title="不需要建立索引的情况"></a>不需要建立索引的情况</h3><ul>
+<li>表记录太少（数据量太少 MySQL 自己就可以搞定了）</li>
+<li>经常增删改的表</li>
+<li>数据重复且平均分配的字段，如国籍、性别等</li>
+<li>频繁更新的字段不适合建立索引</li>
+<li>Where 条件里面用不到的字段同样不适合建立索引</li>
+</ul>
 
 
         <hr>
@@ -429,12 +469,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/nginx/nginx实现反向代理及负载均衡配置/" data-toggle="tooltip" data-placement="top" title="Nginx 实现反向代理及负载均衡配置">&larr; Previous Post</a>
+            <a href="/linux/ubuntu入门操作指北 /" data-toggle="tooltip" data-placement="top" title="Ubuntu 入门操作指北">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/docker/使用docker-compose编排部署mysql&tomcat多容器实例/" data-toggle="tooltip" data-placement="top" title="使用 Docker Compose 编排部署 MySQL & Tomcat 多容器实例">Next Post &rarr;</a>
+            <a href="/java/java中使用jersey实现上传文件(附加密和解密) /" data-toggle="tooltip" data-placement="top" title="Java 中使用 Jersey 实现上传文件（附加密和解密）">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -477,7 +517,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Nginx 实现虚拟主机&body=Hi,I found this website and thought you might like it https://antoniopeng.com/nginx/nginx实现虚拟主机/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=一文快速入门 MySQL 索引&body=Hi,I found this website and thought you might like it https://antoniopeng.com/mysql/一文快速入门mysql索引 /">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -518,7 +558,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Nginx-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Nginx 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Nginx-的应用场景"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Nginx 的应用场景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是虚拟主机"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">什么是虚拟主机</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#功能需求"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">功能需求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-Nginx"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">部署 Nginx</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是索引"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是索引</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#索引的优缺点"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">索引的优缺点</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#优点"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">优点</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#缺点"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">缺点</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#索引分类"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">索引分类</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本语法使用"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">基本语法使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建索引"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">创建索引</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#其它创建索引的方式"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">其它创建索引的方式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#删除索引"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">删除索引</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看索引"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">查看索引</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需要建立索引的情况"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">需要建立索引的情况</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#不需要建立索引的情况"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">不需要建立索引的情况</span></a></li></ol>
         
         </div>
       </aside>
@@ -540,7 +580,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Nginx" title="Nginx">Nginx</a>
+            <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
             
           </div>
         </section>
