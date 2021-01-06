@@ -408,7 +408,8 @@
 
 <h4 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h4><p>在 <code>application.yml</code> 中添加 <code>FastDFS</code> 服务端配置，方便后续 Java 配置中调用：</p>
 <blockquote>
-<p>此处假设 FastDFS 服务器地址为：<a href="http://192.168.1.100:8888，跟踪器">http://192.168.1.100:8888，跟踪器</a> tracker 地址为：<a href="http://192.168.1.100:22122" target="_blank" rel="noopener">http://192.168.1.100:22122</a></p>
+<p>此处假设 FastDFS 服务器地址为：<a href="http://192.168.1.100:8888" target="_blank" rel="noopener">http://192.168.1.100:8888</a></p>
+<p>FastDFS 跟踪器 tracker 地址为：<a href="http://192.168.1.100:22122" target="_blank" rel="noopener">http://192.168.1.100:22122</a></p>
 </blockquote>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">fastdfs:</span></span><br><span class="line">  <span class="attr">base:</span></span><br><span class="line">    <span class="comment"># FastDFS 服务器地址</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">http://192.168.1.100:8888/</span></span><br><span class="line"><span class="attr">storage:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">fastdfs</span></span><br><span class="line">  <span class="attr">fastdfs:</span></span><br><span class="line">  	<span class="comment"># FastDFS 跟踪器 tracker 地址</span></span><br><span class="line">    <span class="attr">tracker_server:</span> <span class="string">http://192.168.1.100:22122</span></span><br></pre></td></tr></table></figure>
 
