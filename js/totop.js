@@ -13,6 +13,5 @@ $("#rocket").click(function() {
 });
 
 $(function() {
-	alert();
 	$(".gitter-open-chat-button").text("打开讨论区");
 });
