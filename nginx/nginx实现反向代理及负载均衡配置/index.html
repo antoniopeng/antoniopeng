@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/linux/ubuntu入门操作指北 /">
+  <link rel="canonical" href="https://antoniopeng.com/nginx/nginx实现反向代理及负载均衡配置/">
   <title>
     
-    Ubuntu 入门操作指北 - 彭超的博客 | Antonio Blog
+    Nginx 实现反向代理及负载均衡配置 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#Nginx" title="Nginx">Nginx</a>
               
             </div>
-            <h1>Ubuntu 入门操作指北</h1>
+            <h1>Nginx 实现反向代理及负载均衡配置</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2019-05-30
+              2019-09-30
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">8</span> Minutes
+              Estimated Reading Time <span class="post-count">3</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">2.3k</span> In Total
+              Words <span class="post-count">835</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,472 +394,50 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><blockquote>
-<p><a href="https://ubuntu.com/download" target="_blank" rel="noopener">Ubuntu 官网下载</a></p>
+        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>nginx 作为负载均衡服务器，用户请求先到达 nginx，再由 nginx 根据负载配置将请求分发至 tomcat 服务器</p>
+<ul>
+<li>Tomcat 服务器一：192.168.127.130:8080</li>
+<li>Tomcat 服务器二：192.168.127.130:8081</li>
+<li>Tomcat 服务器三：192.168.127.130:8082</li>
+<li>Nginx 反向代理服务器：192.168.127.130</li>
+</ul>
+<h3 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a>什么是反向代理</h3><p>反向代理可以防止外网对内网服务器的恶性攻击、缓存以减少服务器的压力和访问安全控制之外，还可以进行负载均衡，将用户请求分配给多个服务器</p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>负载均衡是一种用于优化资源利用率，最大化吞吐量，减少延迟和确保容错配置的常用技术。可以将 <strong>nginx</strong> 用作非常有效的 <strong>HTTP</strong> 负载平衡器，以将流量分配到多个应用程序服务器，并使用 <strong>nginx</strong> 改善 <strong>Web</strong> 应用程序的性能，可伸缩性和可靠性。</p>
+<h3 id="部署-Tomcat-集群"><a href="#部署-Tomcat-集群" class="headerlink" title="部署 Tomcat 集群"></a>部署 Tomcat 集群</h3><blockquote>
+<p>采用 Docker Compose 编排部署应用容器。服务器地址：192.168.127.130</p>
 </blockquote>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、CentOS、Debian 等。</p>
-<h3 id="远程控制管理"><a href="#远程控制管理" class="headerlink" title="远程控制管理"></a>远程控制管理</h3><p>XShell：是一个强大的安全终端模拟软件，它支持 SSH1, SSH2。可以在 Windows 界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的</p>
-<p>XFtp：是一个功能强大的SFTP、FTP 文件传输软件。使用了 XFtp 以后，Windows 用户能安全地在 UNIX/Linux 和 Windows PC 之间传输文件</p>
-<blockquote>
-<p><a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener">XShell 和 XFtp 学校家庭免费版官网下载</a></p>
-</blockquote>
-<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="https://qiniuyun.antoniopeng.com/17159c5c952f70f4.png" alt="目录结构示意图"></p>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>bin</td>
-<td>存放二进制可执行文件(ls,cat,mkdir等)</td>
-</tr>
-<tr>
-<td>boot</td>
-<td>存放用于系统引导时使用的各种文件</td>
-</tr>
-<tr>
-<td>dev</td>
-<td>用于存放设备文件</td>
-</tr>
-<tr>
-<td>etc</td>
-<td>存放系统配置文件</td>
-</tr>
-<tr>
-<td>home</td>
-<td>存放所有用户文件的根目录</td>
-</tr>
-<tr>
-<td>lib</td>
-<td>存放跟文件系统中的程序运行所需要的共享库及内核模块</td>
-</tr>
-<tr>
-<td>mnt</td>
-<td>系统管理员安装临时文件系统的安装点</td>
-</tr>
-<tr>
-<td>opt</td>
-<td>额外安装的可选应用程序包所放置的位置</td>
-</tr>
-<tr>
-<td>proc</td>
-<td>虚拟文件系统，存放当前内存的映射</td>
-</tr>
-<tr>
-<td>root</td>
-<td>超级用户目录</td>
-</tr>
-<tr>
-<td>sbin</td>
-<td>存放二进制可执行文件，只有root才能访问</td>
-</tr>
-<tr>
-<td>tmp</td>
-<td>用于存放各种临时文件</td>
-</tr>
-<tr>
-<td>usr</td>
-<td>用于存放系统应用程序，比较重要的目录/usr/local本地管理员软件安装目录</td>
-</tr>
-<tr>
-<td>var</td>
-<td>用于存放运行时需要改变数据的文件</td>
-</tr>
-</tbody></table>
-<h3 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h3><h4 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h4><ul>
-<li>进入插入模式：编辑模式下，输入 <code>i</code> 进入插入模式，插入文本信息</li>
-<li>进入命令模式：在编辑模式下，先按 <code>ESC</code>，然后输入 <code>:</code> 进行命令模式</li>
+<p>创建 docker-compose.yml，定义 Tomcat 服务集群，分别对外映射端口 8080，8081 和 8082：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">tomcat1:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tomcat1</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:8080</span></span><br><span class="line">  <span class="attr">tomcat2:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tomcat2</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8081</span><span class="string">:8080</span></span><br><span class="line">  <span class="attr">tomcat3:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tomcat3</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8082</span><span class="string">:8080</span></span><br></pre></td></tr></table></figure>
+
+<p>启动容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<h3 id="Nginx-自带的负载均衡机制"><a href="#Nginx-自带的负载均衡机制" class="headerlink" title="Nginx 自带的负载均衡机制"></a>Nginx 自带的负载均衡机制</h3><p><strong>默认（轮询）：</strong>对应用程序服务器的请求以轮询方式分发：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> tomcatServers &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.127.130:8080</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.127.130:8081</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.127.130:8082</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>minimum_conn（最少连接）：</strong>将下一个请求分配给活动连接数量最少的服务器：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> tomcatServers &#123;</span><br><span class="line">    minimum_conn;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.127.130:8080</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.127.130:8081</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.127.130:8082</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>ip-hash（会话持久性）：</strong>—哈希函数用于确定应为下一个固定请求选择哪个服务器（基于客户端的IP地址），解决 <code>session</code> 的问题</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> tomcatServers &#123;</span><br><span class="line">    ip_hash;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.127.130:8080</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.127.130:8081</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.127.130:8082</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="相关配置说明"><a href="#相关配置说明" class="headerlink" title="相关配置说明"></a>相关配置说明</h4><ul>
+<li><code>weight</code>：默认值为 1，值越大，负载的权重就越大</li>
+<li><code>down</code>：表示当前的 server 暂时不参与负载</li>
+<li><code>max_fails</code>：允许请求失败的次数默认为 1 当超过最大次数时，返回 <code>proxy_next_upstream</code> 模块定义的错误</li>
+<li><code>fail_timeout</code>：触发 <code>max_fails</code> 后暂停的时间，过了这段时间，重新探测故障服务器是否可用</li>
+<li><code>backup</code>：其它所有的非 <code>backup</code> 机器 <code>down</code> 或者忙的时候，请求 <code>backup</code> 机器。所以这台机器压力会最轻</li>
 </ul>
-<p>常用命令如下：</p>
-<ul>
-<li><p><code>:q</code> 直接退出</p>
-</li>
-<li><p><code>:wq</code> 保存后退出（文件不存在可以新建）</p>
-</li>
-<li><p><code>:q!</code> 强制退出</p>
-</li>
-<li><p><code>:set paste</code> 粘贴内容格式化</p>
-</li>
-<li><p><code>:w file</code> 将当前内容保存成某个文件</p>
-</li>
-<li><p><code>:set number</code> 在编辑文件显示行号</p>
-</li>
-<li><p><code>:set nonumber</code> 在编辑文件不显示行号</p>
-</li>
-</ul>
-<h4 id="nano"><a href="#nano" class="headerlink" title="nano"></a>nano</h4><p>nano 是一个字符终端的文本编辑器，有点像 DOS 下的 editor 程序。它比 vi/vim 要简单得多，比较适合 Linux 初学者使用。某些 Linux 发行版的默认编辑器就是 nano。</p>
-<p>命令如下:</p>
-<ul>
-<li><code>ctrl + o</code>：保存</li>
-<li><code>ctrl + w</code>：搜索</li>
-<li><code>ctrl + y</code>：上一页</li>
-<li><code>ctrl + v</code>：下一页</li>
-<li><code>ctrl + x</code>：退出</li>
-</ul>
-<h3 id="软件包管理"><a href="#软件包管理" class="headerlink" title="软件包管理"></a>软件包管理</h3><p>APT(Advanced Packaging Tool) 是 Debian/Ubuntu 类 Linux 系统中的软件包管理程序, 使用它可以找到想要的软件包, 而且安装、卸载、更新都很简便；也可以用来对 Ubuntu 进行升级; APT 的源文件为 <code>/etc/apt/</code> 目录下的 <code>sources.list</code> 文件。</p>
-<h4 id="修改数据源"><a href="#修改数据源" class="headerlink" title="修改数据源"></a>修改数据源</h4><p>由于国内的网络环境问题，我们需要将 Ubuntu 的数据源修改为国内数据源，操作步骤如下：</p>
-<ul>
-<li><p>查看系统版本</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> lsb_release -a</span></span><br></pre></td></tr></table></figure>
-<p>输出结果</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID:	Ubuntu</span><br><span class="line">Description:	Ubuntu 16.04 LTS</span><br><span class="line">Release:	16.04</span><br><span class="line">Codename:	xenial</span><br></pre></td></tr></table></figure>
-<p>Codename 为 <code>xenial</code>，该名称为我们 Ubuntu 系统的名称，修改数据源需要用到该名称</p>
-</li>
-<li><p>编辑数据源</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi /etc/apt/sources.list</span></span><br></pre></td></tr></table></figure>
-<p>删除全部内容并修改为</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure></li>
-<li><p>更新数据源</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt-get update</span></span><br></pre></td></tr></table></figure>
+<h3 id="部署-Nginx"><a href="#部署-Nginx" class="headerlink" title="部署 Nginx"></a>部署 Nginx</h3><p>创建 docker-compose.yml，挂载 <code>nginx.conf</code> 文件，对外映射端口 80：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nginx:</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">80</span><span class="string">:81</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./nginx.conf:/etc/nginx/nginx.conf</span></span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><p>Linux 操作系统是一个多用户操作系统，它允许多用户同时登录到系统上并使用资源。系统会根据账户来区分每个用户的文件，进程，任务和工作环境，使得每个用户工作都不受干扰。</p>
-<h4 id="使用-Root-用户"><a href="#使用-Root-用户" class="headerlink" title="使用 Root 用户"></a>使用 Root 用户</h4><p>在实际生产操作中，我们基本上都是使用超级管理员账户操作 Linux 系统，也就是 Root 用户，Linux 系统默认是关闭 Root 账户的，我们需要为 Root 用户设置一个初始密码以方便我们使用。</p>
-<ul>
-<li><p>设置 Root 账户密码</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo passwd root</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>切换到 root 用户</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ su</span><br></pre></td></tr></table></figure>
+<h4 id="配置-Nginx"><a href="#配置-Nginx" class="headerlink" title="配置 Nginx"></a>配置 Nginx</h4><p>在 docker-compose.yml 同目录下创建 <code>nginx.conf</code> 文件，配置反向代理及负载均衡：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span>  nginx;</span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 服务器集群，weight是权重的意思，权重越大，分配的概率越大</span></span><br><span class="line">	<span class="attribute">upstream</span> tomcatServers &#123;</span><br><span class="line">                minimum_conn;</span><br><span class="line">		<span class="attribute">server</span> <span class="number">192.168.127.130:8080</span> weight = <span class="number">10</span>;</span><br><span class="line">                <span class="attribute">server</span> <span class="number">192.168.127.130:8081</span> weight = <span class="number">10</span>;</span><br><span class="line">                <span class="attribute">server</span> <span class="number">192.168.127.130:8082</span> weight = <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="section">server</span> &#123;</span><br><span class="line">		<span class="attribute">listen</span> <span class="number">81</span>;</span><br><span class="line">		<span class="attribute">location</span> / &#123;</span><br><span class="line">                        <span class="comment"># 配置反向代理地址</span></span><br><span class="line">			<span class="attribute">proxy_pass</span> http://tomcatServers;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<h4 id="设置允许远程登录-Root"><a href="#设置允许远程登录-Root" class="headerlink" title="设置允许远程登录 Root"></a>设置允许远程登录 Root</h4><p>修改 <code>sshd_config</code> 配置文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi /etc/ssh/sshd_config</span></span><br></pre></td></tr></table></figure>
-<p>修改以下配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">PermitRootLogin without-password     //注释此行</span></span><br><span class="line">PermitRootLogin yes                   //加入此行</span><br></pre></td></tr></table></figure>
+<p>启动容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
 
-<p>重启服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> service ssh restart</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="常用命令汇总"><a href="#常用命令汇总" class="headerlink" title="常用命令汇总"></a>常用命令汇总</h3><h4 id="文件目录命令"><a href="#文件目录命令" class="headerlink" title="文件目录命令"></a>文件目录命令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ls</td>
-<td>显示文件和目录列表</td>
-<td>-l</td>
-<td>列出文件的详细信息</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>-a</td>
-<td>列出当前目录所有文件，包含隐藏文件</td>
-</tr>
-<tr>
-<td>mkdir</td>
-<td>创建目录</td>
-<td>-p</td>
-<td>父目录不存在情况下先生成父目录</td>
-</tr>
-<tr>
-<td>cd</td>
-<td>切换目录</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>touch</td>
-<td>生成一个空文件</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>echo</td>
-<td>生成一个带内容的文件</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>cat</td>
-<td>显示文本文件内容</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>cp</td>
-<td>复制文件或目录</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>rm</td>
-<td>删除文件</td>
-<td>-r</td>
-<td>删除目录</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>-f</td>
-<td>强制删除</td>
-</tr>
-<tr>
-<td>find</td>
-<td>在文件系统中查找指定的文件</td>
-<td>-name</td>
-<td>文件名</td>
-</tr>
-<tr>
-<td>grep</td>
-<td>在指定的文本文件中查找指定的字符串</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>tree</td>
-<td>用于以树状图列出目录的内容</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>pwd</td>
-<td>显示当前工作目录</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ln</td>
-<td>建立软连接</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>more</td>
-<td>分页显示文本文件内容</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>head</td>
-<td>显示文件开头内容</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>tail</td>
-<td>显示文件结尾内容</td>
-<td>-f</td>
-<td>追踪实时输出</td>
-</tr>
-</tbody></table>
-<h4 id="APT-命令"><a href="#APT-命令" class="headerlink" title="APT 命令"></a>APT 命令</h4><p>安装软件包</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install packagename</span><br></pre></td></tr></table></figure>
-
-<p>删除软件包</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get remove packagename</span><br></pre></td></tr></table></figure>
-
-<p>更新软件包列表</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get update</span><br></pre></td></tr></table></figure>
-
-<p>升级到最新系统（慎用）</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get upgrade</span><br></pre></td></tr></table></figure>
-
-<h4 id="解压缩命令"><a href="#解压缩命令" class="headerlink" title="解压缩命令"></a>解压缩命令</h4><p>压缩文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tar -zcvf test.tar.gz <span class="built_in">test</span>\</span></span><br></pre></td></tr></table></figure>
-
-<p>解压文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tar -zxvf test.tar.gz</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>start</td>
-<td>显示指定文件的相关信息,比ls命令显示内容更多</td>
-</tr>
-<tr>
-<td>who</td>
-<td>显示在线登录用户</td>
-</tr>
-<tr>
-<td>hostname</td>
-<td>显示主机名称</td>
-</tr>
-<tr>
-<td>uname</td>
-<td>显示系统信息</td>
-</tr>
-<tr>
-<td>top</td>
-<td>显示当前系统中耗费资源最多的进程</td>
-</tr>
-<tr>
-<td>ps</td>
-<td>显示瞬间的进程状态</td>
-</tr>
-<tr>
-<td>du</td>
-<td>显示指定的文件（目录）已使用的磁盘空间的总量</td>
-</tr>
-<tr>
-<td>df</td>
-<td>显示文件系统磁盘空间的使用情况</td>
-</tr>
-<tr>
-<td>free</td>
-<td>显示当前内存和交换空间的使用情况</td>
-</tr>
-<tr>
-<td>ifconfig</td>
-<td>显示网络接口信息</td>
-</tr>
-<tr>
-<td>ping</td>
-<td>测试网络的连通性</td>
-</tr>
-<tr>
-<td>netstat</td>
-<td>显示网络状态信息</td>
-</tr>
-<tr>
-<td>clear</td>
-<td>清屏</td>
-</tr>
-<tr>
-<td>kill</td>
-<td>杀死一个进程</td>
-</tr>
-</tbody></table>
-<h4 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>useradd</td>
-<td>添加用户</td>
-</tr>
-<tr>
-<td>usermod</td>
-<td>修改用户</td>
-</tr>
-<tr>
-<td>userdel</td>
-<td>删除用户</td>
-</tr>
-</tbody></table>
-<h4 id="关机重启"><a href="#关机重启" class="headerlink" title="关机重启"></a>关机重启</h4><p>立即关机</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ shutdown -h now</span><br></pre></td></tr></table></figure>
-
-<p>立即重启</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ reboot</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件目录权限"><a href="#文件目录权限" class="headerlink" title="文件目录权限"></a>文件目录权限</h3><h4 id="查看文件和目录的权限"><a href="#查看文件和目录的权限" class="headerlink" title="查看文件和目录的权限"></a>查看文件和目录的权限</h4><p><code>ls –al</code>：使用 <code>ls</code> 不带参数只显示文件名称，通过<code>ls –al</code> 可以显示文件或者目录的权限信息</p>
-<p><code>ls -l</code>：显示信息包括：文件类型，文件权限，文件的用户，文件的所属组，文件的大小，文件的创建时间，文件的名称</p>
-<p>例如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 antoniopeng antoniopeng 675 Oct 26 17:20 .file_name</span><br></pre></td></tr></table></figure>
-<p>上述命令解析如下：</p>
-<table>
-<thead>
-<tr>
-<th>-rw-r–r–</th>
-<th>1</th>
-<th>antoniopeng</th>
-<th>antoniopeng</th>
-<th>675</th>
-<th>Oct 26 17:20</th>
-<th>.file_name</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>文档类型及权限</td>
-<td>连接数</td>
-<td>文档所属用户</td>
-<td>文档所属组</td>
-<td>文档大小</td>
-<td>文档最后被修改日期</td>
-<td>文档名称</td>
-</tr>
-</tbody></table>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r--</span><br></pre></td></tr></table></figure>
-<p>第一个字符代表文档类型，剩下的字符代表权限</p>
-<ul>
-<li><code>-</code>：普通文件</li>
-<li><code>rw-</code>：说明用户 antoniopeng 有读写权限，没有运行权限</li>
-<li><code>r--</code>：表示用户组 antoniopeng 只有读权限，没有写和运行的权限</li>
-<li><code>r--</code>：其他用户只有读权限，没有写权限和运行的权限</li>
-</ul>
-<p><strong>所有文档类型</strong></p>
-<ul>
-<li><code>d</code> 表示目录</li>
-<li><code>l</code> 表示软连接</li>
-<li><code>–</code> 表示普通文件</li>
-<li><code>c</code> 表示串行端口字符设备文件</li>
-<li><code>b</code> 表示可供存储的块设备文件</li>
-</ul>
-<p><strong>所有权限</strong></p>
-<ul>
-<li><code>r</code>：只读</li>
-<li><code>w</code>：可写</li>
-<li><code>x</code>：可执行</li>
-</ul>
-<h3 id="更改操作权限"><a href="#更改操作权限" class="headerlink" title="更改操作权限"></a>更改操作权限</h3><p><strong>chown</strong></p>
-<p>表示改变文件或者目录所有者，所有者包含用户和用户组</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chown [-R] 用户名称 文件或者目录</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chown [-R] 用户名称 用户组名称 文件或目录</span></span><br></pre></td></tr></table></figure>
-<p>-R：进行递归式的权限更改，更新目录下的所有文件、子目录权限</p>
-<p><strong>chmod</strong></p>
-<p>表示改变访问权限</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chmod [who] [+ | - | =] [mode] 文件名</span></span><br></pre></td></tr></table></figure>
-<p><code>who</code> 表示操作对象可以是以下字母的一个或者组合：</p>
-<ul>
-<li><code>u</code>：用户 user</li>
-<li><code>g</code>：用户组 group</li>
-<li><code>o</code>：表示其他用户</li>
-<li><code>a</code>：表示所有用户是系统默认的</li>
-</ul>
-<p><code>+ / - / =</code> 表示操作权限：</p>
-<ul>
-<li><code>+</code>：表示添加某个权限</li>
-<li><code>-</code>：表示取消某个权限</li>
-<li><code>=</code>：赋予给定的权限，取消文档以前的所有权限</li>
-</ul>
-<p><code>mode</code> 表示更改权限：</p>
-<ul>
-<li><code>r</code>：只读</li>
-<li><code>w</code>：可写</li>
-<li><code>x</code>：可执行</li>
-</ul>
-<h4 id="权限数字设定法"><a href="#权限数字设定法" class="headerlink" title="权限数字设定法"></a>权限数字设定法</h4><p>0 表示没有任何权限，1 表示有可执行权限 = x，2 表示有可写权限 = w，4 表示有可读权限 = r。</p>
-<p>例如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> chmod 755 file_name</span></span><br></pre></td></tr></table></figure>
-<p>解析如下：</p>
-<table>
-<thead>
-<tr>
-<th>r w x</th>
-<th>r - x</th>
-<th>r - x</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>4+2+1</td>
-<td>4+1</td>
-<td>4+1</td>
-</tr>
-<tr>
-<td>user</td>
-<td>group</td>
-<td>others</td>
-</tr>
-</tbody></table>
+<p>访问 <a href="http://192.168.127.130" target="_blank" rel="noopener">http://192.168.127.130</a></p>
 
 
         <hr>
@@ -867,12 +445,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/docker/容器化技术大杀器docker/" data-toggle="tooltip" data-placement="top" title="容器化技术大杀器 Docker">&larr; Previous Post</a>
+            <a href="/docker/docker-registry镜像管理平台/" data-toggle="tooltip" data-placement="top" title="Docker Registry 镜像管理平台">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/mysql/一文快速入门mysql索引 /" data-toggle="tooltip" data-placement="top" title="一文快速入门 MySQL 索引">Next Post &rarr;</a>
+            <a href="/nginx/nginx实现虚拟主机/" data-toggle="tooltip" data-placement="top" title="Nginx 实现虚拟主机">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -915,7 +493,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Ubuntu 入门操作指北&body=Hi,I found this website and thought you might like it https://antoniopeng.com/linux/ubuntu入门操作指北 /">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Nginx 实现反向代理及负载均衡配置&body=Hi,I found this website and thought you might like it https://antoniopeng.com/nginx/nginx实现反向代理及负载均衡配置/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -956,7 +534,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#下载"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">下载</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#简介"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#远程控制管理"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">远程控制管理</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#目录结构"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">目录结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#编辑器"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">编辑器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#vim"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">vim</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#nano"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">nano</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#软件包管理"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">软件包管理</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改数据源"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">修改数据源</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#用户管理"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">用户管理</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用-Root-用户"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">使用 Root 用户</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#设置允许远程登录-Root"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">设置允许远程登录 Root</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#常用命令汇总"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">常用命令汇总</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#文件目录命令"><span class="toc-nav-number">8.1.</span> <span class="toc-nav-text">文件目录命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#APT-命令"><span class="toc-nav-number">8.2.</span> <span class="toc-nav-text">APT 命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解压缩命令"><span class="toc-nav-number">8.3.</span> <span class="toc-nav-text">解压缩命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#系统管理命令"><span class="toc-nav-number">8.4.</span> <span class="toc-nav-text">系统管理命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#用户管理命令"><span class="toc-nav-number">8.5.</span> <span class="toc-nav-text">用户管理命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#关机重启"><span class="toc-nav-number">8.6.</span> <span class="toc-nav-text">关机重启</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#文件目录权限"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">文件目录权限</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看文件和目录的权限"><span class="toc-nav-number">9.1.</span> <span class="toc-nav-text">查看文件和目录的权限</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#更改操作权限"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">更改操作权限</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#权限数字设定法"><span class="toc-nav-number">10.1.</span> <span class="toc-nav-text">权限数字设定法</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">需求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是反向代理"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">什么是反向代理</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#负载均衡"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">负载均衡</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-Tomcat-集群"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">部署 Tomcat 集群</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Nginx-自带的负载均衡机制"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Nginx 自带的负载均衡机制</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置说明"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">相关配置说明</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-Nginx"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">部署 Nginx</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置-Nginx"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">配置 Nginx</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -978,7 +556,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+            <a class="tag" href="/tags/#Nginx" title="Nginx">Nginx</a>
             
           </div>
         </section>
