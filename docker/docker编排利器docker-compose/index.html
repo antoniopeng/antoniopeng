@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">2</span> Minutes
+              Estimated Reading Time <span class="post-count">3</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">486</span> In Total
+              Words <span class="post-count">768</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -441,6 +441,70 @@
 <p>停止并移除容器</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose down</span><br></pre></td></tr></table></figure>
 
+<h3 id="编排实例"><a href="#编排实例" class="headerlink" title="编排实例"></a>编排实例</h3><h4 id="容器编排模板文件"><a href="#容器编排模板文件" class="headerlink" title="容器编排模板文件"></a>容器编排模板文件</h4><blockquote>
+<p>服务器地址：192.168.100.1</p>
+</blockquote>
+<p>创建容器编排模板文件 <code>docker-compose.yml</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p>文件内容如下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">tomcat:</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:8080</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/usr/local/docker/tomcat/webapps:/usr/local/tomcat/webapps</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:5.7.22</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">mysql</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">3306</span><span class="string">:3306</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">command:</span></span><br><span class="line">      <span class="string">--character-set-server=utf8mb4</span></span><br><span class="line">      <span class="string">--collation-server=utf8mb4_general_ci</span></span><br><span class="line">      <span class="string">--explicit_defaults_for_timestamp=true</span></span><br><span class="line">      <span class="string">--lower_case_table_names=1</span></span><br><span class="line">      <span class="string">--max_allowed_packet=128M</span></span><br><span class="line">      <span class="string">--sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO"</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/usr/local/docker/mysql:/var/lib/mysql</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="文件模板节点详解"><a href="#文件模板节点详解" class="headerlink" title="文件模板节点详解"></a>文件模板节点详解</h4><table>
+<thead>
+<tr>
+<th><strong>文件节点</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>version</code></td>
+<td>指定 Docker Compose 版本</td>
+</tr>
+<tr>
+<td><code>services</code></td>
+<td>所有容器服务的父节点</td>
+</tr>
+<tr>
+<td><code>tomcat / mysql</code></td>
+<td>容器服务名</td>
+</tr>
+<tr>
+<td><code>restart</code></td>
+<td>开机是否自动启动</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>指定镜像名</td>
+</tr>
+<tr>
+<td><code>container_name</code></td>
+<td>声明容器名</td>
+</tr>
+<tr>
+<td><code>ports</code></td>
+<td>端口开放映射</td>
+</tr>
+<tr>
+<td><code>volumes</code></td>
+<td>数据卷（宿主机路径 : 容器内路径）</td>
+</tr>
+<tr>
+<td><code>environment</code></td>
+<td>环境变量</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td>其它配置</td>
+</tr>
+</tbody></table>
+<p>在 <code>docker-compose.yml</code> 文件所在目录下启动容器服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>列出正在运行的容器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container ps</span><br></pre></td></tr></table></figure>
+
+<p>启动容器以后验证是否能正常访问 MySQL 地址：192.168.100.1:3306 和 Tomcat 地址：<a href="http://192.168.100.1:8080" target="_blank" rel="noopener">http://192.168.100.1:8080</a></p>
 
 
         <hr>
@@ -448,7 +512,7 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/docker/使用docker-compose编排部署mysql&tomcat多容器实例/" data-toggle="tooltip" data-placement="top" title="使用 Docker Compose 编排部署 MySQL & Tomcat 多容器实例">&larr; Previous Post</a>
+            <a href="/nginx/nginx实现虚拟主机/" data-toggle="tooltip" data-placement="top" title="Nginx 实现虚拟主机">&larr; Previous Post</a>
           </li>
           
           
