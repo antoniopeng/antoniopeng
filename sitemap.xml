@@ -228,7 +228,7 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/Java/</loc>
+    <loc>https://antoniopeng.com/tags/Ubuntu/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -242,13 +242,6 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/MySQL/</loc>
-    <lastmod>2021-01-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://antoniopeng.com/tags/MyCat/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
@@ -256,7 +249,14 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/Ubuntu/</loc>
+    <loc>https://antoniopeng.com/tags/MySQL/</loc>
+    <lastmod>2021-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://antoniopeng.com/tags/Java/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -270,13 +270,6 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/RabbitMQ/</loc>
-    <lastmod>2021-01-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://antoniopeng.com/tags/Nexus/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
@@ -284,14 +277,7 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/Spring/</loc>
-    <lastmod>2021-01-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://antoniopeng.com/tags/%E6%BC%AB%E7%94%BB/</loc>
+    <loc>https://antoniopeng.com/tags/RabbitMQ/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -305,7 +291,21 @@
   </url>
   
   <url>
+    <loc>https://antoniopeng.com/tags/%E6%BC%AB%E7%94%BB/</loc>
+    <lastmod>2021-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://antoniopeng.com/tags/Redis/</loc>
+    <lastmod>2021-01-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://antoniopeng.com/tags/Spring/</loc>
     <lastmod>2021-01-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
