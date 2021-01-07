@@ -69,7 +69,7 @@
   <meta name="baidu-site-verification" content="PpzM9WxOJU" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="本站是彭超的个人博客。内容涵盖生活故事、Java 后端技术、分布式架构、中间件技术、数据库、运维等知识经验分享。" />
+  <meta name="description" content="本站是彭超的个人博客。内容涵盖生活故事、Java 后端技术、分布式架构、中间件使用、前端开发、数据库、运维等知识经验分享。" />
   <meta name="keywords" content="彭超,彭超博客,彭超的博客,彭超的个人博客,彭超的网站,暮夏有五,antoniopeng,antonio blog,软件开发,定制软件开发,网站建设,网站制作,定制微信小程序,定制小程序" />
   <link rel="shortcut icon" href="https://qiniuyun.antoniopeng.com/favicon.ico" />
 
@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -365,15 +365,13 @@
         
         <a href="#Docker" title="Docker" rel="3">Docker</a>
         
-        <a href="#FastDFS" title="FastDFS" rel="2">FastDFS</a>
-        
-        <a href="#Java" title="Java" rel="2">Java</a>
+        <a href="#Leaf" title="Leaf" rel="1">Leaf</a>
         
         <a href="#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
         
-        <a href="#MySQL" title="MySQL" rel="2">MySQL</a>
+        <a href="#Java" title="Java" rel="1">Java</a>
         
-        <a href="#Leaf" title="Leaf" rel="1">Leaf</a>
+        <a href="#FastDFS" title="FastDFS" rel="2">FastDFS</a>
         
         <a href="#MyCat" title="MyCat" rel="1">MyCat</a>
         
@@ -381,19 +379,21 @@
         
         <a href="#Nginx" title="Nginx" rel="2">Nginx</a>
         
+        <a href="#MySQL" title="MySQL" rel="2">MySQL</a>
+        
         <a href="#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
-        
-        <a href="#Seata" title="Seata" rel="1">Seata</a>
-        
-        <a href="#Spring" title="Spring" rel="1">Spring</a>
         
         <a href="#Redis" title="Redis" rel="1">Redis</a>
         
-        <a href="#Web" title="Web" rel="1">Web</a>
+        <a href="#漫画" title="漫画" rel="2">漫画</a>
+        
+        <a href="#Seata" title="Seata" rel="1">Seata</a>
         
         <a href="#操作系统" title="操作系统" rel="1">操作系统</a>
         
-        <a href="#漫画" title="漫画" rel="2">漫画</a>
+        <a href="#Spring" title="Spring" rel="1">Spring</a>
+        
+        <a href="#Web" title="Web" rel="1">Web</a>
         
         <a href="#闲聊" title="闲聊" rel="2">闲聊</a>
         
@@ -454,8 +454,8 @@
       </div>
       
       <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="FastDFS">
-          <span class="tag-text">FastDFS</span>
+        <span class="fa fa-tag listing-seperator" id="Leaf">
+          <span class="tag-text">Leaf</span>
         </span>
         
         <!-- <li class="listing-item">
@@ -463,61 +463,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/fastdfs/分布式文件系统fastdfs服务端的部署/">
+          <a href="/leaf/分布式主键生成方案之美团leaf/">
             <h2 class="post-title">
-              分布式文件系统 FastDFS 服务端的部署
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/fastdfs/实战fastdfs-java客户端上传文件/">
-            <h2 class="post-title">
-              实战 FastDFS Java 客户端上传文件
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="Java">
-          <span class="tag-text">Java</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/java/java基础知识总结/">
-            <h2 class="post-title">
-              Java 基础知识总结
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/java/java中使用jersey实现上传文件(附加密和解密)/">
-            <h2 class="post-title">
-              Java 中使用 Jersey 实现上传文件（附加密和解密）
+              分布式主键生成方案之美团 Leaf
             </h2>
             
           </a>
@@ -550,8 +498,8 @@
       </div>
       
       <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="MySQL">
-          <span class="tag-text">MySQL</span>
+        <span class="fa fa-tag listing-seperator" id="Java">
+          <span class="tag-text">Java</span>
         </span>
         
         <!-- <li class="listing-item">
@@ -559,24 +507,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/mysql/mysql性能优化小结/">
+          <a href="/java/java中使用jersey实现上传文件(附加密和解密)/">
             <h2 class="post-title">
-              MySQL 性能优化小结
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/mysql/一文快速入门mysql索引/">
-            <h2 class="post-title">
-              一文快速入门 MySQL 索引
+              Java 中使用 Jersey 实现上传文件（附加密和解密）
             </h2>
             
           </a>
@@ -587,8 +520,8 @@
       </div>
       
       <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="Leaf">
-          <span class="tag-text">Leaf</span>
+        <span class="fa fa-tag listing-seperator" id="FastDFS">
+          <span class="tag-text">FastDFS</span>
         </span>
         
         <!-- <li class="listing-item">
@@ -596,9 +529,24 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/leaf/分布式主键生成方案之美团leaf/">
+          <a href="/fastdfs/分布式文件系统fastdfs服务端的部署/">
             <h2 class="post-title">
-              分布式主键生成方案之美团 Leaf
+              分布式文件系统 FastDFS 服务端的部署
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/fastdfs/实战fastdfs-java客户端上传文件/">
+            <h2 class="post-title">
+              实战 FastDFS Java 客户端上传文件
             </h2>
             
           </a>
@@ -690,6 +638,43 @@
       </div>
       
       <div class="one-tag-list">
+        <span class="fa fa-tag listing-seperator" id="MySQL">
+          <span class="tag-text">MySQL</span>
+        </span>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/mysql/mysql性能优化小结/">
+            <h2 class="post-title">
+              MySQL 性能优化小结
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/mysql/一文快速入门mysql索引/">
+            <h2 class="post-title">
+              一文快速入门 MySQL 索引
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+      </div>
+      
+      <div class="one-tag-list">
         <span class="fa fa-tag listing-seperator" id="RabbitMQ">
           <span class="tag-text">RabbitMQ</span>
         </span>
@@ -712,50 +697,6 @@
       </div>
       
       <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="Seata">
-          <span class="tag-text">Seata</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/seata/分布式事务解决方案之alibaba-seata/">
-            <h2 class="post-title">
-              分布式事务解决方案之 Alibaba Seata
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="Spring">
-          <span class="tag-text">Spring</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/spring/java框架领域佼佼者spring初识篇/">
-            <h2 class="post-title">
-              Java 框架领域佼佼者 Spring 初识篇
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
-      <div class="one-tag-list">
         <span class="fa fa-tag listing-seperator" id="Redis">
           <span class="tag-text">Redis</span>
         </span>
@@ -768,50 +709,6 @@
           <a href="/redis/redis集群部署及常用命令汇总/">
             <h2 class="post-title">
               Redis 集群部署及常用命令汇总
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="Web">
-          <span class="tag-text">Web</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/计算机基础/深入web请求过程/">
-            <h2 class="post-title">
-              深入 Web 请求过程
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="操作系统">
-          <span class="tag-text">操作系统</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/计算机基础/操作系统核心概念总结/">
-            <h2 class="post-title">
-              操作系统核心概念总结
             </h2>
             
           </a>
@@ -849,6 +746,94 @@
           <a href="/漫画/这个奇葩需求听了沉默/">
             <h2 class="post-title">
               这个奇葩需求听了沉默...
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+      </div>
+      
+      <div class="one-tag-list">
+        <span class="fa fa-tag listing-seperator" id="Seata">
+          <span class="tag-text">Seata</span>
+        </span>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/seata/分布式事务解决方案之alibaba-seata/">
+            <h2 class="post-title">
+              分布式事务解决方案之 Alibaba Seata
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+      </div>
+      
+      <div class="one-tag-list">
+        <span class="fa fa-tag listing-seperator" id="操作系统">
+          <span class="tag-text">操作系统</span>
+        </span>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/计算机基础/操作系统核心概念总结/">
+            <h2 class="post-title">
+              操作系统核心概念总结
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+      </div>
+      
+      <div class="one-tag-list">
+        <span class="fa fa-tag listing-seperator" id="Spring">
+          <span class="tag-text">Spring</span>
+        </span>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/spring/java框架领域佼佼者spring初识篇/">
+            <h2 class="post-title">
+              Java 框架领域佼佼者 Spring 初识篇
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+      </div>
+      
+      <div class="one-tag-list">
+        <span class="fa fa-tag listing-seperator" id="Web">
+          <span class="tag-text">Web</span>
+        </span>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/计算机基础/深入web请求过程/">
+            <h2 class="post-title">
+              深入 Web 请求过程
             </h2>
             
           </a>
