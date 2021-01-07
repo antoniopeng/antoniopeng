@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/rabbitmq/快速上手使用rabbitmq/">
+  <link rel="canonical" href="https://antoniopeng.com/java/java基础知识总结/">
   <title>
     
-    快速上手使用 RabbitMQ - 彭超的博客 | Antonio Blog
+    Java 基础知识总结 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#RabbitMQ" title="RabbitMQ">RabbitMQ</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#Java" title="Java">Java</a>
               
             </div>
-            <h1>快速上手使用 RabbitMQ</h1>
+            <h1>Java 基础知识总结</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2020-07-18
+              2021-01-04
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">4</span> Minutes
+              Estimated Reading Time <span class="post-count">10</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.1k</span> In Total
+              Words <span class="post-count">2.5k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,97 +394,236 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="什么是-RabbitMQ"><a href="#什么是-RabbitMQ" class="headerlink" title="什么是 RabbitMQ"></a>什么是 RabbitMQ</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><ul>
-<li>基于 <code>ErLang</code> 语言开发有高可用高并发的优点，适合集群。</li>
-<li>开源、稳定、易用、跨平台、支持多种语言、文档齐全。</li>
-<li>有消息确认机制和持久化机制，可靠性高。</li>
-</ul>
-<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p><strong>生产者和消费者</strong></p>
-<ul>
-<li><code>Producer</code>：消息的生产者</li>
-<li><code>Consumer</code>：消息的消费者</li>
-</ul>
-<p><strong>Queue</strong></p>
-<ul>
-<li>消息队列提供了 <code>FIFO</code> 的处理机制，具有缓存消息的能力。在 <code>RabbitMQ</code> 中，队列消息可以设置为持久化，临时或者自动删除。</li>
-<li>如果是持久化的队列，<code>Queue</code> 中的消息会在 <code>Server</code> 本地硬盘存储一份，防止系统 <code>Crash</code> 数据丢失。</li>
-<li>如果是临时的队列，<code>Queue</code> 中的数据在系统重启之后就会丢失。</li>
-<li>如实是自动删除的队列，当不存在用户连接到 <code>Server</code>，队列中的数据会被自动删除。</li>
-</ul>
-<p><strong>ExChange</strong></p>
-<p><code>ExChange</code> 类似于数据通信网络中的交换机，提供消息路由策略。</p>
-<p>在 <code>RabbitMQ</code> 中，生产者不是将消息直接发送给 <code>Queue</code>，而是先发送给 <code>ExChange</code>，<code>ExChange</code> 根据生产者传递的 <code>key</code> 按照特定的路由算法将消息给指定的 <code>Queue</code>。一个 <code>ExChange</code> 可以绑定多个 <code>Queue</code>。和 <code>Queue</code> 一样，<code>ExChange</code> 也可以设置为持久化、临时或者自动删除。</p>
-<p><strong>Binding</strong></p>
-<p>所谓绑定就是将一个特定的 <code>ExChange</code> 和一个特定的 <code>Queue</code> 绑定起来。<code>ExChange</code> 和 <code>Queue</code> 的绑定可以是多对多的关系。</p>
-<p><strong>Virtual Host</strong></p>
-<p>在 <code>RabbitMQ Server</code>上可以创建多个虚拟的 <code>Message Broker</code>（又叫做 <code>Virtual Hosts</code>）。每一个 <code>vhost</code> 本质上是一个迷你的 <code>RabbitMQ Server</code>，分别管理各自的 <code>ExChange</code> 和 <code>binding</code>。生产者和消费者连接 <code>RabbitMQ Server</code> 需要指定一个 <code>Virtual Host</code>。</p>
-<h4 id="使用过程"><a href="#使用过程" class="headerlink" title="使用过程"></a>使用过程</h4><ol>
-<li>客户端连接到消息队列服务器，打开一个 <code>Channel</code>。</li>
-<li>客户端声明一个 <code>ExChange</code>，并设置相关属性。</li>
-<li>客户端声明一个 <code>Queue</code>，并设置相关属性。</li>
-<li>客户端使用 <code>Routing Key</code>，在 <code>ExChange</code> 和 <code>Queue</code> 之间建立好绑定关系。</li>
-<li>客户端投递消息到 <code>ExChange</code>。</li>
-<li><code>ExChange</code> 接收到消息后，就根据消息的 <code>key</code> 和已经设置的 <code>bingding</code>，进行消息路由，将消息投递到一个或多个队列里。</li>
-</ol>
-<h3 id="部署-RabbitMQ"><a href="#部署-RabbitMQ" class="headerlink" title="部署 RabbitMQ"></a>部署 RabbitMQ</h3><blockquote>
-<p>使用 Docker Compose 编排部署应用容器。服务器地址：192.168.100.1</p>
+        <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>字节数</th>
+<th>占位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>byte</code></td>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>2</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>2</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>4</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>4</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>8</td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>8</td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>~</td>
+<td>~</td>
+</tr>
+</tbody></table>
+<p><code>boolean</code> 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 <code>boolean</code> 类型的数据转换为 <code>int</code>，使用 1 来表示 true，0 表示 false。JVM 支持 boolean 数组，但是是通过读写 byte 数组来实现的。</p>
+<h4 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h4><p>基本数据类型由于无法参与转型，泛型，反射等过程，为了弥补这个缺陷，Java 提供了对应的包装类型：</p>
+<table>
+<thead>
+<tr>
+<th align="left">基本类型</th>
+<th>包装类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>byte</code></td>
+<td><code>Byte</code></td>
+</tr>
+<tr>
+<td align="left"><code>short</code></td>
+<td><code>Short</code></td>
+</tr>
+<tr>
+<td align="left"><code>int</code></td>
+<td><code>Integer</code></td>
+</tr>
+<tr>
+<td align="left"><code>long</code></td>
+<td><code>Long</code></td>
+</tr>
+<tr>
+<td align="left"><code>float</code></td>
+<td><code>Float</code></td>
+</tr>
+<tr>
+<td align="left"><code>double</code></td>
+<td><code>Double</code></td>
+</tr>
+</tbody></table>
+<p>基本类型与其对应的包装类型之间的赋值通过自动装箱与拆箱来完成，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="number">1</span>;    <span class="comment">// 装箱操作，调用了 Integer.valueOf(1)</span></span><br><span class="line"><span class="keyword">int</span> b = a;     <span class="comment">// 拆线操作，调用了 a.intValue()</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="附：缓存池"><a href="#附：缓存池" class="headerlink" title="附：缓存池"></a>附：缓存池</h4><p><code>new Integer(123)</code> 与 <code>Integer.valueOf(123)</code> 的区别在于：前者会新建一个对象，而后者会使用缓存池中的对象，多次调用会取得同一个对象的引用。如下代码所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line">Integer b = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line">System.out.println(a == b);    <span class="comment">// false</span></span><br><span class="line">Integer c = Integer.valueOf(<span class="number">2</span>);</span><br><span class="line">Integer d = Integer.valueOf(<span class="number">2</span>);</span><br><span class="line">System.out.println(c == d);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p><code>valueOf()</code> 方法的实现比较简单，就是先判断值是否在缓存池中，如果在的话就直接返回缓存池的内容。源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译器会在 <strong>自动装箱</strong> 过程调用 <code>valueOf()</code> 方法，因此多个值相同且值在缓存池范围内的 <code>Integer</code> 实例使用自动装箱来创建，那么就会引用相同的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="number">1</span>;</span><br><span class="line">Integer b = <span class="number">1</span>;</span><br><span class="line">System.out.println(a == b);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用这些基本类型对应的包装类型时，如果该数值范围在缓冲池范围内，就可以直接使用缓冲池中的对象。基本类型对应的缓冲池范围如下：</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>缓冲池范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean</code></td>
+<td>true/false</td>
+</tr>
+<tr>
+<td><code>byte</code></td>
+<td>all values</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>\u0000 to \u007F</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>在 JDK 1.8 所有的数值类缓冲池中，Integer 的缓冲池 IntegerCache 很特殊，这个缓冲池的下界是 - 128，上界默认是 127，但是这个上界是可调的，在启动 JVM 的时候，通过 <code>-XX:AutoBoxCacheMax=自定义上界</code> 来指定 Integer 缓冲池的上界。</p>
 </blockquote>
-<p>创建 docker-compose.yml 文件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">rabbitmq:management</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">rabbitmq</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">5672</span><span class="string">:5672</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">15672</span><span class="string">:15672</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line">      <span class="attr">RABBITMQ_DEFAULT_USER:</span> <span class="string">rabbit</span></span><br><span class="line">      <span class="attr">RABBITMQ_DEFAULT_PASS:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data:/var/lib/rabbitmq</span></span><br></pre></td></tr></table></figure>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p><code>String</code> 被声明为 final，因此它不可被继承。在 Java 8 中，<code>String</code> 内部使用 char 数组存储数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>启动容器</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>在 Java 9 之后，<code>String</code> 类的实现改用 byte 数组存储字符串，同时使用 <code>coder</code> 来标识使用了哪种编码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** The identifier of the encoding used to encode the bytes in &#123;<span class="doctag">@code</span> value&#125;. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span> coder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>访问首页地址：<a href="http://192.168.100.1:15672" target="_blank" rel="noopener">http://192.168.100.1:15672</a></p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20RabbitMQ01.png-watermark" alt=""></p>
-<p><code>Global counts</code> 页</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20RabbitMQ02.png-watermark" alt=""></p>
-<p>交换机页</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20RabbitMQ03.png-watermark" alt=""></p>
-<p>队列页：<code>Name</code> 指的是消息队列的名称，可以通过 Java 创建</p>
-<p><img src="https://qiniuyun.antoniopeng.com/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20RabbitMQ04.png-watermark" alt=""></p>
+<p><code>String</code> 类中的 value 数组被声明为 final，这意味着 value 数组初始化之后就不能再引用其它数组。并且 <code>String</code> 内部没有改变 value 数组的方法，因此可以保证 <code>String</code> 不可变。</p>
+<h4 id="不可变的好处"><a href="#不可变的好处" class="headerlink" title="不可变的好处"></a>不可变的好处</h4><p><strong>1.可以缓存 hash 值</strong></p>
+<p>因为 <code>String</code> 的 hash 值经常被使用，例如 <code>String</code> 用做 HashMap 的 key。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。</p>
+<p><strong>2. Spring Pool 的需要</strong></p>
+<p>如果一个 <code>String</code> 对象已经被创建过了，那么就会从 <code>String Pool</code> 中取得引用。</p>
+<p><strong>3. 安全性</strong></p>
+<p><code>String</code> 经常作为参数，<code>String</code> 不可变性可以保证参数不可变。</p>
+<p><strong>4. 线程安全</strong></p>
+<p><code>String</code> 不可变性天生具备线程安全，可以在多个线程中安全地使用。</p>
+<h4 id="String、StringBuffer、StringBuilder-对比"><a href="#String、StringBuffer、StringBuilder-对比" class="headerlink" title="String、StringBuffer、StringBuilder 对比"></a>String、StringBuffer、StringBuilder 对比</h4><p><strong>可变性方面</strong></p>
 <ul>
-<li><p><code>Features</code>：消息队列的类型，durable:true 为会持久化消息</p>
-</li>
-<li><p><code>Ready</code>：准备好的消息</p>
-</li>
-<li><p><code>Unacked</code>：未确认的消息</p>
-</li>
-<li><p><code>Total</code>：全部消息</p>
-</li>
+<li><code>String</code> 不可变。</li>
+<li><code>StringBuffer</code> 和 <code>StringBuilder</code> 可变。</li>
 </ul>
-<p><strong>如果都为 0 则说明全部消息处理完成。</strong></p>
-<h3 id="使用-RabbitMQ"><a href="#使用-RabbitMQ" class="headerlink" title="使用 RabbitMQ"></a>使用 RabbitMQ</h3><h4 id="创建生产者"><a href="#创建生产者" class="headerlink" title="创建生产者"></a>创建生产者</h4><p>创建一个名为 <code>spring-boot-amqp-provider</code> 的生产者项目。</p>
-<h5 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h5><p>创建 <code>application.yml</code> 文件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">spring-boot-amqp</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.75</span><span class="number">.133</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">rabbit</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p><strong>线程安全方面</strong></p>
+<ul>
+<li><code>String</code> 不可变所以线程安全。</li>
+<li><code>StringBuffer</code> 内部使用 synchronized 进行同步所以线程安全。</li>
+<li><code>StringBuilder</code> 不是线程安全。</li>
+</ul>
+<h4 id="String-Pool"><a href="#String-Pool" class="headerlink" title="String Pool"></a>String Pool</h4><p>字符串常量池（<code>String Pool</code>）保存着所有字符串字面量，这些字面量在编译时期就确定。不仅如此，还可以使用 String 的 intern() 方法在运行过程将字符串添加到 <code>String Pool</code> 中。</p>
+<blockquote>
+<p>当一个字符串调用 intern() 方法时，如果 <code>String Pool</code> 中已经存在一个字符串和该字符串值相等（使用 equals() 方法进行确定），那么就会返回 <code>String Pool</code> 中字符串的引用；否则，就会在 <code>String Pool</code> 中添加一个新的字符串，并返回这个新字符串的引用。</p>
+</blockquote>
+<p>下面示例中，str1 和 str2 采用 new String() 的方式新建了两个不同字符串，而 str3 和 str4 是通过 str1.intern() 和 str2.intern() 方法取得同一个字符串引用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="keyword">new</span> String(<span class="string">"str"</span>);</span><br><span class="line">String str2 = <span class="keyword">new</span> String(<span class="string">"str"</span>);</span><br><span class="line">System.out.println(str1 == str2);    <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">String str3 = str1.intern();</span><br><span class="line">String str4 = str2.intern();</span><br><span class="line">System.out.println(str3 == str4);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<p>创建队列</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.Queue;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 队列配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitMQConfiguration</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Queue <span class="title">queue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Queue(<span class="string">"helloRabbitMQ"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但如果是采用字面量的形式创建字符串，会自动地将字符串放入 <code>String Pool</code> 中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str5 = <span class="string">"str"</span>;</span><br><span class="line">String str6 = <span class="string">"str"</span>;</span><br><span class="line">System.out.println(str5 == str6);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<p>创建消息提供者</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.AmqpTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 消息提供者</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RabbitMQProvider</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AmqpTemplate amqpTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String context = <span class="string">"hello"</span> + <span class="keyword">new</span> Date();</span><br><span class="line">        System.out.println(<span class="string">"Provider: "</span> + context);</span><br><span class="line">        amqpTemplate.convertAndSend(<span class="string">"helloRabbitMQ"</span>, context);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在 Java 7 之前，<code>String Pool</code> 被放在运行时常量池中，它属于永久代。而在 Java 7，<code>String Pool</code> 被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 <code>OutOfMemoryError</code> 错误。</p>
+</blockquote>
+<h4 id="new-String-“str”"><a href="#new-String-“str”" class="headerlink" title="new String(“str”)"></a>new String(“str”)</h4><p>使用这种方式一共会创建两个字符串对象（前提是 String Pool 中还没有 “str” 字符串对象）。</p>
+<ul>
+<li>“str” 属于字符串字面量，因此编译时期会在 String Pool 中创建一个字符串对象，指向这个 “str” 字符串字面量；</li>
+<li>而使用 new 的方式会在堆中创建一个字符串对象。</li>
+</ul>
+<p>以下是 String 构造函数的源码，可以看到，在将一个字符串对象作为另一个字符串对象的构造函数参数时，并不会完全复制 value 数组内容，而是都会指向同一个 value 数组。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">(String original)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.value = original.value;</span><br><span class="line">    <span class="keyword">this</span>.hash = original.hash;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h5><p>创建测试用例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.lusifer.spring.boot.amqp.Application;</span><br><span class="line"><span class="keyword">import</span> com.lusifer.spring.boot.amqp.provider.HelloRabbitProvider;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">SpringBootTest</span>(<span class="title">classes</span> </span>= Application<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">AmqpTest</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> HelloRabbitProvider helloRabbitProvider;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            RabbitMQProvider.send();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><p>Java 的参数是以 <strong>值传递</strong> 的形式传入方法中，而不是引用传递。在将一个参数传入一个方法时，本质上是将对象的地址以值的方式传递到形参中。下面通过代码说明：</p>
+<p>以一个 Student 实体类为例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    Student(String name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="创建消费者"><a href="#创建消费者" class="headerlink" title="创建消费者"></a>创建消费者</h4><p>创建一个名为 <code>spring-boot-amqp-consumer</code> 的消费者项目。</p>
-<h5 id="相关配置-1"><a href="#相关配置-1" class="headerlink" title="相关配置"></a>相关配置</h5><p>创建 <code>application.yml</code> 文件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">spring-boot-amqp-consumer</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.75</span><span class="number">.133</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">rabbit</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>在方法中改变对象的字段值会改变原对象该字段值，因为引用的是同一个对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student student = <span class="keyword">new</span> Student(<span class="string">"张三"</span>);</span><br><span class="line">        updateName(student);</span><br><span class="line">        System.out.println(student.getName());          <span class="comment">// 李四</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">updateName</span><span class="params">(Student student)</span> </span>&#123;</span><br><span class="line">        student.setName(<span class="string">"李四"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="订阅消息"><a href="#订阅消息" class="headerlink" title="订阅消息"></a>订阅消息</h5><p>创建订阅消息的监听组件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.annotation.RabbitHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.rabbit.annotation.RabbitListener;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@RabbitListener</span>(queues = <span class="string">"helloRabbitMQ"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloRabbitConsumer</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RabbitHandler</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Consumer: "</span> + message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是在方法中将指针引用了其它对象，那么此时方法里和方法外的两个指针指向了不同的对象，在一个指针改变其所指向对象的内容对另一个指针所指向的对象没有影响。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example2</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student student = <span class="keyword">new</span> Student(<span class="string">"张三"</span>);</span><br><span class="line">        updateName(student);</span><br><span class="line">        System.out.println(student.getName());          <span class="comment">// 张三</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">updateName</span><span class="params">(Student student)</span> </span>&#123;</span><br><span class="line">        student = <span class="keyword">new</span> Student(<span class="string">"李四"</span>);</span><br><span class="line">        System.out.println(student.getName());          <span class="comment">// 李四</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="部分关键字说明"><a href="#部分关键字说明" class="headerlink" title="部分关键字说明"></a>部分关键字说明</h3><h4 id="float"><a href="#float" class="headerlink" title="float"></a>float</h4><p>Java 不能隐式执行向下转型，因为这会使得精度降低。</p>
+<p>比如：1.1 字面量属于 double 类型，不能直接将 1.1 赋值给 float 变量，因为这是向下转型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误举例，导致精度丢失</span></span><br><span class="line"><span class="keyword">float</span> f = <span class="number">1.1</span>;</span><br><span class="line"><span class="comment">// 正确举例</span></span><br><span class="line"><span class="keyword">float</span> f = <span class="number">1.1f</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>隐式类型转换：</strong>比如字面量 1 是 int 类型，它比 short 类型精度要高，因此不能隐式地将 int 类型向下转型为 short 类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">short</span> s1 = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误运算举例</span></span><br><span class="line">s1 = s1 + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确运算举例：使用 += 或者 ++ 运算符会执行隐式类型转换。</span></span><br><span class="line">s1 += <span class="number">1</span>;</span><br><span class="line">s1++;</span><br><span class="line"><span class="comment">// 上面的语句相当于执行了 s1 = (short) (s1 + 1);</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><p>从 Java 7 开始，可以在 switch 条件判断语句中使用 String 对象。以 String 举例说明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"str"</span>;</span><br><span class="line"><span class="keyword">switch</span> (str) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"str"</span>:</span><br><span class="line">        System.out.println(<span class="string">"str"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"str1"</span>:</span><br><span class="line">        System.out.println(<span class="string">"str1"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>switch 不支持 long、float、double，是因为 switch 的设计初衷是对那些只有少数几个值的类型进行等值判断，如果值过于复杂，那么还是用 if 比较合适。</p>
+<h4 id="final"><a href="#final" class="headerlink" title="final"></a>final</h4><p><strong>1. 声明数据</strong></p>
+<p>声明数据为常量，可以是编译时常量，也可以是在运行时被初始化后不能被改变的常量。</p>
+<p>对于基本类型，final 使数值不变；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">x = <span class="number">2</span>;</span><br><span class="line">System.out.println(x);    <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> A a = <span class="keyword">new</span> A();</span><br><span class="line">		a.x = <span class="number">2</span>;</span><br><span class="line">        System.out.println(x);    <span class="comment">// 2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 声明方法</strong></p>
+<p>声明方法不能被子类重写。</p>
+<p>private 方法隐式地被指定为 final，如果在子类中定义的方法和基类中的一个 private 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。</p>
+<p><strong>3. 声明类</strong></p>
+<p>声明类不允许被继承。</p>
+<h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p><strong>1. 声明变量</strong></p>
+<ul>
+<li>静态变量：又称为类变量，也就是说这个变量属于类的，类所有的实例都共享静态变量，可以直接通过类名来访问它。静态变量在内存中只存在一份。</li>
+<li>实例变量：每创建一个实例就会产生一个实例变量，它与该实例同生共死。</li>
+</ul>
+<p><strong>2. 声明方法</strong></p>
+<p><strong>3. 声明语句块</strong></p>
+<p><strong>4. 声明内部类</strong></p>
+<p><strong>5. 静态导包</strong></p>
+
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
           <li class="previous">
-            <a href="/mycat/分布式数据库中间件mycat-分库分表实践/" data-toggle="tooltip" data-placement="top" title="分布式数据库中间件 MyCat - 分库分表实践">&larr; Previous Post</a>
+            <a href="/spring/java框架领域佼佼者spring初识篇/" data-toggle="tooltip" data-placement="top" title="Java 框架领域佼佼者 Spring 初识篇">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/闲聊/谈谈消息队列的流派/" data-toggle="tooltip" data-placement="top" title="谈谈消息队列的流派">Next Post &rarr;</a>
+            <a href="/fastdfs/实战fastdfs-java客户端上传文件/" data-toggle="tooltip" data-placement="top" title="实战 FastDFS Java 客户端上传文件">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -527,7 +666,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=快速上手使用 RabbitMQ&body=Hi,I found this website and thought you might like it https://antoniopeng.com/rabbitmq/快速上手使用rabbitmq/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Java 基础知识总结&body=Hi,I found this website and thought you might like it https://antoniopeng.com/java/java基础知识总结/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -568,7 +707,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是-RabbitMQ"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是 RabbitMQ</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#简介"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">简介</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#基本概念"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">基本概念</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用过程"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">使用过程</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-RabbitMQ"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">部署 RabbitMQ</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用-RabbitMQ"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">使用 RabbitMQ</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建生产者"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">创建生产者</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">3.1.1.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#发送消息"><span class="toc-nav-number">3.1.2.</span> <span class="toc-nav-text">发送消息</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建消费者"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">创建消费者</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#相关配置-1"><span class="toc-nav-number">3.2.1.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#订阅消息"><span class="toc-nav-number">3.2.2.</span> <span class="toc-nav-text">订阅消息</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据类型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">数据类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#基本类型"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">基本类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#包装类型"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">包装类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#附：缓存池"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">附：缓存池</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#String"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">String</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#概述"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">概述</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#不可变的好处"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">不可变的好处</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#String、StringBuffer、StringBuilder-对比"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">String、StringBuffer、StringBuilder 对比</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#String-Pool"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">String Pool</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#new-String-“str”"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">new String(“str”)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#参数传递"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">参数传递</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部分关键字说明"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">部分关键字说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#float"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">float</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#switch"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">switch</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#final"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">final</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#static"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">static</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -590,7 +729,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#RabbitMQ" title="RabbitMQ">RabbitMQ</a>
+            <a class="tag" href="/tags/#Java" title="Java">Java</a>
             
           </div>
         </section>
