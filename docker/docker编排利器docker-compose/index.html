@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">768</span> In Total
+              Words <span class="post-count">766</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -402,16 +402,9 @@
 <li>服务（service）：一个应用中，实际上包括若干个运行的容器实例</li>
 <li>项目（Project）：由一组关联的应用容器组成的一个完整业务单位</li>
 </ul>
-<h3 id="安装-Docker-Compose"><a href="#安装-Docker-Compose" class="headerlink" title="安装 Docker Compose"></a>安装 Docker Compose</h3><h4 id="二进制包安装"><a href="#二进制包安装" class="headerlink" title="二进制包安装"></a>二进制包安装</h4><p>移动到安装目录</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Docker-Compose"><a href="#安装-Docker-Compose" class="headerlink" title="安装 Docker Compose"></a>安装 Docker Compose</h3><h4 id="二进制包安装"><a href="#二进制包安装" class="headerlink" title="二进制包安装"></a>二进制包安装</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 移动到安装目录</span></span><br><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载对应的二进制包</span></span><br><span class="line">$ wget https://raw.githubusercontent.com/topsale/resources/master/docker/docker-compose</span><br><span class="line"></span><br><span class="line"><span class="comment"># 授予操作权限</span></span><br><span class="line">$ sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
 
-<p>下载对应的二进制包</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://raw.githubusercontent.com/topsale/resources/master/docker/docker-compose</span><br></pre></td></tr></table></figure>
-
-<p>授予操作权限</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
-
-<h4 id="PIP-安装"><a href="#PIP-安装" class="headerlink" title="PIP 安装"></a>PIP 安装</h4><p>如果计算机架构是 ARM（例如：草莓派），应该从 PIP 源中下载</p>
+<h4 id="PIP-安装"><a href="#PIP-安装" class="headerlink" title="PIP 安装"></a>PIP 安装</h4><p>如果计算机架构是 ARM（如：草莓派），应该从 PIP 源中下载：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip install -U docker-compose</span><br></pre></td></tr></table></figure>
 
 <p>看到以下输出信息，说明安装成功</p>
@@ -419,26 +412,13 @@
 
 <h4 id="bash-补全命令补丁"><a href="#bash-补全命令补丁" class="headerlink" title="bash 补全命令补丁"></a>bash 补全命令补丁</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> curl -L https://raw.githubusercontent.com/docker/compose/1.8.0/contrib/completion/bash/docker-compose &gt; /etc/bash_completion.d/docker-compose</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="卸载-Docker-Compose"><a href="#卸载-Docker-Compose" class="headerlink" title="卸载 Docker Compose"></a>卸载 Docker Compose</h3><p>Linux上卸载</p>
+<h3 id="卸载-Docker-Compose"><a href="#卸载-Docker-Compose" class="headerlink" title="卸载 Docker Compose"></a>卸载 Docker Compose</h3><p>二进制包方式卸载</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
 
-<p>ARM上卸载</p>
+<p>PIP 方式卸载</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pip uninstall docker-compose</span><br></pre></td></tr></table></figure>
 
-<h3 id="Docker-Compose-常用命令"><a href="#Docker-Compose-常用命令" class="headerlink" title="Docker Compose 常用命令"></a>Docker Compose 常用命令</h3><p>前台运行容器</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up</span><br></pre></td></tr></table></figure>
-
-<p>后台运行容器</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<p>启动容器</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose start</span><br></pre></td></tr></table></figure>
-
-<p>停止容器</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose stop</span><br></pre></td></tr></table></figure>
-
-<p>停止并移除容器</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose down</span><br></pre></td></tr></table></figure>
+<h3 id="Docker-Compose-常用命令"><a href="#Docker-Compose-常用命令" class="headerlink" title="Docker Compose 常用命令"></a>Docker Compose 常用命令</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前台运行容器</span></span><br><span class="line">$ docker-compose up</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台运行容器</span></span><br><span class="line">$ docker-compose up -d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动容器</span></span><br><span class="line">$ docker-compose start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止容器</span></span><br><span class="line">$ docker-compose stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止并移除容器</span></span><br><span class="line">$ docker-compose down</span><br></pre></td></tr></table></figure>
 
 <h3 id="编排-MySQL-amp-Tomcat-容器实例"><a href="#编排-MySQL-amp-Tomcat-容器实例" class="headerlink" title="编排 MySQL &amp; Tomcat 容器实例"></a>编排 MySQL &amp; Tomcat 容器实例</h3><h4 id="容器编排文件"><a href="#容器编排文件" class="headerlink" title="容器编排文件"></a>容器编排文件</h4><blockquote>
 <p>服务器地址：192.168.100.1</p>

@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">550</span> In Total
+              Words <span class="post-count">545</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -424,13 +424,11 @@
 <li><p>出现以下内容，说明配置成功</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Insecure Registries:</span><br><span class="line"> 192.168.100.1:5000</span><br></pre></td></tr></table></figure>
 
-
-
 </li>
 </ul>
 <h3 id="部署-Docker-Registry-UI"><a href="#部署-Docker-Registry-UI" class="headerlink" title="部署 Docker Registry UI"></a>部署 Docker Registry UI</h3><p><code>Docker Registry</code> 安装成功之后，不太方便只管地查看仓库中的镜像，可以使用 <code>Web UI</code> 界面工具管理镜像，<code>docker-registry-frontend</code> 就是其中之一</p>
 <p>创建 <code>docker-compose.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">konradkleine/docker-registry-frontend:v2</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.crt:/etc/apache2/server.crt:ro</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.key:/etc/apache2/server.key:ro</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_HOST=&#123;docker</span> <span class="string">registy</span> <span class="string">ip&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_PORT=&#123;docker</span> <span class="string">registy</span> <span class="string">port&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">konradkleine/docker-registry-frontend:v2</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.crt:/etc/apache2/server.crt:ro</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.key:/etc/apache2/server.key:ro</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_HOST=192.168.100.1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_PORT=5000</span></span><br></pre></td></tr></table></figure>
 
 <p>上述文件需要修改的配置：</p>
 <ul>

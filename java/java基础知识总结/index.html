@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/docker/容器化技术大杀器docker/">
+  <link rel="canonical" href="https://antoniopeng.com/java/java基础知识总结/">
   <title>
     
-    容器化技术大杀器 Docker - 彭超的博客 | Antonio Blog
+    Java 基础知识总结 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#Docker" title="Docker">Docker</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#Java" title="Java">Java</a>
               
             </div>
-            <h1>容器化技术大杀器 Docker</h1>
+            <h1>Java 基础知识总结</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2019-07-06
+              2021-01-04
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">5</span> Minutes
+              Estimated Reading Time <span class="post-count">10</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.4k</span> In Total
+              Words <span class="post-count">2.5k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,63 +394,223 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="什么是-Docker"><a href="#什么是-Docker" class="headerlink" title="什么是 Docker"></a>什么是 Docker</h3><p>Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/ubuntu%E5%AE%89%E8%A3%85docker/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS9mNzc1NjhmY2RlNjBhYjM2YjdiM2FiOTc1MjgxZmJkMS94bWxub3RlLzg2N0I0QTQ4MThCMDREMDBBRTg5NDAzMDdCQzcwQzlCLzEzNjgz.jfif" alt="《Linux 安装 Docker》"></p>
-<p><img src="https://qiniuyun.antoniopeng.com/ubuntu%E5%AE%89%E8%A3%85docker/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS9mNzc1NjhmY2RlNjBhYjM2YjdiM2FiOTc1MjgxZmJkMS94bWxub3RlL0QxMzU5NzkwRUREMzQ3QTdCRDFBQTkzMUZCOEY3RDMzLzEzNjg1.jfif" alt="《Linux 安装 Docker》"></p>
-<p>传统虚拟机（VM）和虚拟化容器（Docker）的区别：</p>
-<p>传统的 VM 虚拟机不能共享资源 , 比如在 VMWare 中安装了一个内存为 4GB 的 Linux 操作系统 , 意味着该Linux系统使用了宿主机中固定的 4GB 内存且不能与宿主机或其它虚拟系统共享该资源 , 可能会造成资源浪费或资源溢出。</p>
-<p>Docker 弥补了传统 VM 虚拟机的缺点 , 每个虚拟化操作系统可以互相共享资源 , 解决了资源溢出或者资源浪费等一系列问题。</p>
-<h3 id="Docker-主要概念"><a href="#Docker-主要概念" class="headerlink" title="Docker 主要概念"></a>Docker 主要概念</h3><h4 id="Docker-镜像（Image）"><a href="#Docker-镜像（Image）" class="headerlink" title="Docker 镜像（Image）"></a>Docker 镜像（Image）</h4><p>操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image）就相当于是一个 root 文件系统。</p>
-<p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如环境变量、用户等）。</p>
-<h4 id="Docker-容器（Container）"><a href="#Docker-容器（Container）" class="headerlink" title="Docker 容器（Container）"></a>Docker 容器（Container）</h4><p>Docker 镜像和 Docker 容器的关系，就像是<strong>面向对象程序设计中的类与对象</strong>，镜像是静态的定义。</p>
-<p>容器是镜像运行时的实体，可以被创建、启动、停止、删除、暂停等。</p>
-<p>容器内的进程是运行在一个隔离的环境里，使用起来就好像是在一个独立于宿主的系统下操作一样，这种特性使得容器封装的应用比直接在宿主运行更加安全。</p>
-<h4 id="Docker-仓库（Registry）"><a href="#Docker-仓库（Registry）" class="headerlink" title="Docker 仓库（Registry）"></a>Docker 仓库（Registry）</h4><p>镜像构建完成之后，一行命令就可以在当前的宿主机上运行起来，但是如果要在其它服务器上使用这个镜像，就需要一个集中存储镜像的仓库 — 即 Docker 仓库。</p>
-<p>公有 Docker Registry：最常使用的 Registry 公开服务是官方的 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>，但在国内访问会比较慢，而国内的一些云服务商提供了针对 Docker Hub 的镜像服务，常见的有 <a href="https://cr.console.aliyun.com/#/accelerator" target="_blank" rel="noopener">阿里云</a>、<a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="noopener">DaoCloud</a> 加速器，比直接从 Docker Hub 下载速度会提高很多。</p>
-<p>私有 Docker Registry：可以在本地搭建私有 Docker Registry。Docker 官方提供了 Docker Registry 镜像，可以直接使用做为私有 Registry 服务。</p>
-<h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><h4 id="使用脚本自动安装"><a href="#使用脚本自动安装" class="headerlink" title="使用脚本自动安装"></a>使用脚本自动安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL get.docker.com -o get-docker.sh</span><br><span class="line"></span><br><span class="line">$ sudo sh get-docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure>
+        <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>字节数</th>
+<th>占位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>byte</code></td>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>2</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>2</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>4</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>4</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td>8</td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>8</td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>~</td>
+<td>~</td>
+</tr>
+</tbody></table>
+<p><code>boolean</code> 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 <code>boolean</code> 类型的数据转换为 <code>int</code>，使用 1 来表示 true，0 表示 false。JVM 支持 boolean 数组，但是是通过读写 byte 数组来实现的。</p>
+<h4 id="包装类型"><a href="#包装类型" class="headerlink" title="包装类型"></a>包装类型</h4><p>基本数据类型由于无法参与转型，泛型，反射等过程，为了弥补这个缺陷，Java 提供了对应的包装类型：</p>
+<table>
+<thead>
+<tr>
+<th align="left">基本类型</th>
+<th>包装类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>byte</code></td>
+<td><code>Byte</code></td>
+</tr>
+<tr>
+<td align="left"><code>short</code></td>
+<td><code>Short</code></td>
+</tr>
+<tr>
+<td align="left"><code>int</code></td>
+<td><code>Integer</code></td>
+</tr>
+<tr>
+<td align="left"><code>long</code></td>
+<td><code>Long</code></td>
+</tr>
+<tr>
+<td align="left"><code>float</code></td>
+<td><code>Float</code></td>
+</tr>
+<tr>
+<td align="left"><code>double</code></td>
+<td><code>Double</code></td>
+</tr>
+</tbody></table>
+<p>基本类型与其对应的包装类型之间的赋值通过自动装箱与拆箱来完成，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="number">1</span>;    <span class="comment">// 装箱操作，调用了 Integer.valueOf(1)</span></span><br><span class="line"><span class="keyword">int</span> b = a;     <span class="comment">// 拆线操作，调用了 a.intValue()</span></span><br></pre></td></tr></table></figure>
 
-<p>执行这两行命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 安装在系统中。</p>
-<h4 id="使用-APT-安装"><a href="#使用-APT-安装" class="headerlink" title="使用 APT 安装"></a>使用 APT 安装</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装一些必要的系统工具</span></span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 GPG 证书</span></span><br><span class="line">$ curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入软件源信息</span></span><br><span class="line">$ sudo add-apt-repository <span class="string">"deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu <span class="variable">$(lsb_release -cs)</span> stable"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新软件源</span></span><br><span class="line">$ sudo apt-get -y update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Docker CE</span></span><br><span class="line">$ sudo apt-get -y install docker-ce</span><br></pre></td></tr></table></figure>
+<h4 id="附：缓存池"><a href="#附：缓存池" class="headerlink" title="附：缓存池"></a>附：缓存池</h4><p><code>new Integer(123)</code> 与 <code>Integer.valueOf(123)</code> 的区别在于：前者会新建一个对象，而后者会使用缓存池中的对象，多次调用会取得同一个对象的引用。如下代码所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line">Integer b = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line">System.out.println(a == b);    <span class="comment">// false</span></span><br><span class="line">Integer c = Integer.valueOf(<span class="number">2</span>);</span><br><span class="line">Integer d = Integer.valueOf(<span class="number">2</span>);</span><br><span class="line">System.out.println(c == d);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Docker-用户组"><a href="#Docker-用户组" class="headerlink" title="Docker 用户组"></a>Docker 用户组</h3><p>安装之后，默认情况下，Docker 命令会使用 Unix socket 与 Docker 引擎通讯，而只有 Root 用户和 Docker 组的用户才可以访问 Docker 引擎的 Unix socket，一般 Linux 系统上不会直接使用 Root 用户。因此，更好地做法是将需要使用 Docker 的用户加入 Docker 用户组。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立 Docker 用户组</span></span><br><span class="line">$ sudo groupadd docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将用户加入 Docker 用户组</span></span><br><span class="line">$ sudo usermod -aG docker 用户名</span><br></pre></td></tr></table></figure>
+<p><code>valueOf()</code> 方法的实现比较简单，就是先判断值是否在缓存池中，如果在的话就直接返回缓存池的内容。源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="镜像加速器"><a href="#镜像加速器" class="headerlink" title="镜像加速器"></a>镜像加速器</h3><p>由于国内从 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> 下载镜像有时会非常缓慢，因此可以配置国内云服务商提供的镜像加速器：</p>
+<p>编译器会在 <strong>自动装箱</strong> 过程调用 <code>valueOf()</code> 方法，因此多个值相同且值在缓存池范围内的 <code>Integer</code> 实例使用自动装箱来创建，那么就会引用相同的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="number">1</span>;</span><br><span class="line">Integer b = <span class="number">1</span>;</span><br><span class="line">System.out.println(a == b);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用这些基本类型对应的包装类型时，如果该数值范围在缓冲池范围内，就可以直接使用缓冲池中的对象。基本类型对应的缓冲池范围如下：</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>缓冲池范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean</code></td>
+<td>true/false</td>
+</tr>
+<tr>
+<td><code>byte</code></td>
+<td>all values</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>-128 ~ 127</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>\u0000 to \u007F</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>在 JDK 1.8 所有的数值类缓冲池中，Integer 的缓冲池 IntegerCache 很特殊，这个缓冲池的下界是 - 128，上界默认是 127，但是这个上界是可调的，在启动 JVM 的时候，通过 <code>-XX:AutoBoxCacheMax=自定义上界</code> 来指定 Integer 缓冲池的上界。</p>
+</blockquote>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p><code>String</code> 被声明为 final，因此它不可被继承。在 Java 8 中，<code>String</code> 内部使用 char 数组存储数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 Java 9 之后，<code>String</code> 类的实现改用 byte 数组存储字符串，同时使用 <code>coder</code> 来标识使用了哪种编码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** The identifier of the encoding used to encode the bytes in &#123;<span class="doctag">@code</span> value&#125;. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span> coder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>String</code> 类中的 value 数组被声明为 final，这意味着 value 数组初始化之后就不能再引用其它数组。并且 <code>String</code> 内部没有改变 value 数组的方法，因此可以保证 <code>String</code> 不可变。</p>
+<h4 id="不可变的好处"><a href="#不可变的好处" class="headerlink" title="不可变的好处"></a>不可变的好处</h4><p><strong>1.可以缓存 hash 值</strong></p>
+<p>因为 <code>String</code> 的 hash 值经常被使用，例如 <code>String</code> 用做 HashMap 的 key。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。</p>
+<p><strong>2. Spring Pool 的需要</strong></p>
+<p>如果一个 <code>String</code> 对象已经被创建过了，那么就会从 <code>String Pool</code> 中取得引用。</p>
+<p><strong>3. 安全性</strong></p>
+<p><code>String</code> 经常作为参数，<code>String</code> 不可变性可以保证参数不可变。</p>
+<p><strong>4. 线程安全</strong></p>
+<p><code>String</code> 不可变性天生具备线程安全，可以在多个线程中安全地使用。</p>
+<h4 id="String、StringBuffer、StringBuilder-对比"><a href="#String、StringBuffer、StringBuilder-对比" class="headerlink" title="String、StringBuffer、StringBuilder 对比"></a>String、StringBuffer、StringBuilder 对比</h4><p><strong>可变性方面</strong></p>
 <ul>
-<li><a href="https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror" target="_blank" rel="noopener">Docker 官方提供的中国 registry mirror</a></li>
-<li><a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors" target="_blank" rel="noopener">阿里云加速器</a></li>
-<li><a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="noopener">DaoCloud 加速器</a></li>
+<li><code>String</code> 不可变。</li>
+<li><code>StringBuffer</code> 和 <code>StringBuilder</code> 可变。</li>
 </ul>
-<h4 id="获取阿里云镜像加速器"><a href="#获取阿里云镜像加速器" class="headerlink" title="获取阿里云镜像加速器"></a>获取阿里云镜像加速器</h4><p>添加镜像加速器</p>
+<p><strong>线程安全方面</strong></p>
 <ul>
-<li>登录阿里云</li>
-<li>进入 容器镜像服务控制台 &gt; 镜像加速器</li>
-<li>添加镜像加速器</li>
-<li>复制加速器地址，如下图<br><img src="https://qiniuyun.antoniopeng.com/FvO18FpwDz7X8p1--WVhS-Eaxfjk" alt="file"></li>
+<li><code>String</code> 不可变所以线程安全。</li>
+<li><code>StringBuffer</code> 内部使用 synchronized 进行同步所以线程安全。</li>
+<li><code>StringBuilder</code> 不是线程安全。</li>
 </ul>
-<h4 id="配置镜像加速器"><a href="#配置镜像加速器" class="headerlink" title="配置镜像加速器"></a>配置镜像加速器</h4><p>编辑 daemon.json 配置文件</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nano /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+<h4 id="String-Pool"><a href="#String-Pool" class="headerlink" title="String Pool"></a>String Pool</h4><p>字符串常量池（<code>String Pool</code>）保存着所有字符串字面量，这些字面量在编译时期就确定。不仅如此，还可以使用 String 的 intern() 方法在运行过程将字符串添加到 <code>String Pool</code> 中。</p>
+<blockquote>
+<p>当一个字符串调用 intern() 方法时，如果 <code>String Pool</code> 中已经存在一个字符串和该字符串值相等（使用 equals() 方法进行确定），那么就会返回 <code>String Pool</code> 中字符串的引用；否则，就会在 <code>String Pool</code> 中添加一个新的字符串，并返回这个新字符串的引用。</p>
+</blockquote>
+<p>下面示例中，str1 和 str2 采用 new String() 的方式新建了两个不同字符串，而 str3 和 str4 是通过 str1.intern() 和 str2.intern() 方法取得同一个字符串引用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="keyword">new</span> String(<span class="string">"str"</span>);</span><br><span class="line">String str2 = <span class="keyword">new</span> String(<span class="string">"str"</span>);</span><br><span class="line">System.out.println(str1 == str2);    <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">String str3 = str1.intern();</span><br><span class="line">String str4 = str2.intern();</span><br><span class="line">System.out.println(str3 == str4);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<p>添加以下代码</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [</span><br><span class="line">    <span class="string">"镜像加速器地址"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但如果是采用字面量的形式创建字符串，会自动地将字符串放入 <code>String Pool</code> 中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str5 = <span class="string">"str"</span>;</span><br><span class="line">String str6 = <span class="string">"str"</span>;</span><br><span class="line">System.out.println(str5 == str6);    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<p>重启 Docker 服务</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在 Java 7 之前，<code>String Pool</code> 被放在运行时常量池中，它属于永久代。而在 Java 7，<code>String Pool</code> 被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 <code>OutOfMemoryError</code> 错误。</p>
+</blockquote>
+<h4 id="new-String-“str”"><a href="#new-String-“str”" class="headerlink" title="new String(“str”)"></a>new String(“str”)</h4><p>使用这种方式一共会创建两个字符串对象（前提是 String Pool 中还没有 “str” 字符串对象）。</p>
+<ul>
+<li>“str” 属于字符串字面量，因此编译时期会在 String Pool 中创建一个字符串对象，指向这个 “str” 字符串字面量；</li>
+<li>而使用 new 的方式会在堆中创建一个字符串对象。</li>
+</ul>
+<p>以下是 String 构造函数的源码，可以看到，在将一个字符串对象作为另一个字符串对象的构造函数参数时，并不会完全复制 value 数组内容，而是都会指向同一个 value 数组。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">(String original)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.value = original.value;</span><br><span class="line">    <span class="keyword">this</span>.hash = original.hash;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>检查加速器是否生效</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br></pre></td></tr></table></figure>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><p>Java 的参数是以 <strong>值传递</strong> 的形式传入方法中，而不是引用传递。在将一个参数传入一个方法时，本质上是将对象的地址以值的方式传递到形参中。下面通过代码说明：</p>
+<p>以一个 Student 实体类为例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    Student(String name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>看到输出以下内容，说明镜像加速器配置成功</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Registry Mirrors:</span><br><span class="line">  镜像加速器地址</span><br></pre></td></tr></table></figure>
+<p>在方法中改变对象的字段值会改变原对象该字段值，因为引用的是同一个对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student student = <span class="keyword">new</span> Student(<span class="string">"张三"</span>);</span><br><span class="line">        updateName(student);</span><br><span class="line">        System.out.println(student.getName());          <span class="comment">// 李四</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">updateName</span><span class="params">(Student student)</span> </span>&#123;</span><br><span class="line">        student.setName(<span class="string">"李四"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h3><h4 id="Docker-镜像命令"><a href="#Docker-镜像命令" class="headerlink" title="Docker 镜像命令"></a>Docker 镜像命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出镜像列表</span></span><br><span class="line">$ docker images</span><br><span class="line">$ docker image ls -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行 Docker 镜像（守护态方式）</span></span><br><span class="line">$ docker run -d 镜像名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定 Docker 镜像</span></span><br><span class="line">$ docker image rm 镜像名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 Docker 虚悬镜像</span></span><br><span class="line">$ docker image prune</span><br></pre></td></tr></table></figure>
+<p>但是在方法中将指针引用了其它对象，那么此时方法里和方法外的两个指针指向了不同的对象，在一个指针改变其所指向对象的内容对另一个指针所指向的对象没有影响。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example2</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student student = <span class="keyword">new</span> Student(<span class="string">"张三"</span>);</span><br><span class="line">        updateName(student);</span><br><span class="line">        System.out.println(student.getName());          <span class="comment">// 张三</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">updateName</span><span class="params">(Student student)</span> </span>&#123;</span><br><span class="line">        student = <span class="keyword">new</span> Student(<span class="string">"李四"</span>);</span><br><span class="line">        System.out.println(student.getName());          <span class="comment">// 李四</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="Docker-容器命令"><a href="#Docker-容器命令" class="headerlink" title="Docker 容器命令"></a>Docker 容器命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出正在运行的容器</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有容器（包括已停止容器）</span></span><br><span class="line">$ docker ps -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入运行中的 Docker 容器</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it 容器ID /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止 Docker 容器</span></span><br><span class="line">$ docker stop 容器ID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定 Docker 容器</span></span><br><span class="line">$ docker rm -f 容器ID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除停止的 Docker 容器</span></span><br><span class="line">$ docker container prune</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Docker 容器历史运行日志</span></span><br><span class="line">$ docker logs 容器名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时监听 Docker 容器运行日志</span></span><br><span class="line">$ docker logs -f 容器名</span><br></pre></td></tr></table></figure>
+<h3 id="部分关键字说明"><a href="#部分关键字说明" class="headerlink" title="部分关键字说明"></a>部分关键字说明</h3><h4 id="float"><a href="#float" class="headerlink" title="float"></a>float</h4><p>Java 不能隐式执行向下转型，因为这会使得精度降低。</p>
+<p>比如：1.1 字面量属于 double 类型，不能直接将 1.1 赋值给 float 变量，因为这是向下转型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误举例，导致精度丢失</span></span><br><span class="line"><span class="keyword">float</span> f = <span class="number">1.1</span>;</span><br><span class="line"><span class="comment">// 正确举例</span></span><br><span class="line"><span class="keyword">float</span> f = <span class="number">1.1f</span>;</span><br></pre></td></tr></table></figure>
 
-<h4 id="Docker-数据卷命令"><a href="#Docker-数据卷命令" class="headerlink" title="Docker 数据卷命令"></a>Docker 数据卷命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建 Docker 数据卷</span></span><br><span class="line">$ docker volume create 数据卷名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有 Docker 数据卷</span></span><br><span class="line">$ docker volume ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定 Docker 数据卷</span></span><br><span class="line">$ docker volume rm 数据卷名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除未关联（失效） Docker 数据卷</span></span><br><span class="line">$ docker volume prune</span><br><span class="line">$ docker volume rm $(docker volume ls -qf dangling=<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>隐式类型转换：</strong>比如字面量 1 是 int 类型，它比 short 类型精度要高，因此不能隐式地将 int 类型向下转型为 short 类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">short</span> s1 = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误运算举例</span></span><br><span class="line">s1 = s1 + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确运算举例：使用 += 或者 ++ 运算符会执行隐式类型转换。</span></span><br><span class="line">s1 += <span class="number">1</span>;</span><br><span class="line">s1++;</span><br><span class="line"><span class="comment">// 上面的语句相当于执行了 s1 = (short) (s1 + 1);</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="Docker-文件操作命令"><a href="#Docker-文件操作命令" class="headerlink" title="Docker 文件操作命令"></a>Docker 文件操作命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从主机复制文件到 Docker 容器中</span></span><br><span class="line">$ sudo docker cp 主机内文件路径 容器ID:容器内文件存储路径</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从 Docker 容器中复制文件到主机中</span></span><br><span class="line">$ sudo docker cp 容器ID:容器内文件路径 主机内文件存储路径</span><br></pre></td></tr></table></figure>
+<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><p>从 Java 7 开始，可以在 switch 条件判断语句中使用 String 对象。以 String 举例说明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"str"</span>;</span><br><span class="line"><span class="keyword">switch</span> (str) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"str"</span>:</span><br><span class="line">        System.out.println(<span class="string">"str"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"str1"</span>:</span><br><span class="line">        System.out.println(<span class="string">"str1"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>switch 不支持 long、float、double，是因为 switch 的设计初衷是对那些只有少数几个值的类型进行等值判断，如果值过于复杂，那么还是用 if 比较合适。</p>
+<h4 id="final"><a href="#final" class="headerlink" title="final"></a>final</h4><p><strong>1. 声明数据</strong></p>
+<p>声明数据为常量，可以是编译时常量，也可以是在运行时被初始化后不能被改变的常量。</p>
+<p>对于基本类型，final 使数值不变；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">x = <span class="number">2</span>;</span><br><span class="line">System.out.println(x);    <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> A a = <span class="keyword">new</span> A();</span><br><span class="line">		a.x = <span class="number">2</span>;</span><br><span class="line">        System.out.println(x);    <span class="comment">// 2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 声明方法</strong></p>
+<p>声明方法不能被子类重写。</p>
+<p>private 方法隐式地被指定为 final，如果在子类中定义的方法和基类中的一个 private 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。</p>
+<p><strong>3. 声明类</strong></p>
+<p>声明类不允许被继承。</p>
+<h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p><strong>1. 声明变量</strong></p>
+<ul>
+<li>静态变量：又称为类变量，也就是说这个变量属于类的，类所有的实例都共享静态变量，可以直接通过类名来访问它。静态变量在内存中只存在一份。</li>
+<li>实例变量：每创建一个实例就会产生一个实例变量，它与该实例同生共死。</li>
+</ul>
+<p><strong>2. 声明方法</strong></p>
+<p><strong>3. 声明语句块</strong></p>
+<p><strong>4. 声明内部类</strong></p>
+<p><strong>5. 静态导包</strong></p>
 
 
         <hr>
@@ -458,12 +618,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/docker/docker编排利器docker-compose/" data-toggle="tooltip" data-placement="top" title="Docker 编排利器 Docker Compose">&larr; Previous Post</a>
+            <a href="/spring/java框架领域佼佼者spring初识篇/" data-toggle="tooltip" data-placement="top" title="Java 框架领域佼佼者 Spring 初识篇">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/linux/ubuntu入门操作指北/" data-toggle="tooltip" data-placement="top" title="Ubuntu 入门操作指北">Next Post &rarr;</a>
+            <a href="/fastdfs/实战fastdfs-java客户端上传文件/" data-toggle="tooltip" data-placement="top" title="实战 FastDFS Java 客户端上传文件">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -506,7 +666,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=容器化技术大杀器 Docker&body=Hi,I found this website and thought you might like it https://antoniopeng.com/docker/容器化技术大杀器docker/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Java 基础知识总结&body=Hi,I found this website and thought you might like it https://antoniopeng.com/java/java基础知识总结/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -547,7 +707,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是-Docker"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是 Docker</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker-主要概念"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Docker 主要概念</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Docker-镜像（Image）"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">Docker 镜像（Image）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Docker-容器（Container）"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">Docker 容器（Container）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Docker-仓库（Registry）"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">Docker 仓库（Registry）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装-Docker"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">安装 Docker</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用脚本自动安装"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">使用脚本自动安装</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用-APT-安装"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">使用 APT 安装</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker-用户组"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Docker 用户组</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#镜像加速器"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">镜像加速器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#获取阿里云镜像加速器"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">获取阿里云镜像加速器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置镜像加速器"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">配置镜像加速器</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker-常用命令"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">Docker 常用命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Docker-镜像命令"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">Docker 镜像命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Docker-容器命令"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">Docker 容器命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Docker-数据卷命令"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">Docker 数据卷命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Docker-文件操作命令"><span class="toc-nav-number">6.4.</span> <span class="toc-nav-text">Docker 文件操作命令</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据类型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">数据类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#基本类型"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">基本类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#包装类型"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">包装类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#附：缓存池"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">附：缓存池</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#String"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">String</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#概述"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">概述</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#不可变的好处"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">不可变的好处</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#String、StringBuffer、StringBuilder-对比"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">String、StringBuffer、StringBuilder 对比</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#String-Pool"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">String Pool</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#new-String-“str”"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">new String(“str”)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#参数传递"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">参数传递</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部分关键字说明"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">部分关键字说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#float"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">float</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#switch"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">switch</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#final"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">final</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#static"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">static</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -569,7 +729,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+            <a class="tag" href="/tags/#Java" title="Java">Java</a>
             
           </div>
         </section>
