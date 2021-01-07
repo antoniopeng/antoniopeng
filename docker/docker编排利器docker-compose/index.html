@@ -217,6 +217,13 @@
 
           
           <li>
+            <a href="/categories/">Categories</a>
+          </li>
+          
+          
+
+          
+          <li>
             <a href="/archive/">Archives</a>
           </li>
           
@@ -225,13 +232,6 @@
           
           <li>
             <a href="/tags/">Tags</a>
-          </li>
-          
-          
-
-          
-          <li>
-            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -417,8 +417,7 @@
 <p>看到以下输出信息，说明安装成功</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Collecting docker-compose</span><br><span class="line">  Downloading docker-compose-1.17.1.tar.gz (149kB): 149kB downloaded</span><br><span class="line"></span><br><span class="line">Successfully installed docker-compose cached-property requests texttable websocket-client docker-py dockerpty six enum34 backports.ssl-match-hostname ipaddress</span><br></pre></td></tr></table></figure>
 
-<h3 id="下载-bash-补全命令补丁"><a href="#下载-bash-补全命令补丁" class="headerlink" title="下载 bash 补全命令补丁"></a>下载 bash 补全命令补丁</h3><p>下载命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> curl -L https://raw.githubusercontent.com/docker/compose/1.8.0/contrib/completion/bash/docker-compose &gt; /etc/bash_completion.d/docker-compose</span></span><br></pre></td></tr></table></figure>
+<h4 id="bash-补全命令补丁"><a href="#bash-补全命令补丁" class="headerlink" title="bash 补全命令补丁"></a>bash 补全命令补丁</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> curl -L https://raw.githubusercontent.com/docker/compose/1.8.0/contrib/completion/bash/docker-compose &gt; /etc/bash_completion.d/docker-compose</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="卸载-Docker-Compose"><a href="#卸载-Docker-Compose" class="headerlink" title="卸载 Docker Compose"></a>卸载 Docker Compose</h3><p>Linux上卸载</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm /usr/<span class="built_in">local</span>/bin/docker-compose</span><br></pre></td></tr></table></figure>
@@ -441,16 +440,16 @@
 <p>停止并移除容器</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose down</span><br></pre></td></tr></table></figure>
 
-<h3 id="编排实例"><a href="#编排实例" class="headerlink" title="编排实例"></a>编排实例</h3><h4 id="容器编排模板文件"><a href="#容器编排模板文件" class="headerlink" title="容器编排模板文件"></a>容器编排模板文件</h4><blockquote>
+<h3 id="编排-MySQL-amp-Tomcat-容器实例"><a href="#编排-MySQL-amp-Tomcat-容器实例" class="headerlink" title="编排 MySQL &amp; Tomcat 容器实例"></a>编排 MySQL &amp; Tomcat 容器实例</h3><h4 id="容器编排文件"><a href="#容器编排文件" class="headerlink" title="容器编排文件"></a>容器编排文件</h4><blockquote>
 <p>服务器地址：192.168.100.1</p>
 </blockquote>
-<p>创建容器编排模板文件 <code>docker-compose.yml</code></p>
+<p>创建指定名称的容器编排文件 <code>docker-compose.yml</code></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir docker-compose.yml</span><br></pre></td></tr></table></figure>
 
 <p>文件内容如下</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">tomcat:</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tomcat</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:8080</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/usr/local/docker/tomcat/webapps:/usr/local/tomcat/webapps</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:5.7.22</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">mysql</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">3306</span><span class="string">:3306</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TZ:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">command:</span></span><br><span class="line">      <span class="string">--character-set-server=utf8mb4</span></span><br><span class="line">      <span class="string">--collation-server=utf8mb4_general_ci</span></span><br><span class="line">      <span class="string">--explicit_defaults_for_timestamp=true</span></span><br><span class="line">      <span class="string">--lower_case_table_names=1</span></span><br><span class="line">      <span class="string">--max_allowed_packet=128M</span></span><br><span class="line">      <span class="string">--sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO"</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/usr/local/docker/mysql:/var/lib/mysql</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="文件模板节点详解"><a href="#文件模板节点详解" class="headerlink" title="文件模板节点详解"></a>文件模板节点详解</h4><table>
+<h4 id="编排文件节点详解"><a href="#编排文件节点详解" class="headerlink" title="编排文件节点详解"></a>编排文件节点详解</h4><table>
 <thead>
 <tr>
 <th><strong>文件节点</strong></th>
@@ -595,6 +594,17 @@
 
       <!-- Catalog: Tabe of Content -->
       <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker-Compose-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Docker Compose 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装-Docker-Compose"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">安装 Docker Compose</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二进制包安装"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">二进制包安装</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#PIP-安装"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">PIP 安装</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#bash-补全命令补丁"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">bash 补全命令补丁</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#卸载-Docker-Compose"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">卸载 Docker Compose</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker-Compose-常用命令"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Docker Compose 常用命令</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#编排-MySQL-amp-Tomcat-容器实例"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">编排 MySQL &amp; Tomcat 容器实例</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#容器编排文件"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">容器编排文件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#编排文件节点详解"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">编排文件节点详解</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
 
 
       <!-- Sidebar Container -->
