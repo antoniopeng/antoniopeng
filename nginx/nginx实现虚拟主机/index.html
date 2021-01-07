@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -409,7 +409,7 @@
 </ul>
 <h3 id="功能需求"><a href="#功能需求" class="headerlink" title="功能需求"></a>功能需求</h3><p><code>Nginx</code> 对外提供 80 和 8080 两个端口监听服务，实现两台虚拟主机，请求 80 端口则访问 <code>html80</code> 目录下的 html 文件，请求 8080 端口则访问 <code>html8080</code> 目录下的 html 文件。</p>
 <h3 id="部署-Nginx"><a href="#部署-Nginx" class="headerlink" title="部署 Nginx"></a>部署 Nginx</h3><blockquote>
-<p>采用 Docker Compose 编排部署应用容器。服务器地址：192.168.230.130</p>
+<p>使用 Docker Compose 编排部署应用容器。服务器地址：192.168.230.130</p>
 </blockquote>
 <p>在 <code>/usr/local/docker/nginx/wwwroot</code> 目录下创建 <code>html80</code> 和 <code>html8080</code> 两个目录，并分别创建两个 index.html 文件。</p>
 <p>创建 docker-compose.yml</p>

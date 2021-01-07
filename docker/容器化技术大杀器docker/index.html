@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -408,38 +408,14 @@
 <h4 id="Docker-仓库（Registry）"><a href="#Docker-仓库（Registry）" class="headerlink" title="Docker 仓库（Registry）"></a>Docker 仓库（Registry）</h4><p>镜像构建完成之后，一行命令就可以在当前的宿主机上运行起来，但是如果要在其它服务器上使用这个镜像，就需要一个集中存储镜像的仓库 — 即 Docker 仓库。</p>
 <p>公有 Docker Registry：最常使用的 Registry 公开服务是官方的 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>，但在国内访问会比较慢，而国内的一些云服务商提供了针对 Docker Hub 的镜像服务，常见的有 <a href="https://cr.console.aliyun.com/#/accelerator" target="_blank" rel="noopener">阿里云</a>、<a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="noopener">DaoCloud</a> 加速器，比直接从 Docker Hub 下载速度会提高很多。</p>
 <p>私有 Docker Registry：可以在本地搭建私有 Docker Registry。Docker 官方提供了 Docker Registry 镜像，可以直接使用做为私有 Registry 服务。</p>
-<h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><h4 id="使用脚本自动安装"><a href="#使用脚本自动安装" class="headerlink" title="使用脚本自动安装"></a>使用脚本自动安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL get.docker.com -o get-docker.sh</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><h4 id="使用脚本自动安装"><a href="#使用脚本自动安装" class="headerlink" title="使用脚本自动安装"></a>使用脚本自动安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL get.docker.com -o get-docker.sh</span><br><span class="line"></span><br><span class="line">$ sudo sh get-docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo sh get-docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure>
-
-<p>执行这两行命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE Edge 安装在系统中。</p>
-<h4 id="使用-APT-安装"><a href="#使用-APT-安装" class="headerlink" title="使用 APT 安装"></a>使用 APT 安装</h4><p>安装一些必要的系统工具</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common</span><br></pre></td></tr></table></figure>
-
-<p>安装 GPG 证书</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-
-<p>写入软件源信息</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository <span class="string">"deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu <span class="variable">$(lsb_release -cs)</span> stable"</span></span><br></pre></td></tr></table></figure>
-
-<p>更新软件源</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get -y update</span><br></pre></td></tr></table></figure>
-
-<p>安装 Docker CE</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get -y install docker-ce</span><br></pre></td></tr></table></figure>
+<p>执行这两行命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 安装在系统中。</p>
+<h4 id="使用-APT-安装"><a href="#使用-APT-安装" class="headerlink" title="使用 APT 安装"></a>使用 APT 安装</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装一些必要的系统工具</span></span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 GPG 证书</span></span><br><span class="line">$ curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入软件源信息</span></span><br><span class="line">$ sudo add-apt-repository <span class="string">"deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu <span class="variable">$(lsb_release -cs)</span> stable"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新软件源</span></span><br><span class="line">$ sudo apt-get -y update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Docker CE</span></span><br><span class="line">$ sudo apt-get -y install docker-ce</span><br></pre></td></tr></table></figure>
 
 <h3 id="Docker-用户组"><a href="#Docker-用户组" class="headerlink" title="Docker 用户组"></a>Docker 用户组</h3><p>安装之后，默认情况下，Docker 命令会使用 Unix socket 与 Docker 引擎通讯，而只有 Root 用户和 Docker 组的用户才可以访问 Docker 引擎的 Unix socket，一般 Linux 系统上不会直接使用 Root 用户。因此，更好地做法是将需要使用 Docker 的用户加入 Docker 用户组。</p>
-<ul>
-<li><p>建立 Docker 用户组</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo groupadd docker</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将用户加入 Docker 用户组</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立 Docker 用户组</span></span><br><span class="line">$ sudo groupadd docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将用户加入 Docker 用户组</span></span><br><span class="line">$ sudo usermod -aG docker 用户名</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
 <h3 id="镜像加速器"><a href="#镜像加速器" class="headerlink" title="镜像加速器"></a>镜像加速器</h3><p>由于国内从 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> 下载镜像有时会非常缓慢，因此可以配置国内云服务商提供的镜像加速器：</p>
 <ul>
 <li><a href="https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror" target="_blank" rel="noopener">Docker 官方提供的中国 registry mirror</a></li>
