@@ -410,21 +410,20 @@
 <li><p>Maven 是 Java 项目，因此必须先安装 JDK。</p>
 </li>
 </ul>
-<p><img src="http://maven.javaboy.org/assets/images/img/2-1.png" alt="2-1.png"></p>
 <h3 id="Maven-安装"><a href="#Maven-安装" class="headerlink" title="Maven 安装"></a>Maven 安装</h3><p>下载 Maven：<a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">http://maven.apache.org/download.cgi</a></p>
-<p><img src="http://maven.javaboy.org/assets/images/img/2-2.png" alt="2-2.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven01.png" alt="img"></p>
 <p>解压文件</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/2-3.png" alt="2-3.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven02.png" alt="img"></p>
 <p>配置环境变量</p>
 <ol>
 <li><p>首先配置 MAVEN_HOME</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/2-4.png" alt="2-4.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven03.png" alt="img"></p>
 </li>
 <li><p>配置环境变量</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/2-5.png" alt="2-5.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven04.png" alt="img"></p>
 </li>
 <li><p>检验安装</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/2-6.png" alt="2-6.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven05.png" alt="img"></p>
 </li>
 </ol>
 <blockquote>
@@ -452,19 +451,19 @@
 </tr>
 </tbody></table>
 <p>现在存在 3 个仓库，那么 jar 包如何查找呢？</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/3-1.png" alt="3-1.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven06.png" alt="img"></p>
 <h4 id="本地仓库配置"><a href="#本地仓库配置" class="headerlink" title="本地仓库配置"></a>本地仓库配置</h4><p>本地仓库默认位置在 <code>当前用户名\.m2\repository</code>，这个位置可以自定义，但是不建议大家自定义这个地址，有几个原因：</p>
 <ol>
 <li>虽然所有的本地的 jar 都放在这个仓库中，但是并不会占用很大的空间。</li>
 <li>默认的位置比较隐蔽，不容易碰到</li>
 </ol>
 <p>技术上来说，当然是可以自定义本地仓库位置的，在 conf/settings.xml 中自定义本地仓库位置：</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/3-2.png" alt="3-2.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven07.png" alt="img"></p>
 <h4 id="远程仓库配置"><a href="#远程仓库配置" class="headerlink" title="远程仓库配置"></a>远程仓库配置</h4><p>由于默认的中央仓库下载较慢，因此，也可以将远程仓库地址改为阿里巴巴的仓库地址：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>这段配置，加在 settings.xml 中的 mirrors 节点中：</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/3-3.png" alt="3-3.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven08.png" alt="img"></p>
 <h3 id="Maven-常用命令"><a href="#Maven-常用命令" class="headerlink" title="Maven 常用命令"></a>Maven 常用命令</h3><table>
 <thead>
 <tr>
@@ -506,7 +505,7 @@
 </tbody></table>
 <p>如果想将 jar 上传到私服，那么就要构建 jar，就需要执行 package 命令，要打包，当然也需要测试，那就要走 mvn test 命令，要测试就要先编译…..，因此，最终所有的命令都会执行一遍。不过，开发者也可以手动配置不执行某一个命令，这就是跳过。一般来是，除了测试，其他步骤都不建议跳过。</p>
 <p>当然，如果使用了 IDEA ，这些命令不用手动敲，点一下就行：</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/4-1.png" alt="4-1.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven09.png" alt="img"></p>
 <h3 id="Maven-依赖管理"><a href="#Maven-依赖管理" class="headerlink" title="Maven 依赖管理"></a>Maven 依赖管理</h3><p>Maven 项目，如果需要使用第三方的控件，都是通过依赖管理来完成的。这里用到的一个东西就是 pom.xml 文件，概念叫做项目对象模型（POM，Project Object Model），我们在 pom.xml 中定义了 Maven 项目的形式，所以，pom.xml 相当于是 Maven 项目的一个地图。就类似于 web.xml 文件用来描述三大 web 组件一样。</p>
 <h4 id="Maven-坐标"><a href="#Maven-坐标" class="headerlink" title="Maven 坐标"></a>Maven 坐标</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -522,12 +521,12 @@
 <li><p>version：一个项目的版本。一个项目的话，可能会有多个版本。如果是正在开发的项目，我们可以给版本号加上一个 SNAPSHOT，表示这是一个快照版（新建项目的默认版本号就是快照版）</p>
 </li>
 <li><p>scope：表示依赖范围。</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/6-1.png" alt="6-1.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven10.png" alt="img"></p>
 <p>我们添加了很多依赖，但是不同依赖的使用范围是不一样的。最典型的有两个，一个是数据库驱动，另一个是单元测试。数据库驱动在使用的过程中，我们自己写代码，写的是 JDBC 代码，只有在项目运行时，才需要执行 MySQL 驱动中的代码。所以，MySQL 驱动这个依赖在添加到项目中之后，可以设置它的 scope 为 runtime，编译的时候不生效。而单元测试，只在测试的时候生效，所以可以设置它的 scope 为 test，这样，当项目打包发布时，单元测试的依赖就不会跟着发布。</p>
 </li>
 </ul>
 <h4 id="依赖冲突"><a href="#依赖冲突" class="headerlink" title="依赖冲突"></a>依赖冲突</h4><p>依赖冲突产生的原因</p>
-<p><img src="http://maven.javaboy.org/assets/images/img/6-2.png" alt="6-2.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/java%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7maven11.png" alt="img"></p>
 <p>在图中，a.jar 依赖 b.jar，同时 a.jar 依赖 d.jar，这个时候，a 和 b、d 的关系是直接依赖的关系，a 和 c 的关系是间接依赖的关系。</p>
 <h4 id="冲突解决"><a href="#冲突解决" class="headerlink" title="冲突解决"></a>冲突解决</h4><ol>
 <li>先定义先使用；</li>
