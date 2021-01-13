@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">808</span> In Total
+              Words <span class="post-count">815</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -431,9 +431,18 @@
 <p>然后，在需要添加事务的方法上，添加 <code>@Transactional</code> 注解，表示该方法开启事务，当然，这个注解也可以放在类上，表示这个类中的所有方法都开启事务。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserDao userDao;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        userDao.addMoney(<span class="string">"zhangsan"</span>, <span class="number">200</span>);</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">        userDao.minMoney(<span class="string">"lisi"</span>, <span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>本文发于：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
+
+
         <hr>
         <!-- Pager -->
         <ul class="pager">
+          
+          <li class="previous">
+            <a href="/spring/spring-mvc入门就这一篇/" data-toggle="tooltip" data-placement="top" title="Spring MVC 入门就这一篇">&larr; Previous Post</a>
+          </li>
           
           
           <li class="next">
