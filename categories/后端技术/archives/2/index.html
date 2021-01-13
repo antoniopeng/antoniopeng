@@ -383,6 +383,257 @@
   
 
 
+  <a href="/java/java基础知识总结/">
+    <h2 class="post-title">
+      Java 基础知识总结
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      数据类型基本类型
+
+
+基本类型
+字节数
+占位数
+
+
+
+byte
+1
+8
+
+
+char
+2
+16
+
+
+short
+2
+16
+
+
+int
+4
+32
+
+
+float
+4
+32
+
+
+long
+8
+64
+
+
+double
+8
+64
+
+
+boolean
+~
+~
+
+
+boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boole......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-05
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Java" title="Java">Java</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/fastdfs/实战fastdfs-java客户端上传文件/">
+    <h2 class="post-title">
+      实战 FastDFS Java 客户端上传文件
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      
+FastDFS 服务端安装参考文章：分布式文件系统 FastDFS 服务端的部署
+
+部署 FastDFS Java 客户端先从 GitHub 上将项目源码克隆下来：
+1$ git clone https://github.com/happyfish100/fastdfs-client-java.git
+
+部署到 Maven 依赖私服：
+1$ mvn clean install deploy......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-12-23
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#FastDFS" title="FastDFS">FastDFS</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/seata/分布式事务解决方案之alibaba-seata/">
+    <h2 class="post-title">
+      分布式事务解决方案之 Alibaba Seata
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      关于事务的几点常识本地事务该类事务需要满足四大特性：ACID（原子性、一致性、隔离性、持久性），仅限于对单一数据库资源的访问控制。
+
+原子性（Atomicity）：指事务作为整体来执行，要么全部执行，要么全部不执行。
+一致性（Consistency）：指事务应确保数据从一个一致的状态转变为另一个一致状态。
+隔离性（Isolation）：指多个事务并发时，一个事务的执行不应影响其它事务的执行。......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-08-20
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Seata" title="Seata">Seata</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/leaf/分布式主键生成方案之美团leaf/">
+    <h2 class="post-title">
+      分布式主键生成方案之美团 Leaf
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      分布式主键在庞大复杂的分布式系统中，通常需要对海量数据进行唯一标识，随着数据日渐增长，对数据分库分表以后需要有一个唯一 ID 来标识一条数据，而数据库的自增 ID 显然不能满足需求，此时就需要有一个能够生成全局唯一 ID 的系统，需要满足以下条件：
+
+全局唯一性：最基本的要求就是不能出现重复的 ID。
+递增：保证下一个 ID 一定大于上一个 ID。
+信息安全：如果 ID 是连续的，用户就可以......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-07-22
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Leaf" title="Leaf">Leaf</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/rabbitmq/快速上手使用rabbitmq/">
+    <h2 class="post-title">
+      快速上手使用 RabbitMQ
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      什么是 RabbitMQ简介
+基于 ErLang 语言开发有高可用高并发的优点，适合集群。
+开源、稳定、易用、跨平台、支持多种语言、文档齐全。
+有消息确认机制和持久化机制，可靠性高。
+
+基本概念生产者和消费者
+
+Producer：消息的生产者
+Consumer：消息的消费者
+
+Queue
+
+消息队列提供了 FIFO 的处理机制，具有缓存消息的能力。在 RabbitMQ 中，队列消息可以设置为......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-07-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#RabbitMQ" title="RabbitMQ">RabbitMQ</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/java/java中使用jersey实现上传文件(附加密和解密)/">
     <h2 class="post-title">
       Java 中使用 Jersey 实现上传文件（附加密和解密）
@@ -548,15 +799,19 @@
   <div class="tags">
     
     
-    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
-    
-    
-    
     <a href="/tags/#Docker" title="Docker" rel="4">Docker</a>
     
     
     
     <a href="/tags/#Java" title="Java" rel="5">Java</a>
+    
+    
+    
+    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
+    
+    
+    
+    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
@@ -568,15 +823,7 @@
     
     
     
-    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
-    
-    
-    
     <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
-    
-    
-    
-    <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
     
     
     
@@ -592,6 +839,14 @@
     
     
     
+    <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
+    
+    
+    
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
     
     
@@ -600,11 +855,11 @@
     
     
     
-    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
-    
-    
-    
     <a href="/tags/#Web" title="Web" rel="1">Web</a>
+    
+    
+    
+    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
     
     
   </div>
@@ -620,12 +875,12 @@
 <div class="widget">
   <ul>
     
-    <a href="/categories/#后端技术">
-      <li>后端技术</li>
-    </a>
-    
     <a href="/categories/#运维">
       <li>运维</li>
+    </a>
+    
+    <a href="/categories/#后端技术">
+      <li>后端技术</li>
     </a>
     
     <a href="/categories/#数据库">
@@ -650,7 +905,7 @@
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/01/">January 2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/07/">July 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/01/">January 2021</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/07/">July 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
