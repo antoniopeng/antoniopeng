@@ -436,7 +436,7 @@
 <p>注意，下文所说的处理器即我们平时所见到的 Controller</p>
 </blockquote>
 <p>在 SpringMVC 中提供了很多 <code>HandlerMapping</code>：</p>
-<p><img src="http://springmvc.javaboy.org/assets/images/img/6-1.png" alt="6-1.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/spring-mvc%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A301.png" alt="img"></p>
 <p><code>HandlerMapping</code> 是负责根据 request 请求找到对应的 Handler 处理器及 Interceptor 拦截器，将它们封装在 <code>HandlerExecutionChain</code> 对象中返回给前端控制器。</p>
 <ul>
 <li><p><code>BeanNameUrlHandlerMapping</code>：BeanNameUrl 处理器映射器，根据请求的 url 与 Spring 容器中定义的 bean 的 name 进行匹配，从而从 Spring 容器中找到 bean 实例，就是说，请求的 Url 地址就是处理器 Bean 的名字。这个 <code>HandlerMapping</code> 配置如下：</p>
@@ -450,7 +450,7 @@
 </ul>
 <h3 id="HandlerAdapter-处理器适配器"><a href="#HandlerAdapter-处理器适配器" class="headerlink" title="HandlerAdapter 处理器适配器"></a>HandlerAdapter 处理器适配器</h3><p><code>HandlerAdapter</code> 会根据适配器接口对后端控制器进行包装（适配），包装后即可对处理器进行执行，通过扩展处理器适配器可以执行多种类型的处理器，这里使用了适配器设计模式。</p>
 <p>在 SpringMVC 中，<code>HandlerAdapter</code> 也有诸多实现类：</p>
-<p><img src="http://springmvc.javaboy.org/assets/images/img/6-2.png" alt="6-2.png"></p>
+<p><img src="https://qiniuyun.antoniopeng.com/spring-mvc%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A302.png" alt="img"></p>
 <ul>
 <li><p><code>SimpleControllerHandlerAdapter</code>：简单控制器处理器适配器，所有实现了 <code>org.springframework.web.servlet.mvc.Controller</code> 接口的 Bean 通过此适配器进行适配、执行，也就是说，如果我们开发的接口是通过实现 Controller 接口来完成的（不是通过注解开发的接口），那么 HandlerAdapter 必须是 <code>SimpleControllerHandlerAdapter</code>。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
