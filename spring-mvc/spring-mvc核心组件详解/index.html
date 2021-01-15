@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/docker/使用dockerfile定制镜像/">
+  <link rel="canonical" href="https://antoniopeng.com/spring-mvc/spring-mvc核心组件详解/">
   <title>
     
-    使用 Dockerfile 定制镜像 - 彭超的博客 | Antonio Blog
+    Spring MVC 核心组件详解 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#Docker" title="Docker">Docker</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
               
             </div>
-            <h1>使用 Dockerfile 定制镜像</h1>
+            <h1>Spring MVC 核心组件详解</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2019-07-10
+              2021-01-15
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">4</span> Minutes
+              Estimated Reading Time <span class="post-count">8</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">977</span> In Total
+              Words <span class="post-count">1.8k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,57 +394,95 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <blockquote>
-<p>这里以简单定制 Nginx 镜像为例</p>
+        <h3 id="DispatcherServlet-作用"><a href="#DispatcherServlet-作用" class="headerlink" title="DispatcherServlet 作用"></a>DispatcherServlet 作用</h3><p><code>DispatcherServlet</code> 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。<code>DispatcherServlet</code> 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：</p>
+<ol>
+<li>文件上传解析，如果请求类型是 multipart 将通过 <code>MultipartResolver</code> 进行文件上传解析；</li>
+<li>通过 <code>HandlerMapping</code> 将请求映射到处理器（返回一个 HandlerExecutionChain，它包括一个处理器、多个 HandlerInterceptor 拦截器）；</li>
+<li>通过 <code>HandlerAdapter</code> 支持多种类型的处理器（HandlerExecutionChain 中的处理器）；</li>
+<li>通过 <code>ViewResolver</code> 解析逻辑视图名到具体视图实现；</li>
+<li>本地化解析；</li>
+<li>渲染具体的视图等；</li>
+<li>如果执行过程中遇到异常将交给 <code>HandlerExceptionResolver</code> 来解析</li>
+</ol>
+<h3 id="DispathcherServlet-配置详解"><a href="#DispathcherServlet-配置详解" class="headerlink" title="DispathcherServlet 配置详解"></a>DispathcherServlet 配置详解</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring-mvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>load-on-startup</code>：表示启动容器时初始化该 Servlet；</li>
+<li><code>url-pattern</code>：表示哪些请求交给 Spring Web MVC 处理， “/“ 是用来定义默认 servlet 映射的。也可以如 <code>*.html</code> 表示拦截所有以 html 为扩展名的请求；</li>
+<li><code>contextConfigLocation</code>：表示 SpringMVC 配置文件的路径。</li>
+</ul>
+<p>其他的参数配置：</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>contextClass</code></td>
+<td align="left">实现 <code>WebApplicationContext</code> 接口的类，当前的 Servlet 用它来创建上下文。如果这个参数没有指定， 默认使用 <code>XmlWebApplicationContext</code>。</td>
+</tr>
+<tr>
+<td align="left"><code>contextConfigLocation</code></td>
+<td align="left">传给上下文实例（由 contextClass 指定）的字符串，用来指定上下文的位置。这个字符串可以被分成多个字符串（使用逗号作为分隔符） 来支持多个上下文（在多上下文的情况下，如果同一个bean被定义两次，后面一个优先）。</td>
+</tr>
+<tr>
+<td align="left"><code>namespace</code></td>
+<td align="left"><code>WebApplicationContext</code> 命名空间。默认值是 [server-name]-servlet。</td>
+</tr>
+</tbody></table>
+<h3 id="HandlerMapping-处理器映射器"><a href="#HandlerMapping-处理器映射器" class="headerlink" title="HandlerMapping 处理器映射器"></a>HandlerMapping 处理器映射器</h3><blockquote>
+<p>注意，下文所说的处理器即我们平时所见到的 Controller</p>
 </blockquote>
-<h3 id="创建-Dockerfile-文件"><a href="#创建-Dockerfile-文件" class="headerlink" title="创建 Dockerfile 文件"></a>创建 Dockerfile 文件</h3><p>创建 <code>Dockerfile</code> 文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir /usr/<span class="built_in">local</span>/docker</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/docker</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir nginx</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> nginx</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vi Dockerfile</span></span><br></pre></td></tr></table></figure>
+<p>在 SpringMVC 中提供了很多 <code>HandlerMapping</code>：</p>
+<p><img src="http://springmvc.javaboy.org/assets/images/img/6-1.png" alt="6-1.png"></p>
+<p><code>HandlerMapping</code> 是负责根据 request 请求找到对应的 Handler 处理器及 Interceptor 拦截器，将它们封装在 <code>HandlerExecutionChain</code> 对象中返回给前端控制器。</p>
+<ul>
+<li><p><code>BeanNameUrlHandlerMapping</code>：BeanNameUrl 处理器映射器，根据请求的 url 与 Spring 容器中定义的 bean 的 name 进行匹配，从而从 Spring 容器中找到 bean 实例，就是说，请求的 Url 地址就是处理器 Bean 的名字。这个 <code>HandlerMapping</code> 配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"</span> <span class="attr">id</span>=<span class="string">"handlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"beanName"</span> <span class="attr">value</span>=<span class="string">"/hello"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>SimpleUrlHandlerMapping</code>：是 <code>BeanNameUrlHandlerMapping</code> 的增强版本，它可以将 url 和处理器 bean 的 id 进行统一映射配置:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span> <span class="attr">id</span>=<span class="string">"handlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello"</span>&gt;</span>helloController<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello2"</span>&gt;</span>helloController2<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>Dockerfile 文件的内容如下</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> nginx</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'&lt;h1&gt;Hello, Docker!&lt;/h1&gt;'</span> &gt; /usr/share/nginx/html/index.html</span></span><br></pre></td></tr></table></figure>
-<p>这个 Dockerfile 很简单，一共就两行。涉及到了两条指令，<code>FROM</code> 和 <code>RUN</code>。</p>
-<h4 id="FROM-指令"><a href="#FROM-指令" class="headerlink" title="FROM 指令"></a>FROM 指令</h4><ul>
-<li>通常情况下，定制镜像都需要指定一个镜像为基础，在其上进行定制，因此一个 Dockerfile 中 FROM 是必备的指令，并且必须是第一条指令</li>
-<li>除了选择现有镜像为基础镜像外，Docker 还存在一个特殊的镜像，名为 scratch。这个镜像是虚拟的概念，并不实际存在，它表示一个空白的镜像，使用这种特殊镜像，意味着不以任何操作系统为基础，会让镜像体积变得更加小巧，使用 Go 语言 开发的应用很多会使用这种方式来制作镜像  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> scratch</span><br><span class="line"><span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+<p><strong>注意，在 props 中，可以配置多个请求路径和处理器实例的映射关系。</strong></p>
+</li>
+</ul>
+<h3 id="HandlerAdapter-处理器适配器"><a href="#HandlerAdapter-处理器适配器" class="headerlink" title="HandlerAdapter 处理器适配器"></a>HandlerAdapter 处理器适配器</h3><p><code>HandlerAdapter</code> 会根据适配器接口对后端控制器进行包装（适配），包装后即可对处理器进行执行，通过扩展处理器适配器可以执行多种类型的处理器，这里使用了适配器设计模式。</p>
+<p>在 SpringMVC 中，<code>HandlerAdapter</code> 也有诸多实现类：</p>
+<p><img src="http://springmvc.javaboy.org/assets/images/img/6-2.png" alt="6-2.png"></p>
+<ul>
+<li><p><code>SimpleControllerHandlerAdapter</code>：简单控制器处理器适配器，所有实现了 <code>org.springframework.web.servlet.mvc.Controller</code> 接口的 Bean 通过此适配器进行适配、执行，也就是说，如果我们开发的接口是通过实现 Controller 接口来完成的（不是通过注解开发的接口），那么 HandlerAdapter 必须是 <code>SimpleControllerHandlerAdapter</code>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>HttpRequestHandlerAdapter</code>：Http 请求处理器适配器，所有实现了 <code>org.springframework.web.HttpRequestHandler</code> 接口的 Bean 通过此适配器进行适配、执行。例如存在如下接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController2</span> <span class="keyword">implements</span> <span class="title">HttpRequestHandler</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"-----HelloController2-----"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>XML 配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span> <span class="attr">id</span>=<span class="string">"handlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello2"</span>&gt;</span>helloController2<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"</span> <span class="attr">id</span>=<span class="string">"handlerAdapter"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h4 id="RUN-指令"><a href="#RUN-指令" class="headerlink" title="RUN 指令"></a>RUN 指令</h4><ul>
-<li><p>RUN 指令是用来执行命令的，是 Dockerfile 定制镜像中最常用的指令之一</p>
-</li>
-<li><p>如果遇到多条 RUN 指令一起执行的情况：</p>
-  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> debian:jessie</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> update</span><br><span class="line"><span class="builtin-name">RUN</span> apt-<span class="builtin-name">get</span> install -y gcc libc6-dev make</span><br><span class="line"><span class="builtin-name">RUN</span> wget -O redis.tar.gz <span class="string">"http://download.redis.io/releases/redis-3.2.5.tar.gz"</span></span><br><span class="line"><span class="builtin-name">RUN</span> mkdir -p /usr/src/redis</span><br><span class="line"><span class="builtin-name">RUN</span> tar -xzf redis.tar.gz -C /usr/src/redis <span class="attribute">--strip-components</span>=1</span><br><span class="line"><span class="builtin-name">RUN</span> make -C /usr/src/redis</span><br><span class="line"><span class="builtin-name">RUN</span> make -C /usr/src/redis install</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：在 Dockerfile 中执行每一个指令都会建立一层文件，但是 Union FS 是有最大层数限制的。</p>
-</blockquote>
-<p>  上面的 Dockerfile 正确写法如下：</p>
-  <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">FROM debian:jessie</span><br><span class="line"></span><br><span class="line">RUN buildDeps=<span class="string">'gcc libc6-dev make'</span> \</span><br><span class="line">    &amp;&amp; apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y <span class="variable">$buildDeps</span> \</span><br><span class="line">    &amp;&amp; wget -O redis.tar.gz <span class="string">"http://download.redis.io/releases/redis-3.2.5.tar.gz"</span> \</span><br><span class="line">    &amp;&amp; mkdir -p <span class="regexp">/usr/</span>src<span class="regexp">/redis \</span></span><br><span class="line"><span class="regexp">    &amp;&amp; tar -xzf redis.tar.gz -C /u</span>sr<span class="regexp">/src/</span>redis --strip-components=<span class="number">1</span> \</span><br><span class="line">    &amp;&amp; make -C <span class="regexp">/usr/</span>src<span class="regexp">/redis \</span></span><br><span class="line"><span class="regexp">    &amp;&amp; make -C /u</span>sr<span class="regexp">/src/</span>redis install \</span><br><span class="line">    &amp;&amp; rm -rf <span class="regexp">/var/</span>lib<span class="regexp">/apt/</span>lists<span class="regexp">/* \</span></span><br><span class="line"><span class="regexp">    &amp;&amp; rm redis.tar.gz \</span></span><br><span class="line"><span class="regexp">    &amp;&amp; rm -r /u</span>sr<span class="regexp">/src/</span>redis \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove <span class="variable">$buildDeps</span></span><br></pre></td></tr></table></figure>
-<p>这样的话，实现了将 7 层文件简化为 1 层文件。另外，每一层构建完之后要删掉无关文件，否则会造成镜像臃肿。</p>
-</li>
-</ul>
-<h3 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h3><p>在 Dockerfile 文件所在目录下使用 build 命令</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">build </span>-t nginx:<span class="built_in">v1</span> .</span><br></pre></td></tr></table></figure>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><p>各种情况都大概了解了，我们看下项目中的具体实践。</p>
+<h4 id="组件自动扫描"><a href="#组件自动扫描" class="headerlink" title="组件自动扫描"></a>组件自动扫描</h4><p>Web 开发中，我们基本上不再通过 XML 或者 Java 配置来创建一个 Bean 的实例，而是直接通过组件扫描来实现 Bean 的配置，如果要扫描多个包，多个包之间用 , 隔开即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.antoniopeng.hello.spring.mvc"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>构建完成后，执行以下命令</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker images</span><br></pre></td></tr></table></figure>
-<p>会发现多了一个镜像名为 nginx，标签名为 v1 的镜像</p>
-<h3 id="其他-Dockerfile-指令"><a href="#其他-Dockerfile-指令" class="headerlink" title="其他 Dockerfile 指令"></a>其他 Dockerfile 指令</h3><h4 id="COPY-指令"><a href="#COPY-指令" class="headerlink" title="COPY 指令"></a>COPY 指令</h4><p>一般用于从主机复制文件到容器</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY <span class="tag">&lt;<span class="name">源路径</span>&gt;</span> <span class="tag">&lt;<span class="name">目标路径</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>比如：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">COPY</span> <span class="keyword">package</span>.json <span class="regexp">/usr/</span>src<span class="regexp">/app/</span></span><br></pre></td></tr></table></figure>
-<p><code>&lt;源路径&gt;</code> 可以是多个，甚至可以是通配符。比如：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">COPY</span><span class="bash"> hom* /mydir/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> hom?.txt /mydir/</span></span><br></pre></td></tr></table></figure>
+<h4 id="HandlerMapping"><a href="#HandlerMapping" class="headerlink" title="HandlerMapping"></a>HandlerMapping</h4><p>正常情况下，我们在项目中使用的是 <code>RequestMappingHandlerMapping</code>，这个是根据处理器中的注解，来匹配请求（即 <code>@RequestMapping</code> 注解中的 url 属性）。因为在上面我们都是通过实现类来开发接口的，相当于还是一个类一个接口，所以，我们可以通过 <code>RequestMappingHandlerMapping</code> 来做处理器映射器，这样我们可以在一个类中开发出多个接口。</p>
+<h4 id="HandlerAdapter"><a href="#HandlerAdapter" class="headerlink" title="HandlerAdapter"></a>HandlerAdapter</h4><p>对于上面提到的通过 <code>@RequestMapping</code> 注解所定义出来的接口方法，这些方法的调用都是要通过 <code>RequestMappingHandlerAdapter</code> 这个适配器来实现。</p>
+<p>例如我们开发一个接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController3</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello3"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"hello3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>&lt;目标路径&gt;</code> 可以是容器内的绝对路径，也可以是相对于工作目录的相对路径（工作目录可以用 WORKDIR 指令来指定），目标路径不需要事先创建，如果目录不存在会在复制文件前先行创建缺失目录。</p>
-<p>还值得注意的一点是：使用 <code>COPY</code> 指令，文件的各种元数据都会保留。比如读、写、执行权限、文件变更时间等。</p>
-<h4 id="ADD-指令"><a href="#ADD-指令" class="headerlink" title="ADD 指令"></a>ADD 指令</h4><p><code>ADD</code> 指令和 <code>COPY</code> 本质上基本一样，但在 <code>COPY</code> 的基础上添加了一些功能：</p>
-<p>比如原路径可以为<code>URL</code>，下载后的文件权限默认设置为 <code>700</code>，也就是当前用户有可读可写可执行权限，而用户组和其他用户没有任何权限。如果下载的文件是一个压缩包，会自动解压缩</p>
-<p>在 <code>COPY</code> 和 <code>ADD</code> 指令中选择的时候，可以遵循这样的原则，所有的文件复制均使用 <code>COPY</code> 指令，仅在需要自动解压缩的场合使用 <code>ADD</code></p>
-<h4 id="更多指令详解参考官方文档"><a href="#更多指令详解参考官方文档" class="headerlink" title="更多指令详解参考官方文档"></a>更多指令详解参考官方文档</h4><ul>
-<li><a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">Dockerfile 官方文档</a></li>
-<li><a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/" target="_blank" rel="noopener">Dockerfile 最佳实践文档</a></li>
-<li><a href="https://github.com/docker-library/docs" target="_blank" rel="noopener">Docker 官方镜像 Dockerfile</a></li>
-</ul>
+<p>要能够访问到这个接口，我们需要 <code>RequestMappingHandlerMapping</code> 才能定位到需要执行的方法，需要 <code>RequestMappingHandlerAdapter</code>，才能执行定位到的方法，修改 springmvc 的配置文件如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.antoniopeng.hello.spring.mvc"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"</span> <span class="attr">id</span>=<span class="string">"handlerMapping"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"</span> <span class="attr">id</span>=<span class="string">"handlerAdapter"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--视图解析器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span> <span class="attr">id</span>=<span class="string">"viewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/jsp/"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，启动项目，访问 /hello3 接口，就可以看到相应的页面了。</p>
+<h4 id="继续优化"><a href="#继续优化" class="headerlink" title="继续优化"></a>继续优化</h4><p>由于开发中，我们常用的是 <code>RequestMappingHandlerMapping</code> 和 <code>RequestMappingHandlerAdapter</code>，这两个有一个简化的写法，如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以用这一行配置，代替 <code>RequestMappingHandlerMapping</code> 和 <code>RequestMappingHandlerAdapter</code> 的两行配置。优化后完整配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.antoniopeng.hello.spring.mvc"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--视图解析器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span> <span class="attr">id</span>=<span class="string">"viewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/jsp/"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>访问效果和上一步的效果一样。这是我们实际开发中，最终配置的形态。</p>
 
 
         <hr>
@@ -452,12 +490,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/docker/docker容器编排工具docker-compose/" data-toggle="tooltip" data-placement="top" title="Docker 容器编排工具 Docker Compose">&larr; Previous Post</a>
+            <a href="/读书笔记/原生家庭/" data-toggle="tooltip" data-placement="top" title="《原生家庭》读书笔记">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/docker/容器化技术大杀器docker/" data-toggle="tooltip" data-placement="top" title="容器化技术大杀器 Docker">Next Post &rarr;</a>
+            <a href="/spring-mvc/使用spring-mvc的拦截器实现登录功能/" data-toggle="tooltip" data-placement="top" title="使用 Spring MVC 的拦截器实现登录功能">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -500,7 +538,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=使用 Dockerfile 定制镜像&body=Hi,I found this website and thought you might like it https://antoniopeng.com/docker/使用dockerfile定制镜像/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Spring MVC 核心组件详解&body=Hi,I found this website and thought you might like it https://antoniopeng.com/spring-mvc/spring-mvc核心组件详解/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -541,7 +579,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建-Dockerfile-文件"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">创建 Dockerfile 文件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#FROM-指令"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">FROM 指令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#RUN-指令"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">RUN 指令</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#构建镜像"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">构建镜像</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#其他-Dockerfile-指令"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">其他 Dockerfile 指令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#COPY-指令"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">COPY 指令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#ADD-指令"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">ADD 指令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#更多指令详解参考官方文档"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">更多指令详解参考官方文档</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DispatcherServlet-作用"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">DispatcherServlet 作用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DispathcherServlet-配置详解"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">DispathcherServlet 配置详解</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#HandlerMapping-处理器映射器"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">HandlerMapping 处理器映射器</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#HandlerAdapter-处理器适配器"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">HandlerAdapter 处理器适配器</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#最佳实践"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">最佳实践</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#组件自动扫描"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">组件自动扫描</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#HandlerMapping"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">HandlerMapping</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#HandlerAdapter"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">HandlerAdapter</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#继续优化"><span class="toc-nav-number">5.4.</span> <span class="toc-nav-text">继续优化</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -563,7 +601,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+            <a class="tag" href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
             
           </div>
         </section>

@@ -217,13 +217,6 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/categories/">Categories</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/tags/">Tags</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -371,7 +371,7 @@
         
         <a href="#计算机基础" title="计算机基础" rel="2">计算机基础</a>
         
-        <a href="#杂记" title="杂记" rel="2">杂记</a>
+        <a href="#杂记" title="杂记" rel="3">杂记</a>
         
       </div>
 
@@ -381,6 +381,21 @@
         <span class="fa fa-tag listing-seperator" id="运维">
           <span class="tag-text">运维</span>
         </span>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/docker/使用dockerfile定制镜像/">
+            <h2 class="post-title">
+              使用 Dockerfile 定制镜像
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
         
         <!-- <li class="listing-item">
                   <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
@@ -402,9 +417,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/docker/使用dockerfile定制镜像/">
+          <a href="/docker/容器化技术大杀器docker/">
             <h2 class="post-title">
-              使用 Dockerfile 定制镜像
+              容器化技术大杀器 Docker
             </h2>
             
           </a>
@@ -435,21 +450,6 @@
           <a href="/fastdfs/分布式文件系统fastdfs服务端的部署/">
             <h2 class="post-title">
               分布式文件系统 FastDFS 服务端的部署
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/docker/容器化技术大杀器docker/">
-            <h2 class="post-title">
-              容器化技术大杀器 Docker
             </h2>
             
           </a>
@@ -559,24 +559,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/java/java并发编程要点/">
+          <a href="/java/java基础知识总结/">
             <h2 class="post-title">
-              Java 并发编程要点
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/leaf/分布式主键生成方案之美团leaf/">
-            <h2 class="post-title">
-              分布式主键生成方案之美团 Leaf
+              Java 基础知识总结
             </h2>
             
           </a>
@@ -604,21 +589,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/java/java基础知识总结/">
-            <h2 class="post-title">
-              Java 基础知识总结
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
           <a href="/java/java容器系列/">
             <h2 class="post-title">
               Java 容器系列
@@ -634,9 +604,39 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
+          <a href="/java/java并发编程要点/">
+            <h2 class="post-title">
+              Java 并发编程要点
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
           <a href="/java/详解java-io流/">
             <h2 class="post-title">
               详解 Java I/O 流
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/leaf/分布式主键生成方案之美团leaf/">
+            <h2 class="post-title">
+              分布式主键生成方案之美团 Leaf
             </h2>
             
           </a>
@@ -679,9 +679,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/seata/分布式事务解决方案之alibaba-seata/">
+          <a href="/rabbitmq/快速上手使用rabbitmq/">
             <h2 class="post-title">
-              分布式事务解决方案之 Alibaba Seata
+              快速上手使用 RabbitMQ
             </h2>
             
           </a>
@@ -694,9 +694,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/rabbitmq/快速上手使用rabbitmq/">
+          <a href="/seata/分布式事务解决方案之alibaba-seata/">
             <h2 class="post-title">
-              快速上手使用 RabbitMQ
+              分布式事务解决方案之 Alibaba Seata
             </h2>
             
           </a>
@@ -724,39 +724,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/spring/spring中使用jdbctemplate连接操作mysql/">
-            <h2 class="post-title">
-              Spring 中使用 JdbcTemplate 连接操作 MySQL
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
           <a href="/spring/spring事务解决方案/">
             <h2 class="post-title">
               Spring 事务解决方案
-            </h2>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/spring/spring核心技术ioc&di详解/">
-            <h2 class="post-title">
-              Spring 核心技术 IoC & DI 详解
             </h2>
             
           </a>
@@ -784,6 +754,21 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
+          <a href="/spring/spring中使用jdbctemplate连接操作mysql/">
+            <h2 class="post-title">
+              Spring 中使用 JdbcTemplate 连接操作 MySQL
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
           <a href="/spring-mvc/spring-mvc入门就这一篇/">
             <h2 class="post-title">
               Spring MVC 入门就这一篇
@@ -799,9 +784,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/spring-mvc/spring-mvc前端控制器&处理器详解/">
+          <a href="/spring/spring核心技术ioc&di详解/">
             <h2 class="post-title">
-              Spring MVC 的前端控制器 & 处理器详解
+              Spring 核心技术 IoC & DI 详解
             </h2>
             
           </a>
@@ -817,6 +802,21 @@
           <a href="/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
             <h2 class="post-title">
               使用 Spring MVC 的拦截器实现登录功能
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/spring-mvc/spring-mvc核心组件详解/">
+            <h2 class="post-title">
+              Spring MVC 核心组件详解
             </h2>
             
           </a>
@@ -925,9 +925,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/闲聊/普通人的一生经历/">
+          <a href="/闲聊/谈谈消息队列的流派/">
             <h2 class="post-title">
-              普通人的一生平淡经历
+              谈谈消息队列的流派
             </h2>
             
           </a>
@@ -940,9 +940,24 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
         <div class="post-preview">
-          <a href="/闲聊/谈谈消息队列的流派/">
+          <a href="/读书笔记/原生家庭/">
             <h2 class="post-title">
-              谈谈消息队列的流派
+              《原生家庭》读书笔记
+            </h2>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/闲聊/普通人的一生经历/">
+            <h2 class="post-title">
+              普通人的一生平淡经历
             </h2>
             
           </a>

@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/spring-mvc/spring-mvc前端控制器&amp;处理器详解/">
+  <link rel="canonical" href="https://antoniopeng.com/读书笔记/原生家庭/">
   <title>
     
-    Spring MVC 的前端控制器 &amp; 处理器详解 - 彭超的博客 | Antonio Blog
+    《原生家庭》读书笔记 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -217,13 +217,6 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
-          </li>
-          
-          
-
-          
-          <li>
             <a href="/categories/">Categories</a>
           </li>
           
@@ -232,6 +225,13 @@
           
           <li>
             <a href="/tags/">Tags</a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -290,7 +290,7 @@
   <style type="text/css">
     header.intro-header {
        /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
+        background-image: url('https://qiniuyun.antoniopeng.com/%E5%8E%9F%E7%94%9F%E5%AE%B6%E5%BA%AD01.jpg');
       
     }
 
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#读书笔记" title="读书笔记">读书笔记</a>
               
             </div>
-            <h1>Spring MVC 的前端控制器 &amp; 处理器详解</h1>
+            <h1>《原生家庭》读书笔记</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2021-01-04
+              2021-01-16
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">8</span> Minutes
+              Estimated Reading Time <span class="post-count">14</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.9k</span> In Total
+              Words <span class="post-count">4.3k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,128 +394,171 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="DispatcherServlet-作用"><a href="#DispatcherServlet-作用" class="headerlink" title="DispatcherServlet 作用"></a>DispatcherServlet 作用</h3><p><code>DispatcherServlet</code> 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。<code>DispatcherServlet</code> 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：</p>
-<ol>
-<li>文件上传解析，如果请求类型是 multipart 将通过 MultipartResolver 进行文件上传解析；</li>
-<li>通过 <code>HandlerMapping</code> 将请求映射到处理器（返回一个 HandlerExecutionChain，它包括一个处理器、多个 HandlerInterceptor 拦截器）；</li>
-<li>通过 <code>HandlerAdapter</code> 支持多种类型的处理器（HandlerExecutionChain 中的处理器）；</li>
-<li>通过 <code>ViewResolver</code> 解析逻辑视图名到具体视图实现；</li>
-<li>本地化解析；</li>
-</ol>
-<ol>
-<li>渲染具体的视图等；</li>
-<li>如果执行过程中遇到异常将交给 <code>HandlerExceptionResolver</code> 来解析</li>
-</ol>
-<h3 id="DispathcherServlet-配置详解"><a href="#DispathcherServlet-配置详解" class="headerlink" title="DispathcherServlet 配置详解"></a>DispathcherServlet 配置详解</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring-mvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>load-on-startup</code>：表示启动容器时初始化该 Servlet；</li>
-<li><code>url-pattern</code>：表示哪些请求交给 Spring Web MVC 处理， “/“ 是用来定义默认 servlet 映射的。也可以如 <code>*.html</code> 表示拦截所有以 html 为扩展名的请求；</li>
-<li><code>contextConfigLocation</code>：表示 SpringMVC 配置文件的路径。</li>
+        <h3 id="本书收获"><a href="#本书收获" class="headerlink" title="本书收获"></a>本书收获</h3><ul>
+<li>了解问题父母的行为模式</li>
+<li>认知原生家庭对孩子的伤害</li>
+<li>学会摆脱原生家庭的负面影响</li>
 </ul>
-<p>其他的参数配置：</p>
-<table>
-<thead>
-<tr>
-<th align="left">参数</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>contextClass</code></td>
-<td align="left">实现 <code>WebApplicationContext</code> 接口的类，当前的 Servlet 用它来创建上下文。如果这个参数没有指定， 默认使用 <code>XmlWebApplicationContext</code>。</td>
-</tr>
-<tr>
-<td align="left"><code>contextConfigLocation</code></td>
-<td align="left">传给上下文实例（由 contextClass 指定）的字符串，用来指定上下文的位置。这个字符串可以被分成多个字符串（使用逗号作为分隔符） 来支持多个上下文（在多上下文的情况下，如果同一个bean被定义两次，后面一个优先）。</td>
-</tr>
-<tr>
-<td align="left"><code>namespace</code></td>
-<td align="left"><code>WebApplicationContext</code> 命名空间。默认值是 [server-name]-servlet。</td>
-</tr>
-</tbody></table>
-<h3 id="HandlerMapping-处理器映射器"><a href="#HandlerMapping-处理器映射器" class="headerlink" title="HandlerMapping 处理器映射器"></a>HandlerMapping 处理器映射器</h3><blockquote>
-<p>注意，下文所说的处理器即我们平时所见到的 Controller</p>
+<h3 id="金句精选"><a href="#金句精选" class="headerlink" title="金句精选"></a>金句精选</h3><ol>
+<li>父母在我们心里种下了精神和情感的种子，它们会随我们一同成长。（第 5 页）</li>
+<li>一纸离婚判决书并不能成为不称职的父母遗弃子女的许可证。（第 32 页）</li>
+<li>把正面的自我感受建立在别人的看法上，就等于把子君新交到他们手里任其摆布。（第 114 页）</li>
+<li>孩子应该拥有犯错误和改正错误的权利。（第 115 页）</li>
+</ol>
+<p>原生家庭对一个人的成长之重要，已无须阐述。而一些父母对子女的伤害，真可称为 <strong>有毒</strong>，为照顾到更多人的感受，下文将 <strong>有毒父母</strong> 叫作 <strong>问题父母</strong>。</p>
+<h3 id="有毒家庭的行为模式"><a href="#有毒家庭的行为模式" class="headerlink" title="有毒家庭的行为模式"></a>有毒家庭的行为模式</h3><p>什么样的父母是 <strong>问题父母</strong>？</p>
+<p>作者认为：父母的负面行为模式持续存在并始终支配着孩子的生活，就是问题父母。但这里的 <strong>持续性</strong> 和 <strong>反复性</strong> 也有例外，比如性虐待和身体虐待的伤害巨大，往往一次就给孩子造成重创。以下是七种典型问题父母的行为模式：</p>
+<h4 id="天下无不是的父母"><a href="#天下无不是的父母" class="headerlink" title="天下无不是的父母"></a>天下无不是的父母</h4><p>这类父母打着为子女好的名义，认为自己永远是正确的，认为自己永远是正确的。子女在其影响下，构筑了一个完美父母的形象，他们甚至认为父母的虐待是理所当然的。他们否认父母的行为给自己带来的伤害，并且，他们会自欺欺人地将不可接受的事合理化。</p>
+<blockquote>
+<p>一个叫桑迪的女孩，曾在青春期时未婚先育，此后其父母总是喋喋不休地数落她的 <strong>劣行</strong>，甚至将桑迪所有的不行都归咎于这件事。而桑迪一直对家人充满内疚，认为自己让父母颜面尽失，觉得所有的遭遇都是咎由自取，极力为父母的虐待开脱。</p>
 </blockquote>
-<p>HandlerMapping ，中文译作处理器映射器，在 SpringMVC 中，系统提供了很多 HandlerMapping：</p>
-<p><img src="http://springmvc.javaboy.org/assets/images/img/6-1.png" alt="6-1.png"></p>
-<p>HandlerMapping 是负责根据 request 请求找到对应的 Handler 处理器及 Interceptor 拦截器，将它们封装在 HandlerExecutionChain 对象中返回给前端控制器。</p>
+<h4 id="不称职的父母"><a href="#不称职的父母" class="headerlink" title="不称职的父母"></a>不称职的父母</h4><p>这类父母对子女造成的负面影响，不易察觉且难以界定。他们的伤害方式不是打骂，而是疏忽。他们的子女好像没有父母似的，不被关爱，被剥夺了童年。</p>
+<blockquote>
+<p>一个叫莱斯的人，妈妈患上了神经衰弱症，爸爸经常出差，不管妈妈，他从八岁起就要开始料理家务，担起生活的重担，不仅要抚养两个弟弟，还要看护妈妈，他从小就是 <strong>小大人</strong>，没有童年，活在忧虑中，成年后成了一个痛苦的工作狂。</p>
+</blockquote>
+<p>作者说，称职的父母必须履行五项基本职责：</p>
+<ol>
+<li>满足孩子的基本物质要求。</li>
+<li>保护孩子免受身体伤害。</li>
+<li>保护孩子免受感情伤害。</li>
+<li>满足孩子对爱、关怀和更深层次的情感需求。</li>
+<li>在伦理道德方面给予孩子正确的引导。</li>
+</ol>
+<h4 id="操控型的父母"><a href="#操控型的父母" class="headerlink" title="操控型的父母"></a>操控型的父母</h4><p>这类父母喜欢维持子女的无力感，希望子女离不开他们。他们的操控分两种（直接控制和巧妙控制）：</p>
 <ul>
-<li>BeanNameUrlHandlerMapping</li>
+<li><p>直接控制：即简单直接、毫无掩饰地控制，经常包括威胁、恐吓和羞辱。比如，他们说：“按我说的做，否则我不再理你”。</p>
+</li>
+<li><p>巧妙控制：常见的是 <strong>帮手型</strong> 父母。他们在大事小事上安排子女的生活，经常制造一些状况，让子女 <strong>需要</strong> 他们的帮助。</p>
+</li>
 </ul>
-<p>BeanNameUrl 处理器映射器，根据请求的 url 与 Spring 容器中定义的 bean 的 name 进行匹配，从而从 Spring 容器中找到 bean 实例，就是说，请求的 Url 地址就是处理器 Bean 的名字。</p>
-<p>这个 HandlerMapping 配置如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"</span> <span class="attr">id</span>=<span class="string">"handlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"beanName"</span> <span class="attr">value</span>=<span class="string">"/hello"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<p>而操控性父母导致的结果，是子女常出现两种情况：<strong>投降</strong> 和 <strong>叛逆</strong>。前者，是子女屈服于父母的操控。后者，子女则与父母对抗，造成 <strong>适得其反的叛逆</strong>。这种叛逆只是为了证明自己与父母分割开了，是为了反抗而反抗，却忽略了自己真正的需求。</p>
+<h4 id="酗酒型的父母"><a href="#酗酒型的父母" class="headerlink" title="酗酒型的父母"></a>酗酒型的父母</h4><p>作者说：酗酒就像客厅里的大恐龙，生活其中的人，无法驱逐，只能装作视而不见。对他们来说，酗酒就是家里的大秘密，这个大秘密具备三个要素：酗酒者否认自己酗酒，酗酒者的配偶否认问题存在，家庭成员做出 <strong>正常家庭</strong> 的伪装。</p>
+<p>受酗酒父母的影响，其子女至少有四分之一也会成为酗酒者。其原因：一方面是人都有重复熟悉情感模式的需求，无论这些情感痛苦与否；另一方面，人们重视过去的冲突，是希望这一次能让事情进展顺利。</p>
+<p>此外，酗酒父母的子女很难信任他人。因为对孩子来说，父母是信任的来源。父母酗酒造成的伤害，让孩子无法信任父母，更无法对外界有信心。</p>
+<h4 id="身体虐待型的父母"><a href="#身体虐待型的父母" class="headerlink" title="身体虐待型的父母"></a>身体虐待型的父母</h4><p>这类父母有几个共同特征：</p>
+<ol>
+<li>他们极度缺乏对冲动的控制力。</li>
+<li>他们对孩子造成的伤害，几乎毫无意识。</li>
+<li>体罚孩子已成为他们的惯性做法。</li>
+<li>这些父母往往生长于充满暴力的家庭，而暴力是他们学会的解决问题和发泄情绪的唯一手段。</li>
+</ol>
+<p>父母对子女的身体虐待主要分为三类：</p>
+<ol>
+<li>恶魔型，是最极端的一类，有些父母生下孩子似乎就是用来虐待的。他们表面与常人无异，但内心如恶魔般丧失了人性和情感。</li>
+<li>没长大，即父母也像没长大的孩子搬不成熟，跟子女较劲，用打架的方式与子女斗争。</li>
+<li>模式重复，即父母受到的教育是暴力的方式，以至于他们长大后，也以这种方式对待子女。</li>
+</ol>
+<p>对被虐待的子女来说，他们很难重获信任感和安全感。因为与父母的关系，使我们成年后和他人建立关系的基础。作者说，如果一个人的父母给予他尊重与情感上的慰藉，长大后，他也会希望别人这样待他。这种正面预期更坦诚且内心柔软。但如果一个人的童年充满焦虑、紧张和痛苦，那这些情绪将会演化为负面的预期和偏执的戒备心理。</p>
+<h4 id="言语虐待型的父母"><a href="#言语虐待型的父母" class="headerlink" title="言语虐待型的父母"></a>言语虐待型的父母</h4><p>和操控型的父母一样，这类父母也有两种行事风格（公开贬损和间接地羞辱）：</p>
 <ul>
-<li>SimpleUrlHandlerMapping</li>
+<li>公开地贬损：比如骂孩子愚蠢。</li>
+<li>间接地羞辱：攻击孩子，给孩子侮辱性的绰号。</li>
 </ul>
-<p>SimpleUrlHandlerMapping 是 BeanNameUrlHandlerMapping 的增强版本，它可以将 url 和处理器 bean 的 id 进行统一映射配置:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span> <span class="attr">id</span>=<span class="string">"handlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello"</span>&gt;</span>myController<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello2"</span>&gt;</span>myController2<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>注意，在 props 中，可以配置多个请求路径和处理器实例的映射关系。</p>
-<h3 id="HandlerAdapter-处理器适配器"><a href="#HandlerAdapter-处理器适配器" class="headerlink" title="HandlerAdapter 处理器适配器"></a>HandlerAdapter 处理器适配器</h3><p>HandlerAdapter，中文译作处理器适配器。</p>
-<p>HandlerAdapter 会根据适配器接口对后端控制器进行包装（适配），包装后即可对处理器进行执行，通过扩展处理器适配器可以执行多种类型的处理器，这里使用了适配器设计模式。</p>
-<p>在 SpringMVC 中，HandlerAdapter 也有诸多实现类：</p>
-<p><img src="http://springmvc.javaboy.org/assets/images/img/6-2.png" alt="6-2.png"></p>
+<p>父母对孩子进行言语虐待的常见原因有两种（争强好胜和不切实际地期待子女十全十美）：</p>
 <ul>
-<li>SimpleControllerHandlerAdapter</li>
+<li><p>争强好胜：父母为了保持自己的优越感而贬损子女。比如，为了保持自己的优越感而贬损子女。又比如，因为嫉妒女儿的美貌，母亲贬低女儿，让她感到自卑。或者父亲觉得男子气概受到了威胁，因此嘲弄儿子，让他认识到自己的渺小无能。</p>
+</li>
+<li><p>不切实际地期待子女十全十美：父母因此用激烈言辞敦促孩子。孩子一旦失败，他们继而向孩子发起责难。而父母的这种完美主义，可能使孩子陷入以下三种困扰：</p>
+<ol>
+<li>完美主义</li>
+<li>拖延症</li>
+<li>心里瘫痪</li>
+</ol>
+<p>总的来说，开始时，孩子受父母的影响有了追求完美的意识，接着他们无法达成完美，就会形成拖延。因为拖延，手头的事越积越多让他们手足无措，最终一事无成造成心里瘫痪。</p>
+</li>
 </ul>
-<p>SimpleControllerHandlerAdapter 简单控制器处理器适配器，所有实现了 org.springframework.web.servlet.mvc.Controller 接口的 Bean 通过此适配器进行适配、执行，也就是说，如果我们开发的接口是通过实现 Controller 接口来完成的（不是通过注解开发的接口），那么 HandlerAdapter 必须是 SimpleControllerHandlerAdapter。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="性虐待型的父母"><a href="#性虐待型的父母" class="headerlink" title="性虐待型的父母"></a>性虐待型的父母</h4><p>据相关研究及数据表明，实际比例并不低，每十个孩子中，至少有一个在十八岁之前遭到家庭成员的骚扰。</p>
+<p>而这类伤害会造成以下三种遗毒：</p>
+<ol>
+<li>肮脏</li>
+<li>伤害</li>
+<li>一类</li>
+</ol>
+<p>受害者的生活因这三种影响严重扭曲，他们觉得自己肮脏，认为自己是一类。他们受到的心里伤害就像心理癌症，令其痛苦的同时，也让其生活严重受损。</p>
+<h4 id="有毒的家庭体系"><a href="#有毒的家庭体系" class="headerlink" title="有毒的家庭体系"></a>有毒的家庭体系</h4><p>除了以上七种问题父母的行为模式，还有一种叫有毒的家庭体系。</p>
+<p>作者说：这一体系就像 <strong>高速公路上的连环追尾，恶劣影响会代代相传</strong>。它不是独个父母发明的，而是从先辈哪里继承的一整套感受、规则、交流和观念。它们是逐渐累积而成的。</p>
+<p>这种体系的家庭成员间的界限模糊。它要求每个人的思想、行为必须保持一致：认为不同即不好，不允许任何自主和独立。</p>
+<p>为了避免家庭中各种力量的均衡被打破，所有人都须遵循家庭规矩，当家庭现有的秩序被打破时，问题父母将通过否认问题的存在、推诿职责、强行阻扰等方式来应对失衡的危机。</p>
+<h3 id="拥抱你的内在小孩"><a href="#拥抱你的内在小孩" class="headerlink" title="拥抱你的内在小孩"></a>拥抱你的内在小孩</h3><p>问题父母的行为给子女造成的伤害，伴随着他们的生活挥之不去。下面将通过一些具体的方法，帮助重塑自我，活出自己的人生。</p>
+<h4 id="注意原谅的陷阱"><a href="#注意原谅的陷阱" class="headerlink" title="注意原谅的陷阱"></a>注意原谅的陷阱</h4><p>作者原本认为原谅伤害者，是治疗过程中的重要部分。但她发现，那些声称已原谅父母的子女，其生活往往并没有得到改善。他们仍为自己难过，仍存在心里问题。</p>
+<p>所以作者认为子女可以原谅伤害过自己的父母，但需在理清自己的情绪之后再做这件事，同时，只有在父母努力求得子女原谅时，原谅才有意义。而作为子女，只有释放内心的悲痛和愤怒，把责任归还责任人，他们的情绪和内心才能获得真正的平静。</p>
+<h4 id="摆脱和父母的纠缠"><a href="#摆脱和父母的纠缠" class="headerlink" title="摆脱和父母的纠缠"></a>摆脱和父母的纠缠</h4><p>父母与子女建立一定程度的情感联系是有益的，但过度的话，就变成了纠缠，其影响难以估量。</p>
+<p>紧密纠缠的亲子关系有两类：</p>
+<ol>
+<li>子女不断向父母屈服，把父母的需求和期待放在首位。</li>
+<li>子女对父母吼叫、威胁他们，或者和他们形同陌路，表面似与父母分离，其实他们仍旧和父母密不可分。</li>
+</ol>
+<p>这两类亲子关系看起来不同，实际上，父母仍旧紧紧地控制着子女的感受和行为。无论顺从和反抗，只要你对父母的情感很强烈，他们仍然可以在情感上折磨你、继续控制你。</p>
+<p>因此，子女要学会从观念、感受和行为等层面摆脱父母的纠缠，在情绪激动时，避免与父母接触和对质。这时，你的想法和判断回因情绪而出现偏差。</p>
+<h4 id="自我界定"><a href="#自我界定" class="headerlink" title="自我界定"></a>自我界定</h4><p>一个人不仅是家里的一份子，也是独立的个体，对被伤害的子女而言，他们需要进行自我界定。这意味着撇开父母或其他人的影响，一个人仍拥有自己的信念、情感和行为。面对父母的言行、观念，他拥有选择的权力和质疑他们的自由。</p>
+<p>如何自我界定，可以采用 <strong>少一些反应，多一些回应</strong> 的方法。</p>
+<p>反应是指受情绪的影响为自己辩护的行为。比如，一个妈妈骂女儿自私。女儿说：“不，我没有，我总是为你着想，不管多累都会带你逛街、购物 …… 你永远不满足。“</p>
+<p>而回应，则是通过使用非辩护性回应，温和而坚定地表明立场。比如，妈妈对女儿说：“我和你父亲不想住宾馆，你真是个自私又忘恩负义的人。”，女儿说：”您看问题的方式真有意思 …… 让你们伤心我很抱歉，但我需要考虑一下。“</p>
+<h4 id="不再自我惩罚"><a href="#不再自我惩罚" class="headerlink" title="不再自我惩罚"></a>不再自我惩罚</h4><p>学会不再自我惩罚，要卸下为童年的不行承担的责任，将责任归还责任人。</p>
+<p>你需要找一个安静的地方，和内心的孩子对话。你可以对着自己童年的照片，大声说：“你不需要为 …… 负责！”这句话的中间加上你受到的伤害，比如 ”他们的忽视“，”他们酗酒“，”他们的殴打“。接着，重复刚才的句子，但句式改为：”我的父母应该为 …… 负责！”</p>
+<p>重复以上的练习，让你的感受慢慢适应新的认知。而面对受到的伤害，不要压抑感受。和恐惧、喜悦一样，愤怒可通过以下几种方式：</p>
+<ol>
+<li><strong>允许自己愤怒，不要压抑感受</strong>。它和恐惧、喜悦一样，愤怒也是一种感受，是人性的一部分。</li>
+<li><strong>表达出愤怒</strong>。比如可以用力捶打枕头，对惹你生气的人的照片吼叫。你必须发泄愤怒，不然无法面对它。</li>
+<li><strong>增加运动量</strong>。将愤怒转化为运动，可以释放内心的紧张情绪。</li>
+<li>不要让愤怒加深心中消极的自我形象。愤怒的感觉既没有错，也没有让人变得卑劣。所以<strong>不要自我否定</strong>。</li>
+<li>把愤怒转化为自我定义的动力源泉。借助愤怒，认清在亲子关系中你愿意接受什么、不愿意接受什么。以此来帮你定义自己的边界和极限。如此，你将能在很大程度上，从顺从、妥协、害怕父母的关系模式中解放出来。</li>
+</ol>
+<p>作者说：只有感受和表达愤怒与悲伤，才能释放内心深处的那个孩子，消除他的内疚和自责。不然，你还会继续自我惩罚。此外，还要学会对自己负责，需要做到以下几点：</p>
+<ol>
+<li>成为独立于父母的个体。</li>
+<li>诚实地看待自己和父母的关系。</li>
+<li>面对童年的事实。</li>
+<li>承认童年的经历和成年后生活的关系。</li>
+<li>向父母表达真实的想法。</li>
+<li>面对并且消除父母对自己生活的控制。</li>
+<li>当自己的行为残忍、刻薄、伤害到他人时，改变自己的行为。</li>
+<li>找到合适的方式来治愈内心的童年创伤。</li>
+<li>重新获得作为成年人的权力和自信。</li>
+</ol>
+<h4 id="克服直面父母的恐惧"><a href="#克服直面父母的恐惧" class="headerlink" title="克服直面父母的恐惧"></a>克服直面父母的恐惧</h4><p>作者说：以上的方法和练习，都是在为你与父母对峙做准备。对峙意味着你在深思熟虑后勇敢地面对父母。</p>
+<p>与父母对峙的目的，不是报复、惩罚他们，不是让他们收敛，也不是发泄你的愤怒情绪，或从他们身上寻找些补偿；而是为了直面他们，克服面对他们的恐惧，告诉他们实情，并为你们伺候的关系作出定位。</p>
+<p>对峙的原因，主要有两个：</p>
+<ol>
+<li>直接产生效果</li>
+<li>没有归还的，便会转移。如果你对父母的恐惧、愤怒和愧疚没有解决，就会把这些转移到配偶和子女身上。</li>
+</ol>
+<p>在与父母对峙前，必须满足四个基本要求：</p>
+<ol>
+<li>你要能应对父母的反驳、否认、责难、愤怒，或者其他由对峙引发的消息情绪。</li>
+<li>你要有充分的支持体系来帮你度过这三个阶段：期待阶段、对峙本身和对峙后果的出现。支持体系可以是医生、朋友等。</li>
+<li>你要将想说的内容先写成信件或加以演练，并且练习使用非辩护性回应。</li>
+<li>你要改变观念，不再为儿时遭受的痛苦经历承担责任。</li>
+</ol>
+<p>如何对峙？有两种方法：</p>
+<ol>
+<li><p>写信，其内容涵盖四个要点：</p>
 <ul>
-<li>HttpRequestHandlerAdapter</li>
+<li>曾经你对我做的。</li>
+<li>我当时的感受。</li>
+<li>我的生活受到怎样的影响。</li>
+<li>我现在对你的要求。</li>
 </ul>
-<p>HttpRequestHandlerAdapter，http 请求处理器适配器，所有实现了 org.springframework.web.HttpRequestHandler 接口的 Bean 通过此适配器进行适配、执行。</p>
-<p>例如存在如下接口：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController2</span> <span class="keyword">implements</span> <span class="title">HttpRequestHandler</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"-----MyController2-----"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;bean <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span> id=<span class="string">"handlerMapping"</span>&gt;</span><br><span class="line">    &lt;property name=<span class="string">"mappings"</span>&gt;</span><br><span class="line">        &lt;props&gt;</span><br><span class="line">            &lt;prop key="/hello2"&gt;myController2&lt;/prop&gt;</span><br><span class="line">        &lt;/props&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">&lt;bean <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"</span> id=<span class="string">"handlerAdapter"</span>/&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-3-最佳实践"><a href="#6-3-最佳实践" class="headerlink" title="#6.3 最佳实践"></a><a href="http://docs.javaboy.org/springmvc/handler.html#_6-3-最佳实践" target="_blank" rel="noopener">#</a>6.3 最佳实践</h2><p>各种情况都大概了解了，我们看下项目中的具体实践。</p>
+</li>
+<li><p>面谈，需要预测父母的反应。</p>
 <ul>
-<li>组件自动扫描</li>
+<li>比如父母说：“根本没这种事。” 你可以回应：“你不记得并不代表事情没发生过。” </li>
+<li>再如父母说：“这都是你的错。” 你可以回应：“你可以将这些归罪于我，但我不会为你对我做的事承担责任。”</li>
 </ul>
-<p>web 开发中，我们基本上不再通过 XML 或者 Java 配置来创建一个 Bean 的实例，而是直接通过组件扫描来实现 Bean 的配置，如果要扫描多个包，多个包之间用 , 隔开即可：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"org.sang"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>HandlerMapping</li>
-</ul>
-<p>正常情况下，我们在项目中使用的是 RequestMappingHandlerMapping，这个是根据处理器中的注解，来匹配请求（即 @RequestMapping 注解中的 url 属性）。因为在上面我们都是通过实现类来开发接口的，相当于还是一个类一个接口，所以，我们可以通过 RequestMappingHandlerMapping 来做处理器映射器，这样我们可以在一个类中开发出多个接口。</p>
-<ul>
-<li>HandlerAdapter</li>
-</ul>
-<p>对于上面提到的通过 @RequestMapping 注解所定义出来的接口方法，这些方法的调用都是要通过 RequestMappingHandlerAdapter 这个适配器来实现。</p>
-<p>例如我们开发一个接口：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController3</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello3"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"hello3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>要能够访问到这个接口，我们需要 RequestMappingHandlerMapping 才能定位到需要执行的方法，需要 RequestMappingHandlerAdapter，才能执行定位到的方法，修改 springmvc 的配置文件如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"org.javaboy.helloworld"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"</span> <span class="attr">id</span>=<span class="string">"handlerMapping"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"</span> <span class="attr">id</span>=<span class="string">"handlerAdapter"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--视图解析器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span> <span class="attr">id</span>=<span class="string">"viewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/jsp/"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后，启动项目，访问 /hello3 接口，就可以看到相应的页面了。</p>
-<ul>
-<li>继续优化</li>
-</ul>
-<p>由于开发中，我们常用的是 RequestMappingHandlerMapping 和 RequestMappingHandlerAdapter ，这两个有一个简化的写法，如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以用这一行配置，代替 RequestMappingHandlerMapping 和 RequestMappingHandlerAdapter 的两行配置。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"org.javaboy.helloworld"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--视图解析器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span> <span class="attr">id</span>=<span class="string">"viewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/jsp/"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>访问效果和上一步的效果一样。这是我们实际开发中，最终配置的形态。</p>
+</li>
+</ol>
+<p>为了准备充分，你需要设想父母最糟糕的反应。</p>
+<p>作者说：不存在 ”失败的对峙“，因为你对自己和父母坦承了你生活的真相，只要有勇气迈出这一步，你就获得了成长，你将比过去更加坚定、更加勇敢。</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>爱不只是一种感受，更是一种行为方式。作为父母，需要学会如何正确地爱孩子。身为子女，当受伤而无力挣脱时，记得向外界求助。</p>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/java/java基础知识总结/" data-toggle="tooltip" data-placement="top" title="Java 基础知识总结">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/fastdfs/实战fastdfs-java客户端上传文件/" data-toggle="tooltip" data-placement="top" title="实战 FastDFS Java 客户端上传文件">Next Post &rarr;</a>
+            <a href="/spring-mvc/spring-mvc核心组件详解/" data-toggle="tooltip" data-placement="top" title="Spring MVC 核心组件详解">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -558,7 +601,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Spring MVC 的前端控制器 &amp; 处理器详解&body=Hi,I found this website and thought you might like it https://antoniopeng.com/spring-mvc/spring-mvc前端控制器&amp;处理器详解/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=《原生家庭》读书笔记&body=Hi,I found this website and thought you might like it https://antoniopeng.com/读书笔记/原生家庭/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -599,7 +642,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DispatcherServlet-作用"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">DispatcherServlet 作用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DispathcherServlet-配置详解"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">DispathcherServlet 配置详解</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#HandlerMapping-处理器映射器"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">HandlerMapping 处理器映射器</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#HandlerAdapter-处理器适配器"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">HandlerAdapter 处理器适配器</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#6-3-最佳实践"><span class="toc-nav-number"></span> <span class="toc-nav-text">6.3 最佳实践</span></a>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#本书收获"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">本书收获</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#金句精选"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">金句精选</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#有毒家庭的行为模式"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">有毒家庭的行为模式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#天下无不是的父母"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">天下无不是的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#不称职的父母"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">不称职的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#操控型的父母"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">操控型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#酗酒型的父母"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">酗酒型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#身体虐待型的父母"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">身体虐待型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#言语虐待型的父母"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">言语虐待型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#性虐待型的父母"><span class="toc-nav-number">3.7.</span> <span class="toc-nav-text">性虐待型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#有毒的家庭体系"><span class="toc-nav-number">3.8.</span> <span class="toc-nav-text">有毒的家庭体系</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#拥抱你的内在小孩"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">拥抱你的内在小孩</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#注意原谅的陷阱"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">注意原谅的陷阱</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#摆脱和父母的纠缠"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">摆脱和父母的纠缠</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自我界定"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">自我界定</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#不再自我惩罚"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">不再自我惩罚</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#克服直面父母的恐惧"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">克服直面父母的恐惧</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#结语"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">结语</span></a></li></ol>
         
         </div>
       </aside>
@@ -621,7 +664,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+            <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
             
           </div>
         </section>
