@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -448,6 +448,9 @@
 
 <p>多次查询，只执行一次 SQL。但是注意，如果开启了一个新的 SqlSession，则新的 SqlSession 无法就是之前的缓存，必须是同一个 SqlSession 中，缓存才有效。</p>
 <h4 id="MyBatis-二级缓存"><a href="#MyBatis-二级缓存" class="headerlink" title="MyBatis 二级缓存"></a>MyBatis 二级缓存</h4><p>Mybatis 二级缓存是多个 SqlSession 共享的，其作用域是 mapper 的同一个 namespace，不同的 sqlSession 两次执行相同 namespace 下的 sql 语句且向 sql 中传递参数也相同即最终执行相同的 sql 语句，第一次执行完毕会将数据库中查询的数据写到缓存（内存），第二次会从缓存中获取数据将不再从数据库查询，从而提高查询效率。Mybatis 默认没有开启二级缓存需要在 setting 全局参数中配置开启二级缓存。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>
@@ -460,7 +463,7 @@
           
           
           <li class="next">
-            <a href="/mybatis/mybatis引入mapper简化代码/" data-toggle="tooltip" data-placement="top" title="MyBatis 引入 Mapper 简化代码">Next Post &rarr;</a>
+            <a href="/mybatis/mybatis中使用mapper简化代码/" data-toggle="tooltip" data-placement="top" title="MyBatis 中使用 Mapper 简化代码">Next Post &rarr;</a>
           </li>
           
         </ul>
