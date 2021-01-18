@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -419,18 +419,17 @@
   
 
 
-  <a href="/mybatis/mybatis的映射文件详解/">
+  <a href="/mybatis/mybatis引入mapper简化代码/">
     <h2 class="post-title">
-      MyBatis 的映射文件详解
+      MyBatis 引入 Mapper 简化代码
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      mapper 映射文件，是 MyBatis 中最重要的部分，涉及到的细节也是非常非常多。
-parameterType这个表示输入的参数类型。
-$ 和 #这是一个非常非常高频的面试题，虽然很简单。在面试中，如果涉及到 MyBatis，一般情况下，都是这个问题。在 MyBatis 中，我们在 mapper 引用变量时，默认使用的是 #，像下面这样：
-123&lt;select id="getUs......
+      前面文章所写的增删改查是存在问题的。每执行一次 SQL，都要开启一次会话，并且需要提交并关闭，主要问题就是冗余代码过多，模板化代码过多。
+例如，我想开发一个 UserDao，可能是下面这样：
+简化前的 UserDao12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849......
     </div>
   </a>
   
@@ -457,17 +456,18 @@ $ 和 #这是一个非常非常高频的面试题，虽然很简单。在面试�
   
 
 
-  <a href="/mybatis/mybatis引入mapper简化代码/">
+  <a href="/mybatis/mybatis的映射文件详解/">
     <h2 class="post-title">
-      MyBatis 引入 Mapper 简化代码
+      MyBatis 的映射文件详解
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      前面文章所写的增删改查是存在问题的。每执行一次 SQL，都要开启一次会话，并且需要提交并关闭，主要问题就是冗余代码过多，模板化代码过多。
-例如，我想开发一个 UserDao，可能是下面这样：
-简化前的 UserDao12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849......
+      mapper 映射文件，是 MyBatis 中最重要的部分，涉及到的细节也是非常非常多。
+parameterType这个表示输入的参数类型。
+$ 和 #这是一个非常非常高频的面试题，虽然很简单。在面试中，如果涉及到 MyBatis，一般情况下，都是这个问题。在 MyBatis 中，我们在 mapper 引用变量时，默认使用的是 #，像下面这样：
+123&lt;select id="getUs......
     </div>
   </a>
   
@@ -494,15 +494,15 @@ $ 和 #这是一个非常非常高频的面试题，虽然很简单。在面试�
   
 
 
-  <a href="/mybatis/mybatis全局配置详解/">
+  <a href="/mybatis/mybatis全局配置/">
     <h2 class="post-title">
-      MyBatis 全局配置详解
+      MyBatis 全局配置
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      全局配置中的文件非常多，主要有如下几方面：
+      全局配置中的属性非常多，主要有如下几方面：
 
 properties（属性）
 settings（全局配置参数）
@@ -900,11 +900,15 @@ StandardServletMultipartResolver·
     
     
     
+    <a href="/tags/#Java" title="Java" rel="5">Java</a>
+    
+    
+    
     <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
     
     
     
-    <a href="/tags/#Java" title="Java" rel="5">Java</a>
+    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
     
     
     
@@ -916,10 +920,6 @@ StandardServletMultipartResolver·
     
     
     
-    <a href="/tags/#Ubuntu" title="Ubuntu" rel="1">Ubuntu</a>
-    
-    
-    
     <a href="/tags/#MyBatis" title="MyBatis" rel="5">MyBatis</a>
     
     
@@ -928,11 +928,11 @@ StandardServletMultipartResolver·
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
-    
-    
-    
     <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
+    
+    
+    
+    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
     
     
     
@@ -944,19 +944,11 @@ StandardServletMultipartResolver·
     
     
     
-    <a href="/tags/#Redis" title="Redis" rel="1">Redis</a>
-    
-    
-    
     <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
     
     
     
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="5">Spring MVC</a>
-    
-    
-    
-    <a href="/tags/#Hibernate Validator" title="Hibernate Validator" rel="1">Hibernate Validator</a>
+    <a href="/tags/#Redis" title="Redis" rel="1">Redis</a>
     
     
     
@@ -969,6 +961,14 @@ StandardServletMultipartResolver·
     
     
     <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="5">Spring MVC</a>
+    
+    
+    
+    <a href="/tags/#Hibernate Validator" title="Hibernate Validator" rel="1">Hibernate Validator</a>
     
     
     

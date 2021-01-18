@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://antoniopeng.com/mybatis/mybatis%E5%BC%95%E5%85%A5mapper%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/</loc>
-    <lastmod>2021-01-18</lastmod>
-  </url>
-  <url>
-    <loc>https://antoniopeng.com/spring-mvc/spring-mvc%E5%BC%95%E5%85%A5hibernate-validator%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C/</loc>
+    <loc>https://antoniopeng.com/mybatis/mybatis%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2021-01-18</lastmod>
   </url>
   <url>
@@ -13,7 +9,11 @@
     <lastmod>2021-01-18</lastmod>
   </url>
   <url>
-    <loc>https://antoniopeng.com/mybatis/mybatis%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</loc>
+    <loc>https://antoniopeng.com/mybatis/mybatis%E5%BC%95%E5%85%A5mapper%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/</loc>
+    <lastmod>2021-01-18</lastmod>
+  </url>
+  <url>
+    <loc>https://antoniopeng.com/spring-mvc/spring-mvc%E5%BC%95%E5%85%A5hibernate-validator%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C/</loc>
     <lastmod>2021-01-18</lastmod>
   </url>
   <url>
