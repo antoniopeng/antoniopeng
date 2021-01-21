@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://antoniopeng.com/spring-boot/spring-boot%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2021-01-21</lastmod>
+  </url>
+  <url>
     <loc>https://antoniopeng.com/spring-boot/spring-boot%E6%95%B4%E5%90%88freemarker%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/</loc>
     <lastmod>2021-01-21</lastmod>
   </url>
