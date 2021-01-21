@@ -457,6 +457,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"redis"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisCluster</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> List&lt;SingleRedisConfig&gt; redisConfigs;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//  省略getter/setter</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>不同于 properties 文件的无序，yaml 配置是有序的，这一点在有些配置中是非常有用的，例如在 Spring Cloud Zuul 的配置中，当我们配置代理规则时，顺序就显得尤为重要了。当然 yaml 配置也不是万能的，例如，yaml 配置目前不支持 <code>@PropertySource</code> 注解。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>
@@ -730,7 +733,7 @@
                 <p class="copyright text-muted">
     				<a href="http://beian.miit.gov.cn" target="_blank">粤ICP备19161098号-2</a>
     				<br>
-    				Copyright &copy; <a href="https://antoniopeng.com">彭超</a> 2019-2021
+    				Copyright &copy; <a href="https://antoniopeng.com">彭超</a> 2020-2021
     				<!--<br>
     				Powered by <a href="https://hexo.io/zh-cn/" target="_blank">Hexo</a> | Theme by <a href="http://beantech.org/" target="_blank">BeanTech</a>-->
                 </p>
