@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/读书分享/原生家庭/">
+  <link rel="canonical" href="https://antoniopeng.com/spring-mvc/spring-mvc中上传文件/">
   <title>
     
-    《原生家庭》读书分享 - 彭超的博客 | Antonio Blog
+    Spring MVC 中上传文件 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -290,7 +290,7 @@
   <style type="text/css">
     header.intro-header {
        /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/%E5%8E%9F%E7%94%9F%E5%AE%B6%E5%BA%AD01.jpg');
+        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
       
     }
 
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#读书分享" title="读书分享">读书分享</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
               
             </div>
-            <h1>《原生家庭》读书分享</h1>
+            <h1>Spring MVC 中上传文件</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2021-01-15
+              2021-01-16
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">14</span> Minutes
+              Estimated Reading Time <span class="post-count">8</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">4.3k</span> In Total
+              Words <span class="post-count">1.9k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,162 +394,81 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="本书收获"><a href="#本书收获" class="headerlink" title="本书收获"></a>本书收获</h3><ul>
-<li>了解问题父母的行为模式</li>
-<li>认知原生家庭对孩子的伤害</li>
-<li>学会摆脱原生家庭的负面影响</li>
+        <p>SpringMVC 中对文件上传做了封装，我们可以更加方便的实现文件上传。从 Spring3.1 开始，对于文件上传，提供了两个处理器：</p>
+<ul>
+<li><code>CommonsMultipartResolver</code></li>
+<li><code>StandardServletMultipartResolver·</code></li>
 </ul>
-<h3 id="金句精选"><a href="#金句精选" class="headerlink" title="金句精选"></a>金句精选</h3><ol>
-<li>父母在我们心里种下了精神和情感的种子，它们会随我们一同成长。（第 5 页）</li>
-<li>一纸离婚判决书并不能成为不称职的父母遗弃子女的许可证。（第 32 页）</li>
-<li>把正面的自我感受建立在别人的看法上，就等于把自尊心交到他们手里任其摆布。（第 114 页）</li>
-<li>孩子应该拥有犯错误和改正错误的权利。（第 115 页）</li>
+<p>第一个处理器兼容性较好，可以兼容 Servlet3.0 之前的版本，但是它依赖了 <code>commons-fileupload</code> 这个第三方工具，所以如果使用这个，一定要添加 <code>commons-fileupload</code> 依赖。</p>
+<p>第二个处理器兼容性较差，它适用于 Servlet3.0 之后的版本，它不依赖第三方工具，使用它，可以直接做文件上传。</p>
+<h3 id="CommonsMultipartResolver"><a href="#CommonsMultipartResolver" class="headerlink" title="CommonsMultipartResolver"></a>CommonsMultipartResolver</h3><p>使用 <code>CommonsMultipartResolver</code> 做文件上传，需要首先添加 <code>commons-fileupload</code> 依赖，如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，在 SpringMVC 的配置文件中，配置 <code>MultipartResolver</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span> <span class="attr">id</span>=<span class="string">"multipartResolver"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意，这个 Bean 一定要有 id，并且 id 必须是 multipartResolver</strong></p>
+<p>接下来，创建 jsp 页面：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/upload"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"上传"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意文件上传请求是 POST 请求，enctype 一定是 <code>multipart/form-data</code>，然后，开发文件上传接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileUploadController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"/yyyy/MM/dd/"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/upload"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(MultipartFile file, HttpServletRequest req)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        String format = sdf.format(<span class="keyword">new</span> Date());</span><br><span class="line">        String realPath = req.getServletContext().getRealPath(<span class="string">"/img"</span>) + format;</span><br><span class="line">        File folder = <span class="keyword">new</span> File(realPath);</span><br><span class="line">        <span class="keyword">if</span> (!folder.exists()) &#123;</span><br><span class="line">            folder.mkdirs();</span><br><span class="line">        &#125;</span><br><span class="line">        String oldName = file.getOriginalFilename();</span><br><span class="line">        String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf(<span class="string">"."</span>));</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            file.transferTo(<span class="keyword">new</span> File(folder, newName));</span><br><span class="line">            String url = req.getScheme() + <span class="string">"://"</span> + req.getServerName() + <span class="string">":"</span> + req.getServerPort() + <span class="string">"/img"</span> + format + newName;</span><br><span class="line">            <span class="keyword">return</span> url;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"failed"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个文件上传方法中，一共做了四件事：</p>
+<ol>
+<li>解决文件保存路径，这里是保存在项目运行目录下的 img 目录下，然后利用日期继续宁分类</li>
+<li>处理文件名问题，使用 UUID 做新的文件名，用来代替旧的文件名，可以有效防止文件名冲突</li>
+<li>保存文件</li>
+<li>生成文件访问路径</li>
 </ol>
-<p>原生家庭对一个人的成长之重要，已无须阐述。而一些父母对子女的伤害，真可称为 <strong>有毒</strong>，为照顾到更多人的感受，下文将 <strong>有毒父母</strong> 叫作 <strong>问题父母</strong>。</p>
-<h3 id="有毒家庭的行为模式"><a href="#有毒家庭的行为模式" class="headerlink" title="有毒家庭的行为模式"></a>有毒家庭的行为模式</h3><p>什么样的父母是 <strong>问题父母</strong>？</p>
-<p>作者认为：父母的负面行为模式持续存在并始终支配着孩子的生活，就是问题父母。但这里的 <strong>持续性</strong> 和 <strong>反复性</strong> 也有例外，比如性虐待和身体虐待的伤害巨大，往往一次就给孩子造成重创。以下是七种典型问题父母的行为模式：</p>
-<h4 id="天下无不是的父母"><a href="#天下无不是的父母" class="headerlink" title="天下无不是的父母"></a>天下无不是的父母</h4><p>这类父母打着为子女好的名义，认为自己永远是正确的，认为自己永远是正确的。子女在其影响下，构筑了一个完美父母的形象，他们甚至认为父母的虐待是理所当然的。他们否认父母的行为给自己带来的伤害，并且，他们会自欺欺人地将不可接受的事合理化。</p>
 <blockquote>
-<p>一个叫桑迪的女孩，曾在青春期时未婚先育，此后其父母总是喋喋不休地数落她的 <strong>劣行</strong>，甚至将桑迪所有的不行都归咎于这件事。而桑迪一直对家人充满内疚，认为自己让父母颜面尽失，觉得所有的遭遇都是咎由自取，极力为父母的虐待开脱。</p>
+<p>这里还有一个小问题，在 SpringMVC 中，静态资源默认都是被自动拦截的，无法访问，意味着上传成功的图片无法访问，因此，还需要我们在 SpringMVC 的配置文件中，再添加如下配置：</p>
 </blockquote>
-<h4 id="不称职的父母"><a href="#不称职的父母" class="headerlink" title="不称职的父母"></a>不称职的父母</h4><p>这类父母对子女造成的负面影响，不易察觉且难以界定。他们的伤害方式不是打骂，而是疏忽。他们的子女好像没有父母似的，不被关爱，被剥夺了童年。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/**"</span> <span class="attr">location</span>=<span class="string">"/"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>完成之后，就可以访问 jsp 页面，做文件上传了。当然，默认的配置不一定满足我们的需求，我们还可以自己手动配置文件上传大小等：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span> <span class="attr">id</span>=<span class="string">"multipartResolver"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--默认的编码--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--上传的总文件大小--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxUploadSize"</span> <span class="attr">value</span>=<span class="string">"1048576"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--上传的单个文件大小--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxUploadSizePerFile"</span> <span class="attr">value</span>=<span class="string">"1048576"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--内存中最大的数据量，超过这个数据量，数据就要开始往硬盘中写了--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxInMemorySize"</span> <span class="attr">value</span>=<span class="string">"4096"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--临时目录，超过 maxInMemorySize 配置的大小后，数据开始往临时目录写，等全部上传完成后，再将数据合并到正式的文件上传目录--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"uploadTempDir"</span> <span class="attr">value</span>=<span class="string">"file:///E:\\tmp"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="StandardServletMultipartResolver"><a href="#StandardServletMultipartResolver" class="headerlink" title="StandardServletMultipartResolver"></a>StandardServletMultipartResolver</h3><p>这种文件上传方式，不需要依赖第三方 jar（主要是不需要添加 commons-fileupload 这个依赖），但是也不支持 Servlet3.0 之前的版本。</p>
+<p>使用 <code>StandardServletMultipartResolver</code>，那我们首先在 SpringMVC 的配置文件中，配置这个 Bean：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.multipart.support.StandardServletMultipartResolver"</span> <span class="attr">id</span>=<span class="string">"multipartResolver"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意，这里 Bean 的名字依然叫 multipartResolver</strong></p>
+<p>配置完成后，注意，这个 Bean 无法直接配置上传文件大小等限制。需要在 web.xml 中进行配置（这里，即使不需要限制文件上传大小，也需要在 web.xml 中配置 multipart-config）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring-servlet.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">multipart-config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--文件保存的临时目录，这个目录系统不会主动创建--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">location</span>&gt;</span>E:\\temp<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--上传的单个文件大小--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">max-file-size</span>&gt;</span>1048576<span class="tag">&lt;/<span class="name">max-file-size</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--上传的总文件大小--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">max-request-size</span>&gt;</span>1048576<span class="tag">&lt;/<span class="name">max-request-size</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--这个就是内存中保存的文件最大大小--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file-size-threshold</span>&gt;</span>4096<span class="tag">&lt;/<span class="name">file-size-threshold</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">multipart-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>配置完成后，就可以测试文件上传了，测试方式和上面一样。</p>
+<h3 id="多文件上传"><a href="#多文件上传" class="headerlink" title="多文件上传"></a>多文件上传</h3><p>多文件上传分为两种，一种是 key 相同的文件，另一种是 key 不同的文件。</p>
+<h4 id="key-相同的文件"><a href="#key-相同的文件" class="headerlink" title="key 相同的文件"></a>key 相同的文件</h4><p>这种上传，前端页面一般如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/upload2"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"files"</span> <span class="attr">multiple</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"上传"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>主要是 input 节点中多了 multiple 属性。后端用一个数组来接收文件即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/upload2"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">upload2</span><span class="params">(MultipartFile[] files, HttpServletRequest req)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    String format = sdf.format(<span class="keyword">new</span> Date());</span><br><span class="line">    String realPath = req.getServletContext().getRealPath(<span class="string">"/img"</span>) + format;</span><br><span class="line">    File folder = <span class="keyword">new</span> File(realPath);</span><br><span class="line">    <span class="keyword">if</span> (!folder.exists()) &#123;</span><br><span class="line">        folder.mkdirs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (MultipartFile file : files) &#123;</span><br><span class="line">            String oldName = file.getOriginalFilename();</span><br><span class="line">            String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf(<span class="string">"."</span>));</span><br><span class="line">            file.transferTo(<span class="keyword">new</span> File(folder, newName));</span><br><span class="line">            String url = req.getScheme() + <span class="string">"://"</span> + req.getServerName() + <span class="string">":"</span> + req.getServerPort() + <span class="string">"/img"</span> + format + newName;</span><br><span class="line">            System.out.println(url);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="key-不同的文件"><a href="#key-不同的文件" class="headerlink" title="key 不同的文件"></a>key 不同的文件</h4><p>key 不同的，一般前端定义如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/upload3"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"上传"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这种，在后端用不同的变量来接收就行了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/upload3"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">upload3</span><span class="params">(MultipartFile file1, MultipartFile file2, HttpServletRequest req)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    String format = sdf.format(<span class="keyword">new</span> Date());</span><br><span class="line">    String realPath = req.getServletContext().getRealPath(<span class="string">"/img"</span>) + format;</span><br><span class="line">    File folder = <span class="keyword">new</span> File(realPath);</span><br><span class="line">    <span class="keyword">if</span> (!folder.exists()) &#123;</span><br><span class="line">        folder.mkdirs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String oldName = file1.getOriginalFilename();</span><br><span class="line">        String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf(<span class="string">"."</span>));</span><br><span class="line">        file1.transferTo(<span class="keyword">new</span> File(folder, newName));</span><br><span class="line">        String url1 = req.getScheme() + <span class="string">"://"</span> + req.getServerName() + <span class="string">":"</span> + req.getServerPort() + <span class="string">"/img"</span> + format + newName;</span><br><span class="line">        System.out.println(url1);</span><br><span class="line">        String oldName2 = file2.getOriginalFilename();</span><br><span class="line">        String newName2 = UUID.randomUUID().toString() + oldName2.substring(oldName2.lastIndexOf(<span class="string">"."</span>));</span><br><span class="line">        file2.transferTo(<span class="keyword">new</span> File(folder, newName2));</span><br><span class="line">        String url2 = req.getScheme() + <span class="string">"://"</span> + req.getServerName() + <span class="string">":"</span> + req.getServerPort() + <span class="string">"/img"</span> + format + newName2;</span><br><span class="line">        System.out.println(url2);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h3><p>项目中，可能会抛出多个异常，我们不可以直接将异常的堆栈信息展示给用户，有两个原因：</p>
+<ol>
+<li>用户体验不好</li>
+<li>非常不安全</li>
+</ol>
+<p>所以，针对异常，我们可以自定义异常处理，SpringMVC 中，针对全局异常也提供了相应的解决方案，主要是通过 <code>@ControllerAdvice</code> 和 <code>@ExceptionHandler</code> 两个注解来处理的。</p>
+<p>以文件上传大小超出限制为例，自定义异常，只需要提供一个异常处理类即可，通过指定 <code>@ExceptionHandler</code> 属性值 <code>MaxUploadSizeExceededException.class</code> 只会拦截文件上传异常，其他异常和它没关系：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span>  <span class="comment">//表示这是一个增强版的 Controller，主要用来做全局数据处理</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(MaxUploadSizeExceededException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">ModelAndView</span> <span class="title">fileuploadException</span>(<span class="title">Exception</span> <span class="title">e</span>) </span>&#123;</span><br><span class="line">        ModelAndView error = <span class="keyword">new</span> ModelAndView(<span class="string">"error"</span>);</span><br><span class="line">        error.addObject(<span class="string">"error"</span>, e.getMessage());</span><br><span class="line">        <span class="keyword">return</span> error;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里：</p>
+<ul>
+<li><code>@ControllerAdvice</code> 表示这是一个增强版的 Controller，主要用来做全局数据处理</li>
+<li><code>@ExceptionHandler</code> 表示这是一个异常处理方法，这个注解的参数，表示需要拦截的异常，参数为 Exception 表示拦截所有异常，这里也可以具体到某一个异常，如果具体到某一个异常，那么发生了其他异常则不会被拦截到。</li>
+<li>异常方法的定义，和 Controller 中方法的定义一样，可以返回 ModelAndview，也可以返回 String 或者 void</li>
+</ul>
 <blockquote>
-<p>一个叫莱斯的人，妈妈患上了神经衰弱症，爸爸经常出差，不管妈妈，他从八岁起就要开始料理家务，担起生活的重担，不仅要抚养两个弟弟，还要看护妈妈，他从小就是 <strong>小大人</strong>，没有童年，活在忧虑中，成年后成了一个痛苦的工作狂。</p>
+<p>本文发于：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
 </blockquote>
-<p>作者说，称职的父母必须履行五项基本职责：</p>
-<ol>
-<li>满足孩子的基本物质要求。</li>
-<li>保护孩子免受身体伤害。</li>
-<li>保护孩子免受感情伤害。</li>
-<li>满足孩子对爱、关怀和更深层次的情感需求。</li>
-<li>在伦理道德方面给予孩子正确的引导。</li>
-</ol>
-<h4 id="操控型的父母"><a href="#操控型的父母" class="headerlink" title="操控型的父母"></a>操控型的父母</h4><p>这类父母喜欢维持子女的无力感，希望子女离不开他们。他们的操控分两种（直接控制和巧妙控制）：</p>
-<ul>
-<li><p>直接控制：即简单直接、毫无掩饰地控制，经常包括威胁、恐吓和羞辱。比如，他们说：“按我说的做，否则我不再理你”。</p>
-</li>
-<li><p>巧妙控制：常见的是 <strong>帮手型</strong> 父母。他们在大事小事上安排子女的生活，经常制造一些状况，让子女 <strong>需要</strong> 他们的帮助。</p>
-</li>
-</ul>
-<p>而操控性父母导致的结果，是子女常出现两种情况：<strong>投降</strong> 和 <strong>叛逆</strong>。前者，是子女屈服于父母的操控。后者，子女则与父母对抗，造成 <strong>适得其反的叛逆</strong>。这种叛逆只是为了证明自己与父母分割开了，是为了反抗而反抗，却忽略了自己真正的需求。</p>
-<h4 id="酗酒型的父母"><a href="#酗酒型的父母" class="headerlink" title="酗酒型的父母"></a>酗酒型的父母</h4><p>作者说：酗酒就像客厅里的大恐龙，生活其中的人，无法驱逐，只能装作视而不见。对他们来说，酗酒就是家里的大秘密，这个大秘密具备三个要素：酗酒者否认自己酗酒，酗酒者的配偶否认问题存在，家庭成员做出 <strong>正常家庭</strong> 的伪装。</p>
-<p>受酗酒父母的影响，其子女至少有四分之一也会成为酗酒者。其原因：一方面是人都有重复熟悉情感模式的需求，无论这些情感痛苦与否；另一方面，人们重视过去的冲突，是希望这一次能让事情进展顺利。</p>
-<p>此外，酗酒父母的子女很难信任他人。因为对孩子来说，父母是信任的来源。父母酗酒造成的伤害，让孩子无法信任父母，更无法对外界有信心。</p>
-<h4 id="身体虐待型的父母"><a href="#身体虐待型的父母" class="headerlink" title="身体虐待型的父母"></a>身体虐待型的父母</h4><p>这类父母有几个共同特征：</p>
-<ol>
-<li>他们极度缺乏对冲动的控制力。</li>
-<li>他们对孩子造成的伤害，几乎毫无意识。</li>
-<li>体罚孩子已成为他们的惯性做法。</li>
-<li>这些父母往往生长于充满暴力的家庭，而暴力是他们学会的解决问题和发泄情绪的唯一手段。</li>
-</ol>
-<p>父母对子女的身体虐待主要分为三类：</p>
-<ol>
-<li>恶魔型，是最极端的一类，有些父母生下孩子似乎就是用来虐待的。他们表面与常人无异，但内心如恶魔般丧失了人性和情感。</li>
-<li>没长大，即父母也像没长大的孩子搬不成熟，跟子女较劲，用打架的方式与子女斗争。</li>
-<li>模式重复，即父母受到的教育是暴力的方式，以至于他们长大后，也以这种方式对待子女。</li>
-</ol>
-<p>对被虐待的子女来说，他们很难重获信任感和安全感。因为与父母的关系，使我们成年后和他人建立关系的基础。作者说，如果一个人的父母给予他尊重与情感上的慰藉，长大后，他也会希望别人这样待他。这种正面预期更坦诚且内心柔软。但如果一个人的童年充满焦虑、紧张和痛苦，那这些情绪将会演化为负面的预期和偏执的戒备心理。</p>
-<h4 id="言语虐待型的父母"><a href="#言语虐待型的父母" class="headerlink" title="言语虐待型的父母"></a>言语虐待型的父母</h4><p>和操控型的父母一样，这类父母也有两种行事风格（公开地贬损和间接地羞辱）：</p>
-<ul>
-<li>公开地贬损：比如骂孩子愚蠢。</li>
-<li>间接地羞辱：攻击孩子，给孩子侮辱性的绰号。</li>
-</ul>
-<p>父母对孩子进行言语虐待的常见原因有两种（争强好胜和不切实际地期待子女十全十美）：</p>
-<ul>
-<li><p>争强好胜：父母为了保持自己的优越感而贬损子女。比如，为了保持自己的优越感而贬损子女。又比如，因为嫉妒女儿的美貌，母亲贬低女儿，让她感到自卑。或者父亲觉得男子气概受到了威胁，因此嘲弄儿子，让他认识到自己的渺小无能。</p>
-</li>
-<li><p>不切实际地期待子女十全十美：父母因此用激烈言辞敦促孩子。孩子一旦失败，他们继而向孩子发起责难。而父母的这种完美主义，可能使孩子陷入以下三种困扰：</p>
-<ol>
-<li>完美主义</li>
-<li>拖延症</li>
-<li>心里瘫痪</li>
-</ol>
-<p>总的来说，开始时，孩子受父母的影响有了追求完美的意识，接着他们无法达成完美，就会形成拖延。因为拖延，手头的事越积越多让他们手足无措，最终一事无成造成心里瘫痪。</p>
-</li>
-</ul>
-<h4 id="性虐待型的父母"><a href="#性虐待型的父母" class="headerlink" title="性虐待型的父母"></a>性虐待型的父母</h4><p>据相关研究及数据表明，实际比例并不低，每十个孩子中，至少有一个在十八岁之前遭到家庭成员的骚扰。</p>
-<p>而这类伤害会造成以下三种遗毒：</p>
-<ol>
-<li>肮脏</li>
-<li>伤害</li>
-<li>一类</li>
-</ol>
-<p>受害者的生活因这三种影响严重扭曲，他们觉得自己肮脏，认为自己是一类。他们受到的心里伤害就像心理癌症，令其痛苦的同时，也让其生活严重受损。</p>
-<h4 id="有毒的家庭体系"><a href="#有毒的家庭体系" class="headerlink" title="有毒的家庭体系"></a>有毒的家庭体系</h4><p>除了以上七种问题父母的行为模式，还有一种叫有毒的家庭体系。</p>
-<p>作者说：这一体系就像 <strong>高速公路上的连环追尾，恶劣影响会代代相传</strong>。它不是独个父母发明的，而是从先辈哪里继承的一整套感受、规则、交流和观念。它们是逐渐累积而成的。</p>
-<p>这种体系的家庭成员间的界限模糊。它要求每个人的思想、行为必须保持一致：认为不同即不好，不允许任何自主和独立。</p>
-<p>为了避免家庭中各种力量的均衡被打破，所有人都须遵循家庭规矩，当家庭现有的秩序被打破时，问题父母将通过否认问题的存在、推诿职责、强行阻扰等方式来应对失衡的危机。</p>
-<h3 id="拥抱你的内在小孩"><a href="#拥抱你的内在小孩" class="headerlink" title="拥抱你的内在小孩"></a>拥抱你的内在小孩</h3><p>问题父母的行为给子女造成的伤害，伴随着他们的生活挥之不去。下面将通过一些具体的方法，帮助重塑自我，活出自己的人生。</p>
-<h4 id="注意原谅的陷阱"><a href="#注意原谅的陷阱" class="headerlink" title="注意原谅的陷阱"></a>注意原谅的陷阱</h4><p>作者原本认为原谅伤害者，是治疗过程中的重要部分。但她发现，那些声称已原谅父母的子女，其生活往往并没有得到改善。他们仍为自己难过，仍存在心理问题。</p>
-<p>所以作者认为子女可以原谅伤害过自己的父母，但需在理清自己的情绪之后再做这件事，同时，只有在父母努力求得子女原谅时，原谅才有意义。而作为子女，只有释放内心的悲痛和愤怒，把责任归还责任人，他们的情绪和内心才能获得真正的平静。</p>
-<h4 id="摆脱和父母的纠缠"><a href="#摆脱和父母的纠缠" class="headerlink" title="摆脱和父母的纠缠"></a>摆脱和父母的纠缠</h4><p>父母与子女建立一定程度的情感联系是有益的，但过度的话，就变成了纠缠，其影响难以估量。</p>
-<p>紧密纠缠的亲子关系有两类：</p>
-<ol>
-<li>子女不断向父母屈服，把父母的需求和期待放在首位。</li>
-<li>子女对父母吼叫、威胁他们，或者和他们形同陌路，表面似与父母分离，其实他们仍旧和父母密不可分。</li>
-</ol>
-<p>这两类亲子关系看起来不同，实际上，父母仍旧紧紧地控制着子女的感受和行为。无论顺从和反抗，只要你对父母的情感很强烈，他们仍然可以在情感上折磨你、继续控制你。</p>
-<p>因此，子女要学会从观念、感受和行为等层面摆脱父母的纠缠，在情绪激动时，避免与父母接触和对质。这时，你的想法和判断回因情绪而出现偏差。</p>
-<h4 id="自我界定"><a href="#自我界定" class="headerlink" title="自我界定"></a>自我界定</h4><p>一个人不仅是家里的一份子，也是独立的个体，对被伤害的子女而言，他们需要进行自我界定。这意味着撇开父母或其他人的影响，一个人仍拥有自己的信念、情感和行为。面对父母的言行、观念，他拥有选择的权力和质疑他们的自由。</p>
-<p>如何自我界定，可以采用 <strong>少一些反应，多一些回应</strong> 的方法。</p>
-<p>反应是指受情绪的影响为自己辩护的行为。比如，一个妈妈骂女儿自私。女儿说：“不，我没有，我总是为你着想，不管多累都会带你逛街、购物 …… 你永远不满足。“</p>
-<p>而回应，则是通过使用非辩护性回应，温和而坚定地表明立场。比如，妈妈对女儿说：“我和你父亲不想住宾馆，你真是个自私又忘恩负义的人。”，女儿说：”您看问题的方式真有意思 …… 让你们伤心我很抱歉，但我需要考虑一下。“</p>
-<h4 id="不再自我惩罚"><a href="#不再自我惩罚" class="headerlink" title="不再自我惩罚"></a>不再自我惩罚</h4><p>学会不再自我惩罚，要卸下为童年的不行承担的责任，将责任归还责任人。</p>
-<p>你需要找一个安静的地方，和内心的孩子对话。你可以对着自己童年的照片，大声说：“你不需要为 …… 负责！”这句话的中间加上你受到的伤害，比如 ”他们的忽视“，”他们酗酒“，”他们的殴打“。接着，重复刚才的句子，但句式改为：”我的父母应该为 …… 负责！”</p>
-<p>重复以上的练习，让你的感受慢慢适应新的认知。而面对受到的伤害，不要压抑感受。和恐惧、喜悦一样，愤怒可通过以下几种方式：</p>
-<ol>
-<li><strong>允许自己愤怒，不要压抑感受</strong>。它和恐惧、喜悦一样，愤怒也是一种感受，是人性的一部分。</li>
-<li><strong>表达出愤怒</strong>。比如可以用力捶打枕头，对惹你生气的人的照片吼叫。你必须发泄愤怒，不然无法面对它。</li>
-<li><strong>增加运动量</strong>。将愤怒转化为运动，可以释放内心的紧张情绪。</li>
-<li>不要让愤怒加深心中消极的自我形象。愤怒的感觉既没有错，也没有让人变得卑劣。所以<strong>不要自我否定</strong>。</li>
-<li>把愤怒转化为自我定义的动力源泉。借助愤怒，认清在亲子关系中你愿意接受什么、不愿意接受什么。以此来帮你定义自己的边界和极限。如此，你将能在很大程度上，从顺从、妥协、害怕父母的关系模式中解放出来。</li>
-</ol>
-<p>作者说：只有感受和表达愤怒与悲伤，才能释放内心深处的那个孩子，消除他的内疚和自责。不然，你还会继续自我惩罚。此外，还要学会对自己负责，需要做到以下几点：</p>
-<ol>
-<li>成为独立于父母的个体。</li>
-<li>诚实地看待自己和父母的关系。</li>
-<li>面对童年的事实。</li>
-<li>承认童年的经历和成年后生活的关系。</li>
-<li>向父母表达真实的想法。</li>
-<li>面对并且消除父母对自己生活的控制。</li>
-<li>当自己的行为残忍、刻薄、伤害到他人时，改变自己的行为。</li>
-<li>找到合适的方式来治愈内心的童年创伤。</li>
-<li>重新获得作为成年人的权力和自信。</li>
-</ol>
-<h4 id="克服直面父母的恐惧"><a href="#克服直面父母的恐惧" class="headerlink" title="克服直面父母的恐惧"></a>克服直面父母的恐惧</h4><p>作者说：以上的方法和练习，都是在为你与父母对峙做准备。对峙意味着你在深思熟虑后勇敢地面对父母。</p>
-<p>与父母对峙的目的，不是报复、惩罚他们，不是让他们收敛，也不是发泄你的愤怒情绪，或从他们身上寻找些补偿；而是为了直面他们，克服面对他们的恐惧，告诉他们实情，并为你们伺候的关系作出定位。</p>
-<p>对峙的原因，主要有两个：</p>
-<ol>
-<li>直接产生效果</li>
-<li>没有归还的，便会转移。如果你对父母的恐惧、愤怒和愧疚没有解决，就会把这些转移到配偶和子女身上。</li>
-</ol>
-<p>在与父母对峙前，必须满足四个基本要求：</p>
-<ol>
-<li>你要能应对父母的反驳、否认、责难、愤怒，或者其他由对峙引发的消息情绪。</li>
-<li>你要有充分的支持体系来帮你度过这三个阶段：期待阶段、对峙本身和对峙后果的出现。支持体系可以是医生、朋友等。</li>
-<li>你要将想说的内容先写成信件或加以演练，并且练习使用非辩护性回应。</li>
-<li>你要改变观念，不再为儿时遭受的痛苦经历承担责任。</li>
-</ol>
-<p>如何对峙？有两种方法：</p>
-<ol>
-<li><p>写信，其内容涵盖四个要点：</p>
-<ul>
-<li>曾经你对我做的。</li>
-<li>我当时的感受。</li>
-<li>我的生活受到怎样的影响。</li>
-<li>我现在对你的要求。</li>
-</ul>
-</li>
-<li><p>面谈，谈话前需要预测父母的反应：</p>
-<ul>
-<li>比如父母说：“根本没这种事。” 你可以回应：“你不记得并不代表事情没发生过。” </li>
-<li>再如父母说：“这都是你的错。” 你可以回应：“你可以将这些归罪于我，但我不会为你对我做的事承担责任。”</li>
-</ul>
-</li>
-</ol>
-<p>为了准备充分，你需要设想父母最糟糕的反应。</p>
-<p>作者说：不存在 ”失败的对峙“，因为你对自己和父母坦承了你生活的真相，只要有勇气迈出这一步，你就获得了成长，你将比过去更加坚定、更加勇敢。</p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>爱不只是一种感受，更是一种行为方式。作为父母，需要学会如何正确地爱孩子。身为子女，当受伤而无力挣脱时，记得向外界求助。</p>
 
 
         <hr>
@@ -557,12 +476,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/spring-mvc/controller-advice注解的三种使用场景/" data-toggle="tooltip" data-placement="top" title="ControllerAdvice 注解的三种使用场景">&larr; Previous Post</a>
+            <a href="/spring-mvc/spring-mvc的controller使用详解/" data-toggle="tooltip" data-placement="top" title="Spring MVC 的 Controller 使用详解">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/spring-mvc/spring-mvc核心组件详解/" data-toggle="tooltip" data-placement="top" title="Spring MVC 核心组件详解">Next Post &rarr;</a>
+            <a href="/读书分享/终身成长/" data-toggle="tooltip" data-placement="top" title="《终身成长》读书分享">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -605,7 +524,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=《原生家庭》读书分享&body=Hi,I found this website and thought you might like it https://antoniopeng.com/读书分享/原生家庭/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Spring MVC 中上传文件&body=Hi,I found this website and thought you might like it https://antoniopeng.com/spring-mvc/spring-mvc中上传文件/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -646,7 +565,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#本书收获"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">本书收获</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#金句精选"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">金句精选</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#有毒家庭的行为模式"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">有毒家庭的行为模式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#天下无不是的父母"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">天下无不是的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#不称职的父母"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">不称职的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#操控型的父母"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">操控型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#酗酒型的父母"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">酗酒型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#身体虐待型的父母"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">身体虐待型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#言语虐待型的父母"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">言语虐待型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#性虐待型的父母"><span class="toc-nav-number">3.7.</span> <span class="toc-nav-text">性虐待型的父母</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#有毒的家庭体系"><span class="toc-nav-number">3.8.</span> <span class="toc-nav-text">有毒的家庭体系</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#拥抱你的内在小孩"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">拥抱你的内在小孩</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#注意原谅的陷阱"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">注意原谅的陷阱</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#摆脱和父母的纠缠"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">摆脱和父母的纠缠</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自我界定"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">自我界定</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#不再自我惩罚"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">不再自我惩罚</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#克服直面父母的恐惧"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">克服直面父母的恐惧</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#结语"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">结语</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#CommonsMultipartResolver"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">CommonsMultipartResolver</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#StandardServletMultipartResolver"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">StandardServletMultipartResolver</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#多文件上传"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">多文件上传</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#key-相同的文件"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">key 相同的文件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#key-不同的文件"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">key 不同的文件</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#全局异常处理"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">全局异常处理</span></a></li></ol>
         
         </div>
       </aside>
@@ -668,7 +587,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#读书分享" title="读书分享">读书分享</a>
+            <a class="tag" href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
             
           </div>
         </section>
