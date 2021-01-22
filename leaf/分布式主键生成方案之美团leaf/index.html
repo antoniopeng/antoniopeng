@@ -224,14 +224,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/tags/">Tags</a>
           </li>
           
           
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1k</span> In Total
+              Words <span class="post-count">1.1k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -440,13 +440,20 @@
 <li>如果有注册过直接取回自己的 <code>workerID</code>，启动服务。</li>
 <li>如果没有注册过，就在该父节点下面创建一个持久顺序节点，创建成功后取回顺序号当做自己的 <code>workerID</code> 号。</li>
 </ol>
-<h3 id="使用-Leaf-生成-ID"><a href="#使用-Leaf-生成-ID" class="headerlink" title="使用 Leaf 生成 ID"></a>使用 Leaf 生成 ID</h3><h4 id="克隆项目"><a href="#克隆项目" class="headerlink" title="克隆项目"></a>克隆项目</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/antoniopeng/leaf.git</span><br><span class="line">$ <span class="built_in">cd</span> leaf</span><br><span class="line">$ mvn clean install -DskipTests</span><br></pre></td></tr></table></figure>
+<h3 id="使用-Leaf-生成-ID"><a href="#使用-Leaf-生成-ID" class="headerlink" title="使用 Leaf 生成 ID"></a>使用 Leaf 生成 ID</h3><blockquote>
+<p>服务器地址：192.168.1.100</p>
+</blockquote>
+<p><strong>克隆项目</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/antoniopeng/leaf.git</span><br><span class="line">$ <span class="built_in">cd</span> leaf</span><br><span class="line">$ mvn clean install -DskipTests</span><br></pre></td></tr></table></figure>
 
-<h4 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> leaf-docker</span><br><span class="line">$ chmod +x build.sh</span><br><span class="line">$ ./build.sh</span><br></pre></td></tr></table></figure>
+<p><strong>构建项目</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> leaf-docker</span><br><span class="line">$ chmod +x build.sh</span><br><span class="line">$ ./build.sh</span><br></pre></td></tr></table></figure>
 
-<h4 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p><strong>启动容器</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
 
-<h4 id="测试生成"><a href="#测试生成" class="headerlink" title="测试生成"></a>测试生成</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://&#123;ip&#125;:8080/api/snowflake/get/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p><strong>生成 ID</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://192.168.1.100:8080/api/snowflake/get/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 
         <hr>
         <!-- Pager -->
@@ -542,7 +549,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分布式主键"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">分布式主键</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#生成方案"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">生成方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据库生成"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">数据库生成</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UUID"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">UUID</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Snowflake"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">Snowflake</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Leaf"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">Leaf</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用-Leaf-生成-ID"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">使用 Leaf 生成 ID</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#克隆项目"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">克隆项目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#构建环境"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">构建环境</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#启动容器"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">启动容器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#测试生成"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">测试生成</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分布式主键"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">分布式主键</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#生成方案"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">生成方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据库生成"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">数据库生成</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UUID"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">UUID</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Snowflake"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">Snowflake</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Leaf"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">Leaf</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用-Leaf-生成-ID"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">使用 Leaf 生成 ID</span></a></li></ol>
         
         </div>
       </aside>
