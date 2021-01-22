@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/spring-boot/spring-boot整合quartz实现定时任务/">
+  <link rel="canonical" href="https://antoniopeng.com/spring-boot/spring-boot整合mybatis持久层框架/">
   <title>
     
-    Spring Boot 整合 Quartz 实现定时任务 - 彭超的博客 | Antonio Blog
+    Spring Boot 整合 Mybatis 持久层框架 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -290,7 +290,7 @@
   <style type="text/css">
     header.intro-header {
        /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
+        background-image: url('');
       
     }
 
@@ -318,7 +318,7 @@
               <a class="tag" href="https://antoniopeng.com/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
               
             </div>
-            <h1>Spring Boot 整合 Quartz 实现定时任务</h1>
+            <h1>Spring Boot 整合 Mybatis 持久层框架</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">6</span> Minutes
+              Estimated Reading Time <span class="post-count">7</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.6k</span> In Total
+              Words <span class="post-count">1.5k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,182 +394,53 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <p>一般在项目中，除非定时任务涉及到的业务实在是太简单就使用 <code>@Scheduled</code> 注解来解决定时任务，否则大部分情况可能都是使用 <code>Quartz</code> 来做定时任务。</p>
-<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><p>在 <code>pom.xml</code> 中引入 <code>quartz</code> 依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <p>最简单的数据持久化方案是 JdbcTemplate，JdbcTemplate 虽然简单，但是用的并不多，因为它没有 MyBatis 方便，在 Spring + SpringMVC 中整合 MyBatis 步骤还是有点复杂的，要配置多个 Bean，Spring Boot 中对此做了进一步的简化，使 MyBatis 基本上可以做到开箱即用，本文就来看看在 Spring Boot 中 MyBatis 要如何使用。</p>
+<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><p>在 <code>pom.xml</code> 中添加持久层相关依赖，如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.28<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h3><p>在入口类中添加开启定时任务的注解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuartzApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(QuartzApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h3><p>在 <code>application.properties</code> 中配置数据库的基本信息：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.datasource.url</span>=<span class="string">jdbc:mysql:///test?useUnicode=true&amp;characterEncoding=utf-8</span></span><br><span class="line"><span class="meta">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="meta">spring.datasource.password</span>=<span class="string">123456</span></span><br><span class="line"><span class="meta">spring.datasource.type</span>=<span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>Quartz 在使用过程中，有两个关键概念，一个是 <code>JobDetail</code>（要做的事情），另一个是触发器（什么时候做），要定义 <code>JobDetail</code>，需要先定义 <code>Job</code>，<code>Job</code> 的定义有两种方式。</p>
-<h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>直接定义一个Bean：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJob1</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"MyJob1&gt;&gt;&gt;"</span> + <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在 Mapper 接口上面添加 <code>@Mapper</code> 注解，这种方式有一个弊端就是所有的 Mapper 都要手动添加，要是落下一个就会报错，还有一个一劳永逸的办法就是直接在启动类上通过添加 <code>@MapperScan</code> 注解扫描，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan</span>(basePackages = <span class="string">"com.antonio.hello.mybatis.mapper"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisApplication</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(MybatisApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>关于这种定义方式说两点：</p>
-<ul>
-<li>首先将这个 Job 注册到 Spring 容器中。</li>
-<li>这种定义方式有一个缺陷，就是无法传参。</li>
-</ul>
-<h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p>则是继承 <code>QuartzJobBean</code> 并实现默认的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJob2</span> <span class="keyword">extends</span> <span class="title">QuartzJobBean</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    HelloService helloService;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> HelloService <span class="title">getHelloService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> helloService;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHelloService</span><span class="params">(HelloService helloService)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.helloService = helloService;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">executeInternal</span><span class="params">(JobExecutionContext jobExecutionContext)</span> <span class="keyword">throws</span> JobExecutionException </span>&#123;</span><br><span class="line">        helloService.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好了，做完这些工作就可以去测试 Mapper 的使用了。</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p>配置完成后，MyBatis 就可以创建 Mapper 来使用了，例如我这里直接创建一个 UserMapper，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"select * from user"</span>)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">getAllUsers</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Results</span>(&#123;</span><br><span class="line">            <span class="meta">@Result</span>(property = <span class="string">"id"</span>, column = <span class="string">"id"</span>),</span><br><span class="line">            <span class="meta">@Result</span>(property = <span class="string">"username"</span>, column = <span class="string">"u"</span>),</span><br><span class="line">            <span class="meta">@Result</span>(property = <span class="string">"address"</span>, column = <span class="string">"a"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"select username as u,address as a,id as id from user where id=#&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function">User <span class="title">getUserById</span><span class="params">(Long id)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"select * from user where username like concat('%',#&#123;name&#125;,'%')"</span>)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">getUsersByName</span><span class="params">(String name)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Insert</span>(&#123;<span class="string">"insert into user(username,address) values(#&#123;username&#125;,#&#123;address&#125;)"</span>&#125;)</span><br><span class="line">    <span class="meta">@SelectKey</span>(statement = <span class="string">"select last_insert_id()"</span>, keyProperty = <span class="string">"id"</span>, before = <span class="keyword">false</span>, resultType = Integer<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">Integer</span> <span class="title">addUser</span>(<span class="title">User</span> <span class="title">user</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Update</span>(<span class="string">"update user set username=#&#123;username&#125;,address=#&#123;address&#125; where id=#&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function">Integer <span class="title">updateUserById</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Delete</span>(<span class="string">"delete from user where id=#&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function">Integer <span class="title">deleteUserById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello service &gt;&gt;&gt;"</span> + <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里是通过全注解的方式来写 SQL，不写 XML 文件。</p>
+<p><code>@Select</code>、<code>@Insert</code>、<code>@Update</code> 以及 <code>@Delete</code> 四个注解分别对应 XML 中的 select、insert、update 以及 delete 标签，<code>@Results</code> 注解类似于 XML 中的 <code>ResultMap</code> 映射文件（getUserById 方法给查询结果的字段取别名主要是向小伙伴们演示下 <code>@Results</code> 注解的用法）。</p>
+<p>另外使用 <code>@SelectKey</code> 注解可以实现主键回填的功能，即当数据插入成功后，插入成功的数据 id 会赋值到 user 对象的id 属性上。</p>
+<h3 id="mapper-映射"><a href="#mapper-映射" class="headerlink" title="mapper 映射"></a>mapper 映射</h3><p>当然，开发者也可以在 XML 中写 SQL，例如创建一个 UserMapper2，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper2</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">getAllUser</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Integer <span class="title">addUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Integer <span class="title">updateUserById</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Integer <span class="title">deleteUserById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>和第1种方式相比，这种方式支持传参，任务启动时，<code>executeInternal</code> 方法将会被执行。</p>
-<p><code>Job</code> 有了之后，接下来创建类，配置 <code>JobDetail</code> 和 <code>Trigger</code> 触发器，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuartzConfig</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">MethodInvokingJobDetailFactoryBean <span class="title">methodInvokingJobDetailFactoryBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        MethodInvokingJobDetailFactoryBean bean = <span class="keyword">new</span> MethodInvokingJobDetailFactoryBean();</span><br><span class="line">        bean.setTargetBeanName(<span class="string">"myJob1"</span>);</span><br><span class="line">        bean.setTargetMethod(<span class="string">"sayHello"</span>);</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">JobDetailFactoryBean <span class="title">jobDetailFactoryBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        JobDetailFactoryBean bean = <span class="keyword">new</span> JobDetailFactoryBean();</span><br><span class="line">        bean.setJobClass(MyJob2<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        JobDataMap map = <span class="keyword">new</span> JobDataMap();</span><br><span class="line">        map.put(<span class="string">"helloService"</span>, helloService());</span><br><span class="line">        bean.setJobDataMap(map);</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">SimpleTriggerFactoryBean <span class="title">simpleTriggerFactoryBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SimpleTriggerFactoryBean bean = <span class="keyword">new</span> SimpleTriggerFactoryBean();</span><br><span class="line">        bean.setStartTime(<span class="keyword">new</span> Date());</span><br><span class="line">        bean.setRepeatCount(<span class="number">5</span>);</span><br><span class="line">        bean.setJobDetail(methodInvokingJobDetailFactoryBean().getObject());</span><br><span class="line">        bean.setRepeatInterval(<span class="number">3000</span>);</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">CronTriggerFactoryBean <span class="title">cronTrigger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        CronTriggerFactoryBean bean = <span class="keyword">new</span> CronTriggerFactoryBean();</span><br><span class="line">        bean.setCronExpression(<span class="string">"0/10 * * * * ?"</span>);</span><br><span class="line">        bean.setJobDetail(jobDetailFactoryBean().getObject());</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">SchedulerFactoryBean <span class="title">schedulerFactoryBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SchedulerFactoryBean bean = <span class="keyword">new</span> SchedulerFactoryBean();</span><br><span class="line">        bean.setTriggers(cronTrigger().getObject(), simpleTriggerFactoryBean().getObject());</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">HelloService <span class="title">helloService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HelloService();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后创建 <code>UserMapper.xml</code> 文件，如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">"http://mybatis.org/dtd/mybatis-21-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.antonio.hello.mybatis.mapper.UserMapper2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getAllUser"</span> <span class="attr">resultType</span>=<span class="string">"com.antonio.hello.mybatis.model.User"</span>&gt;</span></span><br><span class="line">        select * from t_user;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addUser"</span> <span class="attr">parameterType</span>=<span class="string">"com.antonio.hello.mybatis.model.User"</span>&gt;</span></span><br><span class="line">        insert into user (username,address) values (#&#123;username&#125;,#&#123;address&#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUserById"</span> <span class="attr">parameterType</span>=<span class="string">"com.antonio.hello.mybatis.model.User"</span>&gt;</span></span><br><span class="line">        update user set username=#&#123;username&#125;,address=#&#123;address&#125; where id=#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteUserById"</span>&gt;</span></span><br><span class="line">        delete from user where id=#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>关于这个配置说如下几点：</p>
-<ol>
-<li><code>JobDetail</code> 的配置有两种方式：<code>MethodInvokingJobDetailFactoryBean</code> 和 <code>JobDetailFactoryBean</code>。</li>
-<li>使用 <code>MethodInvokingJobDetailFactoryBean</code> 可以配置目标 Bean 的名字和目标方法的名字，这种方式不支持传参。</li>
-<li>使用 <code>JobDetailFactoryBean</code> 可以配置 <code>JobDetail</code>，任务类继承自 <code>QuartzJobBean</code>，这种方式支持传参，将参数封装在 <code>JobDataMap</code> 中进行传递。</li>
-<li><code>Trigger</code> 是指触发器，<code>Quartz</code> 中定义了多个触发器，这里向大家展示其中两种的用法，<code>SimpleTrigger</code> 和 <code>CronTrigger</code>。</li>
-<li><code>SimpleTrigger</code> 有点类似于前面说的 <code>@Scheduled</code> 的基本用法。</li>
-<li><code>CronTrigger</code> 则有点类似于 <code>@Scheduled</code> 中 <code>cron</code> 表达式的用法。</li>
-</ol>
-<p>全部定义完成后，启动 Spring Boot 项目就可以看到定时任务的执行了。</p>
-<h3 id="附：cron-表达式"><a href="#附：cron-表达式" class="headerlink" title="附：cron 表达式"></a>附：cron 表达式</h3><p>cron 是 Linux 系统用来设置计划任务的，比如：每天晚上 12 点重启服务器。</p>
-<p>一个 cron 表达式具体表现就是一个字符串，这个字符串中包含 6~7 个字段，字段之间是由空格分割的，每个字段可以由任何允许的值以及允许的特殊字符所构成，下面表格列出了每个字段所允许的值和特殊字符</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>允许值</th>
-<th>允许的特殊字符</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>秒</td>
-<td>0-59</td>
-<td><code>, - * /</code></td>
-</tr>
-<tr>
-<td>分</td>
-<td>0-59</td>
-<td><code>, - * /</code></td>
-</tr>
-<tr>
-<td>小时</td>
-<td>0-23</td>
-<td><code>, - * /</code></td>
-</tr>
-<tr>
-<td>日期</td>
-<td>1-31</td>
-<td><code>, - * / L W C</code></td>
-</tr>
-<tr>
-<td>月份</td>
-<td>1-12 或者 JAN-DEC</td>
-<td><code>, - * /</code></td>
-</tr>
-<tr>
-<td>星期</td>
-<td>1-7 或者 SUN-SAT</td>
-<td><code>, - * / L C #</code></td>
-</tr>
-<tr>
-<td>年（可选）</td>
-<td>留空, 1970-2099</td>
-<td><code>, - * /</code></td>
-</tr>
-</tbody></table>
-<ul>
-<li><code>*</code> 字符被用来指定所有的值。如：<code>*</code> 在分钟的字段域里表示“每分钟”。</li>
-<li><code>-</code> 字符被用来指定一个范围。如：<code>10-12</code> 在小时域意味着“10点、11点、12点”</li>
-<li><code>,</code> 字符被用来指定另外的值。如：<code>MON,WED,FRI</code> 在星期域里表示“星期一、星期三、星期五”.</li>
-<li><code>?</code> 字符只在日期域和星期域中使用。它被用来指定“非明确的值”。当你需要通过在这两个域中的一个来指定一些东西的时候，它是有用的。</li>
-<li><code>L</code> 字符指定在月或者星期中的某天（最后一天）。即 “Last” 的缩写。但是在星期和月中 “Ｌ” 表示不同的意思，如：在月字段中 “L” 指月份的最后一天 “1月31日，2月28日”，如果在星期字段中则简单的表示为“7”或者“SAT”。如果在星期字段中在某个 value 值得后面，则表示 “某月的最后一个星期 value” ,如 “6L” 表示某月的最后一个星期五。</li>
-<li><code>W</code> 字符只能用在月份字段中，该字段指定了离指定日期最近的那个星期日。</li>
-<li><code>#</code> 字符只能用在星期字段，该字段指定了第几个星期 value 在某月中</li>
-</ul>
-<p>每一个元素都可以显式地规定一个值（如 6），一个区间（如 9-12 ），一个列表（如 9，11，13 ）或一个通配符（如 *）。“月份中的日期”和“星期中的日期”这两个元素是互斥的，因此应该通过设置一个问号（?）来表明你不想设置的那个字段。</p>
-<table>
-<thead>
-<tr>
-<th>表达式</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>0 0 12 * * ?</code></td>
-<td>每天中午 12 点触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 ? * *</code></td>
-<td>每天上午 10:15 触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 * * ?</code></td>
-<td>每天上午 10:15 触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 * * ? *</code></td>
-<td>每天上午 10:15 触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 * * ? 2005</code></td>
-<td>2005 年的每天上午 10:15 触发</td>
-</tr>
-<tr>
-<td><code>0 * 14 * * ?</code></td>
-<td>在每天下午 2 点到下午 2:59 期间的每 1 分钟触发</td>
-</tr>
-<tr>
-<td><code>0 0/5 14 * * ?</code></td>
-<td>在每天下午 2 点到下午 2:55 期间的每 5 分钟触发</td>
-</tr>
-<tr>
-<td><code>0 0/5 14,18 * * ?</code></td>
-<td>在每天下午 2 点到 2:55 期间和下午 6 点到 6:55 期间的每 5 分钟触发</td>
-</tr>
-<tr>
-<td><code>0 0-5 14 * * ?</code></td>
-<td>在每天下午 2 点到下午 2:05 期间的每 1 分钟触发</td>
-</tr>
-<tr>
-<td><code>0 10,44 14 ? 3 WED</code></td>
-<td>每年三月的星期三的下午 2:10 和 2:44 触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 ? * MON-FRI</code></td>
-<td>周一至周五的上午 10:15 触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 15 * ?</code></td>
-<td>每月 15 日上午 10:15 触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 L * ?</code></td>
-<td>每月最后一日的上午 10:15 触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 ? * 6L</code></td>
-<td>每月的最后一个星期五上午 10:15 触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 ? * 6L 2002-2005</code></td>
-<td>2002 年至 2005 年的每月的最后一个星期五上午 10:15 触发</td>
-</tr>
-<tr>
-<td><code>0 15 10 ? * 6#3</code></td>
-<td>每月的第三个星期五上午 10:15 触发</td>
-</tr>
-</tbody></table>
+<p>将接口中方法对应的 SQL 直接写在 XML 文件中。那么这个 UserMapper.xml 到底放在哪里呢？有两个位置可以放，第一个是直接放在 UserMapper 所在的包下面：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/spring-boot%E6%95%B4%E5%90%88mybatis%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B601.png" alt="img"></p>
+<p>放在这里的 UserMapper.xml 会被自动扫描到，但是有另外一个 Maven 带来的问题，就是 java 目录下的 xml 资源在项目打包时会被忽略掉，所以，如果 UserMapper.xml 放在包下，需要在 <code>pom.xml</code> 文件中再添加如下配置，避免打包时 java 目录下的 XML 文件被自动忽略掉：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当然，UserMapper.xml 也可以直接放在 resources 目录下，这样就不用担心打包时被忽略了，但是放在 resources 目录下，必须创建和 Mapper 接口包目录相同的目录层级，这样才能确保打包后 XML 和 Mapper 接口又处于在一起，否则 XML 文件将不能被自动扫描，这个时候就需要添加额外配置。例如我在 resources 目录下创建 mapper 目录用来放 mapper 文件，如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/spring-boot%E6%95%B4%E5%90%88mybatis%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B602.png" alt="img"></p>
+<p>此时在 <code>application.properties</code> 中告诉 mybatis 去哪里扫描 mapper：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mybatis.mapper-locations</span>=<span class="string">classpath:mapper/*.xml</span></span><br></pre></td></tr></table></figure>
+
+<p>如此配置之后，mapper 就可以正常使用了。<strong>这种方式不需要再在 pom.xml 文件中配置文件过滤。</strong></p>
+<h3 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h3><p>在 SSM 整合中，开发者需要自己提供两个 Bean，一个 <code>SqlSessionFactoryBean</code>，还有一个是 <code>MapperScannerConfigurer</code>，在 Spring Boot 中，这两个东西虽然不用开发者自己提供了，但是并不意味着这两个 Bean 不需要了，在 <code>org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration</code> 类中，我们可以看到 Spring Boot 提供了这两个 Bean，部分源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(&#123; SqlSessionFactory<span class="class">.<span class="keyword">class</span>, <span class="title">SqlSessionFactoryBean</span>.<span class="title">class</span> &#125;)</span></span><br><span class="line"><span class="class">@<span class="title">ConditionalOnSingleCandidate</span>(<span class="title">DataSource</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">EnableConfigurationProperties</span>(<span class="title">MybatisProperties</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">AutoConfigureAfter</span>(<span class="title">DataSourceAutoConfiguration</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">MybatisAutoConfiguration</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> SqlSessionFactory <span class="title">sqlSessionFactory</span><span class="params">(DataSource dataSource)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    SqlSessionFactoryBean factory = <span class="keyword">new</span> SqlSessionFactoryBean();</span><br><span class="line">    factory.setDataSource(dataSource);</span><br><span class="line">    <span class="keyword">return</span> factory.getObject();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> SqlSessionTemplate <span class="title">sqlSessionTemplate</span><span class="params">(SqlSessionFactory sqlSessionFactory)</span> </span>&#123;</span><br><span class="line">    ExecutorType executorType = <span class="keyword">this</span>.properties.getExecutorType();</span><br><span class="line">    <span class="keyword">if</span> (executorType != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> SqlSessionTemplate(sqlSessionFactory, executorType);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> SqlSessionTemplate(sqlSessionFactory);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@org</span>.springframework.context.annotation.Configuration</span><br><span class="line">  <span class="meta">@Import</span>(&#123; AutoConfiguredMapperScannerRegistrar<span class="class">.<span class="keyword">class</span> &#125;)</span></span><br><span class="line"><span class="class">  @<span class="title">ConditionalOnMissingBean</span>(<span class="title">MapperFactoryBean</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class">  <span class="title">public</span> <span class="title">static</span> <span class="title">class</span> <span class="title">MapperScannerRegistrarNotFoundConfiguration</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      logger.debug(<span class="string">"No &#123;&#125; found."</span>, MapperFactoryBean<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>())</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从类上的注解可以看出，当当前类路径下存在 <code>SqlSessionFactory</code>、<code>SqlSessionFactoryBean</code> 以及 <code>DataSource</code> 时，这里的配置才会生效，<code>SqlSessionFactory</code> 和 <code>SqlTemplate</code> 都被提供了。</p>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/spring-boot/spring-boot整合swagger2生成restful-api文档/" data-toggle="tooltip" data-placement="top" title="Spring Boot 整合 Swagger2 生成 RESTful API 文档">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/spring-boot/spring-boot全局异常处理/" data-toggle="tooltip" data-placement="top" title="Spring Boot 全局异常处理">Next Post &rarr;</a>
+            <a href="/spring-boot/spring-boot整合swagger2生成restful-api文档/" data-toggle="tooltip" data-placement="top" title="Spring Boot 整合 Swagger2 生成 RESTful API 文档">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -612,7 +483,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Spring Boot 整合 Quartz 实现定时任务&body=Hi,I found this website and thought you might like it https://antoniopeng.com/spring-boot/spring-boot整合quartz实现定时任务/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Spring Boot 整合 Mybatis 持久层框架&body=Hi,I found this website and thought you might like it https://antoniopeng.com/spring-boot/spring-boot整合mybatis持久层框架/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -653,7 +524,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#引入依赖"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实现方式"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">实现方式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#方式一"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">方式一</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#方式二"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">方式二</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#附：cron-表达式"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">附：cron 表达式</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#引入依赖"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本使用"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">基本使用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#mapper-映射"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">mapper 映射</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#原理分析"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">原理分析</span></a></li></ol>
         
         </div>
       </aside>
