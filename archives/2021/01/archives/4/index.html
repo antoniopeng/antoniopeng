@@ -383,6 +383,45 @@
   
 
 
+  <a href="/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
+    <h2 class="post-title">
+      使用 Spring MVC 的拦截器实现登录功能
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      Spring  MVC 的处理器拦截器，类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。
+应用场景
+日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。
+权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。
+性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完后记......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-14
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/spring-mvc/spring-mvc入门就这一篇/">
     <h2 class="post-title">
       Spring MVC 入门就这一篇
@@ -721,49 +760,6 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/java/java并发编程要点/">
-    <h2 class="post-title">
-      Java 并发编程要点
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      使用线程有三种使用线程的方法：
-
-实现 Runnable 接口；
-实现 Callable 接口；
-继承 Thread 类。
-
-实现 Runnable 和 Callable 接口的类只能当做一个可以在线程中运行的任务，不是真正意义上的线程，因此最后还需要通过 Thread 来调用。可以理解为任务是通过线程驱动从而执行的。
-实现 Runnable 接口需要实现接口中的 run() 方法。
-123......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-11
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Java" title="Java">Java</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -905,11 +901,7 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
   <div class="tags">
     
     
-    <a href="/tags/#Docker" title="Docker" rel="4">Docker</a>
-    
-    
-    
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    <a href="/tags/#Docker" title="Docker" rel="8">Docker</a>
     
     
     
@@ -917,15 +909,19 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     
     
     
+    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    
+    
+    
     <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
     
     
     
-    <a href="/tags/#Linux" title="Linux" rel="1">Linux</a>
-    
-    
-    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
+    
+    
+    
+    <a href="/tags/#Linux" title="Linux" rel="1">Linux</a>
     
     
     
@@ -941,19 +937,15 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     
     
     
-    <a href="/tags/#Redis" title="Redis" rel="1">Redis</a>
-    
-    
-    
     <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
     
     
     
-    <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
-    
-    
-    
     <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="1">Redis</a>
     
     
     
@@ -965,6 +957,10 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     
     
     
+    <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
+    
+    
+    
     <a href="/tags/#Web" title="Web" rel="1">Web</a>
     
     
@@ -973,11 +969,11 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     
     
     
-    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
-    
-    
-    
     <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
+    
+    
+    
+    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
     
     
   </div>
@@ -1023,7 +1019,7 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../">January 2021</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/08/">August 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/07/">July 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/04/">April 2020</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../">January 2021</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/08/">August 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/07/">July 2020</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/04/">April 2020</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 

@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/redis/redis集群部署及常用命令汇总/">
+  <link rel="canonical" href="https://antoniopeng.com/redis/高性能缓存数据库redis入门/">
   <title>
     
-    Redis 集群部署及常用命令汇总 - 彭超的博客 | Antonio Blog
+    高性能缓存数据库 Redis 入门 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -318,11 +318,11 @@
               <a class="tag" href="https://antoniopeng.com/tags/#Redis" title="Redis">Redis</a>
               
             </div>
-            <h1>Redis 集群部署及常用命令汇总</h1>
+            <h1>高性能缓存数据库 Redis 入门</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2020-09-02
+              2021-01-24
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">8</span> Minutes
+              Estimated Reading Time <span class="post-count">6</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">2.1k</span> In Total
+              Words <span class="post-count">1.6k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,172 +394,89 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h3><p><code>Redis</code> 是用  <code>C</code> 语言开发的一个开源的高性能键值对（<code>key-value</code>）数据库。它通过提供多种键值数据类型来适应不同场景下的存储需求，目前为止 <code>Redis</code> 支持的键值数据类型如下：</p>
-<ul>
-<li>字符串类型</li>
-<li>散列类型</li>
-<li>列表类型</li>
-<li>集合类型</li>
-<li>有序集合类型</li>
-</ul>
-<h3 id="Redis-的应用场景"><a href="#Redis-的应用场景" class="headerlink" title="Redis 的应用场景"></a>Redis 的应用场景</h3><ul>
-<li>缓存（数据查询、新闻内容、商品内容等等）</li>
-<li>分布式集群架构中的 <code>session</code> 分离</li>
-<li>聊天室的在线好友列表</li>
-<li>任务队列（秒杀、抢购等等）</li>
-<li>应用排行榜</li>
-<li>网站访问统计</li>
-<li>数据过期处理（可以精确到毫秒）</li>
-</ul>
-<h3 id="部署-Redis-集群"><a href="#部署-Redis-集群" class="headerlink" title="部署 Redis 集群"></a>部署 Redis 集群</h3><blockquote>
-<p>使用 Docker Compose 编排部署应用容器。</p>
-</blockquote>
-<p>创建目录</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir /usr/<span class="built_in">local</span>/docker/redis</span><br></pre></td></tr></table></figure>
-
-<p>创建 <code>docker-compose.yml</code></p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">master:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">redis-master</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">6379</span><span class="string">:6379</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">slave1:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">redis-slave-1</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">6380</span><span class="string">:6379</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">redis-server</span> <span class="string">--slaveof</span> <span class="string">redis-master</span> <span class="number">6379</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">slave2:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">redis-slave-2</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">6381</span><span class="string">:6379</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">redis-server</span> <span class="string">--slaveof</span> <span class="string">redis-master</span> <span class="number">6379</span></span><br></pre></td></tr></table></figure>
-
-<p>启动容器</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<h3 id="Redis-常用命令"><a href="#Redis-常用命令" class="headerlink" title="Redis 常用命令"></a>Redis 常用命令</h3><h4 id="连接操作相关的命令"><a href="#连接操作相关的命令" class="headerlink" title="连接操作相关的命令"></a>连接操作相关的命令</h4><ul>
-<li>ping：测试连接是否存活如果正常会返回</li>
-<li>echo：打印</li>
-<li>select：切换到指定的数据库，数据库索引号用数字值指定，以 0 作为起始索引值</li>
-<li>quit：关闭连接</li>
-<li>auth：简单密码认证</li>
-</ul>
-<h4 id="服务端相关命令"><a href="#服务端相关命令" class="headerlink" title="服务端相关命令"></a>服务端相关命令</h4><ul>
-<li>time：返回当前服务器时间</li>
-<li>client list：返回所有连接到服务器的客户端信息和统计数据 参见 <a href="http://redisdoc.com/server/client_list.html" target="_blank" rel="noopener">http://redisdoc.com/server/client_list.html</a></li>
-<li>client kill ip:port：关闭地址为 ip:port 的客户端</li>
-<li>save：将数据同步保存到磁盘</li>
-<li>bgsave：将数据异步保存到磁盘</li>
-<li>lastsave：返回上次成功将数据保存到磁盘的Unix时戳</li>
-<li>shundown：将数据同步保存到磁盘，然后关闭服务</li>
-<li>info：提供服务器的信息和统计</li>
-<li>config resetstat：重置 info 命令中的某些统计数据</li>
-<li>config get：获取配置文件信息</li>
-<li>config set：动态地调整 Redis 服务器的配置(configuration)而无须重启，可以修改的配置参数可以使用命令 CONFIG GET * 来列出</li>
-<li>config rewrite：Redis 服务器时所指定的 redis.conf 文件进行改写</li>
-<li>monitor：实时转储收到的请求</li>
-<li>slaveof：改变复制策略设置</li>
-</ul>
-<h4 id="发布订阅相关命令"><a href="#发布订阅相关命令" class="headerlink" title="发布订阅相关命令"></a>发布订阅相关命令</h4><ul>
-<li>psubscribe：订阅一个或多个符合给定模式的频道 例如 psubscribe news.* tweet.*</li>
-<li>publish：将信息 message 发送到指定的频道 channel 例如 publish msg “good morning”</li>
-<li>pubsub channels：列出当前的活跃频道 例如 PUBSUB CHANNELS news.i*</li>
-<li>pubsub numsub：返回给定频道的订阅者数量 例如 PUBSUB NUMSUB news.it news.internet news.sport news.music</li>
-<li>pubsub numpat：返回客户端订阅的所有模式的数量总和</li>
-<li>punsubscribe：指示客户端退订所有给定模式。</li>
-<li>subscribe：订阅给定的一个或多个频道的信息。例如 subscribe msg chat_room</li>
-<li>unsubscribe：指示客户端退订给定的频道。</li>
-</ul>
-<h4 id="对-Key-操作的命令"><a href="#对-Key-操作的命令" class="headerlink" title="对 Key 操作的命令"></a>对 Key 操作的命令</h4><ul>
-<li>exists(key)：确认一个 key 是否存在</li>
-<li>del(key)：删除一个 key</li>
-<li>type(key)：返回值的类型</li>
-<li>keys(pattern)：返回满足给定 pattern 的所有 key</li>
-<li>randomkey：随机返回 key 空间的一个</li>
-<li>keyrename(oldname, newname)：重命名 key</li>
-<li>dbsize：返回当前数据库中 key 的数目</li>
-<li>expire：设定一个 key 的活动时间（s）</li>
-<li>ttl：获得一个 key 的活动时间</li>
-<li>move(key, dbindex)：移动当前数据库中的 key 到 dbindex 数据库</li>
-<li>flushdb：删除当前选择数据库中的所有 key</li>
-<li>flushall：删除所有数据库中的所有 key</li>
-</ul>
-<h4 id="对-String-操作的命令"><a href="#对-String-操作的命令" class="headerlink" title="对 String 操作的命令"></a>对 String 操作的命令</h4><ul>
-<li>set(key, value)：给数据库中名称为 key 的 string 赋予值 value</li>
-<li>get(key)：返回数据库中名称为 key 的 string 的 value</li>
-<li>getset(key, value)：给名称为 key 的 string 赋予上一次的 value</li>
-<li>mget(key1, key2,…, key N)：返回库中多个 string 的 value</li>
-<li>setnx(key, value)：添加 string，名称为 key，值为 value</li>
-<li>setex(key, time, value)：向库中添加 string，设定过期时间 time</li>
-<li>mset(key N, value N)：批量设置多个 string 的值</li>
-<li>msetnx(key N, value N)：如果所有名称为 key i 的 string 都不存在</li>
-<li>incr(key)：名称为 key 的 string 增 1 操作</li>
-<li>incrby(key, integer)：名称为 key 的 string 增加 integer</li>
-<li>decr(key)：名称为 key 的 string 减 1 操作</li>
-<li>decrby(key, integer)：名称为 key 的 string 减少 integer</li>
-<li>append(key, value)：名称为 key 的 string 的值附加 value</li>
-<li>substr(key, start, end)：返回名称为 key 的 string 的 value 的子串</li>
-</ul>
-<h4 id="对-List-操作的命令"><a href="#对-List-操作的命令" class="headerlink" title="对 List 操作的命令"></a>对 List 操作的命令</h4><ul>
-<li>rpush(key, value)：在名称为 key 的 list 尾添加一个值为 value 的元素</li>
-<li>lpush(key, value)：在名称为 key 的 list 头添加一个值为 value 的元素</li>
-<li>llen(key)：返回名称为 key 的 list 的长度</li>
-<li>lrange(key, start, end)：返回名称为 key 的 list 中 start 至 end 之间的元素</li>
-<li>ltrim(key, start, end)：截取名称为 key 的 list</li>
-<li>lindex(key, index)：返回名称为 key 的 list 中 index 位置的元素</li>
-<li>lset(key, index, value)：给名称为 key 的 list 中 index 位置的元素赋值</li>
-<li>lrem(key, count, value)：删除 count 个 key 的 list 中值为 value 的元素</li>
-<li>lpop(key)：返回并删除名称为 key 的 list 中的首元素</li>
-<li>rpop(key)：返回并删除名称为 key 的 list 中的尾元素</li>
-<li>blpop(key1, key2,… key N, timeout)：lpop 命令的 block 版本。</li>
-<li>brpop(key1, key2,… key N, timeout)：rpop 的 block 版本。</li>
-<li>rpoplpush(srckey, dstkey)：返回并删除名称为 srckey 的 list 的尾元素，并将该元素添加到名称为 dstkey 的 list 的头部</li>
-</ul>
-<h4 id="对-Set-操作的命令"><a href="#对-Set-操作的命令" class="headerlink" title="对 Set 操作的命令"></a>对 Set 操作的命令</h4><ul>
-<li>sadd(key, member)：向名称为 key 的 set 中添加元素 member</li>
-<li>srem(key, member) ：删除名称为 key 的 set 中的元素 member</li>
-<li>spop(key) ：随机返回并删除名称为 key 的 set 中一个元素</li>
-<li>smove(srckey, dstkey, member) ：移到集合元素</li>
-<li>scard(key) ：返回名称为 key 的 set 的基数</li>
-<li>sismember(key, member) ：member 是否是名称为 key 的 set 的元素</li>
-<li>sinter(key1, key2,…key N) ：求交集</li>
-<li>sinterstore(dstkey, (keys)) ：求交集并将交集保存到 dstkey 的集合</li>
-<li>sunion(key1, (keys)) ：求并集</li>
-<li>sunionstore(dstkey, (keys)) ：求并集并将并集保存到 dstkey 的集合</li>
-<li>sdiff(key1, (keys)) ：求差集</li>
-<li>sdiffstore(dstkey, (keys)) ：求差集并将差集保存到 dstkey 的集合</li>
-<li>smembers(key) ：返回名称为 key 的 set 的所有元素</li>
-<li>srandmember(key) ：随机返回名称为 key 的 set 的一个元素</li>
-</ul>
-<h4 id="对-Hash-操作的命令"><a href="#对-Hash-操作的命令" class="headerlink" title="对 Hash 操作的命令"></a>对 Hash 操作的命令</h4><ul>
-<li>hset(key, field, value)：向名称为 key 的 hash 中添加元素 field</li>
-<li>hget(key, field)：返回名称为 key 的 hash 中 field 对应的 value</li>
-<li>hmget(key, (fields))：返回名称为 key 的 hash 中 field i 对应的 value</li>
-<li>hmset(key, (fields))：向名称为 key 的 hash 中添加元素 field</li>
-<li>hincrby(key, field, integer)：将名称为 key 的 hash 中 field 的 value 增加 integer</li>
-<li>hexists(key, field)：名称为 key 的 hash 中是否存在键为 field 的域</li>
-<li>hdel(key, field)：删除名称为 key 的 hash 中键为 field 的域</li>
-<li>hlen(key)：返回名称为 key 的 hash 中元素个数</li>
-<li>hkeys(key)：返回名称为 key 的 hash 中所有键</li>
-<li>hvals(key)：返回名称为 key 的 hash 中所有键对应的 value</li>
-<li>hgetall(key)：返回名称为 key 的 hash 中所有的键（field）及其对应的 value</li>
-</ul>
-<h4 id="Redis-Sentinel"><a href="#Redis-Sentinel" class="headerlink" title="Redis Sentinel"></a>Redis Sentinel</h4><ul>
-<li>ping ：返回 pong</li>
-<li>sentinel masters ：列出所有被监视的主服务器，以及这些主服务器的当前状态。</li>
-<li>sentinel slaves：列出给定主服务器的所有从服务器，以及这些从服务器的当前状态。</li>
-<li>sentinel get-master-addr-by-name：返回给定名字的主服务器的 IP 地址和端口号。如果这个主服务器正在执行故障转移操作，或者针对这个主服务器的故障转移操作已经完成，那么这个命令返回新的主服务器的 IP 地址和端口号。</li>
-<li>sentinel reset：重置所有名字和给定模式 pattern 相匹配的主服务器。pattern 参数是一个 Glob 风格的模式 重置操作清楚主服务器目前的所有状态，包括正在执行中的故障转移，并移除目前已经发现和关联的，主服务器的所有从服务器和 Sentinel 。</li>
-<li>sentinel failover：当主服务器失效时，在不询问其他 Sentinel 意见的情况下，强制开始一次自动故障迁移（不过发起故障转移的 Sentinel 会向其他 Sentinel 发送一个新的配置，其他 Sentinel 会根据这个配置进行相应的更新）。</li>
-</ul>
-<blockquote>
-<p>参考链接：</p>
-<ul>
-<li><p><a href="http://redisdoc.com/" target="_blank" rel="noopener">http://redisdoc.com</a></p>
+        <h3 id="什么是-Redis"><a href="#什么是-Redis" class="headerlink" title="什么是 Redis"></a>什么是 Redis</h3><p>Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。从 2015 年 6 月开始，Redis 的开发由 Redis Labs 赞助，而 2013 年 5 月至 2015 年 6 月期间，其开发由 Pivotal 赞助。在 2013 年 5 月之前，其开发由 VMware 赞助。根据月度排行网站 DB-Engines.com 的数据显示，Redis是 最流行的键值对存储数据库。</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
+<li>Redis 支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用，不会造成数据丢失</li>
+<li>Redis 支持五种不同的数据结构类型之间的映射，包括简单的 key/value 类型的数据，同时还提供 list，set，zset，hash 等数据结构的存储</li>
+<li>Redis 支持 master-slave 模式的数据备份</li>
+</ol>
+<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><ol>
+<li>内存存储和持久化：redis 支持异步将内存中的数据写到硬盘上，在持久化的同时不影响继续服务</li>
+<li>取最新N个数据的操作，如：可以将最新的 10 条评论的 ID 放在 Redis 的 List 集合里面</li>
+<li>数据可以设置过期时间</li>
+<li>自带发布、订阅消息系统</li>
+<li>定时器、计数器</li>
+</ol>
+<h3 id="Redis-安装"><a href="#Redis-安装" class="headerlink" title="Redis 安装"></a>Redis 安装</h3><p>Windows 版 Redis 的安装，整体来说还是非常简单的，网上也有很多教程，考虑到 Redis 的大部分使用场景都是在 Linux 上，因此这里我对 Windows 上的安装不做介绍，小伙伴们有兴趣可以自行搜索，下面我们主要来看下 Linux 上怎么安装 Redis 。</p>
+<ol>
+<li><p>首先下载 Redis，下载地址 <a href="https://redis.io/，下载获得" target="_blank" rel="noopener">https://redis.io/，下载获得</a> redis-4.0.8.tar.gz 后将它放入我们的 Linux 目录 /opt</p>
 </li>
-<li><p><a href="http://redis.io/commands" target="_blank" rel="noopener">http://redis.io/commands</a></p>
+<li><p>在 /opt 目录下对文件进行解压，解压命令: <code>tar -zxvf redis-4.0.8.tar.gz</code></p>
 </li>
-</ul>
-</blockquote>
+<li><p>解压完成后出现文件夹 <code>redis-4.0.8</code>，进入到该目录中</p>
+</li>
+<li><p>在 <code>redis-4.0.8</code> 目录下执行 make 命令进行编译</p>
+</li>
+<li><p>如果 make 完成后继续执行 make install 进行安装，至此，我们的 redis 就算安装成功了</p>
+</li>
+<li><p>我们启动之前，需要先做一个简单的配置：修改 <code>redis.conf</code> 文件，将里面的 <code>daemonize no</code> 改成 yes，让服务在后台启动</p>
+</li>
+<li><p>启动，通过 <code>redis-server redis.conf</code> 命令启动 redis</p>
+</li>
+</ol>
+<p>然后我们可以通过 <code>redis-cli</code> 命令进入到控制台，然后通过 <code>ping</code> 命令进行连通性测试，如果看到 pong ，表示连接成功了。通过 <code>shutdown</code> 命令我们可以关闭实例。</p>
+<h3 id="Redis-的五种数据类型简介"><a href="#Redis-的五种数据类型简介" class="headerlink" title="Redis 的五种数据类型简介"></a>Redis 的五种数据类型简介</h3><p>redis 中的数据都是以 key/value 的形式存储的，五大数据类型主要是指 value 的数据类型，包含如下五种：</p>
+<h4 id="STRING"><a href="#STRING" class="headerlink" title="STRING"></a>STRING</h4><p>STRING 是 redis 中最基本的数据类型，redis 中的 STRING 类型是二进制安全的，即它可以包含任何数据，比如一个序列化的对象甚至一个 jpg 图片，要注意的是 redis 中的字符串大小上限是 512M 。</p>
+<h4 id="LIST"><a href="#LIST" class="headerlink" title="LIST"></a>LIST</h4><p>LIST 是一个简单的字符串列表，按照插入顺序进行排序，我们可以从 LIST 的头部 (LEFT) 或者尾部 (RIGHT) 插入一个元素，也可以从 LIST 的头部(LEFT)或者尾部 (RIGHT) 弹出一个元素。</p>
+<h4 id="HASH"><a href="#HASH" class="headerlink" title="HASH"></a>HASH</h4><p>HASH 类似于 Java 中的 Map ，是一个键值对集合，在 redis 中可以用来存储对象。</p>
+<h4 id="SET"><a href="#SET" class="headerlink" title="SET"></a>SET</h4><p>SET 是 STRING 类型的无序集合，不同于 LIST ，SET 中的元素不可以重复。</p>
+<h4 id="ZSET"><a href="#ZSET" class="headerlink" title="ZSET"></a>ZSET</h4><p>ZSET 和 SET 一样，也是 STRING 类型的元素的集合，不同的是 ZSET 中的每个元素都会关联一个 double 类型的分数，ZSET 中的成员都是唯一的，但是所关联的分数可以重复。</p>
+<p>接下来我们就来看看这五种数据类型要怎么操作。</p>
+<h3 id="key-相关的命令"><a href="#key-相关的命令" class="headerlink" title="key 相关的命令"></a>key 相关的命令</h3><p>由于五大数据类型的数据结构本身有差异，因此对应的命令也会不同，但是有一些命令不管对于哪种数据类型都是存在的，我们今天就先来看看这样一些特殊的命令。</p>
+<p>首先通过 <code>redis-server redis.conf</code> 命令启动 redi s，再通过 <code>redis-cli</code> 命令进入到控制台中。可以通过 set 命令插入一条记录：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<h4 id="DEL-命令"><a href="#DEL-命令" class="headerlink" title="DEL 命令"></a>DEL 命令</h4><p>看到 OK 表示插入成功。通过 DEL 命令我们可以删除一个已经存在的 key，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; DEL k1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+
+<p>看到 (integer) 1 表示数据已经删除成功。</p>
+<h4 id="DUMP-命令"><a href="#DUMP-命令" class="headerlink" title="DUMP 命令"></a>DUMP 命令</h4><p>DUMP 命令可以序列化给定的 key，并返回序列化之后的值：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; DUMP k1</span><br><span class="line"><span class="string">"\x00\x02v1\b\x00\xe6\xc8\\\xe1bI\xf3c"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="EXISTS-命令"><a href="#EXISTS-命令" class="headerlink" title="EXISTS 命令"></a>EXISTS 命令</h4><p>EXISTS 命令用来检测一个给定的 key 是否存在，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; EXISTS k1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; EXISTS k2</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面的运行结果表示 k1 存在而 k2 不存在。</p>
+<h4 id="TTL-命令"><a href="#TTL-命令" class="headerlink" title="TTL 命令"></a>TTL 命令</h4><p>TTL 命令可以查看一个给定 key 的有效时间：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; TTL k1</span><br><span class="line">(<span class="built_in">integer</span>) -1</span><br><span class="line">127.0.0.1:6379&gt; TTL k2</span><br><span class="line">(<span class="built_in">integer</span>) -2</span><br></pre></td></tr></table></figure>
+
+<p>-2 表示 key 不存在或者已过期；-1 表示 key 存在并且没有设置过期时间（永久有效）。当然，我们可以通过下面的命令给 key 设置一个过期时间：</p>
+<h4 id="EXPIRE-命令"><a href="#EXPIRE-命令" class="headerlink" title="EXPIRE 命令"></a>EXPIRE 命令</h4><p>EXPIRE 命令可以给 key 设置有效期，在有效期过后，key 会被销毁。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; EXPIRE k1 30</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; TTL k1</span><br><span class="line">(<span class="built_in">integer</span>) 25</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>30 表示 30 秒，TTL k1 返回 25 表示这个 key 的有效期还剩 25 秒。</p>
+<h4 id="PERSIST-命令"><a href="#PERSIST-命令" class="headerlink" title="PERSIST 命令"></a>PERSIST 命令</h4><p>PERSIST 命令表示移除一个 key 的过期时间，这样该 key 就永远不会过期：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; EXPIRE k1 60</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; ttl k1</span><br><span class="line">(<span class="built_in">integer</span>) 57</span><br><span class="line">127.0.0.1:6379&gt; PERSIST k1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; ttl k1</span><br><span class="line">(<span class="built_in">integer</span>) -1</span><br></pre></td></tr></table></figure>
+
+<h4 id="PEXPIRE-命令"><a href="#PEXPIRE-命令" class="headerlink" title="PEXPIRE 命令"></a>PEXPIRE 命令</h4><p>PEXPIRE 命令的功能和 EXPIRE 命令的功能基本一致，只不过这里设置的参数是毫秒：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; PEXPIRE k1 60000</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="PTTL-命令"><a href="#PTTL-命令" class="headerlink" title="PTTL 命令"></a>PTTL 命令</h4><p>PTTL 命令和 TTL 命令基本一致，只不过 PTTL 返回的是毫秒数：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; PTTL k1</span><br><span class="line">(<span class="built_in">integer</span>) 25421</span><br></pre></td></tr></table></figure>
+
+<h4 id="KEYS-命令"><a href="#KEYS-命令" class="headerlink" title="KEYS 命令"></a>KEYS 命令</h4><p>KEYS 命令可以获取满足给定模式的所有 key，比如：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">1) <span class="string">"k3"</span></span><br><span class="line">2) <span class="string">"k2"</span></span><br><span class="line">3) <span class="string">"k1"</span></span><br></pre></td></tr></table></figure>
+
+<p>KEYS <code>*</code> 表示获取所有的 KEY， <code>*</code> 也可以是一个正则表达式。</p>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/nginx/nginx实现虚拟主机/" data-toggle="tooltip" data-placement="top" title="Nginx 实现虚拟主机">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/seata/分布式事务解决方案之alibaba-seata/" data-toggle="tooltip" data-placement="top" title="分布式事务解决方案之 Alibaba Seata">Next Post &rarr;</a>
+            <a href="/spring-boot/spring-boot项目配置https安全证书/" data-toggle="tooltip" data-placement="top" title="Spring Boot 项目配置 HTTPS 安全证书">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -602,7 +519,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Redis 集群部署及常用命令汇总&body=Hi,I found this website and thought you might like it https://antoniopeng.com/redis/redis集群部署及常用命令汇总/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=高性能缓存数据库 Redis 入门&body=Hi,I found this website and thought you might like it https://antoniopeng.com/redis/高性能缓存数据库redis入门/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -643,7 +560,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Redis-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Redis 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Redis-的应用场景"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Redis 的应用场景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#部署-Redis-集群"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">部署 Redis 集群</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Redis-常用命令"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Redis 常用命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#连接操作相关的命令"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">连接操作相关的命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#服务端相关命令"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">服务端相关命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#发布订阅相关命令"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">发布订阅相关命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对-Key-操作的命令"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">对 Key 操作的命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对-String-操作的命令"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">对 String 操作的命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对-List-操作的命令"><span class="toc-nav-number">4.6.</span> <span class="toc-nav-text">对 List 操作的命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对-Set-操作的命令"><span class="toc-nav-number">4.7.</span> <span class="toc-nav-text">对 Set 操作的命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对-Hash-操作的命令"><span class="toc-nav-number">4.8.</span> <span class="toc-nav-text">对 Hash 操作的命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Redis-Sentinel"><span class="toc-nav-number">4.9.</span> <span class="toc-nav-text">Redis Sentinel</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是-Redis"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是 Redis</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#特点"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">特点</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#功能"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">功能</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Redis-安装"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Redis 安装</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Redis-的五种数据类型简介"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Redis 的五种数据类型简介</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#STRING"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">STRING</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#LIST"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">LIST</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#HASH"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">HASH</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#SET"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">SET</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#ZSET"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">ZSET</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#key-相关的命令"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">key 相关的命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#DEL-命令"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">DEL 命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#DUMP-命令"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">DUMP 命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#EXISTS-命令"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">EXISTS 命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#TTL-命令"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">TTL 命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#EXPIRE-命令"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">EXPIRE 命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#PERSIST-命令"><span class="toc-nav-number">4.6.</span> <span class="toc-nav-text">PERSIST 命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#PEXPIRE-命令"><span class="toc-nav-number">4.7.</span> <span class="toc-nav-text">PEXPIRE 命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#PTTL-命令"><span class="toc-nav-number">4.8.</span> <span class="toc-nav-text">PTTL 命令</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#KEYS-命令"><span class="toc-nav-number">4.9.</span> <span class="toc-nav-text">KEYS 命令</span></a></li></ol></li></ol>
         
         </div>
       </aside>
