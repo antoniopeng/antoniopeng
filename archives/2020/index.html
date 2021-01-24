@@ -624,45 +624,6 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
   
 
 
-  <a href="/seata/分布式事务解决方案之alibaba-seata/">
-    <h2 class="post-title">
-      分布式事务解决方案之 Alibaba Seata
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      关于事务的几点常识本地事务该类事务需要满足四大特性：ACID（原子性、一致性、隔离性、持久性），仅限于对单一数据库资源的访问控制。
-
-原子性（Atomicity）：指事务作为整体来执行，要么全部执行，要么全部不执行。
-一致性（Consistency）：指事务应确保数据从一个一致的状态转变为另一个一致状态。
-隔离性（Isolation）：指多个事务并发时，一个事务的执行不应影响其它事务的执行。......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-08-20
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Seata" title="Seata">Seata</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
   <a href="/docker/docker-registry镜像仓库的部署/">
     <h2 class="post-title">
       Docker Registry 镜像私服的部署
@@ -739,29 +700,64 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
   
 
 
-  <a href="/leaf/分布式主键生成方案之美团leaf/">
+  <a href="/docker/docker容器编排工具docker-compose/">
     <h2 class="post-title">
-      分布式主键生成方案之美团 Leaf
+      Docker 容器编排工具 Docker Compose
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      分布式主键在庞大复杂的分布式系统中，通常需要对海量数据进行唯一标识，随着数据日渐增长，对数据分库分表以后需要有一个唯一 ID 来标识一条数据，而数据库的自增 ID 显然不能满足需求，此时就需要有一个能够生成全局唯一 ID 的系统，需要满足以下条件：
-
-全局唯一性：最基本的要求就是不能出现重复的 ID。
-递增：保证下一个 ID 一定大于上一个 ID。
-信息安全：如果 ID 是连续的，用户就可以......
+      Docker Compose 简介Docker Compose 是 Docker 官方的编排项目之一，负责实现对 Docker 容器集群的快速编排。
+Compose 的定位：定义和运行多个 Docker 个容器的应用。
+在日常工作中，经常会碰到多个容器相互配合来完成某项任务的情况，例如，要实现一个 Web 项目时，除了 Web 服务容器本身以外，往往还需要加上后端的数据库、负载均衡服务容器等......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2020-07-22
+    2020-07-21
   </p>
   <div class="tags">
     
-    <a href="/tags/#Leaf" title="Leaf">Leaf</a>
+    <a href="/tags/#Docker" title="Docker">Docker</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/docker/docker数据卷操作/">
+    <h2 class="post-title">
+      Docker 数据卷操作
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      数据卷入门在前面的案例中，如果我们需要将数据从宿主机拷贝到容器中，一般都是使用 Docker 的拷贝命令，这样性能还是稍微有点差，没有办法能够达到让这种拷贝达到本地磁盘 I/O 性能呢？有！
+数据卷可以绕过拷贝系统，在多个容器之间、容器和宿主机之间共享目录或者文件，数据卷绕过了拷贝系统，可以达到本地磁盘 I/O 性能。
+本文先通过一个简单的案例展示数据卷的基本用法。以前面使用的 nginx ......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-07-10
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Docker" title="Docker">Docker</a>
     
   </div>
   
@@ -906,19 +902,15 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
   <div class="tags">
     
     
-    <a href="/tags/#Docker" title="Docker" rel="8">Docker</a>
-    
-    
-    
     <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
     
     
     
+    <a href="/tags/#Docker" title="Docker" rel="8">Docker</a>
+    
+    
+    
     <a href="/tags/#Java" title="Java" rel="6">Java</a>
-    
-    
-    
-    <a href="/tags/#Leaf" title="Leaf" rel="1">Leaf</a>
     
     
     
@@ -934,7 +926,7 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="3">MySQL</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
     
     
     
@@ -942,7 +934,7 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
     
     
     
-    <a href="/tags/#RabbitMQ" title="RabbitMQ" rel="1">RabbitMQ</a>
+    <a href="/tags/#Redis" title="Redis" rel="1">Redis</a>
     
     
     
@@ -950,7 +942,7 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
     
     
     
-    <a href="/tags/#Redis" title="Redis" rel="1">Redis</a>
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -958,11 +950,7 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
     
     
     
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
-    
-    
-    
-    <a href="/tags/#Seata" title="Seata" rel="1">Seata</a>
+    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
     
     
     
@@ -970,15 +958,11 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
     
     
     
-    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
     
     
     
     <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
-    
-    
-    
-    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
     
     
   </div>
@@ -1024,7 +1008,7 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../2021/01/">January 2021</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="08/">August 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="07/">July 2020</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="04/">April 2020</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../2021/01/">January 2021</a><span class="archive-list-count">44</span></li><li class="archive-list-item"><a class="archive-list-link" href="12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="04/">April 2020</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
