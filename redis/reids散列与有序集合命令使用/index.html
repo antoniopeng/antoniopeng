@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/docker/docker镜像操作/">
+  <link rel="canonical" href="https://antoniopeng.com/redis/reids散列与有序集合命令使用/">
   <title>
     
-    Docker 镜像操作 - 彭超的博客 | Antonio Blog
+    Reids 散列与有序集合命令使用 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#Docker" title="Docker">Docker</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#Redis" title="Redis">Redis</a>
               
             </div>
-            <h1>Docker 镜像操作</h1>
+            <h1>Reids 散列与有序集合命令使用</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2020-07-08
+              2021-01-25
             </span>
 
 
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">2.6k</span> In Total
+              Words <span class="post-count">2k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -394,116 +394,104 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <p>镜像也是 docker 的核心组件之一，镜像时容器运行的基础，容器是镜像运行后的形态。前面我们介绍了容器的用法，今天来和大家聊聊镜像的问题。</p>
-<p>总体来说，镜像是一个包含程序运行必要以来环境和代码的只读文件，它采用分层的文件系统，将每一层的改变以读写层的形式增加到原来的只读文件上。这有点像洋葱，一层一层的，当我们后面学习了 Dockerfile ，相信大家对于这样的架构理解将更为准确。</p>
-<h3 id="镜像与容器的关系"><a href="#镜像与容器的关系" class="headerlink" title="镜像与容器的关系"></a>镜像与容器的关系</h3><p>前文已经向读者介绍过容器的使用了，细心的读者可能已经发现，容器在启动或者创建时，必须指定一个镜像的名称或者 id ，其实，这时镜像所扮演的角色就是容器的模版，不同的镜像可以构造出不同的容器，同一个镜像，我们也可以通过配置不同参数来构造出不通的容器。如下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd --name nginx nginx</span><br></pre></td></tr></table></figure>
+        <h3 id="散列"><a href="#散列" class="headerlink" title="散列"></a>散列</h3><p>很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。</p>
+<h4 id="hset"><a href="#hset" class="headerlink" title="hset"></a>hset</h4><p>hset 命令可以用来设置 key 指定的哈希集中指定字段的值，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hset k1 h1 v1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
 
-<p>命令中的最后一个 nginx 即表示创建该容器所需要的镜像（模版），当然这里还省略了一些信息，例如版本号等，这些我们后文会详细介绍。</p>
-<h3 id="镜像的体系结构"><a href="#镜像的体系结构" class="headerlink" title="镜像的体系结构"></a>镜像的体系结构</h3><p>镜像的最底层是一个启动文件系统（bootfs）镜像，bootfs 的上层镜像叫做根镜像，一般来说，根镜像是一个操作系统，例如 Ubuntu、CentOS 等，用户的镜像必须构建于根镜像之上，在根镜像之上，用户可以构建出各种各样的其他镜像。<br>从上面的介绍读者可以看出，镜像的本质其实就是一系列文件的集合，一层套一层的结构有点类似于 Git ，也有点类似于生活中的洋葱里面的样子。</p>
-<h3 id="镜像的写时复制机制"><a href="#镜像的写时复制机制" class="headerlink" title="镜像的写时复制机制"></a>镜像的写时复制机制</h3><p>通过 <code>docker run</code> 命令指定一个容器创建镜像时，实际上是在该镜像之上创建一个空的可读写的文件系统层级，可以将这个文件系统层级当成一个临时的镜像来对待，而命令中所指的模版镜像则可以称之为父镜像。父镜像的内容都是以只读的方式挂载进来的，容器会读取共享父镜像的内容，用户所做的所有修改都是在文件系统中，不会对父镜像造成任何影响。当然用户可以通过其他一些手段使修改持久化到父镜像中，这个我们后面会详细介绍到。</p>
-<p>简而言之，镜像就是一个固定的不会变化的模版文件，容器是根据这个模版创建出来的，容器会在模版的基础上做一些修改，这些修改本身并不会影响到模版，我们还可以根据模版（镜像）创建出来更多的容器。</p>
-<p>如果有必要，我们是可以修改模版（镜像）的。</p>
-<h3 id="镜像查看"><a href="#镜像查看" class="headerlink" title="镜像查看"></a>镜像查看</h3><p>用户可以通过 <code>docker images</code> 命令查看本地所有镜像：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br></pre></td></tr></table></figure>
+<h4 id="hget"><a href="#hget" class="headerlink" title="hget"></a>hget</h4><p>hget 命令可以用来返回 key 指定的哈希集中该字段所关联的值，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hget k1 h1</span><br><span class="line"><span class="string">"v1"</span></span><br></pre></td></tr></table></figure>
 
-<p>这里一共有五个参数，含义分别如下：</p>
-<ul>
-<li><code>TAG</code>：用于区分同一仓库中的不同镜像，默认为 latest。</li>
-<li><code>IMAGE ID</code>：IMAGE ID是镜像的一个唯一标识符。</li>
-<li><code>CREATED</code>：表示镜像的创建时间。</li>
-<li><code>SIZE</code>：表示镜像的大小。</li>
-<li><code>REPOSITORY</code>：仓库名称，仓库一般用来存放同一类型的镜像。仓库的名称由其创建者指定。如果没有指定则为 <code>&lt;none&gt;</code> 。一般来说，仓库名称有如下几种不同的形式:<ol>
-<li><code>[namespace\ubuntu]</code>:这种仓库名称由命名空间和实际的仓库名组成，中间通过 <code>\</code> 隔开。当开发者在 Docker Hub 上创建一个用户时，用户名就是默认的命名空间，这个命令空间是用来区分 Docker Hub 上注册的不同用户或者组织（类似于 GitHub 上用户名的作用），如果读者想将自己的镜像上传到 Docker Hub 上供别人使用，则必须指定命名空间，否则上传会失败。</li>
-<li><code>[ubuntu]</code>:这种只有仓库名，对于这种没有命名空间的仓库名，可以认为其属于顶级命名空间，该空间的仓库只用于官方的镜像，由 Docker 官方进行管理，但一般会授权给第三方进行开发维护。当然用户自己创建的镜像也可以使用这种命名方式，但是将无法上传到 Docker Hub 上共享。</li>
-<li><code>[hub.c.163.com/library/nginx]</code>:这种指定 url 路径的方式，一般用于非 Docker Hub 上的镜像命名，例如一个第三方服务商提供的镜像或者开发者自己搭建的镜像中心，都可以使用这种命名方式命名。</li>
-</ol>
-</li>
-</ul>
-<p>使用 <code>docker images</code> 命令可以查看本地所有的镜像，如果镜像过多，可以通过通配符进行匹配：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker images n*</span><br></pre></td></tr></table></figure>
+<h4 id="hmset"><a href="#hmset" class="headerlink" title="hmset"></a>hmset</h4><p>hmset 命令可以批量设置 key 指定的哈希集中指定字段的值，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hmset k2 h1 v1 h2 v2 h3 v3</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
 
-<p>如果需要查看镜像的详细信息，也可以通过上文提到的 <code>docker inspect</code> 命令来查看。</p>
-<h3 id="镜像下载"><a href="#镜像下载" class="headerlink" title="镜像下载"></a>镜像下载</h3><p>当用户执行 <code>docker run</code> 命令时，就会自动去 Docker Hub 上下载相关的镜像，这个就不再重复演示，开发者也可以通过 search 命令去 Docker Hub 上搜索符合要求的镜像：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker search ubuntu</span><br></pre></td></tr></table></figure>
+<h4 id="hmget"><a href="#hmget" class="headerlink" title="hmget"></a>hmget</h4><p>hmget 可以批量返回 key 指定的哈希集中指定字段的值，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hmget k2 h1 h2 h3</span><br><span class="line">1) <span class="string">"v1"</span></span><br><span class="line">2) <span class="string">"v2"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br></pre></td></tr></table></figure>
 
-<p>搜索结果的参数如下：</p>
-<ul>
-<li><code>NAME</code>：表示镜像的名称。</li>
-<li><code>DESCRIPTION</code>：表示镜像的简要描述。</li>
-<li><code>STARS</code>：表示用户对镜像的评分，评分越高越可以放心使用。</li>
-<li><code>OFFICIAL</code>：是否为官方镜像。</li>
-<li><code>AUTOMATED</code>：是否使用了自动构建。</li>
-</ul>
-<p>在执行 <code>docker run</code> 命令时再去下载，速度会有点慢，如果希望该命令能够快速执行，可以在执行之前，先利用 <code>docker pull</code> 命令将镜像先下载下来，然后再运行：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull hub.c.163.com/library/nginx:latest</span><br></pre></td></tr></table></figure>
+<h4 id="hdel"><a href="#hdel" class="headerlink" title="hdel"></a>hdel</h4><p>hdel 命令可以从 key 指定的哈希集中移除指定的域，在哈希集中不存在的域将被忽略，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hmget k2 h1 h2 h3</span><br><span class="line">1) <span class="string">"v1"</span></span><br><span class="line">2) <span class="string">"v2"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br><span class="line">127.0.0.1:6379&gt; hdel k2 h1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; hmget k2 h1 h2 h3</span><br><span class="line">1) (nil)</span><br><span class="line">2) <span class="string">"v2"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br></pre></td></tr></table></figure>
 
-<p>运行命令如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd -name 163nginx -p 80:80 hub.c.163.com/library/ngxin:latest</span><br></pre></td></tr></table></figure>
+<h4 id="hsetnx"><a href="#hsetnx" class="headerlink" title="hsetnx"></a>hsetnx</h4><p>hsetnx 命令只在 key 指定的哈希集中不存在指定的字段时，设置字段的值，如果字段已存在，该操作无效果。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hsetnx k2 h3 1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; hsetnx k2 h4 1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
 
-<h3 id="镜像删除"><a href="#镜像删除" class="headerlink" title="镜像删除"></a>镜像删除</h3><p>镜像可以通过 <code>docker rmi</code> 命令进行删除，参数为镜像的 id 或者镜像名，参数可以有多个，多个参数之间用空格隔开。如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker rmi 345342433 ngxin:latest</span><br></pre></td></tr></table></figure>
+<h4 id="hvals"><a href="#hvals" class="headerlink" title="hvals"></a>hvals</h4><p>hvals 命令可以返回 key 指定的哈希集中所有字段的值，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hvals k2</span><br><span class="line">1) <span class="string">"v2"</span></span><br><span class="line">2) <span class="string">"v3"</span></span><br><span class="line">3) <span class="string">"1"</span></span><br></pre></td></tr></table></figure>
 
-<p>有的时候，无法删除一个镜像，大部分原因是因为该镜像被一个容器所依赖，此时需要先删除容器，然后就可以删除镜像了，删除容器的命令可以参考本系列前面的文章。</p>
-<p>通过前面文章的阅读，已经了解到所谓的容器实际上是在父镜像的基础上创建了一个可读写的文件层级，所有的修改操作都在这个文件层级上进行，而父镜像并未受影响，如果读者需要根据这种修改创建一个新的本地镜像，有两种不同的方式，先来看第一种方式：commit。</p>
-<h3 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h3><p>首先，根据本地镜像运行一个容器：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd --name nginx -p 80:80 43523432434</span><br></pre></td></tr></table></figure>
+<h4 id="hkeys"><a href="#hkeys" class="headerlink" title="hkeys"></a>hkeys</h4><p>hkeys 命令可以返回 key 指定的哈希集中所有字段的名字，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hkeys k2</span><br><span class="line">1) <span class="string">"h2"</span></span><br><span class="line">2) <span class="string">"h3"</span></span><br><span class="line">3) <span class="string">"h4"</span></span><br></pre></td></tr></table></figure>
 
-<p>命令解释：</p>
-<ol>
-<li>首先执行 docker images 命令，查看本地镜像。</li>
-<li>根据本地镜像中的 nginx 镜像，创建一个名为 nginx 的容器，并启动。</li>
-<li>将宿主机中一个名为 index.html 的文件拷贝到容器中。</li>
-<li>访问容器，发现改变已经生效。</li>
-<li>接下来再重新创建一个容器，名为 nginx2。</li>
-<li>访问 nginx2，发现 nginx2 中默认的页面还是 nginx 的默认页面，并未发生改变。</li>
-</ol>
-<h3 id="commint-创建本地镜像"><a href="#commint-创建本地镜像" class="headerlink" title="commint 创建本地镜像"></a>commint 创建本地镜像</h3><p>接下来，根据刚刚创建的第一个容器，创建一个本地镜像：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit -m <span class="string">"update index.html"</span> --author=<span class="string">'sang'</span> a123434234 sang/nginx:v1</span><br></pre></td></tr></table></figure>
+<h4 id="hgetall"><a href="#hgetall" class="headerlink" title="hgetall"></a>hgetall</h4><p>hgetall 命令可以返回 key 指定的哈希集中所有的字段和值。返回值中，每个字段名的下一个是它的值，所以返回值的长度是哈希集大小的两倍，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hgetall k2</span><br><span class="line">1) <span class="string">"h2"</span></span><br><span class="line">2) <span class="string">"v2"</span></span><br><span class="line">3) <span class="string">"h3"</span></span><br><span class="line">4) <span class="string">"v3"</span></span><br><span class="line">5) <span class="string">"h4"</span></span><br><span class="line">6) <span class="string">"1"</span></span><br></pre></td></tr></table></figure>
 
-<p>然后运行刚刚创建的本地镜像。</p>
-<p>命令解释：</p>
-<ol>
-<li>参数 -m 是对创建的该镜像的一个简单描述。</li>
-<li>–author 表示该镜像的作者。</li>
-<li>ce1fe32739402 表示创建镜像所依据的容器的 id。</li>
-<li>sang/nginx 则表示仓库名，sang 是名称空间，nginx 是镜像名。</li>
-<li>v1 表示仓库的 tag。</li>
-<li>创建完成后，通过 docker images 命令就可以查看到刚刚创建的镜像。</li>
-<li>通过刚刚创建的镜像运行一个容器，访问该容器，发现 nginx 默认的首页已经发生改变。</li>
-</ol>
-<p>这是我们通过 commint 方式创建本地镜像的方式，但是 commit 方式存在一些问题，比如不够透明化，无法重复，体积较大，为了解决这些问题，可以考虑使用 Dockerfile ，实际上，主流方案也是 Dockerfile。</p>
-<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>Dockerfile 就是一个普通的文本文件，其内包含了一条条的指令，每一条指令都会构建一层。先来看一个简单的例子。首先在一个空白目录下创建一个名为 Dockerfile 的文件，内容如下：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ngxin</span><br><span class="line"><span class="keyword">MAINTAINER</span> sang <span class="string">"antoniopeng@foxmail.com"</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'hello docker!'</span>&gt;/usr/share/nginx/html/index.html</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./hello.html /usr/share/nginx/html/</span></span><br></pre></td></tr></table></figure>
+<h4 id="hexists"><a href="#hexists" class="headerlink" title="hexists"></a>hexists</h4><p>hexists 命令可以返回 hash 里面 field 是否存在，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hexists k2 h3</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
 
-<p>命令解释：</p>
-<ol>
-<li><code>FROM nginx</code> 表示该镜像的构建，以已有的 nginx 镜像为基础，在该镜像的基础上构建。</li>
-<li><code>MAINTAINER</code> 指令用来声明创建镜像的作者信息以及邮箱信息，这个命令不是必须的。</li>
-<li><code>RUN</code> 指令用来修改镜像，算是使用比较频繁的一个指令了，该指令可以用来安装程序、安装库以及配置应用程序等，一个 RUN 指令执行会在当前镜像的基础上创建一个新的镜像层，接下来的指令将在这个新的镜像层上执行，RUN 语句有两种不同的形式：shell 格式和 exec 格式。本案例采用的 shell 格式，shell 格式就像 linux 命令一样，exec 格式则是一个 JSON 数组，将命令放到数组中即可。在使用 RUN 命令时，适当的时候可以将多个 RUN 命令合并成一个，这样可以避免在创建镜像时创建过多的层。</li>
-<li><code>COPY</code> 语句则是将镜像上下文中的 <code>hello.html</code> 文件拷贝到镜像中。</li>
-</ol>
-<p>文件创建完成后，执行如下命令进行构建：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t sang/nginx:v1 .</span><br></pre></td></tr></table></figure>
+<h4 id="hincrby"><a href="#hincrby" class="headerlink" title="hincrby"></a>hincrby</h4><p>hincrby 可以增加 key 指定的哈希集中指定字段的数值。如果 key 不存在，会创建一个新的哈希集并与 key 关联。如果字段不存在，则字段的值在该操作执行前被设置为 0， hincrby 支持的值的范围限定在 64 位有符号整数，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hexists k2 h3</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt;</span><br><span class="line">127.0.0.1:6379&gt; hget k2 h4</span><br><span class="line"><span class="string">"1"</span></span><br><span class="line">127.0.0.1:6379&gt; hincrby k2 h4 5</span><br><span class="line">(<span class="built_in">integer</span>) 6</span><br><span class="line">127.0.0.1:6379&gt; hget k2 h4</span><br><span class="line"><span class="string">"6"</span></span><br><span class="line">127.0.0.1:6379&gt; hget k2 h5</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; hincrby k2 h5 99</span><br><span class="line">(<span class="built_in">integer</span>) 99</span><br><span class="line">127.0.0.1:6379&gt; hget k2 h5</span><br><span class="line"><span class="string">"99"</span></span><br></pre></td></tr></table></figure>
 
-<p>命令解释：</p>
-<ol>
-<li><code>-t</code> 参数用来指定镜像的命名空间，仓库名以及 TAG 等信息。</li>
-<li>最后面的 <code>.</code> 是指镜像构建上下文。</li>
-</ol>
+<h4 id="hincrbyfloat"><a href="#hincrbyfloat" class="headerlink" title="hincrbyfloat"></a>hincrbyfloat</h4><p>hincrbyfloat 与 hincrby 用法基本一致，只不过这里允许 float 类型的数据，不赘述。</p>
+<h4 id="hlen"><a href="#hlen" class="headerlink" title="hlen"></a>hlen</h4><p>hlen 返回 key 指定的哈希集包含的字段的数量，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hlen k2</span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br></pre></td></tr></table></figure>
+
+<h4 id="hstrlen"><a href="#hstrlen" class="headerlink" title="hstrlen"></a>hstrlen</h4><p>hstrlen 可以返回 hash 指定 field 的 value 的字符串长度，如果 hash 或者 field 不存在，返回 0 ，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hstrlen k2 h2</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
+
+<h3 id="有序集合"><a href="#有序集合" class="headerlink" title="有序集合"></a>有序集合</h3><p>有序集合类似 Sets ,但是每个字符串元素都关联到一个叫 score 浮动数值。里面的元素总是通过 score 进行着排序，因此它是可以检索的一系列元素。</p>
+<h4 id="zadd"><a href="#zadd" class="headerlink" title="zadd"></a>zadd</h4><p>zadd 命令可以将所有指定成员添加到键为 key 的有序集合里面。添加时可以指定多个分数/成员（score/member）对。 如果指定添加的成员已经是有序集合里面的成员，则会更新该成员的分数（scrore）并更新到正确的排序位置。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd k1 60 v1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="zscore"><a href="#zscore" class="headerlink" title="zscore"></a>zscore</h4><p>zscore 命令可以返回有序集 key 中，成员 member 的score 值。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zscore k1 v1</span><br><span class="line"><span class="string">"60"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="zrange"><a href="#zrange" class="headerlink" title="zrange"></a>zrange</h4><p>zrange 命令可以根据 index 返回 member ，该命令在执行时加上 withscores 参数可以连同 score 一起返回：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrange k1 0 3</span><br><span class="line">1) <span class="string">"v1"</span></span><br><span class="line">2) <span class="string">"v2"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br><span class="line">4) <span class="string">"v4"</span></span><br><span class="line">127.0.0.1:6379&gt; zrange k1 0 3 withscores</span><br><span class="line">1) <span class="string">"v1"</span></span><br><span class="line">2) <span class="string">"60"</span></span><br><span class="line">3) <span class="string">"v2"</span></span><br><span class="line">4) <span class="string">"70"</span></span><br><span class="line">5) <span class="string">"v3"</span></span><br><span class="line">6) <span class="string">"80"</span></span><br><span class="line">7) <span class="string">"v4"</span></span><br><span class="line">8) <span class="string">"90"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="zrevrange"><a href="#zrevrange" class="headerlink" title="zrevrange"></a>zrevrange</h4><p>zrevrange 和 zrange 功能基本一致，不同的是 zrevrange 是反着来的，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrevrange k1 0 3</span><br><span class="line">1) <span class="string">"v5"</span></span><br><span class="line">2) <span class="string">"v4"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br><span class="line">4) <span class="string">"v2"</span></span><br><span class="line">127.0.0.1:6379&gt; zrevrange k1 0 3 withscores</span><br><span class="line">1) <span class="string">"v5"</span></span><br><span class="line">2) <span class="string">"100"</span></span><br><span class="line">3) <span class="string">"v4"</span></span><br><span class="line">4) <span class="string">"90"</span></span><br><span class="line">5) <span class="string">"v3"</span></span><br><span class="line">6) <span class="string">"80"</span></span><br><span class="line">7) <span class="string">"v2"</span></span><br><span class="line">8) <span class="string">"70"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="zcard"><a href="#zcard" class="headerlink" title="zcard"></a>zcard</h4><p>zcard 命令可以返回 key 的有序集元素个数。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zcard k1</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br></pre></td></tr></table></figure>
+
+<h4 id="zcount"><a href="#zcount" class="headerlink" title="zcount"></a>zcount</h4><p>zcount 命令可以返回有序集 key 中，score 值在 min 和 max 之间(默认包括 score 值等于 min 或 max )的成员。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zcount k1 60 90</span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br></pre></td></tr></table></figure>
+
+<p>如果在统计时，不需要包含 60 或者 90 ，则添加一个 <strong>(</strong> 即可，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zcount k1 60 (90</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br></pre></td></tr></table></figure>
+
+<h4 id="zrangebyscore"><a href="#zrangebyscore" class="headerlink" title="zrangebyscore"></a>zrangebyscore</h4><p>zrangebyscore 命令可以按照 score 范围范围元素，加上 withscores 可以连 score 一起返回。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrangebyscore k1 60 80</span><br><span class="line">1) <span class="string">"v1"</span></span><br><span class="line">2) <span class="string">"v2"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore k1 60 80 withscores</span><br><span class="line">1) <span class="string">"v1"</span></span><br><span class="line">2) <span class="string">"60"</span></span><br><span class="line">3) <span class="string">"v2"</span></span><br><span class="line">4) <span class="string">"70"</span></span><br><span class="line">5) <span class="string">"v3"</span></span><br><span class="line">6) <span class="string">"80"</span></span><br><span class="line">127.0.0.1:6379&gt; ZRANGEBYSCORE k1 (60 80 withscores</span><br><span class="line">1) <span class="string">"v2"</span></span><br><span class="line">2) <span class="string">"70"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br><span class="line">4) <span class="string">"80"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="zrank"><a href="#zrank" class="headerlink" title="zrank"></a>zrank</h4><p>zrank 命令可以返回有序集 key 中成员 member 的排名。其中有序集成员按 score 值递增(从小到大)顺序排列。排名以 0 为底，即 score 值最小的成员排名为 0 。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrank k1 v1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; zrank k1 v2</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="zrevrank"><a href="#zrevrank" class="headerlink" title="zrevrank"></a>zrevrank</h4><p>zrevrank 和 zrank 命令功能基本一致，不同的是，zrevrank 中的排序是从大到小：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrevrank k1 v1</span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br><span class="line">127.0.0.1:6379&gt; zrevrank k1 v2</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br></pre></td></tr></table></figure>
+
+<h4 id="zincrby"><a href="#zincrby" class="headerlink" title="zincrby"></a>zincrby</h4><p>zincrby 命令可以为有序集 key 的成员 member 的 score 值加上增量 increment 。如果 key 中不存在 member ，就在 key 中添加一个 member ，score 是 increment（就好像它之前的 score 是0.0）。如果 key 不存在，就创建一个只含有指定 member 成员的有序集合：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zincrby k1 3 v1</span><br><span class="line"><span class="string">"63"</span></span><br><span class="line">127.0.0.1:6379&gt; zincrby k1 0 0 withscores</span><br><span class="line">1) <span class="string">"v1"</span></span><br><span class="line">2) <span class="string">"63"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="zinterstore"><a href="#zinterstore" class="headerlink" title="zinterstore"></a>zinterstore</h4><p>zinterstore 命令可以计算给定的 numkeys 个有序集合的交集，并且把结果放到 destination 中。 在给定要计算的 key 和其它参数之前，必须先给定 key 个数( numberkeys )。该命令也可以在执行的过程中给原 score 乘以 weights 后再求和，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd k2 2 v1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd k2 3 v2</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd k2 4 v3</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd k3 9 v2</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd k3 10 v3</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd k3 11 v4</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zinterstore k4 2 k2 k3</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; zrange k4 0 -1 withscores</span><br><span class="line">1) <span class="string">"v2"</span></span><br><span class="line">2) <span class="string">"12"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br><span class="line">4) <span class="string">"14"</span></span><br><span class="line">127.0.0.1:6379&gt; zinterstore k5 2 k2 k3 weights 3 1</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; zrange k5 0 -1 withscores</span><br><span class="line">1) <span class="string">"v2"</span></span><br><span class="line">2) <span class="string">"18"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br><span class="line">4) <span class="string">"22"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="zrem"><a href="#zrem" class="headerlink" title="zrem"></a>zrem</h4><p>zrem 命令可以从集合中弹出一个元素，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrange k2 0 -1 withscores</span><br><span class="line">1) <span class="string">"v1"</span></span><br><span class="line">2) <span class="string">"2"</span></span><br><span class="line">3) <span class="string">"v2"</span></span><br><span class="line">4) <span class="string">"3"</span></span><br><span class="line">5) <span class="string">"v3"</span></span><br><span class="line">6) <span class="string">"4"</span></span><br><span class="line">127.0.0.1:6379&gt; zrem k2 v1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zrange k2 0 -1 withscores</span><br><span class="line">1) <span class="string">"v2"</span></span><br><span class="line">2) <span class="string">"3"</span></span><br><span class="line">3) <span class="string">"v3"</span></span><br><span class="line">4) <span class="string">"4"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="zlexcount"><a href="#zlexcount" class="headerlink" title="zlexcount"></a>zlexcount</h4><p>zlexcount 命令用于计算有序集合中指定成员之间的成员数量。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zlexcount k2 - +</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; zlexcount k2 [v2 [v4</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>可以用 <strong>-</strong> 和 <strong>+</strong> 表示得分最小值和最大值，如果使用成员名的话，一定要在成员名之前加上 [ 。</p>
+<h4 id="zrangebylex"><a href="#zrangebylex" class="headerlink" title="zrangebylex"></a>zrangebylex</h4><p>zrangebylex 返回指定成员区间内的成员，按成员字典正序排序, 分数必须相同。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrangebylex k2 [v2 [v4</span><br><span class="line">1) <span class="string">"v2"</span></span><br><span class="line">2) <span class="string">"v3"</span></span><br><span class="line">127.0.0.1:6379&gt; zrangebylex k2 - +</span><br><span class="line">1) <span class="string">"v2"</span></span><br><span class="line">2) <span class="string">"v3"</span></span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意 min 和 max 参数的写法和 zlexcount一致。</p>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/docker/使用dockerfile定制镜像/" data-toggle="tooltip" data-placement="top" title="使用 Dockerfile 定制镜像">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/docker/docker容器高级操作/" data-toggle="tooltip" data-placement="top" title="Docker 容器高级操作">Next Post &rarr;</a>
+            <a href="/redis/reids列表与集合命令使用/" data-toggle="tooltip" data-placement="top" title="Reids 列表与集合命令使用">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -546,7 +534,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Docker 镜像操作&body=Hi,I found this website and thought you might like it https://antoniopeng.com/docker/docker镜像操作/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Reids 散列与有序集合命令使用&body=Hi,I found this website and thought you might like it https://antoniopeng.com/redis/reids散列与有序集合命令使用/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -587,7 +575,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#镜像与容器的关系"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">镜像与容器的关系</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#镜像的体系结构"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">镜像的体系结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#镜像的写时复制机制"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">镜像的写时复制机制</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#镜像查看"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">镜像查看</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#镜像下载"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">镜像下载</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#镜像删除"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">镜像删除</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#创建容器"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">创建容器</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#commint-创建本地镜像"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">commint 创建本地镜像</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Dockerfile"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">Dockerfile</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#散列"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">散列</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hset"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">hset</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hget"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">hget</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hmset"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">hmset</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hmget"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">hmget</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hdel"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">hdel</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hsetnx"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">hsetnx</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hvals"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">hvals</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hkeys"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">hkeys</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hgetall"><span class="toc-nav-number">1.9.</span> <span class="toc-nav-text">hgetall</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hexists"><span class="toc-nav-number">1.10.</span> <span class="toc-nav-text">hexists</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hincrby"><span class="toc-nav-number">1.11.</span> <span class="toc-nav-text">hincrby</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hincrbyfloat"><span class="toc-nav-number">1.12.</span> <span class="toc-nav-text">hincrbyfloat</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hlen"><span class="toc-nav-number">1.13.</span> <span class="toc-nav-text">hlen</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hstrlen"><span class="toc-nav-number">1.14.</span> <span class="toc-nav-text">hstrlen</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#有序集合"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">有序集合</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zadd"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">zadd</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zscore"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">zscore</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zrange"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">zrange</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zrevrange"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">zrevrange</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zcard"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">zcard</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zcount"><span class="toc-nav-number">2.6.</span> <span class="toc-nav-text">zcount</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zrangebyscore"><span class="toc-nav-number">2.7.</span> <span class="toc-nav-text">zrangebyscore</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zrank"><span class="toc-nav-number">2.8.</span> <span class="toc-nav-text">zrank</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zrevrank"><span class="toc-nav-number">2.9.</span> <span class="toc-nav-text">zrevrank</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zincrby"><span class="toc-nav-number">2.10.</span> <span class="toc-nav-text">zincrby</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zinterstore"><span class="toc-nav-number">2.11.</span> <span class="toc-nav-text">zinterstore</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zrem"><span class="toc-nav-number">2.12.</span> <span class="toc-nav-text">zrem</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zlexcount"><span class="toc-nav-number">2.13.</span> <span class="toc-nav-text">zlexcount</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#zrangebylex"><span class="toc-nav-number">2.14.</span> <span class="toc-nav-text">zrangebylex</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -609,7 +597,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+            <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
             
           </div>
         </section>
