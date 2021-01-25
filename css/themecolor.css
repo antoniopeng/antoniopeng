@@ -368,15 +368,15 @@ hr {
 
 /* img */
 .post-container img {
-  box-shadow: var(--img-shadow-color) !important;
+  /*box-shadow: var(--img-shadow-color) !important;
   -moz-box-shadow: var(--img-shadow-color) !important;
-  -webkit-box-shadow: var(--img-shadow-color) !important;
+  -webkit-box-shadow: var(--img-shadow-color) !important;*/
 }
 
 .short-about img {
-  box-shadow: var(--img-about-shadow-color) !important;
+  /*box-shadow: var(--img-about-shadow-color) !important;
   -moz-box-shadow: var(--img-about-shadow-color) !important;
-  -webkit-box-shadow: var(--img-about-shadow-color) !important;
+  -webkit-box-shadow: var(--img-about-shadow-color) !important;*/
 }
 
 /* viewer */
