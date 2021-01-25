@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -393,7 +393,7 @@
     <div class="row">
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
-
+		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
         <h3 id="关于-MQ-的定义"><a href="#关于-MQ-的定义" class="headerlink" title="关于 MQ 的定义"></a>关于 MQ 的定义</h3><p><code>Message Queue</code>（<code>MQ</code>）消息队列中间件，通常我们在网上看到的对其定义是将消息的发送和接受分离来实现应用程序的异步和解耦，给人的直觉是 <code>MQ</code> 是异步的，用来解耦的。但这个只是 <code>MQ</code> 的效果，而不是目的。<code>MQ</code> 真正的目的是为了通讯，屏蔽底层复杂的通讯协议，定义了一套应用层上更加简单的通讯协议。</p>
 <p>一套分布式系统中两个模块之间通讯要么是 <code>HTTP</code>，要么是 <code>TCP</code>，但这两种协议其实都是原始的协议。前者实现通讯就必须要做到各客户端都有 <code>WebServer</code>，而且不支持长连接；后者就更加原始了 — 粘包、心跳、私有的协议。</p>
 <p>而 <code>MQ</code> 所要做就是在基于这些现有的协议之上构建一个更简单的通讯（生产者/消费者）模型。它定义了两个对象 —发送数据的叫生产者，接受数据的叫消费者，提供一个 SDK 给我们自己定义生产者和消费者实现消息通讯，且无视底层通讯协议。</p>
