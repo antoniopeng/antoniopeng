@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -373,6 +373,201 @@
 
       <!-- Main Content -->
 
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mybatis/mybatis中使用mapper简化代码/">
+    <h2 class="post-title">
+      MyBatis 中使用 Mapper 简化代码
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      前面文章所写的增删改查是存在问题的。主要问题就是冗余代码过多，模板化代码过多。
+例如，我想开发一个 UserDao，可能是下面这样。此时，我们分析这个 UserDao，发现它有很多可以优化的地方。每个方法中都要获取 SqlSession，涉及到增删改的方法，还需要 commit，SqlSession 用完之后，还需要关闭，sqlSession 执行时需要的参数就是方法的参数，sqlSessi......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mybatis/mybatis的映射文件详解/">
+    <h2 class="post-title">
+      MyBatis 的映射文件详解
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      mapper 映射文件，是 MyBatis 中最重要的部分，涉及到的细节也是非常非常多。
+parameterType这个表示输入的参数类型。
+$ 和 #这是一个非常非常高频的面试题，虽然很简单。在面试中，如果涉及到 MyBatis，一般情况下，都是这个问题。在 MyBatis 中，我们在 mapper 引用变量时，默认使用的是 #，像下面这样：
+123&lt;select id="getUs......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-17
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mybatis/mybatis全局配置/">
+    <h2 class="post-title">
+      MyBatis 全局配置
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      全局配置中的属性非常多，主要有如下几方面：
+
+properties（属性）
+settings（全局配置参数）
+typeAliases（类型别名）
+typeHandlers（类型处理器）
+objectFactory（对象工厂）
+plugins（插件）
+environments（环境集合属性对象）
+environment（环境子属性对象）
+transactionManager（事务管理）
+dat......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-17
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mybatis/java持久层框架mybatis/">
+    <h2 class="post-title">
+      Java 持久层框架 MyBatis
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      JDBC 存在的问题
+数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。
+Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变 java 代码。
+使用 preparedStatement 向占位符号传参数存在硬编码，因为 sql 语句的 where 条件不一定，可能多也可能少，修改 sql 还要修改代码......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-17
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/spring-mvc/spring-mvc整合hibernate-validator实现数据校验/">
+    <h2 class="post-title">
+      Spring MVC 整合 Hibernate Validator 实现数据校验
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      B/S 系统中对 http 请求数据的校验多数在客户端进行，这也是出于简单及用户体验性上考虑，但是在一些安全性要求高的系统中服务端校验是不可缺少的，实际上，几乎所有的系统，凡是涉及到数据校验，都需要在服务端进行二次校验。为什么要在服务端进行二次校验呢？这需要理解客户端校验和服务端校验各自的目的。
+
+客户端校验，我们主要是为了提高用户体验，例如用户输入一个邮箱地址，要校验这个邮箱地址是否合法，......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-17
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    
+  </div>
+  
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -567,199 +762,6 @@ StandardServletMultipartResolver·
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/读书分享/原生家庭/">
-    <h2 class="post-title">
-      《原生家庭》读书分享
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      本书收获
-了解问题父母的行为模式
-认知原生家庭对孩子的伤害
-学会摆脱原生家庭的负面影响
-
-金句精选
-父母在我们心里种下了精神和情感的种子，它们会随我们一同成长。（第 5 页）
-一纸离婚判决书并不能成为不称职的父母遗弃子女的许可证。（第 32 页）
-把正面的自我感受建立在别人的看法上，就等于把自尊心交到他们手里任其摆布。（第 114 页）
-孩子应该拥有犯错误和改正错误的权利。（第 115 页）......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-15
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#读书分享" title="读书分享">读书分享</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc核心组件详解/">
-    <h2 class="post-title">
-      Spring MVC 核心组件详解
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      DispatcherServlet 作用DispatcherServlet 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。DispatcherServlet 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：
-
-文件上传解析，如果请求类型是 mult......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-15
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
-    <h2 class="post-title">
-      使用 Spring MVC 的拦截器实现登录功能
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring  MVC 的处理器拦截器，类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。
-应用场景
-日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。
-权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。
-性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完后记......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-14
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc入门就这一篇/">
-    <h2 class="post-title">
-      Spring MVC 入门就这一篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring MVC 概述Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的一部分。
- MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 Web 应用程序的组件......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-14
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/spring事务解决方案/">
-    <h2 class="post-title">
-      Spring 事务解决方案
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring 中的事务主要是利用 Aop 思想，简化事务的配置，可以通过 Java 配置也可以通过 XML 配置。
-我们通过一个转账操作来看下 Spring 中的事务配置。
-准备工作创建数据库123456789101112131415161718CREATE DATABASE /*!32312 IF NOT EXISTS*/`test01` /*!40100 DEFAULT CHARACTE......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -903,11 +905,15 @@ StandardServletMultipartResolver·
     
     
     
+    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    
+    
+    
     <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
     
     
     
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
@@ -919,19 +925,11 @@ StandardServletMultipartResolver·
     
     
     
-    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
-    
-    
-    
-    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
-    
-    
-    
     <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
     
     
     
-    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="5">MySQL</a>
     
     
     
@@ -939,15 +937,15 @@ StandardServletMultipartResolver·
     
     
     
-    <a href="/tags/#Spring Boot" title="Spring Boot" rel="14">Spring Boot</a>
+    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
+    
+    
+    
+    <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
     
     
     
     <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
-    
-    
-    
-    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
     
     
     
@@ -956,6 +954,10 @@ StandardServletMultipartResolver·
     
     
     <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
+    
+    
+    
+    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
     
     
   </div>
@@ -983,12 +985,12 @@ StandardServletMultipartResolver·
       <li>数据库</li>
     </a>
     
-    <a href="/categories/#杂记">
-      <li>杂记</li>
-    </a>
-    
     <a href="/categories/#计算机基础">
       <li>计算机基础</li>
+    </a>
+    
+    <a href="/categories/#杂记">
+      <li>杂记</li>
     </a>
     
   </ul>
@@ -1001,7 +1003,7 @@ StandardServletMultipartResolver·
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">56</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 

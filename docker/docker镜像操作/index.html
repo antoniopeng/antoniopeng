@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -393,7 +393,9 @@
     <div class="row">
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
+
         <p>镜像也是 docker 的核心组件之一，镜像时容器运行的基础，容器是镜像运行后的形态。前面我们介绍了容器的用法，今天来和大家聊聊镜像的问题。</p>
 <p>总体来说，镜像是一个包含程序运行必要以来环境和代码的只读文件，它采用分层的文件系统，将每一层的改变以读写层的形式增加到原来的只读文件上。这有点像洋葱，一层一层的，当我们后面学习了 Dockerfile ，相信大家对于这样的架构理解将更为准确。</p>
 <h3 id="镜像与容器的关系"><a href="#镜像与容器的关系" class="headerlink" title="镜像与容器的关系"></a>镜像与容器的关系</h3><p>前文已经向读者介绍过容器的使用了，细心的读者可能已经发现，容器在启动或者创建时，必须指定一个镜像的名称或者 id ，其实，这时镜像所扮演的角色就是容器的模版，不同的镜像可以构造出不同的容器，同一个镜像，我们也可以通过配置不同参数来构造出不通的容器。如下命令：</p>
