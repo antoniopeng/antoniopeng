@@ -83,12 +83,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../../../../../css/highlight.css">
-<link rel="stylesheet" href="../../../../../css/widget.css">
-<link rel="stylesheet" href="../../../../../css/rocket.css">
-<link rel="stylesheet" href="../../../../../css/signature.css">
-<link rel="stylesheet" href="../../../../../css/catalog.css">
-<link rel="stylesheet" href="../../../../../css/livemylife.css">
+<link rel="stylesheet" href="../../css/highlight.css">
+<link rel="stylesheet" href="../../css/widget.css">
+<link rel="stylesheet" href="../../css/rocket.css">
+<link rel="stylesheet" href="../../css/signature.css">
+<link rel="stylesheet" href="../../css/catalog.css">
+<link rel="stylesheet" href="../../css/livemylife.css">
 
 
   
@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/archives/2021/01/archives/3/">
+  <link rel="canonical" href="https://antoniopeng.com/redis/redis主从复制/">
   <title>
     
-    彭超的博客 | Antonio Blog
+    Redis 主从复制 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*page*/
-        background-image: url('');
+       /*post*/
+        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
       
     }
 
@@ -312,10 +312,40 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>彭超</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">生命不息，奋斗不止</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="https://antoniopeng.com/tags/#Redis" title="Redis">Redis</a>
+              
+            </div>
+            <h1>Redis 主从复制</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by 暮夏有五 on
+              2021-01-28
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">7</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">1.9k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- 不蒜子统计 start -->
+            <span class="meta">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            <!-- WordCount end -->
+            
+
+
           </div>
           
         </div>
@@ -356,677 +386,278 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
-
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-
-      <!-- Main Content -->
-
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot配置文件的使用/">
-    <h2 class="post-title">
-      Spring Boot 配置文件的使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      在 Spring Boot 中，配置文件有两种不同的格式，一个是 .properties ，另一个是 .yaml 。
-虽然 properties 文件比较常见，但是相对于 properties 而言，yaml 更加简洁明了，而且使用的场景也更多，很多开源项目都是使用 yaml 进行配置（例如 Hexo）。除了简洁，yaml 还有另外一个特点，就是 yaml 中的数据是有序的，properti......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-20
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/新一代java企业级快速开发框架spring-boot拆箱体验/">
-    <h2 class="post-title">
-      新一代 Java 企业级快速开发框架 Spring Boot 拆箱体验
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring Boot 介绍我们刚开始学习 Java Web 的时候，使用 Servlet/JSP 做开发，一个接口搞一个 Servlet ，很头大，后来我们通过隐藏域或者反射等方式，可以减少 Servlet 的创建，但是依然不方便，再后来，我们引入 Struts2/SpringMVC 这一类的框架，来简化我们的开发 ，和 Servlet/JSP 相比，引入框架之后，生产力确实提高了不少，但......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-20
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/java/最优雅地整合spring&spring-mvc&mybatis搭建java企业级应用/">
-    <h2 class="post-title">
-      最优雅地整合 Spring & Spring MVC & MyBatis 搭建 Java 企业级应用（附源码）
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      
-这里使用 Maven 项目管理工具构建项目
-
-初始化项目打开 Intellij  IDEA，点击 Create New Project，使用 Maven 构建项目，选择 JDK 版本和 maven-archetype-webapp 模板（Java Web 项目）
-
-填写项目在 Maven 仓库中的坐标
-
-选择 Maven 安装路径和 Maven 配置文件路径以及 Maven 本地仓库路径
-......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-19
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Java" title="Java">Java</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/mybatis逆向工程生成代码/">
-    <h2 class="post-title">
-      MyBatis 逆向工程生成代码
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      下载项目已上传至百度网盘
-
-网盘链接：https://pan.baidu.com/s/1m2YcxD6hGp6rQrGNhAEjYw 
-提取码：iu9y 
-
-生成代码由于使用数据表时，我们需要给每一个表都创建对应的实体类，每个实体类都有对应的 Mapper 接口和 Mapper.xml 文件，这些其实都是一些重复的工作，我们可以通过第三方工具来完成。
-MyBatis 逆向工程非常多，我们 I......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-18
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/再谈mybatis复杂查询/">
-    <h2 class="post-title">
-      再谈 MyBatis 复杂查询
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      一对一查询在实际开发中，经常会遇到一对一查询，一对多查询等。这里我们先来看一对一查询。例如：每本书都有一个作者，作者都有自己的属性，根据这个，我来定义两个实体类：
-12345678public class Book &#123;        private Integer id;    private String name;    private Author author;	    /......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-18
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/mybatis中使用mapper简化代码/">
-    <h2 class="post-title">
-      MyBatis 中使用 Mapper 简化代码
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      前面文章所写的增删改查是存在问题的。主要问题就是冗余代码过多，模板化代码过多。
-例如，我想开发一个 UserDao，可能是下面这样。此时，我们分析这个 UserDao，发现它有很多可以优化的地方。每个方法中都要获取 SqlSession，涉及到增删改的方法，还需要 commit，SqlSession 用完之后，还需要关闭，sqlSession 执行时需要的参数就是方法的参数，sqlSessi......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-18
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/mybatis的映射文件详解/">
-    <h2 class="post-title">
-      MyBatis 的映射文件详解
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      mapper 映射文件，是 MyBatis 中最重要的部分，涉及到的细节也是非常非常多。
-parameterType这个表示输入的参数类型。
-$ 和 #这是一个非常非常高频的面试题，虽然很简单。在面试中，如果涉及到 MyBatis，一般情况下，都是这个问题。在 MyBatis 中，我们在 mapper 引用变量时，默认使用的是 #，像下面这样：
-123&lt;select id="getUs......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/mybatis全局配置/">
-    <h2 class="post-title">
-      MyBatis 全局配置
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      全局配置中的属性非常多，主要有如下几方面：
-
-properties（属性）
-settings（全局配置参数）
-typeAliases（类型别名）
-typeHandlers（类型处理器）
-objectFactory（对象工厂）
-plugins（插件）
-environments（环境集合属性对象）
-environment（环境子属性对象）
-transactionManager（事务管理）
-dat......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/java持久层框架mybatis/">
-    <h2 class="post-title">
-      Java 持久层框架 MyBatis
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      JDBC 存在的问题
-数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。
-Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变 java 代码。
-使用 preparedStatement 向占位符号传参数存在硬编码，因为 sql 语句的 where 条件不一定，可能多也可能少，修改 sql 还要修改代码......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc整合hibernate-validator实现数据校验/">
-    <h2 class="post-title">
-      Spring MVC 整合 Hibernate Validator 实现数据校验
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      B/S 系统中对 http 请求数据的校验多数在客户端进行，这也是出于简单及用户体验性上考虑，但是在一些安全性要求高的系统中服务端校验是不可缺少的，实际上，几乎所有的系统，凡是涉及到数据校验，都需要在服务端进行二次校验。为什么要在服务端进行二次校验呢？这需要理解客户端校验和服务端校验各自的目的。
-
-客户端校验，我们主要是为了提高用户体验，例如用户输入一个邮箱地址，要校验这个邮箱地址是否合法，......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-
-
-  <!-- Pager -->
-  <ul class="pager">
-    
-    <li class="previous">
-      <a href="/archives/2021/01/archives/2/">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/archives/2021/01/archives/4/">Older Posts &rarr;</a>
-    </li>
-    
-  </ul>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        
-<!-- <h5>VISITORS</h5> -->
-<h5>VISITORS</h5>
-<div class="widget">
-  <span>
-    本站总访问量 <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 次
-  </span>
-  <br />
-  <span>
-    本站总访客数 <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 人
-  </span>
-</div>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5>ABOUT ME</h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="https://qiniuyun.antoniopeng.com/my_photo.png" alt="彭超"  />
-    
-
-    
-    <!--<p>我究竟拿时间换了什么 Self discipline produces joy</p>-->
-	<p>
-		<span>我究竟拿时间换了什么</span>
-		<br>
-		<span>Self discipline produces joy</span>
-	</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-	  
-	  
-      <li>
-        <a target="_blank" title="微信" href="https://qiniuyun.antoniopeng.com/my_wx.png">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 20px; height: 20px; background: url('https://qiniuyun.antoniopeng.com/wx01.png') no-repeat;margin: 8px 0px 0px 9px"></i>
-          </span>
-        </a>
-      </li>
-      
-	  
-	  
-      <li>
-        <a target="_blank" title="CSDN" href="https://blog.csdn.net/monianqing">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/csdn.png') no-repeat;margin: 10px 0px 0px 11px"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-      <li>
-        <a target="_blank" title="GitHub" href="https://github.com/antoniopeng">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-	  
-
-      
-
-      
-
-      
-
-      
-
-      
-      <li>
-        <a target="_blank" title="知乎" href="https://www.zhihu.com/people/antoniopeng8">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/zhihu.png') no-repeat;margin: 10px 0px 0px 11px"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-	  
-	  
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- Featured Tags -->
-
-<section>
-  <!-- no hr -->
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#Docker" title="Docker" rel="8">Docker</a>
-    
-    
-    
-    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
-    
-    
-    
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
-    
-    
-    
-    <a href="/tags/#Linux" title="Linux" rel="1">Linux</a>
-    
-    
-    
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
-    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
-    
-    
-    
-    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
-    
-    
-    
-    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
-    
-    
-    
-    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
-    
-    
-    
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
-    
-    
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot" rel="14">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
-    
-    
-    
-    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
-    
-    
-    
-    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
-    
-    
-    
-    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<!-- <h5>categories</h5> -->
-<h5><a href="/categories/">CATEGORIES</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#运维">
-      <li>运维</li>
-    </a>
-    
-    <a href="/categories/#后端技术">
-      <li>后端技术</li>
-    </a>
-    
-    <a href="/categories/#数据库">
-      <li>数据库</li>
-    </a>
-    
-    <a href="/categories/#杂记">
-      <li>杂记</li>
-    </a>
-    
-    <a href="/categories/#计算机基础">
-      <li>计算机基础</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-        
-    <!-- <h5>ARCHIVES</h5> -->
-    <h5><a href="/archive/">ARCHIVES</a></h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../">January 2021</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-
-
-        <hr>
-    
-        <!-- Friends Blog -->
-
-<!-- <h5>FRIENDS</h5> -->
-<h5><a href="javascript:void(0)">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a></li>
-  
-  <li><a href="https://lusongsong.com/" target="_blank">卢松松博客</a></li>
-  
+	<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
+        <p>主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。</p>
+<h3 id="配置方式"><a href="#配置方式" class="headerlink" title="配置方式"></a>配置方式</h3><p>假设我有三个 redis 实例，地址分别如下：</p>
+<ul>
+<li>192.168.248.128:6379 </li>
+<li>192.168.248.128:6380</li>
+<li>192.168.248.128:6381</li>
 </ul>
+<p>即同一台服务器上三个实例，配置方式如下：</p>
+<p>将 redis.conf 文件更名为 redis6379.conf ，方便我们区分，然后把 redis6379.conf 再复制两份，分别为 redis6380.conf 和 redis6381.conf 。</p>
+<p>打开 redis6379.conf，将如下配置均加上 6379（默认是 6379 的不用修改），如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">port 6379</span><br><span class="line">pidfile &#x2F;var&#x2F;run&#x2F;redis_6379.pid</span><br><span class="line">logfile &quot;6379.log&quot;</span><br><span class="line">dbfilename dump6379.rdb</span><br><span class="line">appendfilename &quot;appendonly6379.aof&quot;</span><br></pre></td></tr></table></figure>
+
+<p>同理，分别打开 redis6380.conf 和 redis6381.conf 两个配置文件，将第二步涉及到 6379 的分别改为 6380 和 6381 。</p>
+<p>输入如下命令，启动三个 redis 实例：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ redis-server redis6379.conf</span><br><span class="line">$ redis-server redis6380.conf</span><br><span class="line">$ redis-server redis6381.conf</span><br></pre></td></tr></table></figure>
+
+<p>输入如下命令，分别进入三个实例的控制台：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -p 6379</span><br><span class="line">$ redis-cli -p 6380</span><br><span class="line">$ redis-cli -p 6381</span><br></pre></td></tr></table></figure>
+
+<p>此时我就成功配置了三个 redis 实例了。假设在这三个实例中，6379 是主机，即 master，6380 和 6381 是从机，即 slave，那么如何配置这种实例关系呢，很简单，分别在 6380 和 6381 上执行如下命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6381&gt; SLAVEOF 127.0.0.1 6379</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>这一步也可以通过在两个从机的 redis.conf 中添加如下配置来解决：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slaveof 127.0.0.1 6379</span><br></pre></td></tr></table></figure>
+
+<p>OK，主从关系搭建好后，我们可以通过如下命令可以查看每个实例当前的状态，如下:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; INFO replication</span><br><span class="line"><span class="comment">## Replication</span></span><br><span class="line">role:master</span><br><span class="line">connected_slaves:2</span><br><span class="line">slave0:ip=127.0.0.1,port=6380,state=online,offset=56,lag=1</span><br><span class="line">slave1:ip=127.0.0.1,port=6381,state=online,offset=56,lag=0</span><br><span class="line">master_replid:26ca818360d6510b717e471f3f0a6f5985b6225d</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:56</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:56</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到 6379 是一个主机，上面挂了两个从机，两个从机的地址、端口等信息都展现出来了。如果我们在 6380 上执行 INFO replication ，显示信息如下:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6380&gt; INFO replication</span><br><span class="line"><span class="comment">## Replication</span></span><br><span class="line">role:slave</span><br><span class="line">master_host:127.0.0.1</span><br><span class="line">master_port:6379</span><br><span class="line">master_link_status:up</span><br><span class="line">master_last_io_seconds_ago:6</span><br><span class="line">master_sync_in_progress:0</span><br><span class="line">slave_repl_offset:630</span><br><span class="line">slave_priority:100</span><br><span class="line">slave_read_only:1</span><br><span class="line">connected_slaves:0</span><br><span class="line">master_replid:26ca818360d6510b717e471f3f0a6f5985b6225d</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:630</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:630</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到 6380 是一个从机，从机的信息以及它的主机的信息都展示出来了。此时，我们在主机中存储一条数据，在从机中就可以 get 到这条数据了。</p>
+<h3 id="主从复制注意点"><a href="#主从复制注意点" class="headerlink" title="主从复制注意点"></a>主从复制注意点</h3><ol>
+<li>如果主机已经运行了一段时间了，并且了已经存储了一些数据了，此时从机连上来，那么从机会将主机上所有的数据进行备份，而不是从连接的那个时间点开始备份。</li>
+<li>配置了主从复制之后，主机上可读可写，但是从机只能读取不能写入（可以通过修改 redis.conf 中 slave-read-only 的值让从机也可以执行写操作）。</li>
+<li>在整个主从结构运行过程中，如果主机不幸挂掉，重启之后，他依然是主机，主从复制操作也能够继续进行。</li>
+</ol>
+<h3 id="复制原理"><a href="#复制原理" class="headerlink" title="复制原理"></a>复制原理</h3><p>每一个 master 都有一个 replication ID ，这是一个较大的伪随机字符串，标记了一个给定的数据集。每个 master 也持有一个偏移量，master 将自己产生的复制流发送给 slave 时，发送多少个字节的数据，自身的偏移量就会增加多少，目的是当有新的操作修改自己的数据集时，它可以以此更新 slave 的状态。复制偏移量即使在没有一个 slave 连接到 master 时，也会自增，所以基本上每一对给定的 Replication ID, offset 都会标识一个 master 数据集的确切版本。当 slave 连接到 master 时，它们使用 PSYNC 命令来发送它们记录的旧的 master replication ID 和它们至今为止处理的偏移量。通过这种方式，master 能够仅发送 slave 所需的增量部分。但是如果 master 的缓冲区中没有足够的命令积压缓冲记录，或者如果 slave 引用了不再知道的历史记录 （replication ID） ，则会转而进行一个全量重同步：在这种情况下，slave 会得到一个完整的数据集副本，从头开始(参考 redis 官网)。</p>
+<p>简单来说，就是以下几个步骤：</p>
+<ol>
+<li>slave 启动成功连接到 master 后会发送一个 sync 命令。</li>
+<li>Master 接到命令启动后台的存盘进程，同时收集所有接收到的用于修改数据集命令。</li>
+<li>在后台进程执行完毕之后，master 将传送整个数据文件到 slave ,以完成一次完全同步。</li>
+<li>全量复制：而 slave 服务在接收到数据库文件数据后，将其存盘并加载到内存中。</li>
+<li>增量复制：Master 继续将新的所有收集到的修改命令依次传给 slave ,完成同步。</li>
+<li>但是只要是重新连接 master ,一次完全同步（全量复制)将被自动执行。</li>
+</ol>
+<h3 id="一场拉力赛"><a href="#一场拉力赛" class="headerlink" title="一场拉力赛"></a>一场拉力赛</h3><p>上面搭建的主从复制模式是下面这样的：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B601.png" alt="img"></p>
+<p>实际上，一主二仆的主从复制，我们可以搭建成下面这种结构：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B602.png" alt="img"></p>
+<p>搭建方式很简单，在前文基础上，我们只需要修改 6381 的 master 即可，在 6381 实例上执行如下命令，让 6381 从 6380 实例上复制数据，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6381&gt; SLAVEOF 127.0.0.1 6380</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>此时，我们再看 6379 的 slave ，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; info replication</span><br><span class="line"><span class="comment">## Replication</span></span><br><span class="line">role:master</span><br><span class="line">connected_slaves:1</span><br><span class="line">slave0:ip=127.0.0.1,port=6380,state=online,offset=0,lag=1</span><br><span class="line">master_replid:4a38bbfa37586c29139b4ca1e04e8a9c88793651</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:0</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:0</span><br></pre></td></tr></table></figure>
+
+<p>只有一个 slave，就 6380 ，我们再看 6380 的信息，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6380&gt; info replication</span><br><span class="line"><span class="comment">## Replication</span></span><br><span class="line">role:slave</span><br><span class="line">master_host:127.0.0.1</span><br><span class="line">master_port:6379</span><br><span class="line">master_link_status:up</span><br><span class="line">master_last_io_seconds_ago:1</span><br><span class="line">master_sync_in_progress:0</span><br><span class="line">slave_repl_offset:70</span><br><span class="line">slave_priority:100</span><br><span class="line">slave_read_only:1</span><br><span class="line">connected_slaves:1</span><br><span class="line">slave0:ip=127.0.0.1,port=6381,state=online,offset=70,lag=0</span><br><span class="line">master_replid:4a38bbfa37586c29139b4ca1e04e8a9c88793651</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:70</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:70</span><br></pre></td></tr></table></figure>
+
+<p>6380 此时的角色是一个从机，它的主机是 6379，但是 6380 自己也有一个从机，那就是 6381。</p>
+<h3 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h3><p>上文一共介绍了两种主从模式了，但是这两种，不管是哪一种，都会存在这样一个问题，那就是当主机宕机时，就会发生群龙无首的情况，如果在主机宕机时，能够从从机中选出一个来充当主机，那么就不用我们每次去手动重启主机了，这就涉及到一个新的话题，那就是哨兵模式。</p>
+<p>所谓的哨兵模式，其实并不复杂，我们还是在我们前面的基础上来搭建哨兵模式。假设现在我的 master 是 6379 ，两个从机分别是 6380 和 6381 ，两个从机都是从 6379 上复制数据。先按照上文的步骤，我们配置好一主二仆，然后在 redis 目录下打开 sentinel.conf 文件，做如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sentinel monitor mymaster 127.0.0.1 6379 1</span><br></pre></td></tr></table></figure>
+
+<p>其中 mymaster 是给要监控的主机取的名字，随意取，后面是主机地址，最后面的 2 表示有多少个 sentinel 认为主机挂掉了，就进行切换（我这里只有一个，因此设置为1）。好了，配置完成后，输入如下命令启动哨兵：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-sentinel sentinel.conf</span><br></pre></td></tr></table></figure>
+
+<p>然后启动我们的一主二仆架构，启动成功后，关闭 master，观察哨兵窗口输出的日志，如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B603.png" alt="img"></p>
+<p>可以看到，6379 挂掉之后，redis 内部重新举行了选举，6380 重新上位。此时，如果 6379 重启，也不再是扛把子了，只能屈身做一个 slave 了。</p>
 
 
         <hr>
-    
+        <!-- Pager -->
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/redis/redis集群搭建/" data-toggle="tooltip" data-placement="top" title="Redis 集群搭建">&larr; Previous Post</a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/redis/redis数据持久化/" data-toggle="tooltip" data-placement="top" title="Redis 数据持久化">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <div class="tip">
+          <p>
+            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+          </p>
+        </div>
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Redis 主从复制&body=Hi,I found this website and thought you might like it https://antoniopeng.com/redis/redis主从复制/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
 </div>
 
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+
+
+<!-- 2. gitment comment -->
+
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#配置方式"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">配置方式</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#主从复制注意点"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">主从复制注意点</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#复制原理"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">复制原理</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一场拉力赛"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">一场拉力赛</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#哨兵模式"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">哨兵模式</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+            
+          </div>
+        </section>
+        
+
+        <!-- Friends Blog -->
+        
+        <hr>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
+
+          
+          <li>
+            <a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a>
+          </li>
+          
+          <li>
+            <a href="https://lusongsong.com/" target="_blank">卢松松博客</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->

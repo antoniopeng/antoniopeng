@@ -83,12 +83,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../../../../../css/highlight.css">
-<link rel="stylesheet" href="../../../../../css/widget.css">
-<link rel="stylesheet" href="../../../../../css/rocket.css">
-<link rel="stylesheet" href="../../../../../css/signature.css">
-<link rel="stylesheet" href="../../../../../css/catalog.css">
-<link rel="stylesheet" href="../../../../../css/livemylife.css">
+<link rel="stylesheet" href="../../css/highlight.css">
+<link rel="stylesheet" href="../../css/widget.css">
+<link rel="stylesheet" href="../../css/rocket.css">
+<link rel="stylesheet" href="../../css/signature.css">
+<link rel="stylesheet" href="../../css/catalog.css">
+<link rel="stylesheet" href="../../css/livemylife.css">
 
 
   
@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/archives/2021/01/archives/3/">
+  <link rel="canonical" href="https://antoniopeng.com/redis/redis集群搭建/">
   <title>
     
-    彭超的博客 | Antonio Blog
+    Redis 集群搭建 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*page*/
-        background-image: url('');
+       /*post*/
+        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
       
     }
 
@@ -312,10 +312,40 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>彭超</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">生命不息，奋斗不止</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="https://antoniopeng.com/tags/#Redis" title="Redis">Redis</a>
+              
+            </div>
+            <h1>Redis 集群搭建</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by 暮夏有五 on
+              2021-01-28
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">6</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">1.7k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- 不蒜子统计 start -->
+            <span class="meta">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            <!-- WordCount end -->
+            
+
+
           </div>
           
         </div>
@@ -356,677 +386,267 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+	<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
+        <p>由于主从复制所有的写操作都是先在 Master 上操作，然后同步更新到 Slave 上，所以从 Master 同步到 Slave 机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave 机器数量的增加也会使这个问题更加严重。因此我们还需要集群来进一步提升 redis 性能。</p>
+<h3 id="集群原理"><a href="#集群原理" class="headerlink" title="集群原理"></a>集群原理</h3><p>Redis 集群架构如下图：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/redis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA01.png" alt="img"></p>
+<p>Redis 集群运行原理如下：</p>
+<ol>
+<li>所有的 Redis 节点彼此互联( PING-PONG 机制),内部使用二进制协议优化传输速度和带宽</li>
+<li>节点的 fail 是通过集群中超过半数的节点检测失效时才生效</li>
+<li>客户端与 Redis 节点直连,不需要中间 proxy 层，客户端不需要连接集群所有节点，连接集群中任何一个可用节点即可</li>
+<li>Redis-cluster 把所有的物理节点映射到 [0-16383] slot 上, cluster (簇)负责维护 <code>node&lt;-&gt;slot&lt;-&gt;value</code> 。Redis 集群中内置了 16384 个哈希槽，当需要在 Redis 集群中放置一个 key-value 时，Redis 先对 key 使用 crc16 算法算出一个结果，然后把结果对 16384 求余数，这样每个 key 都会对应一个编号在 0-16383 之间的哈希槽，Redis 会根据节点数量大致均等的将哈希槽映射到不同的节点</li>
+</ol>
+<h4 id="怎么样投票"><a href="#怎么样投票" class="headerlink" title="怎么样投票"></a>怎么样投票</h4><p>投票过程是集群中所有 master 参与,如果半数以上 master 节点与 master 节点通信超过 <code>cluster-node-timeout</code> 设置的时间,认为当前 master 节点挂掉。</p>
+<h4 id="怎么样判定节点不可用"><a href="#怎么样判定节点不可用" class="headerlink" title="怎么样判定节点不可用"></a>怎么样判定节点不可用</h4><ol>
+<li>如果集群任意 master 挂掉,且当前 master 没有 slave， 集群进入 fail 状态,也可以理解成集群的 slot 映射 [0-16383] 不完整时进入 fail 状态。</li>
+<li>如果集群超过半数以上 master 挂掉，无论是否有 slave ,集群进入 fail 状态，当集群不可用时,所有对集群的操作做都不可用，收到 ((error) CLUSTERDOWN The cluster is down) 错误。</li>
+</ol>
+<h3 id="ruby-环境"><a href="#ruby-环境" class="headerlink" title="ruby 环境"></a>ruby 环境</h3><p>Redis 集群管理工具 redis-trib.rb 依赖 ruby 环境，首先需要安装 ruby 环境：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install ruby</span><br><span class="line">yum install rubygems</span><br></pre></td></tr></table></figure>
+
+<h3 id="集群搭建"><a href="#集群搭建" class="headerlink" title="集群搭建"></a>集群搭建</h3><p>首先我们对集群做一个简单规划，假设我的集群中一共有三个节点，每个节点一个主机一个从机，这样我一共需要 6 个 Redis 实例。首先创建 redis-cluster 文件夹，在该文件夹下分别创建 7001、7002、7003、7004、7005、7006 文件夹，用来存放我的 Redis 配置文件。将 Redis 也在 redis-cluster 目录下安装一份，然后将 redis.conf 文件向 7001-7006 这 6 个文件夹中分别拷贝一份，拷贝完成后，分别修改如下参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">port 7001</span><br><span class="line">#bind 127.0.0.1</span><br><span class="line">cluster-enabled yes</span><br><span class="line">cluster-config-XX  XXX7001.conf</span><br><span class="line">protected no</span><br><span class="line">daemonize yes</span><br></pre></td></tr></table></figure>
+
+<p>这是 7001 目录下的配置，其他的文件夹将 7001 改为对应的数字即可。修改完成后，进入到 redis 安装目录中，分别启动各个 redis ，使用刚刚修改过的配置文件。启动成功后，我们可以查看 redis 进程，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -aux|grep redis</span><br></pre></td></tr></table></figure>
+
+<p>这个表示各个节点都启动成功了。接下来我们就可以进行集群的创建了，首先将 redis/src 目录下的 redis-trib.rb 文件拷贝到 redis-cluster 目录下，然后在 redis-cluster 目录下执行如下命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./redis-trib.rb create --replicas 1 192.168.248.128:7001 192.168.248.128:7002 192.168.248.128:7003 192.168.248.128:7004 192.168.248.128:7005 192.168.248.128:7006</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>replicas 后面的 1 表示每个主机都带有 1 个从机，执行过程如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/redis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA02.png" alt="img"></p>
+<p>注意创建过程的日志，每个 redis 都获得了一个编号，同时日志也说明了哪些实例做主机，哪些实例做从机，每个从机的主机是谁，每个主机所分配到的 hash 槽范围等等。</p>
+<h3 id="查询集群信息"><a href="#查询集群信息" class="headerlink" title="查询集群信息"></a>查询集群信息</h3><p>集群创建成功后，我们可以登录到 Redis 控制台查看集群信息，注意登录时要添加 <code>-c</code> 参数，表示以集群方式连接：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli -p 7001 -c</span><br></pre></td></tr></table></figure>
+
+<p>进入 Redis 控制台输入命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:7001&gt; cluster nodes</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加主节点"><a href="#添加主节点" class="headerlink" title="添加主节点"></a>添加主节点</h3><p>首先我们准备一个端口为 7007 的主节点并启动，准备方式和前面步骤一样，启动成功后，通过如下命令添加主节点：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./redis-trib.rb add-node  127.0.0.1:7007 127.0.0.1:7001</span><br></pre></td></tr></table></figure>
+
+<p>主节点添加之后，我们可以通过 cluster nodes 命令查看主节点是否添加成功，此时我们发现新添加的节点没有分配到 slot。没有分配到 slot 将不能存储数据，此时我们需要手动分配 slot，分配命令如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./redis-trib.rb reshard 127.0.0.1:7001</span><br></pre></td></tr></table></figure>
+
+<p>后面的地址为任意一个节点地址，在分配的过程中，我们一共要输入如下几个参数：</p>
+<ol>
+<li><p>一共要划分多少个 hash 槽出来？就是我们总共要给新添加的节点分多少 hash 槽，这个参数依实际情况而定。</p>
+</li>
+<li><p>这些划分出来的槽要给谁，这里输入 7007 节点的编号。</p>
+</li>
+<li><p>要让谁出血？因为 hash 槽目前已经全部分配完毕，要重新从已经分好的节点中拿出来一部分给 7007 ，必然要让另外三个节点把吃进去的吐出来，这里我们可以输入多个节点的编号，每次输完一个点击回车，输完所有的输入 done 表示输入完成，这样就让这几个节点让出部分 slot，如果要让所有具有 slot 的节点都参与到此次 slot 重新分配的活动中，那么这里直接输入 all 即可。</p>
+</li>
+</ol>
+<p>OK，主要就是这几个参数，输完之后进入到 slot 重新分配环节，分配完成后，通过 cluster nodes 命令，我们可以发现 7007 已经具有 slot 了，如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/redis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA03.png" alt="img"></p>
+<p>刚刚我们是添加主节点，我们也可以添加从节点，比如我要把 7008 作为 7007 的从节点，添加方式如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./redis-trib.rb add-node --slave --master-id 79bbb30bba66b4997b9360dd09849c67d2d02bb9  192.168.31.135:7008 192.168.31.135:7007</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>79bbb30bba66b4997b9360dd09849c67d2d02bb9</code> 是 7007 的编号。</p>
+<h3 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h3><p>删除节点也比较简单，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./redis-trib.rb del-node 127.0.0.1:7005 4b45eb75c8b428fbd77ab979b85080146a9bc017</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong><code>4b45eb75c8b428fbd77ab979b85080146a9bc017</code> 是要删除节点的编号。并且删除已经占有 hash 槽的结点会失败，报错如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ [ERR] Node 127.0.0.1:7005 is not empty! Reshard data away and try again.</span><br></pre></td></tr></table></figure>
+
+<p>需要将该结点占用的 hash 槽分配出去（分配方式与上文一致，不赘述）。</p>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          
+          <li class="next">
+            <a href="/redis/redis主从复制/" data-toggle="tooltip" data-placement="top" title="Redis 主从复制">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-
-      <!-- Main Content -->
-
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot配置文件的使用/">
-    <h2 class="post-title">
-      Spring Boot 配置文件的使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      在 Spring Boot 中，配置文件有两种不同的格式，一个是 .properties ，另一个是 .yaml 。
-虽然 properties 文件比较常见，但是相对于 properties 而言，yaml 更加简洁明了，而且使用的场景也更多，很多开源项目都是使用 yaml 进行配置（例如 Hexo）。除了简洁，yaml 还有另外一个特点，就是 yaml 中的数据是有序的，properti......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-20
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/新一代java企业级快速开发框架spring-boot拆箱体验/">
-    <h2 class="post-title">
-      新一代 Java 企业级快速开发框架 Spring Boot 拆箱体验
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring Boot 介绍我们刚开始学习 Java Web 的时候，使用 Servlet/JSP 做开发，一个接口搞一个 Servlet ，很头大，后来我们通过隐藏域或者反射等方式，可以减少 Servlet 的创建，但是依然不方便，再后来，我们引入 Struts2/SpringMVC 这一类的框架，来简化我们的开发 ，和 Servlet/JSP 相比，引入框架之后，生产力确实提高了不少，但......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-20
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/java/最优雅地整合spring&spring-mvc&mybatis搭建java企业级应用/">
-    <h2 class="post-title">
-      最优雅地整合 Spring & Spring MVC & MyBatis 搭建 Java 企业级应用（附源码）
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      
-这里使用 Maven 项目管理工具构建项目
-
-初始化项目打开 Intellij  IDEA，点击 Create New Project，使用 Maven 构建项目，选择 JDK 版本和 maven-archetype-webapp 模板（Java Web 项目）
-
-填写项目在 Maven 仓库中的坐标
-
-选择 Maven 安装路径和 Maven 配置文件路径以及 Maven 本地仓库路径
-......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-19
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Java" title="Java">Java</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/mybatis逆向工程生成代码/">
-    <h2 class="post-title">
-      MyBatis 逆向工程生成代码
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      下载项目已上传至百度网盘
-
-网盘链接：https://pan.baidu.com/s/1m2YcxD6hGp6rQrGNhAEjYw 
-提取码：iu9y 
-
-生成代码由于使用数据表时，我们需要给每一个表都创建对应的实体类，每个实体类都有对应的 Mapper 接口和 Mapper.xml 文件，这些其实都是一些重复的工作，我们可以通过第三方工具来完成。
-MyBatis 逆向工程非常多，我们 I......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-18
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/再谈mybatis复杂查询/">
-    <h2 class="post-title">
-      再谈 MyBatis 复杂查询
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      一对一查询在实际开发中，经常会遇到一对一查询，一对多查询等。这里我们先来看一对一查询。例如：每本书都有一个作者，作者都有自己的属性，根据这个，我来定义两个实体类：
-12345678public class Book &#123;        private Integer id;    private String name;    private Author author;	    /......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-18
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/mybatis中使用mapper简化代码/">
-    <h2 class="post-title">
-      MyBatis 中使用 Mapper 简化代码
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      前面文章所写的增删改查是存在问题的。主要问题就是冗余代码过多，模板化代码过多。
-例如，我想开发一个 UserDao，可能是下面这样。此时，我们分析这个 UserDao，发现它有很多可以优化的地方。每个方法中都要获取 SqlSession，涉及到增删改的方法，还需要 commit，SqlSession 用完之后，还需要关闭，sqlSession 执行时需要的参数就是方法的参数，sqlSessi......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-18
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/mybatis的映射文件详解/">
-    <h2 class="post-title">
-      MyBatis 的映射文件详解
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      mapper 映射文件，是 MyBatis 中最重要的部分，涉及到的细节也是非常非常多。
-parameterType这个表示输入的参数类型。
-$ 和 #这是一个非常非常高频的面试题，虽然很简单。在面试中，如果涉及到 MyBatis，一般情况下，都是这个问题。在 MyBatis 中，我们在 mapper 引用变量时，默认使用的是 #，像下面这样：
-123&lt;select id="getUs......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/mybatis全局配置/">
-    <h2 class="post-title">
-      MyBatis 全局配置
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      全局配置中的属性非常多，主要有如下几方面：
-
-properties（属性）
-settings（全局配置参数）
-typeAliases（类型别名）
-typeHandlers（类型处理器）
-objectFactory（对象工厂）
-plugins（插件）
-environments（环境集合属性对象）
-environment（环境子属性对象）
-transactionManager（事务管理）
-dat......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/mybatis/java持久层框架mybatis/">
-    <h2 class="post-title">
-      Java 持久层框架 MyBatis
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      JDBC 存在的问题
-数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。
-Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变 java 代码。
-使用 preparedStatement 向占位符号传参数存在硬编码，因为 sql 语句的 where 条件不一定，可能多也可能少，修改 sql 还要修改代码......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc整合hibernate-validator实现数据校验/">
-    <h2 class="post-title">
-      Spring MVC 整合 Hibernate Validator 实现数据校验
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      B/S 系统中对 http 请求数据的校验多数在客户端进行，这也是出于简单及用户体验性上考虑，但是在一些安全性要求高的系统中服务端校验是不可缺少的，实际上，几乎所有的系统，凡是涉及到数据校验，都需要在服务端进行二次校验。为什么要在服务端进行二次校验呢？这需要理解客户端校验和服务端校验各自的目的。
-
-客户端校验，我们主要是为了提高用户体验，例如用户输入一个邮箱地址，要校验这个邮箱地址是否合法，......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-
-
-  <!-- Pager -->
-  <ul class="pager">
-    
-    <li class="previous">
-      <a href="/archives/2021/01/archives/2/">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/archives/2021/01/archives/4/">Older Posts &rarr;</a>
-    </li>
-    
-  </ul>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
         
-<!-- <h5>VISITORS</h5> -->
-<h5>VISITORS</h5>
-<div class="widget">
-  <span>
-    本站总访问量 <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 次
-  </span>
-  <br />
-  <span>
-    本站总访客数 <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 人
-  </span>
+        <!-- tip start -->
+        <div class="tip">
+          <p>
+            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+          </p>
+        </div>
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Redis 集群搭建&body=Hi,I found this website and thought you might like it https://antoniopeng.com/redis/redis集群搭建/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
 </div>
 
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
+        <!-- Sharing End -->
+        
         <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5>ABOUT ME</h5>
-  <div class="short-about">
 
-    
-    <img id="avatar_pic" src="https://qiniuyun.antoniopeng.com/my_photo.png" alt="彭超"  />
-    
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
 
-    
-    <!--<p>我究竟拿时间换了什么 Self discipline produces joy</p>-->
-	<p>
-		<span>我究竟拿时间换了什么</span>
-		<br>
-		<span>Self discipline produces joy</span>
-	</p>
-    
 
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-	  
-	  
-      <li>
-        <a target="_blank" title="微信" href="https://qiniuyun.antoniopeng.com/my_wx.png">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 20px; height: 20px; background: url('https://qiniuyun.antoniopeng.com/wx01.png') no-repeat;margin: 8px 0px 0px 9px"></i>
-          </span>
-        </a>
-      </li>
-      
-	  
-	  
-      <li>
-        <a target="_blank" title="CSDN" href="https://blog.csdn.net/monianqing">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/csdn.png') no-repeat;margin: 10px 0px 0px 11px"></i>
-          </span>
-        </a>
-      </li>
-      
 
-      
-      <li>
-        <a target="_blank" title="GitHub" href="https://github.com/antoniopeng">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-	  
 
-      
+<!-- 2. gitment comment -->
 
-      
 
-      
 
-      
+<!-- 3. disqus comment -->
 
-      
-      <li>
-        <a target="_blank" title="知乎" href="https://www.zhihu.com/people/antoniopeng8">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/zhihu.png') no-repeat;margin: 10px 0px 0px 11px"></i>
-          </span>
-        </a>
-      </li>
-      
 
-      
-	  
-	  
-
-    </ul>
-  </div>
-</section>
-
+        <!-- comments end -->
         <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#集群原理"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">集群原理</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#怎么样投票"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">怎么样投票</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#怎么样判定节点不可用"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">怎么样判定节点不可用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ruby-环境"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">ruby 环境</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#集群搭建"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">集群搭建</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#查询集群信息"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">查询集群信息</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#添加主节点"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">添加主节点</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#删除节点"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">删除节点</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
         <!-- Featured Tags -->
-
-<section>
-  <!-- no hr -->
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#Docker" title="Docker" rel="8">Docker</a>
-    
-    
-    
-    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
-    
-    
-    
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
-    
-    
-    
-    <a href="/tags/#Linux" title="Linux" rel="1">Linux</a>
-    
-    
-    
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
-    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
-    
-    
-    
-    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
-    
-    
-    
-    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
-    
-    
-    
-    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
-    
-    
-    
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
-    
-    
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot" rel="14">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
-    
-    
-    
-    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
-    
-    
-    
-    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
-    
-    
-    
-    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<!-- <h5>categories</h5> -->
-<h5><a href="/categories/">CATEGORIES</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#运维">
-      <li>运维</li>
-    </a>
-    
-    <a href="/categories/#后端技术">
-      <li>后端技术</li>
-    </a>
-    
-    <a href="/categories/#数据库">
-      <li>数据库</li>
-    </a>
-    
-    <a href="/categories/#杂记">
-      <li>杂记</li>
-    </a>
-    
-    <a href="/categories/#计算机基础">
-      <li>计算机基础</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
         
-    <!-- <h5>ARCHIVES</h5> -->
-    <h5><a href="/archive/">ARCHIVES</a></h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../">January 2021</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
-    </div>
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+            
+          </div>
+        </section>
+        
 
-
-        <hr>
-    
         <!-- Friends Blog -->
-
-<!-- <h5>FRIENDS</h5> -->
-<h5><a href="javascript:void(0)">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a></li>
-  
-  <li><a href="https://lusongsong.com/" target="_blank">卢松松博客</a></li>
-  
-</ul>
-
-
+        
         <hr>
-    
-</div>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
 
-    
+          
+          <li>
+            <a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a>
+          </li>
+          
+          <li>
+            <a href="https://lusongsong.com/" target="_blank">卢松松博客</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->
