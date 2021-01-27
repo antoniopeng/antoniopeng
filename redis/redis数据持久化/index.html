@@ -83,12 +83,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../../../css/highlight.css">
-<link rel="stylesheet" href="../../../css/widget.css">
-<link rel="stylesheet" href="../../../css/rocket.css">
-<link rel="stylesheet" href="../../../css/signature.css">
-<link rel="stylesheet" href="../../../css/catalog.css">
-<link rel="stylesheet" href="../../../css/livemylife.css">
+<link rel="stylesheet" href="../../css/highlight.css">
+<link rel="stylesheet" href="../../css/widget.css">
+<link rel="stylesheet" href="../../css/rocket.css">
+<link rel="stylesheet" href="../../css/signature.css">
+<link rel="stylesheet" href="../../css/catalog.css">
+<link rel="stylesheet" href="../../css/livemylife.css">
 
 
   
@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/archives/archives/4/">
+  <link rel="canonical" href="https://antoniopeng.com/redis/redis数据持久化/">
   <title>
     
-    彭超的博客 | Antonio Blog
+    Redis 数据持久化 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*page*/
-        background-image: url('');
+       /*post*/
+        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
       
     }
 
@@ -312,10 +312,40 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>彭超</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">生命不息，奋斗不止</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="https://antoniopeng.com/tags/#Redis" title="Redis">Redis</a>
+              
+            </div>
+            <h1>Redis 数据持久化</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by 暮夏有五 on
+              2021-01-27
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">9</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">2.5k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- 不蒜子统计 start -->
+            <span class="meta">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            <!-- WordCount end -->
+            
+
+
           </div>
           
         </div>
@@ -356,684 +386,272 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+	<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
+        <h3 id="Redis-持久化"><a href="#Redis-持久化" class="headerlink" title="Redis 持久化"></a>Redis 持久化</h3><p>整体上来说，Redis 持久化有两种方式，快照持久化和 AOF ，在项目中我们可以根据实际情况选择合适的持久化方式，也可以不用持久化，这关键看我们的 Redis 在项目中扮演了什么样的角色。</p>
+<h3 id="快照持久化"><a href="#快照持久化" class="headerlink" title="快照持久化"></a>快照持久化</h3><p>快照持久化，顾名思义，就是通过拍摄快照的方式实现数据的持久化，redis 可以在某个时间点上对内存中的数据创建一个副本文件，副本文件中的数据在 redis 重启时会被自动加载，我们也可以将副本文件拷贝到其他地方一样可以使用。</p>
+<h4 id="如何配置快照持久化"><a href="#如何配置快照持久化" class="headerlink" title="如何配置快照持久化"></a>如何配置快照持久化</h4><p>redis中的快照持久化默认是开启的，redis.conf中相关配置主要有如下几项：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line">stop-writes-on-bgsave-error yes</span><br><span class="line">rdbcompression yes</span><br><span class="line">dbfilename dump.rdb</span><br><span class="line">dir ./</span><br></pre></td></tr></table></figure>
+
+<p>前面三个 save 相关的选项表示备份的频率，分别表示 900 秒内至少一个键被更改则进行快照，300 秒内至少 10 个键被更改则进行快照，60 秒内至少 10000 个键被更改则进行快照， stop-writes-on-bgsave-error 表示在快照创建出错后，是否继续执行写命令， rdbcompression 则表示是否对快照文件进行压缩， dbfilename 表示生成的快照文件的名字，dir 则表示生成的快照文件的位置，在 redis 中，快照持久化默认就是开启的。我们可以通过如下步骤验证快照持久化的效果：</p>
+<ol>
+<li><p>进入 redis 安装目录，如果有 dump.rdb 文件，先将之删除。</p>
+</li>
+<li><p>启动 redis ，随便向 redis 中存储几个数据，然后关闭redis并退出，如下：</p>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost redis-4.0.8]<span class="comment">## redis-server redis.conf</span></span><br><span class="line">[root@localhost redis-4.0.8]<span class="comment">## redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; SHUTDOWN</span><br><span class="line">not connected&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>退出来后，我们发现刚刚删掉的 dump.rdb 文件又回来了，这就是生成的备份文件。</li>
+<li>此时再次启动 redis 并进入，发现刚刚存储的数据都还在，这是因为 redis 在启动时加载了 dump.rdb 中的数据。好了，关闭 redis 并退出。</li>
+<li>将 redis 目录下的 dump.rdb 文件删除。</li>
+<li>再次启动 redis 并进入到控制台，所有的数据都不存在了。</li>
+</ol>
+<h4 id="快照持久化操作流程"><a href="#快照持久化操作流程" class="headerlink" title="快照持久化操作流程"></a>快照持久化操作流程</h4><p>通过上面的介绍，小伙伴们对快照持久化都有一个大致的认识了，那么这个东西到底是怎么运行的？持久化的时机是什么？我们来仔细扒一扒。</p>
+<ol>
+<li><p>在 redis 运行过程中，我们可以向 redis 发送一条 save 命令来创建一个快照，save 是一个阻塞命令，redis 在接收到 save 命令之后，开始执行备份操作之后，在备份操作执行完毕之前，将不再处理其他请求，其他请求将被挂起，因此这个命令我们用的不多。save 命令执行如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; save</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 redis 运行过程中，我们也可以发送一条 bgsave 命令来创建一个快照，不同于 save 命令，bgsave 命令会 fork 一个子进程，然后这个子进程负责执行将快照写入硬盘，而父进程则继续处理客户端发来的请求，这样就不会导致客户端命令阻塞了。如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; bgsave</span><br><span class="line">Background saving started</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果我们在 redis.conf 中配置了如下选项：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br></pre></td></tr></table></figure>
+
+<p>那么当条件满足时，比如 900 秒内有一个 key 被操作了，那么 redis 就会自动触发 bgsava 命令进行备份。我们可以根据实际需求在 redis.conf 中配置多个这种触发规则。</p>
+</li>
+</ol>
+<p>还有一种情况也会触发 save 命令，那就是我们执行 shutdown 命令时，当我们用 shutdown 命令关闭 redis 时，此时也会执行一个 save 命令进行备份操作，并在备份操作完成后将服务器关闭。</p>
+<p>最后还有一种特殊情况也会触发 bgsave 命令，就是在主从备份的时候。当从机连接上主机后，会发送一条 sync 命令来开始一次复制操作，此时主机会开始一次 bgsave 操作，并在 bgsave 操作结束后向从机发送快照数据实现数据同步。</p>
+<h4 id="快照持久化的缺点"><a href="#快照持久化的缺点" class="headerlink" title="快照持久化的缺点"></a>快照持久化的缺点</h4><p>快照持久化有一些缺点，比如 save 命令会发生阻塞，bgsave 虽然不会发生阻塞，但是 fork 一个子进程又要耗费资源，在一些极端情况下，fork 子进程的时间甚至超过数据备份的时间。定期的持久化也会让我们存在数据丢失的风险，最坏的情况我们可能丢失掉最近一次备份到当下的数据，具体丢失多久的数据，要看我们项目的承受能力，我们可以根据项目的承受能力配饰 save 参数。</p>
+<h3 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h3><p>与快照持久化不同，AOF 持久化是将被执行的命令写到 aof 文件末尾，在恢复时只需要从头到尾执行一遍写命令即可恢复数据，AOF 在 redis 中默认也是没有开启的，需要我们手动开启，开启方式如下：</p>
+<p>打开 redis.conf 配置文件，修改 appendonly 属性值为 yes ，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+
+<p>另外几个和 AOF 相关的属性如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">appendfilename &quot;appendonly.aof&quot;</span><br><span class="line"># appendfsync always</span><br><span class="line">appendfsync everysec</span><br><span class="line"># appendfsync no</span><br><span class="line">no-appendfsync-on-rewrite no</span><br><span class="line">auto-aof-rewrite-percentage 100</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br></pre></td></tr></table></figure>
+
+<p>这几个属性的含义分别如下：</p>
+<ol>
+<li>appendfilename 表示生成的 AOF 备份文件的文件名。</li>
+<li>appendfsync 表示备份的时机，always 表示每执行一个命令就备份一次，everysec 表示每秒备份一次，no 表示将备份时机交给操作系统。</li>
+<li>no-appendfsync-on-rewrite 表示在对 aof 文件进行压缩时，是否执行同步操作。</li>
+<li>最后两行配置表示 AOF 文件的压缩时机，这个我们一会再细说。</li>
+</ol>
+<p>同时为了避免快照备份的影响，我们将快照备份关闭，关闭方式如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">save <span class="string">""</span></span><br><span class="line"><span class="comment"># save 900 1</span></span><br><span class="line"><span class="comment"># save 300 10</span></span><br><span class="line"><span class="comment"># save 60 10000</span></span><br></pre></td></tr></table></figure>
+
+<p>此时，当我们在 redis 中进行数据操作时，就会自动生成 AOF 的配置文件 appendonly.aof。注意，此时没有 dump.rdb 文件，这时我们将 redis 关闭并重启，会发现之前的数据都还在，这就是 AOF 备份的结果。</p>
+<h4 id="AOF-备份的几个关键点"><a href="#AOF-备份的几个关键点" class="headerlink" title="AOF 备份的几个关键点"></a>AOF 备份的几个关键点</h4><p>1.通过上面的介绍，小伙伴们了解到 appendfsync 的取值一共有三种，我们在项目中首选 everysec，always 选项会严重降低 redis 性能。<br>2.使用 everysec ，最坏的情况下我们可能丢失1秒的数据。</p>
+<h4 id="AOF-文件的重写与压缩"><a href="#AOF-文件的重写与压缩" class="headerlink" title="AOF 文件的重写与压缩"></a>AOF 文件的重写与压缩</h4><p>AOF 备份有很多明显的优势，当然也有劣势，那就是文件大小。随着系统的运行，AOF 的文件会越来越大，甚至把整个电脑的硬盘填满，AOF 文件的重写与压缩机制可以在一定程度上缓解这个问题。<br>当 AOF 的备份文件过大时，我们可以向 redis 发送一条 bgrewriteaof 命令进行文件重写，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; bgrewriteaof</span><br><span class="line">Background append only file rewriting started</span><br><span class="line">(0.71s)</span><br></pre></td></tr></table></figure>
+
+<p>bgrewriteaof 的执行原理和我们上文说的 bgsave 的原理一致，这里我就不再赘述，因此 bgsave 执行过程中存在的问题在这里也一样存在。</p>
+<p>bgrewriteaof 也可以自动执行，自动执行时间则依赖于 auto-aof-rewrite-percentage 和 auto-aof-rewrite-min-size 配置，auto-aof-rewrite-percentage 100 表示当目前 aof 文件大小超过上一次重写时的 aof 文件大小的百分之多少时会再次进行重写，如果之前没有重写，则以启动时的 aof 文件大小为依据，同时还要求 AOF 文件的大小至少要大于 64M(auto-aof-rewrite-min-size 64mb)。</p>
+<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><ol>
+<li>如果 redis 只做缓存服务器，那么可以不使用任何持久化方式。</li>
+<li>同时开启两种持久化方式，在这种情况下,当 redis 重启的时候会优先载入 AOF 文件来恢复原始的数据, 因为在通常情况下 AOF 文件保存的数据集要比 RDB 文件保存的数据集要完整；RDB 的数据不完整时，同时使用两者时服务器重启也只会找 AOF 文件。那要不要只使用 AOF 呢？ 作者建议不要，因为 RDB 更适合用于备份数据库( AOF 在不断变化不好备份)， 快速重启，而且不会有 AOF 可能潜在的 bug ，留着作为一个万一的手段。</li>
+<li>因为 RDB 文件只用作后备用途，建议只在 slave 上持久化 RDB 文件，而且只要 15 分钟备份一次就够了，只保留 save 900 1 这条规则。</li>
+<li>如果 Enalbe AOF，好处是在最恶劣情况下也只会丢失不超过两秒数据，启动脚本较简单只 load 自己的 AOF 文件就可以了。代价一是带来了持续的 IO，二是 AOF rewrite 的最后将 rewrite 过程中产生的新数据写到新文件造成的阻塞几乎是不可避免的。只要硬盘许可，应该尽量减少 AOF rewrite 的频率，AOF 重写的基础大小默认值 64M 太小了，可以设到 5G 以上。默认超过原大小 100% 大小时重写可以改到适当的数值。</li>
+<li>如果不 Enable AOF ，仅靠 Master-Slave Replication 实现高可用性也可以。能省掉一大笔 IO 也减少了 rewrite 时带来的系统波动。代价是如果 Master/Slave 同时倒掉，会丢失十几分钟的数据，启动脚本也要比较两个 Master/Slave 中的 RDB 文件，载入较新的那个。</li>
+</ol>
+<p>Redis 数据持久化就介绍这么多，更多资料可以参考<a href="http://www.redis.cn/commands.html" target="_blank" rel="noopener">官方文档</a>。</p>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          
+          <li class="next">
+            <a href="/redis/redis中的发布订阅和事务/" data-toggle="tooltip" data-placement="top" title="Redis 中的发布订阅和事务">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-
-      <!-- Main Content -->
-
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/读书分享/终身成长/">
-    <h2 class="post-title">
-      《终身成长》读书分享
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      这本书从思维模式的角度，让我们找到自己恐惧、苦恼和失败的原因。同时，将帮助我们突破这些阻碍，获得成长，达成目标。成长是每个人一辈子的事，它无关年龄。无论何时，停滞成长，才是最可怕的衰老。
-人的两种思维模式固定型思维模式认为人的才能一成不变。这让人们时刻想证明自己的智力、个性和特征。他们会把发生的事情当做衡量能力和价值的直接标尺。
-成长型思维模式认为人的能力可以努力培养。虽然人的先天才能、资质......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-16
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#读书分享" title="读书分享">读书分享</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/读书分享/少有人走的路/">
-    <h2 class="post-title">
-      《少有人走的路》读书分享
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      人生苦难重重，是一场艰辛之旅，心智成熟的旅程相当漫长。这本书可以引导我们过上崭新，宁静而丰富的生活，帮助我们学习爱，也学习独立。归根结底，它告诉我们怎样找到真正的自我。
-自律 — 解决人生问题的主要工具人生苦难重重，因为人生就是一个不断面对问题、解决问题的过程，但是直面问题和解决问题其实是人生痛苦的来源，所以有很多人会拖拉，会懒惰，但是问题依然存在，逃避只会让问题加倍。
-自律则是解决人生问题......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-16
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#读书分享" title="读书分享">读书分享</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/controller-advice注解的三种使用场景/">
-    <h2 class="post-title">
-      ControllerAdvice 注解的三种使用场景
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      @ControllerAdvice，顾名思义，这是一个增强的 Controller。使用这个 Controller ，可以实现三个方面的功能：
-
-全局异常处理
-全局数据绑定
-全局数据预处理
-
-全局异常处理使用 @ControllerAdvice 实现全局异常处理，只需要定义类，添加该注解即可定义方式如下：
-1234567891011@ControllerAdvicepublic class ......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-15
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/读书分享/原生家庭/">
-    <h2 class="post-title">
-      《原生家庭》读书分享
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      本书收获
-了解问题父母的行为模式
-认知原生家庭对孩子的伤害
-学会摆脱原生家庭的负面影响
-
-金句精选
-父母在我们心里种下了精神和情感的种子，它们会随我们一同成长。（第 5 页）
-一纸离婚判决书并不能成为不称职的父母遗弃子女的许可证。（第 32 页）
-把正面的自我感受建立在别人的看法上，就等于把自尊心交到他们手里任其摆布。（第 114 页）
-孩子应该拥有犯错误和改正错误的权利。（第 115 页）......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-15
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#读书分享" title="读书分享">读书分享</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc核心组件详解/">
-    <h2 class="post-title">
-      Spring MVC 核心组件详解
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      DispatcherServlet 作用DispatcherServlet 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。DispatcherServlet 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：
-
-文件上传解析，如果请求类型是 mult......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-15
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
-    <h2 class="post-title">
-      使用 Spring MVC 的拦截器实现登录功能
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring  MVC 的处理器拦截器，类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。
-应用场景
-日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。
-权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。
-性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完后记......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-14
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc入门就这一篇/">
-    <h2 class="post-title">
-      Spring MVC 入门就这一篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring MVC 概述Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的一部分。
- MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 Web 应用程序的组件......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-14
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/spring事务解决方案/">
-    <h2 class="post-title">
-      Spring 事务解决方案
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring 中的事务主要是利用 Aop 思想，简化事务的配置，可以通过 Java 配置也可以通过 XML 配置。
-我们通过一个转账操作来看下 Spring 中的事务配置。
-准备工作创建数据库123456789101112131415161718CREATE DATABASE /*!32312 IF NOT EXISTS*/`test01` /*!40100 DEFAULT CHARACTE......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/spring整合jdbctemplate连接操作mysql/">
-    <h2 class="post-title">
-      Spring 整合 JdbcTemplate 连接操作 MySQL
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      JdbcTemplate 是 Spring 利用 Aop 思想封装的 JDBC 操作工具。
-准备工作引入依赖创建一个新项目，添加如下依赖：
-123456789101112131415161718&lt;dependency&gt;    &lt;groupId&gt;org.springframework&lt;/groupId&gt;    &lt;artifactId&gt;spring......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/spring核心技术aop实例/">
-    <h2 class="post-title">
-      Spring 核心技术 AOP 实例
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      AOP 简介Aop（Aspect Oriented Programming），面向切面编程，这是对面向对象思想的一种补充。
-面向切面编程，就是在程序运行时，不改变程序源码的情况下，动态的增强方法的功能，常见的使用场景非常多：
-
-日志
-事务
-数据库操作
-….
-
-这些操作中，无一例外，都有很多模板化的代码，而解决模板化代码，消除臃肿就是 Aop 的强项。在 Aop 中，有几个常见的概念：
-
-
-
-......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-
-
-  <!-- Pager -->
-  <ul class="pager">
-    
-    <li class="previous">
-      <a href="/archives/archives/3/">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/archives/archives/5/">Older Posts &rarr;</a>
-    </li>
-    
-  </ul>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
         
-<!-- <h5>VISITORS</h5> -->
-<h5>VISITORS</h5>
-<div class="widget">
-  <span>
-    本站总访问量 <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 次
-  </span>
-  <br />
-  <span>
-    本站总访客数 <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 人
-  </span>
+        <!-- tip start -->
+        <div class="tip">
+          <p>
+            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+          </p>
+        </div>
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Redis 数据持久化&body=Hi,I found this website and thought you might like it https://antoniopeng.com/redis/redis数据持久化/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
 </div>
 
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
+        <!-- Sharing End -->
+        
         <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5>ABOUT ME</h5>
-  <div class="short-about">
 
-    
-    <img id="avatar_pic" src="https://qiniuyun.antoniopeng.com/my_photo.png" alt="彭超"  />
-    
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
 
-    
-    <!--<p>我究竟拿时间换了什么 Self discipline produces joy</p>-->
-	<p>
-		<span>我究竟拿时间换了什么</span>
-		<br>
-		<span>Self discipline produces joy</span>
-	</p>
-    
 
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-	  
-	  
-      <li>
-        <a target="_blank" title="微信" href="https://qiniuyun.antoniopeng.com/my_wx.png">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 20px; height: 20px; background: url('https://qiniuyun.antoniopeng.com/wx01.png') no-repeat;margin: 8px 0px 0px 9px"></i>
-          </span>
-        </a>
-      </li>
-      
-	  
-	  
-      <li>
-        <a target="_blank" title="CSDN" href="https://blog.csdn.net/monianqing">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/csdn.png') no-repeat;margin: 10px 0px 0px 11px"></i>
-          </span>
-        </a>
-      </li>
-      
 
-      
-      <li>
-        <a target="_blank" title="GitHub" href="https://github.com/antoniopeng">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-	  
 
-      
+<!-- 2. gitment comment -->
 
-      
 
-      
 
-      
+<!-- 3. disqus comment -->
 
-      
-      <li>
-        <a target="_blank" title="知乎" href="https://www.zhihu.com/people/antoniopeng8">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/zhihu.png') no-repeat;margin: 10px 0px 0px 11px"></i>
-          </span>
-        </a>
-      </li>
-      
 
-      
-	  
-	  
-
-    </ul>
-  </div>
-</section>
-
+        <!-- comments end -->
         <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Redis-持久化"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Redis 持久化</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#快照持久化"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">快照持久化</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#如何配置快照持久化"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">如何配置快照持久化</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#快照持久化操作流程"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">快照持久化操作流程</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#快照持久化的缺点"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">快照持久化的缺点</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#AOF-持久化"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">AOF 持久化</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#AOF-备份的几个关键点"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">AOF 备份的几个关键点</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#AOF-文件的重写与压缩"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">AOF 文件的重写与压缩</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#最佳实践"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">最佳实践</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
         <!-- Featured Tags -->
-
-<section>
-  <!-- no hr -->
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#Docker" title="Docker" rel="8">Docker</a>
-    
-    
-    
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
-    
-    
-    
-    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
-    
-    
-    
-    <a href="/tags/#Linux" title="Linux" rel="1">Linux</a>
-    
-    
-    
-    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
-    
-    
-    
-    <a href="/tags/#MySQL" title="MySQL" rel="2">MySQL</a>
-    
-    
-    
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
-    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
-    
-    
-    
-    <a href="/tags/#Redis" title="Redis" rel="6">Redis</a>
-    
-    
-    
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
-    
-    
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot" rel="14">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
-    
-    
-    
-    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
-    
-    
-    
-    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
-    
-    
-    
-    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<!-- <h5>categories</h5> -->
-<h5><a href="/categories/">CATEGORIES</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#运维">
-      <li>运维</li>
-    </a>
-    
-    <a href="/categories/#后端技术">
-      <li>后端技术</li>
-    </a>
-    
-    <a href="/categories/#数据库">
-      <li>数据库</li>
-    </a>
-    
-    <a href="/categories/#杂记">
-      <li>杂记</li>
-    </a>
-    
-    <a href="/categories/#计算机基础">
-      <li>计算机基础</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
         
-    <!-- <h5>ARCHIVES</h5> -->
-    <h5><a href="/archive/">ARCHIVES</a></h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
-    </div>
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+            
+          </div>
+        </section>
+        
 
-
-        <hr>
-    
         <!-- Friends Blog -->
-
-<!-- <h5>FRIENDS</h5> -->
-<h5><a href="javascript:void(0)">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a></li>
-  
-  <li><a href="https://lusongsong.com/" target="_blank">卢松松博客</a></li>
-  
-</ul>
-
-
+        
         <hr>
-    
-</div>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
 
-    
+          
+          <li>
+            <a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a>
+          </li>
+          
+          <li>
+            <a href="https://lusongsong.com/" target="_blank">卢松松博客</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->
