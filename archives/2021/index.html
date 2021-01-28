@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -383,6 +383,129 @@
   
 
 
+  <a href="/linux/linux命令总结/">
+    <h2 class="post-title">
+      还在网上查 Linux 命令吗？推荐一套我常用的命令
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      系统服务管理systemctl
+systemctl命令是service和chkconfig命令的组合体，可用于管理系统。
+
+
+输出系统中各个服务的状态：
+1$ systemctl list-units --type=serviceCopy to clipboardErrorCopied
+
+查看服务的运行状态：
+1$ systemctl status firewalldCopy to clip......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Linux" title="Linux">Linux</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/分布式数据库中间件mycat/">
+    <h2 class="post-title">
+      分布式数据库中间件 MyCat
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      MyCat 简介MyCat 是一个功能强大的分布式数据库中间件，是一个实现了 MySQL 协议的 Server，前端人员可以把它看做是一个数据库代理中间件，用 MySQL 客户端工具和命令行访问；而后端人员可以用 MySQL 原生协议与多个 MySQL 服务器通信，也可以用 JDBC 协议与大多数主流数据库服务器通信。可以用作 读写分离、分库分表（分片）、容灾备份、多租户应用开发、大数据基础......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/开发者必备的mysql命令/">
+    <h2 class="post-title">
+      开发者必备的 MySQL 命令
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      数据定义语句（DDL）数据库操作
+登录数据库：
+1$ mysql -uroot -prootCopy to clipboardErrorCopied
+
+创建数据库：
+1create database testCopy to clipboardErrorCopied
+
+查看所有数据库：
+1show databasesCopy to clipboardErrorCopied
+
+选择数据库并使用：......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/mysql/mysql读写分离/">
     <h2 class="post-title">
       MySQL 读写分离
@@ -475,7 +598,7 @@
 
   <a href="/mysql/centos上安装mysql/">
     <h2 class="post-title">
-      Centos 上安装 MySQL
+      CentOS 上安装 MySQL
     </h2>
     <h3 class="post-subtitle">
       
@@ -660,121 +783,6 @@ Redis 集群运行原理如下：
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/reids散列与有序集合命令使用/">
-    <h2 class="post-title">
-      Reids 散列与有序集合命令使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      散列很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。
-hsethset 命令可以用来设置 key 指定的哈希集中指定字段的值，如下：
-12127.0.0.1:6379&gt; hset k1 h1 v1(integer) 1
-
-hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的值，如下：
-12127.0.0.1:6379......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/reids列表与集合命令使用/">
-    <h2 class="post-title">
-      Reids 列表与集合命令使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      列表列表是 Redis 中另外一种数据类型。下面我们来看看列表中一些基本的操作命令。
-lpush将一个或多个值 value 插入到列表 key 的表头，如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表头，如下：
-12127.0.0.1:6379&gt; lpush k1 v1 v2 v3(integer) 3
-
-lrange返回列表 key 中指定区间内的元素......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/reids字符串命令使用/">
-    <h2 class="post-title">
-      Reids 字符串命令使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      append使用 append 命令时，如果 key 已经存在，则会直接在 value 后追加值，如果 key 不存在，则会先创建一个 value 为空字符串的 key ，然后再追加：
-12345678127.0.0.1:6379&gt; append k1 hello(integer) 5127.0.0.1:6379&gt; get k1"hello"127.0.0.1:6379&gt; ......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -910,7 +918,7 @@ lrange返回列表 key 中指定区间内的元素......
   <div class="tags">
     
     
-    <a href="/tags/#Docker" title="Docker" rel="8">Docker</a>
+    <a href="/tags/#Docker" title="Docker" rel="9">Docker</a>
     
     
     
@@ -922,11 +930,11 @@ lrange返回列表 key 中指定区间内的元素......
     
     
     
+    <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+    
+    
+    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
-    
-    
-    
-    <a href="/tags/#Linux" title="Linux" rel="1">Linux</a>
     
     
     
@@ -934,19 +942,19 @@ lrange返回列表 key 中指定区间内的元素......
     
     
     
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    
+    
+    
     <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="5">MySQL</a>
+    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
     
     
     
     <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
-    
-    
-    
-    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
     
     
     
@@ -1012,7 +1020,7 @@ lrange返回列表 key 中指定区间内的元素......
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="01/">January 2021</a><span class="archive-list-count">56</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="01/">January 2021</a><span class="archive-list-count">59</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
@@ -1027,6 +1035,10 @@ lrange返回列表 key 中指定区间内的元素......
   <li><a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a></li>
   
   <li><a href="https://lusongsong.com/" target="_blank">卢松松博客</a></li>
+  
+  <li><a href="http://www.xldn333.com/" target="_blank">广州办公设备网</a></li>
+  
+  <li><a href="http://pclrj.com/" target="_blank">软件开发网</a></li>
   
 </ul>
 
