@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -373,6 +373,201 @@
 
       <!-- Main Content -->
 
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/spring-mvc/spring-mvc的controller使用详解/">
+    <h2 class="post-title">
+      Spring MVC 的 Controller 使用详解
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      @RequestMapping这个注解用来标记一个接口，这算是我们在接口开发中，使用最多的注解之一。
+请求 URL标记请求 URL 很简单，只需要在相应的方法上添加该注解即可：
+12345678@Controllerpublic class HelloController &#123;        @RequestMapping("/hello")    public ModelAndVi......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-16
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/spring-mvc/spring-mvc中上传文件/">
+    <h2 class="post-title">
+      Spring MVC 中上传文件
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      SpringMVC 中对文件上传做了封装，我们可以更加方便的实现文件上传。从 Spring3.1 开始，对于文件上传，提供了两个处理器：
+
+CommonsMultipartResolver
+StandardServletMultipartResolver·
+
+第一个处理器兼容性较好，可以兼容 Servlet3.0 之前的版本，但是它依赖了 commons-fileupload 这个第三方工具......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-16
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/spring-mvc/controller-advice注解的三种使用场景/">
+    <h2 class="post-title">
+      ControllerAdvice 注解的三种使用场景
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      @ControllerAdvice，顾名思义，这是一个增强的 Controller。使用这个 Controller ，可以实现三个方面的功能：
+
+全局异常处理
+全局数据绑定
+全局数据预处理
+
+全局异常处理使用 @ControllerAdvice 实现全局异常处理，只需要定义类，添加该注解即可定义方式如下：
+1234567891011@ControllerAdvicepublic class ......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-15
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/spring-mvc/spring-mvc核心组件详解/">
+    <h2 class="post-title">
+      Spring MVC 核心组件详解
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      DispatcherServlet 作用DispatcherServlet 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。DispatcherServlet 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：
+
+文件上传解析，如果请求类型是 mult......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-15
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
+    <h2 class="post-title">
+      使用 Spring MVC 的拦截器实现登录功能
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      Spring  MVC 的处理器拦截器，类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。
+应用场景
+日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。
+权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。
+性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完后记......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-14
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    
+  </div>
+  
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -567,206 +762,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/java框架领域佼佼者spring初识篇/">
-    <h2 class="post-title">
-      Java 框架领域佼佼者 Spring 初识篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring 简介Spring 是一个轻量级的 Java 开发框架，它是为了解决企业应用开发的复杂性而创建的，常年雄踞于企业开发必选框架之首。Spring 的核心是控制反转（IoC）和面向切面编程（AOP）。简单来说，Spring 是一个分层的 Java EE 一站式轻量级开源框架。
-Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
-在一个系统中，根据功能的不同，代码分为 主业......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/maven/idea中使用maven/">
-    <h2 class="post-title">
-      IDEA 中使用 Maven
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Maven 相关配置IDEA 中，Maven 的配置在 File-&gt;Settings-&gt;Build,Execution,Deployment-&gt;Build Tools-&gt;Maven:
-
-Java SE 工程首先在创建一个工程时，选择 Maven 工程：
-
-如果勾选上 Create from archetype ，则表示可以根据一个项目骨架（项目模板）来创建一个新的工程......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-12
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Maven" title="Maven">Maven</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/maven/java项目管理工具maven/">
-    <h2 class="post-title">
-      Java 项目管理工具 Maven
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      为什么使用项目管理工具由于 Java 的生态非常丰富，无论你想实现什么功能，都能找到对应的工具类，这些工具类都是以 jar 包的形式出现的，例如 Spring，SpringMVC、MyBatis、数据库驱动，等等，都是以 jar 包的形式出现的，jar 包之间会有关联，在使用一个依赖之前，还需要确定这个依赖所依赖的其他依赖，所以，当项目比较大的时候，依赖管理会变得非常麻烦臃肿，这是 Mave......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-12
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Maven" title="Maven">Maven</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/java/java并发编程要点/">
-    <h2 class="post-title">
-      Java 并发编程要点
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      使用线程有三种使用线程的方法：
-
-实现 Runnable 接口；
-实现 Callable 接口；
-继承 Thread 类。
-
-实现 Runnable 和 Callable 接口的类只能当做一个可以在线程中运行的任务，不是真正意义上的线程，因此最后还需要通过 Thread 来调用。可以理解为任务是通过线程驱动从而执行的。
-实现 Runnable 接口需要实现接口中的 run() 方法。
-123......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-11
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Java" title="Java">Java</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/java/详解java-io流/">
-    <h2 class="post-title">
-      详解 Java I/O 流
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      概述Java 的 I/O 大概可以分成以下几类：
-
-磁盘操作：File
-字节操作：InputStream 和 OutputStream
-字符操作：Reader 和 Writer
-对象操作：Serializable
-网络操作：Socket
-新的输入/输出：NIO
-
-磁盘操作File 类可以用于表示文件和目录的信息，但是它不表示文件的内容。
-递归地列出一个目录下所有文件：
-12345678910......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-10
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Java" title="Java">Java</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -910,7 +905,7 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     
     
     
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    <a href="/tags/#Git" title="Git" rel="5">Git</a>
     
     
     
@@ -918,7 +913,15 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     
     
     
+    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    
+    
+    
     <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+    
+    
+    
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
@@ -930,19 +933,15 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
-    
-    
-    
     <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
     
     
     
-    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
-    
-    
-    
     <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
     
     
     
@@ -954,11 +953,11 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     
     
     
-    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
-    
-    
-    
     <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
+    
+    
+    
+    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
     
     
     
@@ -990,12 +989,12 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
       <li>数据库</li>
     </a>
     
-    <a href="/categories/#计算机基础">
-      <li>计算机基础</li>
-    </a>
-    
     <a href="/categories/#杂记">
       <li>杂记</li>
+    </a>
+    
+    <a href="/categories/#计算机基础">
+      <li>计算机基础</li>
     </a>
     
   </ul>
@@ -1008,7 +1007,7 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/01/">January 2021</a><span class="archive-list-count">59</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/02/">February 2021</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/01/">January 2021</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
