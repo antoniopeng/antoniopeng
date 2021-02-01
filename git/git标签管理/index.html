@@ -83,12 +83,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../../../../css/highlight.css">
-<link rel="stylesheet" href="../../../../css/widget.css">
-<link rel="stylesheet" href="../../../../css/rocket.css">
-<link rel="stylesheet" href="../../../../css/signature.css">
-<link rel="stylesheet" href="../../../../css/catalog.css">
-<link rel="stylesheet" href="../../../../css/livemylife.css">
+<link rel="stylesheet" href="../../css/highlight.css">
+<link rel="stylesheet" href="../../css/widget.css">
+<link rel="stylesheet" href="../../css/rocket.css">
+<link rel="stylesheet" href="../../css/signature.css">
+<link rel="stylesheet" href="../../css/catalog.css">
+<link rel="stylesheet" href="../../css/livemylife.css">
 
 
   
@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/archives/2021/archives/3/">
+  <link rel="canonical" href="https://antoniopeng.com/git/git标签管理/">
   <title>
     
-    彭超的博客 | Antonio Blog
+    Git 标签管理 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*page*/
-        background-image: url('');
+       /*post*/
+        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
       
     }
 
@@ -312,10 +312,40 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>彭超</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">生命不息，奋斗不止</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="https://antoniopeng.com/tags/#Git" title="Git">Git</a>
+              
+            </div>
+            <h1>Git 标签管理</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by 暮夏有五 on
+              2021-02-01
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">4</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">1.2k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- 不蒜子统计 start -->
+            <span class="meta">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            <!-- WordCount end -->
+            
+
+
           </div>
           
         </div>
@@ -356,661 +386,265 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+	<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-      <!-- Main Content -->
+        <h3 id="轻量级标签"><a href="#轻量级标签" class="headerlink" title="轻量级标签"></a>轻量级标签</h3><p>轻量级标签就像是个不会变化的分支，实际上它就是个指向特定提交对象的引用。</p>
+<p>首先我们可以通过如下命令来查看当前仓库中的所有标签：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br></pre></td></tr></table></figure>
 
+<p>打标签的方式很简单，直接通过 <code>git tag &lt;tagname&gt;</code> 来完成即可，如下命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag v1</span><br></pre></td></tr></table></figure>
 
-<div class="post-preview">
+<p>表示创建了一个名为 v1 的 tag ，这个 tag 默认是创建在最新一次的 commit 上的，如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8601.png" alt="img"></p>
+<p>我们可以利用命令 <code>git show &lt;tagname&gt;</code> 来查看标签对应的版本信息，如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8602.png" alt="img"></p>
+<p>我们可以通过命令 <code>$ git tag -d &lt;tagname&gt;</code> 命令删除一个标签：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -d v1</span><br></pre></td></tr></table></figure>
 
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
+<p>如下图：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8603.png" alt="img"></p>
+<p>如果我想给历史上的某次 commit 打一个标签呢?我们可以通过如下命令 <code>git tag &lt;tagname&gt; &lt;commitversion&gt;</code> ,如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag v0.0 7d519</span><br></pre></td></tr></table></figure>
 
+<p>表示给 commit 的哈希码为 7d519 的那一次 commit 打上一个标签，如下图：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8604.png" alt="img"></p>
+<h3 id="含附注的标签"><a href="#含附注的标签" class="headerlink" title="含附注的标签"></a>含附注的标签</h3><p>而含附注标签，实际上是存储在仓库中的一个独立对象，它有自身的校验和信息，包含着标签的名字，电子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard (GPG) 来签署或验证。</p>
+<p>打一个含附注的标签很简单，使用 <code>git tag -a &lt;tagname&gt; -m &lt;msg&gt;</code> 命令,如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a v0.0 -m <span class="string">"文件初次建立"</span> 7d519</span><br></pre></td></tr></table></figure>
 
-  <a href="/redis/高性能缓存数据库redis入门篇/">
-    <h2 class="post-title">
-      高性能缓存数据库 Redis 入门篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      什么是 RedisRedis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。从 2015 年 6 月开始，Redis 的开发由 Redis Labs 赞助，而 2013 年 5 月至 2015 年 6 月期间，其开发由 Pivotal 赞助。在 2013 年 5 月之前，其开发由 VMware 赞助。根据月度排行网站 DB-Engines.com 的......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-24
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
+<p>如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8605.png" alt="img"></p>
+<p>如果不加最后的版本号参数，表示给最新的一次 commit 打标签。</p>
+<h3 id="签署标签"><a href="#签署标签" class="headerlink" title="签署标签"></a>签署标签</h3><p>说到签署标签我们得先介绍一下 GPG ：</p>
+<blockquote>
+<p>GPG 是加密软件，可以使用 GPG 生成的公钥在网上安全的传播你的文件、代码。为什么说安全的？以 Google 所开发的 repo 为例，repo 即采用 GPG 验证的方式，每个里程碑 tag 都带有 GPG 加密验证，假如在里程碑 v1.12.3 处你想要做修改，修改完后将这个 tag 删除，然后又创建同名 tag 指向你的修改点，这必然是可以的。但是，在你再次 clone 你修改后的项目时，你会发现，你对此里程碑 tag 的改变不被认可，验证失败，导致你的修改在这里无法正常实现。这就是 GPG 验证的作用，这样就能够保证项目作者（私钥持有者）所制定的里程碑别人将无法修改。那么，就可以说，作者的代码是安全传播的。为什么会有这种需求？一个项目从开发到发布，再到后期的更新迭代，一定会存在若干的稳定版本与开发版本（存在不稳定因素）。作为项目发起者、持有者，有权定义他（们）所认可的稳定版本，这个稳定版本，将不允许其他开发者进行改动。还以 Google 的 repo 项目为例，项目所有者定义项目开发过程中的点 A 为稳定版 v1.12.3，那么用户在下载 v1.12.3 版本后，使用的肯定是 A 点所生成的项目、产品，就算其他开发者能够在本地对 v1.12.3 进行重新指定，指定到他们修改后的B点，但是最终修改后的版本给用户用的时候，会出现 GPG 签名验证不通过的问题，也就是说这样的修改是不生效的。</p>
+</blockquote>
+<p>使用签署标签我们先要生成 GPG Key，生成命令如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --gen-key</span><br></pre></td></tr></table></figure>
 
-</div>
-<hr>
+<p>能默认的就直接按回车默认，不能默认的就根据提示输入相应的值，这里的都很简单，不再赘述。完了之后，就可以通过如下命令来打标签了：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -s v0.0 -u <span class="string">"laowang"</span> -m <span class="string">"文件初次建立"</span> 7d519</span><br></pre></td></tr></table></figure>
 
-<div class="post-preview">
+<p>就把上面的 -a 换成 -s，然后添加 -u 参数，-u 参数的值是我们在生成 GPG Key 的时候配置的 name 属性的值，注意 -u 参数不可以写错，否则标签会创建失败，如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8606.png" alt="img"></p>
+<p>如上图，-u 参数写错时，标签创建失败。</p>
+<h3 id="标签推送到远程仓库"><a href="#标签推送到远程仓库" class="headerlink" title="标签推送到远程仓库"></a>标签推送到远程仓库</h3><p>git push 命令并不会把tag提交到远程仓库中去，需要我们手动提交，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin v0.0</span><br></pre></td></tr></table></figure>
 
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
+<p>表示将 v0.0 标签提交到远程仓库，也可以通过 <code>$ git push origin --tags</code> 提交所有的 tag 到远程仓库，如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8607.png" alt="img"></p>
+<p>此时别人调用 git pull 更新代码之后，就能看到我们的 tag。如下：</p>
+<p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8608.png" alt="img"></p>
 
 
-  <a href="/spring-boot/spring-boot中邮件发送的五种姿势/">
-    <h2 class="post-title">
-      Spring Boot 中邮件发送的五种姿势
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      邮件发送其实是一个非常常见的需求，用户注册，找回密码等地方，都会用到，使用 JavaSE 代码发送邮件，步骤还是挺繁琐的，Spring Boot 中对于邮件发送，提供了相关的自动化配置类，使得邮件发送变得非常容易，本文我们看看使用 Spring Boot 发送邮件的 5 中姿势。
-邮件基础我们经常会听到各种各样的邮件协议，比如 SMTP、POP3、IMAP ，那么这些协议有什么作用，有什么区......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-24
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/git/git工作区储藏/" data-toggle="tooltip" data-placement="top" title="Git 工作区储藏">&larr; Previous Post</a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/git/git关联远程仓库/" data-toggle="tooltip" data-placement="top" title="Git 关联远程仓库">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
 
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot中使用cors解决跨域问题/">
-    <h2 class="post-title">
-      Spring Boot 中使用 CORS 解决跨域问题
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      同源策略很多人对跨域有一种误解，以为这是前端的事，和后端没关系，其实不是这样的，说到跨域，就不得不说说浏览器的同源策略。
-
-同源策略是由 Netscape 提出的一个著名的安全策略，它是浏览器最核心也最基本的安全功能，现在所有支持 JavaScript 的浏览器都会使用这个策略。所谓同源是指协议、域名以及端口要相同。同源策略是基于安全方面的考虑提出来的，这个策略本身没问题，但是我们在实际开发......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-24
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot项目配置https安全证书/">
-    <h2 class="post-title">
-      Spring Boot 项目配置 HTTPS 安全证书
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      https 现在已经越来越普及了，特别是做一些小程序或者公众号开发的时候，https 基本上都是刚需了。不过一个 https 证书还是挺费钱的，个人开发者可以在各个云服务提供商那里申请免费的证书。本文聊的是在 Spring Boot 项目中，如何开启 https 配置，为我们的接口保驾护航。
-HTTPS 简介我们先来看看什么是 https，根据 wikipedia 上的介绍：
-
-超文本传输安......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot整合shiro实现登录认证和权限控制/">
-    <h2 class="post-title">
-      Spring Boot 整合 Shiro 实现登录认证和权限控制
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      在 Spring Boot 中做权限管理，一般来说，主流的方案是 Spring Security ，但是，仅仅从技术角度来说，也可以使用 Shiro。
-一般来说，Spring Security 和 Shiro 的比较如下：
-
-Spring Security 是一个重量级的安全管理框架；Shiro 则是一个轻量级的安全管理框架
-Spring Security 概念复杂，配置繁琐；Shiro 概......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot整合redis实现缓存功能/">
-    <h2 class="post-title">
-      Spring Boot 整合 Redis 实现缓存功能
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      使用 Java 操作 Redis 的方案很多，Jedis 是目前较为流行的一种方案，除了 Jedis，还有很多其他解决方案，如下：
-
-除了这些方案之外，还有一个使用也相当多的方案，就是 Spring Data Redis。在传统的 SSM 中，需要开发者自己来配置 Spring Data Redis，这个配置比较繁琐，主要配置 3 个东西：连接池、连接器信息以及 key 和 value 的序......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot整合tk-mybatis二次简化持久层代码/">
-    <h2 class="post-title">
-      Spring Boot 整合 TKMybatis 二次简化持久层代码
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      经常用 MyBatis 的的都知道，使用这个框架存在一个非常不友善的问题就是，就是每操作一个单表就需要自己手写一个 xml 文件，虽然说可以用工具生成 xml 和实体类可以解决这个问题，但是二次开发的时候对某个表字段进行修改的时候，生成 xml 文件就不现实啦。最近发现 tk.mybatis 就非常好的解决了这个问题。tk.mybatis 整合了 MyBatis 框架，在其基础上提供了很多工......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot整合mybatis持久层框架/">
-    <h2 class="post-title">
-      Spring Boot 整合 Mybatis 持久层框架
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      最简单的数据持久化方案是 JdbcTemplate，JdbcTemplate 虽然简单，但是用的并不多，因为它没有 MyBatis 方便，在 Spring + SpringMVC 中整合 MyBatis 步骤还是有点复杂的，要配置多个 Bean，Spring Boot 中对此做了进一步的简化，使 MyBatis 基本上可以做到开箱即用，本文就来看看在 Spring Boot 中 MyBati......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-22
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot整合swagger2生成restful-api文档/">
-    <h2 class="post-title">
-      Spring Boot 整合 Swagger2 生成 RESTful API 文档
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      前后端分离后，维护接口文档基本上是必不可少的工作。一个理想的状态是设计好后，接口文档发给前端和后端，大伙按照既定的规则各自开发，开发好了对接上了就可以上线了。当然这是一种非常理想的状态，实际开发中却很少遇到这样的情况，接口总是在不断的变化之中，有变化就要去维护，做过的小伙伴都知道这件事有多么头大！还好，有一些工具可以减轻我们的工作量，Swagger2 就是其中之一，至于其他类似功能但是却收费......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-22
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot整合quartz实现定时任务/">
-    <h2 class="post-title">
-      Spring Boot 整合 Quartz 实现定时任务
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      在 Spring + SpringMVC 环境中，一般来说，要实现定时任务，我们有两中方案，一种是使用 Spring 自带的定时任务处理器 @Scheduled 注解，另一种就是使用第三方框架 Quartz，一般在项目中，除非定时任务涉及到的业务实在是太简单就使用 @Scheduled 注解来解决定时任务，否则大部分情况可能都是使用 Quartz 来做定时任务。Spring Boot 源自 ......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-22
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-
-
-  <!-- Pager -->
-  <ul class="pager">
-    
-    <li class="previous">
-      <a href="/archives/2021/archives/2/">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/archives/2021/archives/4/">Older Posts &rarr;</a>
-    </li>
-    
-  </ul>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
         
-<!-- <h5>VISITORS</h5> -->
-<h5>VISITORS</h5>
-<div class="widget">
-  <span>
-    本站总访问量 <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 次
-  </span>
-  <br />
-  <span>
-    本站总访客数 <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 人
-  </span>
+        <!-- tip start -->
+        <div class="tip">
+          <p>
+            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+          </p>
+        </div>
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Git 标签管理&body=Hi,I found this website and thought you might like it https://antoniopeng.com/git/git标签管理/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
 </div>
 
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
+        <!-- Sharing End -->
+        
         <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5>ABOUT ME</h5>
-  <div class="short-about">
 
-    
-    <img id="avatar_pic" src="https://qiniuyun.antoniopeng.com/my_photo.png" alt="彭超"  />
-    
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
 
-    
-    <!--<p>我究竟拿时间换了什么 Self discipline produces joy</p>-->
-	<p>
-		<span>我究竟拿时间换了什么</span>
-		<br>
-		<span>Self discipline produces joy</span>
-	</p>
-    
 
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-	  
-	  
-      <li>
-        <a target="_blank" title="微信" href="https://qiniuyun.antoniopeng.com/my_wx.png">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 20px; height: 20px; background: url('https://qiniuyun.antoniopeng.com/wx01.png') no-repeat;margin: 8px 0px 0px 9px"></i>
-          </span>
-        </a>
-      </li>
-      
-	  
-	  
-      <li>
-        <a target="_blank" title="CSDN" href="https://blog.csdn.net/monianqing">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/csdn.png') no-repeat;margin: 10px 0px 0px 11px"></i>
-          </span>
-        </a>
-      </li>
-      
 
-      
-      <li>
-        <a target="_blank" title="GitHub" href="https://github.com/antoniopeng">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-	  
 
-      
+<!-- 2. gitment comment -->
 
-      
 
-      
 
-      
+<!-- 3. disqus comment -->
 
-      
-      <li>
-        <a target="_blank" title="知乎" href="https://www.zhihu.com/people/antoniopeng8">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/zhihu.png') no-repeat;margin: 10px 0px 0px 11px"></i>
-          </span>
-        </a>
-      </li>
-      
 
-      
-	  
-	  
-
-    </ul>
-  </div>
-</section>
-
+        <!-- comments end -->
         <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#轻量级标签"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">轻量级标签</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#含附注的标签"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">含附注的标签</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#签署标签"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">签署标签</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#标签推送到远程仓库"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">标签推送到远程仓库</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
         <!-- Featured Tags -->
-
-<section>
-  <!-- no hr -->
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#Docker" title="Docker" rel="9">Docker</a>
-    
-    
-    
-    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
-    
-    
-    
-    <a href="/tags/#Git" title="Git" rel="7">Git</a>
-    
-    
-    
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
-    
-    
-    
-    <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
-    
-    
-    
-    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
-    
-    
-    
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
-    
-    
-    
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
-    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
-    
-    
-    
-    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
-    
-    
-    
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
-    
-    
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
-    
-    
-    
-    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
-    
-    
-    
-    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
-    
-    
-    
-    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<!-- <h5>categories</h5> -->
-<h5><a href="/categories/">CATEGORIES</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#运维">
-      <li>运维</li>
-    </a>
-    
-    <a href="/categories/#后端技术">
-      <li>后端技术</li>
-    </a>
-    
-    <a href="/categories/#数据库">
-      <li>数据库</li>
-    </a>
-    
-    <a href="/categories/#计算机基础">
-      <li>计算机基础</li>
-    </a>
-    
-    <a href="/categories/#杂记">
-      <li>杂记</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
         
-    <!-- <h5>ARCHIVES</h5> -->
-    <h5><a href="/archive/">ARCHIVES</a></h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../02/">February 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../01/">January 2021</a><span class="archive-list-count">64</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
-    </div>
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#Git" title="Git">Git</a>
+            
+          </div>
+        </section>
+        
 
-
-        <hr>
-    
         <!-- Friends Blog -->
-
-<!-- <h5>FRIENDS</h5> -->
-<h5><a href="javascript:void(0)">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a></li>
-  
-  <li><a href="https://lusongsong.com/" target="_blank">卢松松博客</a></li>
-  
-  <li><a href="http://www.xldn333.com/" target="_blank">广州办公设备网</a></li>
-  
-  <li><a href="http://pclrj.com/" target="_blank">软件开发网</a></li>
-  
-</ul>
-
-
+        
         <hr>
-    
-</div>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
 
-    
+          
+          <li>
+            <a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a>
+          </li>
+          
+          <li>
+            <a href="https://lusongsong.com/" target="_blank">卢松松博客</a>
+          </li>
+          
+          <li>
+            <a href="http://www.xldn333.com/" target="_blank">广州办公设备网</a>
+          </li>
+          
+          <li>
+            <a href="http://pclrj.com/" target="_blank">软件开发网</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->
