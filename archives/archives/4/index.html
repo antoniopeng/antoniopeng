@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -373,80 +373,6 @@
 
       <!-- Main Content -->
 
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot全局异常处理/">
-    <h2 class="post-title">
-      Spring Boot 全局异常处理
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      在 Spring Boot 项目中 ，异常统一处理，可以使用 Spring 中 @ControllerAdvice 来统一处理，也可以自己来定义异常处理方案。Spring Boot 中，对异常的处理有一些默认的策略，我们分别来看。默认情况下，Spring Boot 中的异常页面 是这样的：
-
-我们从这个异常提示中，也能看出来，之所以用户看到这个页面，是因为开发者没有明确提供一个 /error......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-22
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot整合freemarker模板引擎/">
-    <h2 class="post-title">
-      Spring Boot 整合 Freemarker 模板引擎
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Freemarker 简介这是一个相当老牌的开源的免费的模版引擎。通过 Freemarker 模版，我们可以将数据渲染成 HTML 网页、电子邮件、配置文件以及源代码等。Freemarker 不是面向最终用户的，而是一个 Java 类库，我们可以将之作为一个普通的组件嵌入到我们的产品中。
-可以看到，Freemarker 可以将模版和数据渲染成 HTML 。
-Freemarker 模版后缀为 ......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-21
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
 
 <div class="post-preview">
 
@@ -746,6 +672,80 @@ MyBatis 逆向工程非常多，我们 I......
 </div>
 <hr>
 
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mybatis/mybatis中使用mapper简化代码/">
+    <h2 class="post-title">
+      MyBatis 中使用 Mapper 简化代码
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      前面文章所写的增删改查是存在问题的。主要问题就是冗余代码过多，模板化代码过多。
+例如，我想开发一个 UserDao，可能是下面这样。此时，我们分析这个 UserDao，发现它有很多可以优化的地方。每个方法中都要获取 SqlSession，涉及到增删改的方法，还需要 commit，SqlSession 用完之后，还需要关闭，sqlSession 执行时需要的参数就是方法的参数，sqlSessi......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mybatis/mybatis的映射文件详解/">
+    <h2 class="post-title">
+      MyBatis 的映射文件详解
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      mapper 映射文件，是 MyBatis 中最重要的部分，涉及到的细节也是非常非常多。
+parameterType这个表示输入的参数类型。
+$ 和 #这是一个非常非常高频的面试题，虽然很简单。在面试中，如果涉及到 MyBatis，一般情况下，都是这个问题。在 MyBatis 中，我们在 mapper 引用变量时，默认使用的是 #，像下面这样：
+123&lt;select id="getUs......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-17
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
 
 
   <!-- Pager -->
@@ -889,11 +889,11 @@ MyBatis 逆向工程非常多，我们 I......
     
     
     
-    <a href="/tags/#Git" title="Git" rel="5">Git</a>
-    
-    
-    
     <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
+    
+    
+    
+    <a href="/tags/#Git" title="Git" rel="5">Git</a>
     
     
     
@@ -901,15 +901,11 @@ MyBatis 逆向工程非常多，我们 I......
     
     
     
-    <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
-    
-    
-    
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
-    
-    
-    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
+    
+    
+    
+    <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
     
     
     
@@ -917,15 +913,19 @@ MyBatis 逆向工程非常多，我们 I......
     
     
     
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    
+    
+    
     <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
-    
-    
-    
     <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
+    
+    
+    
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
     
     
     
@@ -991,7 +991,7 @@ MyBatis 逆向工程非常多，我们 I......
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/02/">February 2021</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/02/">February 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
