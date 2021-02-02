@@ -462,6 +462,9 @@
 <h4 id="服务端上传文件"><a href="#服务端上传文件" class="headerlink" title="服务端上传文件"></a>服务端上传文件</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 交互式进入容器</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it fastdfs /bin/bash</span><br><span class="line"><span class="comment"># 上传测试文件</span></span><br><span class="line">$ /usr/bin/fdfs_upload_file /etc/fdfs/client.conf /usr/<span class="built_in">local</span>/src/fastdfs-5.11/INSTALL</span><br><span class="line"><span class="comment"># 服务器反馈的上传后地址</span></span><br><span class="line">group1/M00/00/00/wKhLi1oHVMCAT2vrAAAeSwu9TgM3976771</span><br></pre></td></tr></table></figure>
 
 <p>结合服务器反馈的信息，得出文件上传后地址为：<a href="http://192.168.1.100:8888/group1/M00/00/00/wKhLi1oHVMCAT2vrAAAeSwu9TgM3976771" target="_blank" rel="noopener">http://192.168.1.100:8888/group1/M00/00/00/wKhLi1oHVMCAT2vrAAAeSwu9TgM3976771</a></p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>
