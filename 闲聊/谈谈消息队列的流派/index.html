@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,10 +396,14 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="关于-MQ-的定义"><a href="#关于-MQ-的定义" class="headerlink" title="关于 MQ 的定义"></a>关于 MQ 的定义</h3><p><code>Message Queue</code>（<code>MQ</code>）消息队列中间件，通常我们在网上看到的对其定义是将消息的发送和接受分离来实现应用程序的异步和解耦，给人的直觉是 <code>MQ</code> 是异步的，用来解耦的。但这个只是 <code>MQ</code> 的效果，而不是目的。<code>MQ</code> 真正的目的是为了通讯，屏蔽底层复杂的通讯协议，定义了一套应用层上更加简单的通讯协议。</p>
+        <h3 id="关于-MQ-的定义"><a href="#关于-MQ-的定义" class="headerlink" title="关于 MQ 的定义"></a>关于 MQ 的定义</h3><hr />
+
+<p><code>Message Queue</code>（<code>MQ</code>）消息队列中间件，通常我们在网上看到的对其定义是将消息的发送和接受分离来实现应用程序的异步和解耦，给人的直觉是 <code>MQ</code> 是异步的，用来解耦的。但这个只是 <code>MQ</code> 的效果，而不是目的。<code>MQ</code> 真正的目的是为了通讯，屏蔽底层复杂的通讯协议，定义了一套应用层上更加简单的通讯协议。</p>
 <p>一套分布式系统中两个模块之间通讯要么是 <code>HTTP</code>，要么是 <code>TCP</code>，但这两种协议其实都是原始的协议。前者实现通讯就必须要做到各客户端都有 <code>WebServer</code>，而且不支持长连接；后者就更加原始了 — 粘包、心跳、私有的协议。</p>
 <p>而 <code>MQ</code> 所要做就是在基于这些现有的协议之上构建一个更简单的通讯（生产者/消费者）模型。它定义了两个对象 —发送数据的叫生产者，接受数据的叫消费者，提供一个 SDK 给我们自己定义生产者和消费者实现消息通讯，且无视底层通讯协议。</p>
-<h3 id="带-Broker-的流派"><a href="#带-Broker-的流派" class="headerlink" title="带 Broker 的流派"></a>带 Broker 的流派</h3><p>这个流派通常有一台服务器作为 <code>Broker</code>，所有的消息都通过它进行中转。生产者把消息发送给它就结束自己的任务了，最后 <code>Broker</code> 则把消息主动推送给消费者（或者消费者主动轮询）。</p>
+<h3 id="带-Broker-的流派"><a href="#带-Broker-的流派" class="headerlink" title="带 Broker 的流派"></a>带 Broker 的流派</h3><hr />
+
+<p>这个流派通常有一台服务器作为 <code>Broker</code>，所有的消息都通过它进行中转。生产者把消息发送给它就结束自己的任务了，最后 <code>Broker</code> 则把消息主动推送给消费者（或者消费者主动轮询）。</p>
 <h4 id="重-Topic-的-MQ"><a href="#重-Topic-的-MQ" class="headerlink" title="重 Topic 的 MQ"></a>重 Topic 的 MQ</h4><p><code>Kafka</code>、<code>Active MQ</code> 就属于这个流派：生产者发送 <code>key</code> 和数据到 <code>Broker</code>，由 <code>Broker</code> 比较 <code>key</code> 之后决定给哪个消费者。</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E8%B0%88%E8%B0%88%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E6%B5%81%E6%B4%BE01.png-watermark" alt=""></p>
 <p>在这种模式下，<code>Topic（主题消息）</code> 往往是一个比较大的概念，甚至一个系统中就可能只有一个 <code>Topic</code>。</p>
@@ -415,7 +419,9 @@
 <li><code>Headers exchange</code>：无视 <code>key</code>，通过查看消息的头部元数据来决定发给哪个 <code>queue</code>。</li>
 </ul>
 <p>这种架构给通讯带来了极大的灵活性，我们能想到的通讯方式都可以用这四种 <code>exchange</code> 表达出来。</p>
-<h3 id="不带-Broker-的流派"><a href="#不带-Broker-的流派" class="headerlink" title="不带 Broker 的流派"></a>不带 Broker 的流派</h3><h4 id="ZeroMQ"><a href="#ZeroMQ" class="headerlink" title="ZeroMQ"></a>ZeroMQ</h4><p>不带 <code>Broker</code> 的 <code>MQ</code> 代表就是 <code>ZeroMQ</code>。可以说是解决通讯问题的更高级 <code>Socket</code>，它被设计成了一个 “库” 而不是一个中间件，这种实现也可以达到没有 <code>Broker</code> 的目的。</p>
+<h3 id="不带-Broker-的流派"><a href="#不带-Broker-的流派" class="headerlink" title="不带 Broker 的流派"></a>不带 Broker 的流派</h3><hr />
+
+<h4 id="ZeroMQ"><a href="#ZeroMQ" class="headerlink" title="ZeroMQ"></a>ZeroMQ</h4><p>不带 <code>Broker</code> 的 <code>MQ</code> 代表就是 <code>ZeroMQ</code>。可以说是解决通讯问题的更高级 <code>Socket</code>，它被设计成了一个 “库” 而不是一个中间件，这种实现也可以达到没有 <code>Broker</code> 的目的。</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E8%B0%88%E8%B0%88%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E6%B5%81%E6%B4%BE03.png-watermark" alt=""></p>
 <p>各节点之间的通讯都是发送到彼此的队列中，每个节点即是生产者也是消费者。类似于一套 <code>Socket</code> 的 <code>API</code>，可以完成发送和读取数据。</p>
 <blockquote>

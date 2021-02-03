@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -391,7 +391,9 @@
       
     </h3>
     <div class="post-content-preview">
-      AOP 简介Aop（Aspect Oriented Programming），面向切面编程，这是对面向对象思想的一种补充。
+      AOP 简介
+
+Aop（Aspect Oriented Programming），面向切面编程，这是对面向对象思想的一种补充。
 面向切面编程，就是在程序运行时，不改变程序源码的情况下，动态的增强方法的功能，常见的使用场景非常多：
 
 日志
@@ -400,8 +402,6 @@
 ….
 
 这些操作中，无一例外，都有很多模板化的代码，而解决模板化代码，消除臃肿就是 Aop 的强项。在 Aop 中，有几个常见的概念：
-
-
 
 ......
     </div>
@@ -438,8 +438,10 @@
       
     </h3>
     <div class="post-content-preview">
-      IoC 概念IoC（Inversion of Control），中文叫做控制反转。这是一个概念，也是一种思想。控制反转，实际上就是指对一个对象的控制权的反转。如下代码：
-12345678910111213141516171819public class Book &#123;    private Integer id;    private String name;    private ......
+      IoC 概念
+
+IoC（Inversion of Control），中文叫做控制反转。这是一个概念，也是一种思想。控制反转，实际上就是指对一个对象的控制权的反转。如下代码：
+12345678910111213141516171819public class Book &#123;    private Integer id;    private String name;    privat......
     </div>
   </a>
   
@@ -474,9 +476,11 @@
       
     </h3>
     <div class="post-content-preview">
-      Spring 简介Spring 是一个轻量级的 Java 开发框架，它是为了解决企业应用开发的复杂性而创建的，常年雄踞于企业开发必选框架之首。Spring 的核心是控制反转（IoC）和面向切面编程（AOP）。简单来说，Spring 是一个分层的 Java EE 一站式轻量级开源框架。
+      Spring 简介
+
+Spring 是一个轻量级的 Java 开发框架，它是为了解决企业应用开发的复杂性而创建的，常年雄踞于企业开发必选框架之首。Spring 的核心是控制反转（IoC）和面向切面编程（AOP）。简单来说，Spring 是一个分层的 Java EE 一站式轻量级开源框架。
 Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
-在一个系统中，根据功能的不同，代码分为 主业......
+在一个系统中，根据功能的不同，代码分为 ......
     </div>
   </a>
   
@@ -511,11 +515,15 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
       
     </h3>
     <div class="post-content-preview">
-      Maven 相关配置IDEA 中，Maven 的配置在 File-&gt;Settings-&gt;Build,Execution,Deployment-&gt;Build Tools-&gt;Maven:
+      Maven 相关配置
 
-Java SE 工程首先在创建一个工程时，选择 Maven 工程：
+IDEA 中，Maven 的配置在 File-&gt;Settings-&gt;Build,Execution,Deployment-&gt;Build Tools-&gt;Maven:
 
-如果勾选上 Create from archetype ，则表示可以根据一个项目骨架（项目模板）来创建一个新的工程......
+Java SE 工程
+
+首先在创建一个工程时，选择 Maven 工程：
+
+如果勾选上 Create from archetype ，则表示可以根据一个项目骨架（项目模板）来创建一个......
     </div>
   </a>
   
@@ -550,7 +558,9 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
       
     </h3>
     <div class="post-content-preview">
-      为什么使用项目管理工具由于 Java 的生态非常丰富，无论你想实现什么功能，都能找到对应的工具类，这些工具类都是以 jar 包的形式出现的，例如 Spring，SpringMVC、MyBatis、数据库驱动，等等，都是以 jar 包的形式出现的，jar 包之间会有关联，在使用一个依赖之前，还需要确定这个依赖所依赖的其他依赖，所以，当项目比较大的时候，依赖管理会变得非常麻烦臃肿，这是 Mave......
+      为什么使用项目管理工具
+
+由于 Java 的生态非常丰富，无论你想实现什么功能，都能找到对应的工具类，这些工具类都是以 jar 包的形式出现的，例如 Spring，SpringMVC、MyBatis、数据库驱动，等等，都是以 jar 包的形式出现的，jar 包之间会有关联，在使用一个依赖之前，还需要确定这个依赖所依赖的其他依赖，所以，当项目比较大的时候，依赖管理会变得非常麻烦臃肿，这是 Ma......
     </div>
   </a>
   
@@ -585,7 +595,9 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
       
     </h3>
     <div class="post-content-preview">
-      使用线程有三种使用线程的方法：
+      使用线程
+
+有三种使用线程的方法：
 
 实现 Runnable 接口；
 实现 Callable 接口；
@@ -593,7 +605,7 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
 
 实现 Runnable 和 Callable 接口的类只能当做一个可以在线程中运行的任务，不是真正意义上的线程，因此最后还需要通过 Thread 来调用。可以理解为任务是通过线程驱动从而执行的。
 实现 Runnable 接口需要实现接口中的 run() 方法。
-123......
+1......
     </div>
   </a>
   
@@ -628,7 +640,9 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
       
     </h3>
     <div class="post-content-preview">
-      概述Java 的 I/O 大概可以分成以下几类：
+      概述
+
+Java 的 I/O 大概可以分成以下几类：
 
 磁盘操作：File
 字节操作：InputStream 和 OutputStream
@@ -637,9 +651,11 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
 网络操作：Socket
 新的输入/输出：NIO
 
-磁盘操作File 类可以用于表示文件和目录的信息，但是它不表示文件的内容。
+磁盘操作
+
+File 类可以用于表示文件和目录的信息，但是它不表示文件的内容。
 递归地列出一个目录下所有文件：
-12345678910......
+1234567......
     </div>
   </a>
   
@@ -674,8 +690,10 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
       
     </h3>
     <div class="post-content-preview">
-      为什么要使用集合当我们需要保存一组类型相同的数据的时候，我们应该是用一个容器来保存，这个容器就是数组，但是，使用数组存储对象具有一定的弊端， 因为我们在实际开发中，存储的数据的类型是多种多样的，于是，就出现了“集合”，集合同样也是用来存储多个数据的。
-数组的缺点是一旦声明之后，长度就不可变了；同时，声明数组时的数据类型也决定了该数组存储的数据的类型；而且，数组存储的数据是有序的、可重复的，特......
+      为什么要使用集合
+
+当我们需要保存一组类型相同的数据的时候，我们应该是用一个容器来保存，这个容器就是数组，但是，使用数组存储对象具有一定的弊端， 因为我们在实际开发中，存储的数据的类型是多种多样的，于是，就出现了“集合”，集合同样也是用来存储多个数据的。
+数组的缺点是一旦声明之后，长度就不可变了；同时，声明数组时的数据类型也决定了该数组存储的数据的类型；而且，数组存储的数据是有序的、可重复的......
     </div>
   </a>
   
@@ -710,7 +728,9 @@ Java SE 工程首先在创建一个工程时，选择 Maven 工程：
       
     </h3>
     <div class="post-content-preview">
-      数据类型基本类型
+      数据类型
+
+基本类型
 
 
 基本类型
@@ -759,7 +779,7 @@ boolean
 ~
 
 
-boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boole......
+boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boo......
     </div>
   </a>
   
@@ -797,11 +817,13 @@ boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是�
       
 FastDFS 服务端安装参考文章：分布式文件系统 FastDFS 服务端的部署
 
-部署 FastDFS Java 客户端先从 GitHub 上将项目源码克隆下来：
+部署 FastDFS Java 客户端
+
+先从 GitHub 上将项目源码克隆下来：
 1$ git clone https://github.com/happyfish100/fastdfs-client-java.git
 
 部署到 Maven 依赖私服：
-1$ mvn clean install deploy......
+1$ mvn clean install depl......
     </div>
   </a>
   
@@ -978,15 +1000,11 @@ FastDFS 服务端安装参考文章：分布式文件系统 FastDFS 服务端的
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
     
     
     
@@ -994,7 +1012,7 @@ FastDFS 服务端安装参考文章：分布式文件系统 FastDFS 服务端的
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
@@ -1002,11 +1020,11 @@ FastDFS 服务端安装参考文章：分布式文件系统 FastDFS 服务端的
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -1015,6 +1033,10 @@ FastDFS 服务端安装参考文章：分布式文件系统 FastDFS 服务端的
     
     
     <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     

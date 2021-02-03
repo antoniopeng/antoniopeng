@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -498,7 +498,9 @@
       
     </h3>
     <div class="post-content-preview">
-      Spring Boot 介绍我们刚开始学习 Java Web 的时候，使用 Servlet/JSP 做开发，一个接口搞一个 Servlet ，很头大，后来我们通过隐藏域或者反射等方式，可以减少 Servlet 的创建，但是依然不方便，再后来，我们引入 Struts2/SpringMVC 这一类的框架，来简化我们的开发 ，和 Servlet/JSP 相比，引入框架之后，生产力确实提高了不少，但......
+      Spring Boot 介绍
+
+我们刚开始学习 Java Web 的时候，使用 Servlet/JSP 做开发，一个接口搞一个 Servlet ，很头大，后来我们通过隐藏域或者反射等方式，可以减少 Servlet 的创建，但是依然不方便，再后来，我们引入 Struts2/SpringMVC 这一类的框架，来简化我们的开发 ，和 Servlet/JSP 相比，引入框架之后，生产力确实提高了不少......
     </div>
   </a>
   
@@ -536,12 +538,13 @@
       
 这里使用 Maven 项目管理工具构建项目
 
-初始化项目打开 Intellij  IDEA，点击 Create New Project，使用 Maven 构建项目，选择 JDK 版本和 maven-archetype-webapp 模板（Java Web 项目）
+初始化项目
+
+打开 Intellij  IDEA，点击 Create New Project，使用 Maven 构建项目，选择 JDK 版本和 maven-archetype-webapp 模板（Java Web 项目）
 
 填写项目在 Maven 仓库中的坐标
 
-选择 Maven 安装路径和 Maven 配置文件路径以及 Maven 本地仓库路径
-......
+选择 Maven 安装路径和 Maven 配置文件路径以及 Maven 本地仓库路......
     </div>
   </a>
   
@@ -576,13 +579,17 @@
       
     </h3>
     <div class="post-content-preview">
-      下载项目已上传至百度网盘
+      下载项目
+
+已上传至百度网盘
 
 网盘链接：https://pan.baidu.com/s/1m2YcxD6hGp6rQrGNhAEjYw 
 提取码：iu9y 
 
-生成代码由于使用数据表时，我们需要给每一个表都创建对应的实体类，每个实体类都有对应的 Mapper 接口和 Mapper.xml 文件，这些其实都是一些重复的工作，我们可以通过第三方工具来完成。
-MyBatis 逆向工程非常多，我们 I......
+生成代码
+
+由于使用数据表时，我们需要给每一个表都创建对应的实体类，每个实体类都有对应的 Mapper 接口和 Mapper.xml 文件，这些其实都是一些重复的工作，我们可以通过第三方工具来完成。
+MyBatis 逆向工程非常多，......
     </div>
   </a>
   
@@ -617,8 +624,10 @@ MyBatis 逆向工程非常多，我们 I......
       
     </h3>
     <div class="post-content-preview">
-      一对一查询在实际开发中，经常会遇到一对一查询，一对多查询等。这里我们先来看一对一查询。例如：每本书都有一个作者，作者都有自己的属性，根据这个，我来定义两个实体类：
-12345678public class Book &#123;        private Integer id;    private String name;    private Author author;	    /......
+      一对一查询
+
+在实际开发中，经常会遇到一对一查询，一对多查询等。这里我们先来看一对一查询。例如：每本书都有一个作者，作者都有自己的属性，根据这个，我来定义两个实体类：
+12345678public class Book &#123;        private Integer id;    private String name;    private Author author;	   ......
     </div>
   </a>
   
@@ -690,9 +699,11 @@ MyBatis 逆向工程非常多，我们 I......
     </h3>
     <div class="post-content-preview">
       mapper 映射文件，是 MyBatis 中最重要的部分，涉及到的细节也是非常非常多。
-parameterType这个表示输入的参数类型。
+parameterType
+
+这个表示输入的参数类型。
 $ 和 #这是一个非常非常高频的面试题，虽然很简单。在面试中，如果涉及到 MyBatis，一般情况下，都是这个问题。在 MyBatis 中，我们在 mapper 引用变量时，默认使用的是 #，像下面这样：
-123&lt;select id="getUs......
+123&lt;select id="get......
     </div>
   </a>
   
@@ -915,15 +926,11 @@ dat......
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
     
     
     
@@ -931,7 +938,7 @@ dat......
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
@@ -939,11 +946,11 @@ dat......
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -952,6 +959,10 @@ dat......
     
     
     <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     

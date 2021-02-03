@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="数据卷入门"><a href="#数据卷入门" class="headerlink" title="数据卷入门"></a>数据卷入门</h3><p>在前面的案例中，如果我们需要将数据从宿主机拷贝到容器中，一般都是使用 Docker 的拷贝命令，这样性能还是稍微有点差，没有办法能够达到让这种拷贝达到本地磁盘 I/O 性能呢？有！</p>
+        <h3 id="数据卷入门"><a href="#数据卷入门" class="headerlink" title="数据卷入门"></a>数据卷入门</h3><hr />
+
+<p>在前面的案例中，如果我们需要将数据从宿主机拷贝到容器中，一般都是使用 Docker 的拷贝命令，这样性能还是稍微有点差，没有办法能够达到让这种拷贝达到本地磁盘 I/O 性能呢？有！</p>
 <p>数据卷可以绕过拷贝系统，在多个容器之间、容器和宿主机之间共享目录或者文件，数据卷绕过了拷贝系统，可以达到本地磁盘 I/O 性能。</p>
 <p>本文先通过一个简单的案例展示数据卷的基本用法。以前面使用的 nginx 镜像为例，在运行该容器时，可以指定一个数据卷，命令如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd --name nginx -v /usr/share/nginx/html/ -p 80:80 bc26f1ed35cf</span><br></pre></td></tr></table></figure>
@@ -410,11 +412,15 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"hello volumes"</span>&gt;index.html</span><br></pre></td></tr></table></figure>
 
 <p>修改完成后，再回到浏览器中，输入 <a href="http://localhost" target="_blank" rel="noopener">http://localhost</a> 查看 nginx 中 index.html 页面中的数据，发现已经发生改变。说明宿主机中的文件共享到容器中去了。</p>
-<h3 id="结合宿主机目录"><a href="#结合宿主机目录" class="headerlink" title="结合宿主机目录"></a>结合宿主机目录</h3><p>上文中对于数据卷的用法还不是最佳方案，一般来说，我们可能需要明确指定将宿主机中的一个目录挂载到容器中，这种指定方式如下：</p>
+<h3 id="结合宿主机目录"><a href="#结合宿主机目录" class="headerlink" title="结合宿主机目录"></a>结合宿主机目录</h3><hr />
+
+<p>上文中对于数据卷的用法还不是最佳方案，一般来说，我们可能需要明确指定将宿主机中的一个目录挂载到容器中，这种指定方式如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd --name nginx -v /Users/sang/blog/docker/docker/:/usr/share/nginx/html/ -p 80:80 bc26f1ed35cf</span><br></pre></td></tr></table></figure>
 
 <p>这样便是将宿主机中的 <code>/Users/sang/blog/docker/docker/</code> 目录挂载到容器的 <code>/usr/share/nginx/html/</code> 目录下。接下来只需要在 <code>/Users/sang/blog/docker/docker/</code> 目录下添加 html 文件，或者修改 html 文件，都能在 nginx 访问中立马看到效果。这种用法对于开发测试非常方便，不用重新部署，重启容器等。</p>
-<h3 id="更多操作"><a href="#更多操作" class="headerlink" title="更多操作"></a>更多操作</h3><h4 id="Dockerfile-中的数据卷"><a href="#Dockerfile-中的数据卷" class="headerlink" title="Dockerfile 中的数据卷"></a>Dockerfile 中的数据卷</h4><p>如果开发者使用了 Dockerfile 去构建镜像，也可以在构建镜像时声明数据卷，例如下面这样：</p>
+<h3 id="更多操作"><a href="#更多操作" class="headerlink" title="更多操作"></a>更多操作</h3><hr />
+
+<h4 id="Dockerfile-中的数据卷"><a href="#Dockerfile-中的数据卷" class="headerlink" title="Dockerfile 中的数据卷"></a>Dockerfile 中的数据卷</h4><p>如果开发者使用了 Dockerfile 去构建镜像，也可以在构建镜像时声明数据卷，例如下面这样：</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> nginx</span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> https://www.baidu.com/img/bd_logo1.png /usr/share/nginx/html/</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"hello docker volume!"</span>&gt;/usr/share/nginx/html/index.html</span></span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> /usr/share/nginx/html/</span></span><br></pre></td></tr></table></figure>
 
 <p>这样就配置了一个匿名数据卷，运行过程中，将数据写入到 <code>/usr/share/nginx/html/</code> 目录中，就可以实现容器存储层的无状态变化。</p>

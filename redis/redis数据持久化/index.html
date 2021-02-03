@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,8 +396,12 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="Redis-持久化"><a href="#Redis-持久化" class="headerlink" title="Redis 持久化"></a>Redis 持久化</h3><p>整体上来说，Redis 持久化有两种方式，快照持久化和 AOF ，在项目中我们可以根据实际情况选择合适的持久化方式，也可以不用持久化，这关键看我们的 Redis 在项目中扮演了什么样的角色。</p>
-<h3 id="快照持久化"><a href="#快照持久化" class="headerlink" title="快照持久化"></a>快照持久化</h3><p>快照持久化，顾名思义，就是通过拍摄快照的方式实现数据的持久化，redis 可以在某个时间点上对内存中的数据创建一个副本文件，副本文件中的数据在 redis 重启时会被自动加载，我们也可以将副本文件拷贝到其他地方一样可以使用。</p>
+        <h3 id="Redis-持久化"><a href="#Redis-持久化" class="headerlink" title="Redis 持久化"></a>Redis 持久化</h3><hr />
+
+<p>整体上来说，Redis 持久化有两种方式，快照持久化和 AOF ，在项目中我们可以根据实际情况选择合适的持久化方式，也可以不用持久化，这关键看我们的 Redis 在项目中扮演了什么样的角色。</p>
+<h3 id="快照持久化"><a href="#快照持久化" class="headerlink" title="快照持久化"></a>快照持久化</h3><hr />
+
+<p>快照持久化，顾名思义，就是通过拍摄快照的方式实现数据的持久化，redis 可以在某个时间点上对内存中的数据创建一个副本文件，副本文件中的数据在 redis 重启时会被自动加载，我们也可以将副本文件拷贝到其他地方一样可以使用。</p>
 <h4 id="如何配置快照持久化"><a href="#如何配置快照持久化" class="headerlink" title="如何配置快照持久化"></a>如何配置快照持久化</h4><p>redis中的快照持久化默认是开启的，redis.conf中相关配置主要有如下几项：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br><span class="line">stop-writes-on-bgsave-error yes</span><br><span class="line">rdbcompression yes</span><br><span class="line">dbfilename dump.rdb</span><br><span class="line">dir ./</span><br></pre></td></tr></table></figure>
 
@@ -433,7 +437,9 @@
 <p>还有一种情况也会触发 save 命令，那就是我们执行 shutdown 命令时，当我们用 shutdown 命令关闭 redis 时，此时也会执行一个 save 命令进行备份操作，并在备份操作完成后将服务器关闭。</p>
 <p>最后还有一种特殊情况也会触发 bgsave 命令，就是在主从备份的时候。当从机连接上主机后，会发送一条 sync 命令来开始一次复制操作，此时主机会开始一次 bgsave 操作，并在 bgsave 操作结束后向从机发送快照数据实现数据同步。</p>
 <h4 id="快照持久化的缺点"><a href="#快照持久化的缺点" class="headerlink" title="快照持久化的缺点"></a>快照持久化的缺点</h4><p>快照持久化有一些缺点，比如 save 命令会发生阻塞，bgsave 虽然不会发生阻塞，但是 fork 一个子进程又要耗费资源，在一些极端情况下，fork 子进程的时间甚至超过数据备份的时间。定期的持久化也会让我们存在数据丢失的风险，最坏的情况我们可能丢失掉最近一次备份到当下的数据，具体丢失多久的数据，要看我们项目的承受能力，我们可以根据项目的承受能力配饰 save 参数。</p>
-<h3 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h3><p>与快照持久化不同，AOF 持久化是将被执行的命令写到 aof 文件末尾，在恢复时只需要从头到尾执行一遍写命令即可恢复数据，AOF 在 redis 中默认也是没有开启的，需要我们手动开启，开启方式如下：</p>
+<h3 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h3><hr />
+
+<p>与快照持久化不同，AOF 持久化是将被执行的命令写到 aof 文件末尾，在恢复时只需要从头到尾执行一遍写命令即可恢复数据，AOF 在 redis 中默认也是没有开启的，需要我们手动开启，开启方式如下：</p>
 <p>打开 redis.conf 配置文件，修改 appendonly 属性值为 yes ，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
 
@@ -465,6 +471,9 @@
 <li>如果不 Enable AOF ，仅靠 Master-Slave Replication 实现高可用性也可以。能省掉一大笔 IO 也减少了 rewrite 时带来的系统波动。代价是如果 Master/Slave 同时倒掉，会丢失十几分钟的数据，启动脚本也要比较两个 Master/Slave 中的 RDB 文件，载入较新的那个。</li>
 </ol>
 <p>Redis 数据持久化就介绍这么多，更多资料可以参考<a href="http://www.redis.cn/commands.html" target="_blank" rel="noopener">官方文档</a>。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

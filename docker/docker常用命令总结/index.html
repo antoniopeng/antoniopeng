@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="Docker-镜像常用命令"><a href="#Docker-镜像常用命令" class="headerlink" title="Docker 镜像常用命令"></a>Docker 镜像常用命令</h3><h4 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker search javaCopy to clipboardErrorCopied</span><br></pre></td></tr></table></figure>
+        <h3 id="Docker-镜像常用命令"><a href="#Docker-镜像常用命令" class="headerlink" title="Docker 镜像常用命令"></a>Docker 镜像常用命令</h3><hr />
+
+<h4 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker search javaCopy to clipboardErrorCopied</span><br></pre></td></tr></table></figure>
 
 <h4 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull java:8Copy to clipboardErrorCopied</span><br></pre></td></tr></table></figure>
 
@@ -432,7 +434,9 @@
 </ul>
 <h4 id="打包镜像"><a href="#打包镜像" class="headerlink" title="打包镜像"></a>打包镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -t 表示指定镜像仓库名称/镜像名称:镜像标签 .表示使用当前目录下的Dockerfile文件</span></span><br><span class="line">docker build -t mall/mall-admin:1.0-SNAPSHOT .Copy to clipboardErrorCopied</span><br></pre></td></tr></table></figure>
 
-<h3 id="Docker-容器常用命令"><a href="#Docker-容器常用命令" class="headerlink" title="Docker 容器常用命令"></a>Docker 容器常用命令</h3><h4 id="新建并启动容器"><a href="#新建并启动容器" class="headerlink" title="新建并启动容器"></a>新建并启动容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 --name nginx \</span><br><span class="line">-e TZ=<span class="string">"Asia/Shanghai"</span> \</span><br><span class="line">-v /mydata/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-d nginx:1.17.0Copy to clipboardErrorCopied</span><br></pre></td></tr></table></figure>
+<h3 id="Docker-容器常用命令"><a href="#Docker-容器常用命令" class="headerlink" title="Docker 容器常用命令"></a>Docker 容器常用命令</h3><hr />
+
+<h4 id="新建并启动容器"><a href="#新建并启动容器" class="headerlink" title="新建并启动容器"></a>新建并启动容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 --name nginx \</span><br><span class="line">-e TZ=<span class="string">"Asia/Shanghai"</span> \</span><br><span class="line">-v /mydata/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-d nginx:1.17.0Copy to clipboardErrorCopied</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>-p：将宿主机和容器端口进行映射，格式为：宿主机端口:容器端口；</li>
@@ -519,7 +523,9 @@
 
 <h4 id="指定容器网络"><a href="#指定容器网络" class="headerlink" title="指定容器网络"></a>指定容器网络</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -p 80:80 --name nginx \</span><br><span class="line">--network my-bridge-network \</span><br><span class="line">-d nginx:1.17.0Copy to clipboardErrorCopied</span><br></pre></td></tr></table></figure>
 
-<h3 id="修改镜像的存放位置"><a href="#修改镜像的存放位置" class="headerlink" title="修改镜像的存放位置"></a>修改镜像的存放位置</h3><ul>
+<h3 id="修改镜像的存放位置"><a href="#修改镜像的存放位置" class="headerlink" title="修改镜像的存放位置"></a>修改镜像的存放位置</h3><hr />
+
+<ul>
 <li><p>查看Docker镜像的存放位置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker info | grep <span class="string">"Docker Root Dir"</span>Copy to clipboardErrorCopied</span><br></pre></td></tr></table></figure>
 </li>

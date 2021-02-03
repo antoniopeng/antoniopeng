@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -391,7 +391,9 @@
       
     </h3>
     <div class="post-content-preview">
-      配置 SSH KEYSSH KEY 的配置不是必须的，不配置的话我们就只能使用 HTTPS 协议，这样每次提交时要输入用户名密码，略麻烦，所以还是配置一下。配置 SSH KEY 的原理很简单，采用非对称加密方式生成公钥和私钥，公钥告诉 GitHub ，私钥留在自己电脑上(私钥不可泄露)，当我们向 GitHub 上提交数据时，GitHub 会用我们留给它的公钥加密一段消息返回给我们的电脑，如果......
+      配置 SSH KEY
+
+SSH KEY 的配置不是必须的，不配置的话我们就只能使用 HTTPS 协议，这样每次提交时要输入用户名密码，略麻烦，所以还是配置一下。配置 SSH KEY 的原理很简单，采用非对称加密方式生成公钥和私钥，公钥告诉 GitHub ，私钥留在自己电脑上(私钥不可泄露)，当我们向 GitHub 上提交数据时，GitHub 会用我们留给它的公钥加密一段消息返回给我们的电脑，......
     </div>
   </a>
   
@@ -426,7 +428,9 @@
       
     </h3>
     <div class="post-content-preview">
-      分支的必要性我们在完成一个项目时，不可能是“单线程”开发的，很多时候任务是并行的，举个栗子：项目 2.0 版本上线了，现在要着手开发 3.0 版本，同时 2.0 版本可能还有一些 bug 需要修复，这些 bug 修复之后我们可能还会发 2.1，2.2，2.3 这些版本，我们不可能等所有 bug 都修复完了再去开发 3.0 版本，修复 2.0 的 bug 和开发 3.0 的新功能是两个并行的任......
+      分支的必要性
+
+我们在完成一个项目时，不可能是“单线程”开发的，很多时候任务是并行的，举个栗子：项目 2.0 版本上线了，现在要着手开发 3.0 版本，同时 2.0 版本可能还有一些 bug 需要修复，这些 bug 修复之后我们可能还会发 2.1，2.2，2.3 这些版本，我们不可能等所有 bug 都修复完了再去开发 3.0 版本，修复 2.0 的 bug 和开发 3.0 的新功能是两个并行......
     </div>
   </a>
   
@@ -468,7 +472,9 @@ add 到暂存区的代码想撤销
 提交到本地仓库的代码想撤销
 
 提交到远程仓库的后悔药我们统一都在关联远程仓库一文中讲解，敬请期待。
-工作区的代码想撤销可能有一天我正在写代码，写了很久发现写错了，想恢复到一开始的状态，一个笨办法就是把刚刚写的代码一行一行的删除，不过这种方式成本太高，我们可以通过 git checkout --......
+工作区的代码想撤销
+
+可能有一天我正在写代码，写了很久发现写错了，想恢复到一开始的状态，一个笨办法就是把刚刚写的代码一行一行的删除，不过这种方式成本太高，我们可以通过 git checkout ......
     </div>
   </a>
   
@@ -503,14 +509,16 @@ add 到暂存区的代码想撤销
       
     </h3>
     <div class="post-content-preview">
-      工作区和暂存区和 Svn 有很大的不同，Git 中引入了暂存区/缓存区 (Stage/Index) 的概念，如下图：
+      工作区和暂存区
+
+和 Svn 有很大的不同，Git 中引入了暂存区/缓存区 (Stage/Index) 的概念，如下图：
 
 
 工作区很好理解，就是我们能看到的工作目录，就是本地的文件夹。
 这些本地的文件夹我们要通过 git add 命令先将他们添加到暂存区中。
 git commit 命令则可以将暂存区中的文件提交到本地仓库中去。
 
-在 Svn 中我们都是直接将文件提交到版本仓库中去，而在 Git......
+在 Svn 中我们都是直接将文件提交到版本仓库中去，而在 G......
     </div>
   </a>
   
@@ -546,8 +554,10 @@ git commit 命令则可以将暂存区中的文件提交到本地仓库中去。
     </h3>
     <div class="post-content-preview">
       毫无疑问，Git 是目前最优秀的分布式版本控制工具没有之一，今天就先来简单介绍下 Git 的发展史以及 Git 的优点，然后再来看看 Git 的安装。
-Git 诞生记Git 诞生于 2005 年 4 月，由 Linux 的作者 Linus Torvalds 花费了两周的时间用 C 写了一个分布式版本控制系统，这就是 Git1.0 ，大牛写代码就是这么 666666 。
-其实早在 Git 之前......
+Git 诞生记
+
+Git 诞生于 2005 年 4 月，由 Linux 的作者 Linus Torvalds 花费了两周的时间用 C 写了一个分布式版本控制系统，这就是 Git1.0 ，大牛写代码就是这么 666666 。
+其实早在 Git ......
     </div>
   </a>
   
@@ -582,7 +592,9 @@ Git 诞生记Git 诞生于 2005 年 4 月，由 Linux 的作者 Linus Torvalds �
       
     </h3>
     <div class="post-content-preview">
-      系统服务管理systemctl
+      系统服务管理
+
+systemctl
 systemctl命令是service和chkconfig命令的组合体，可用于管理系统。
 
 
@@ -590,7 +602,7 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
 1$ systemctl list-units --type=serviceCopy to clipboardErrorCopied
 
 查看服务的运行状态：
-1$ systemctl status firewalldCopy to clip......
+1$ systemctl status firewalldCopy to cl......
     </div>
   </a>
   
@@ -625,7 +637,9 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
       
     </h3>
     <div class="post-content-preview">
-      MyCat 简介MyCat 是一个功能强大的分布式数据库中间件，是一个实现了 MySQL 协议的 Server，前端人员可以把它看做是一个数据库代理中间件，用 MySQL 客户端工具和命令行访问；而后端人员可以用 MySQL 原生协议与多个 MySQL 服务器通信，也可以用 JDBC 协议与大多数主流数据库服务器通信。可以用作 读写分离、分库分表（分片）、容灾备份、多租户应用开发、大数据基础......
+      MyCat 简介
+
+MyCat 是一个功能强大的分布式数据库中间件，是一个实现了 MySQL 协议的 Server，前端人员可以把它看做是一个数据库代理中间件，用 MySQL 客户端工具和命令行访问；而后端人员可以用 MySQL 原生协议与多个 MySQL 服务器通信，也可以用 JDBC 协议与大多数主流数据库服务器通信。可以用作 读写分离、分库分表（分片）、容灾备份、多租户应用开发、大数据......
     </div>
   </a>
   
@@ -660,7 +674,9 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
       
     </h3>
     <div class="post-content-preview">
-      数据定义语句（DDL）数据库操作
+      数据定义语句（DDL）
+
+数据库操作
 登录数据库：
 1$ mysql -uroot -prootCopy to clipboardErrorCopied
 
@@ -670,7 +686,7 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
 查看所有数据库：
 1show databasesCopy to clipboardErrorCopied
 
-选择数据库并使用：......
+选择数据库并使......
     </div>
   </a>
   
@@ -705,16 +721,20 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
       
     </h3>
     <div class="post-content-preview">
-      准备工作我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
+      准备工作
+
+我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
 
 这里，我们准备两台机器：
 
 主机：192.168.248.128
 从机：192.168.248.139
 
-主机配置主机的配置就三个步骤，比较容易：
+主机配置
+
+主机的配置就三个步骤，比较容易：
 授权给从机服务器
-12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identified by......
+12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identifie......
     </div>
   </a>
   
@@ -749,18 +769,22 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
       
     </h3>
     <div class="post-content-preview">
-      主从规划首先规划两个 MySQL 实例：
+      主从规划
+
+首先规划两个 MySQL 实例：
 
 主机：192.168.66.131:33061
 从机：192.168.66.131:33062
 
 当然大家可以准备多个从机，从机的配置步骤是一样的。接下来，我们就开始主从的配置。
-配置主机主机上的配置，主要是两个地方：
+配置主机
+
+主机上的配置，主要是两个地方：
 
 第一个是配置一个从机登录用户
 第二个配置开启 binlog。
 
-如果是 Docker 中创建的 MySQL 实例，默认只有一个用......
+如果是 Docker 中创建的 MySQL 实例，默认只......
     </div>
   </a>
   
@@ -933,15 +957,11 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
     
     
     
@@ -949,7 +969,7 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
@@ -957,11 +977,11 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -970,6 +990,10 @@ systemctl命令是service和chkconfig命令的组合体，可用于管理系统�
     
     
     <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     

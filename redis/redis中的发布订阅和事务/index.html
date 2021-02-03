@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><p>Redis 的发布订阅系统有点类似于我们生活中的电台，电台可以在某一个频率上发送广播，而我们可以接收任何一个频率的广播。订阅消息的方式如下:</p>
+        <h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><hr />
+
+<p>Redis 的发布订阅系统有点类似于我们生活中的电台，电台可以在某一个频率上发送广播，而我们可以接收任何一个频率的广播。订阅消息的方式如下:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; subscribe c1 c2 c3</span><br><span class="line">Reading messages... (press Ctrl-C to quit)</span><br><span class="line">1) <span class="string">"subscribe"</span></span><br><span class="line">2) <span class="string">"c1"</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 1</span><br><span class="line">1) <span class="string">"subscribe"</span></span><br><span class="line">2) <span class="string">"c2"</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 2</span><br><span class="line">1) <span class="string">"subscribe"</span></span><br><span class="line">2) <span class="string">"c3"</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 3</span><br></pre></td></tr></table></figure>
 
 <p>这个表示接收 c1，c2，c3 三个频道传来的消息，发送消息的方式如下：</p>
@@ -410,7 +412,9 @@
 
 <p>此时可以接收到所有以 c 开头的频道发来的消息。</p>
 <h4 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h4><p>Redis 中的发布订阅系统在某些场景下还是非常好用的，但是也有一些问题需要注意：由于网络在传输过程中可能会遭遇断线等意外情况，断线后需要进行重连，然而这会导致断线期间的数据丢失。</p>
-<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>既然  Redis 是一种 NoSQL 数据库，那它当然也有事务的功能，不过这里的事务和我们关系型数据库中的事务有一点点差异。Redis 中事务的用法非常简单，我们通过 multi 命令开启一个事务，如下：</p>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><hr />
+
+<p>既然  Redis 是一种 NoSQL 数据库，那它当然也有事务的功能，不过这里的事务和我们关系型数据库中的事务有一点点差异。Redis 中事务的用法非常简单，我们通过 multi 命令开启一个事务，如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
 
 <p>在 multi 命令执行之后，我们可以继续发送命令去执行，此时的命令不会被立马执行，而是放在一个队列中，如下：</p>
@@ -436,6 +440,9 @@
 </blockquote>
 <h4 id="watch-命令"><a href="#watch-命令" class="headerlink" title="watch 命令"></a>watch 命令</h4><p>事务中的 watch 命令可以用来监控一个 key，通过这种监控，我们可以为 Redis 事务提供(CAS)行为。 如果有至少一个被 watch 监视的键在 exec 执行之前被修改了，那么整个事务都会被取消，exec 返回 nil-reply 来表示事务已经失败。通过 unwatch 命令，可以取消对一个 key 的监控。</p>
 <p>发布订阅和事务我们就介绍这么多，更多命令小伙伴们可以参考<a href="http://www.redis.cn/commands.html" target="_blank" rel="noopener">官方文档</a>。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

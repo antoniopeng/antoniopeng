@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="Spring-Boot-介绍"><a href="#Spring-Boot-介绍" class="headerlink" title="Spring Boot 介绍"></a>Spring Boot 介绍</h3><p>我们刚开始学习 Java Web 的时候，使用 Servlet/JSP 做开发，一个接口搞一个 Servlet ，很头大，后来我们通过隐藏域或者反射等方式，可以减少 Servlet 的创建，但是依然不方便，再后来，我们引入 Struts2/SpringMVC 这一类的框架，来简化我们的开发 ，和 Servlet/JSP 相比，引入框架之后，生产力确实提高了不少，但是用久了，又发现了新的问题，即配置繁琐易出错，要做一个新项目，先搭建环境，环境搭建来搭建去，就是那几行配置，不同的项目，可能就是包不同，其他大部分的配置都是一样的，Java 总是被人诟病配置繁琐代码量巨大，这就是其中一个表现。那么怎么办？Spring Boot 应运而生，Spring Boot 主要提供了如下功能：</p>
+        <h3 id="Spring-Boot-介绍"><a href="#Spring-Boot-介绍" class="headerlink" title="Spring Boot 介绍"></a>Spring Boot 介绍</h3><hr />
+
+<p>我们刚开始学习 Java Web 的时候，使用 Servlet/JSP 做开发，一个接口搞一个 Servlet ，很头大，后来我们通过隐藏域或者反射等方式，可以减少 Servlet 的创建，但是依然不方便，再后来，我们引入 Struts2/SpringMVC 这一类的框架，来简化我们的开发 ，和 Servlet/JSP 相比，引入框架之后，生产力确实提高了不少，但是用久了，又发现了新的问题，即配置繁琐易出错，要做一个新项目，先搭建环境，环境搭建来搭建去，就是那几行配置，不同的项目，可能就是包不同，其他大部分的配置都是一样的，Java 总是被人诟病配置繁琐代码量巨大，这就是其中一个表现。那么怎么办？Spring Boot 应运而生，Spring Boot 主要提供了如下功能：</p>
 <ol>
 <li>为所有基于 Spring 的 Java 开发提供方便快捷的入门体验。</li>
 <li>开箱即用，有自己自定义的配置就是用自己的，没有就使用官方提供的默认的。</li>
@@ -404,7 +406,9 @@
 <li>绝对没有代码生成，也不需要XML配置。</li>
 </ol>
 <p>Spring Boot 的出现让 Java 开发又回归简单，因为确确实实解决了开发中的痛点，因此这个技术得到了非常广泛的使用，据统计，从 2017 年年初开始，Spring Boot 基本就是面试必问，现在流行的 Spring Cloud 微服务也是基于 Spring Boot，因此，所有的 Java 工程师都有必要掌握好 Spring Boot。</p>
-<h3 id="三种创建方式"><a href="#三种创建方式" class="headerlink" title="三种创建方式"></a>三种创建方式</h3><p>初学者看到 Spring Boot 工程创建成功后有那么多文件就会有点懵圈，其实 Spring Boot 工程本质上就是一个 Maven 工程，从这个角度出发，这里向大家介绍三种项目创建方式。</p>
+<h3 id="三种创建方式"><a href="#三种创建方式" class="headerlink" title="三种创建方式"></a>三种创建方式</h3><hr />
+
+<p>初学者看到 Spring Boot 工程创建成功后有那么多文件就会有点懵圈，其实 Spring Boot 工程本质上就是一个 Maven 工程，从这个角度出发，这里向大家介绍三种项目创建方式。</p>
 <h4 id="在线创建"><a href="#在线创建" class="headerlink" title="在线创建"></a>在线创建</h4><p>这是官方提供的一个创建方式，实际上，如果我们使用开发工具去创建 Spring Boot 项目的话（即第二种方案），也是从这个网站上创建的，只不过这个过程开发工具帮助我们完成了，我们只需要在开发工具中进行简单的配置即可。</p>
 <p>首先打开 <a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a> 这个网站，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E6%96%B0%E4%B8%80%E4%BB%A3java%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6springboot%E6%8B%86%E7%AE%B1%E4%BD%93%E9%AA%8C01.png" alt="img"></p>
@@ -440,7 +444,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloSpringBootApplication</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(HelloSpringBootApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>@EnableAutoConfiguration</code> 注解表示开启自动化配置。然后执行这里的 main 方法就可以启动一个 Spring Boot 工程了。访问 <a href="http://localhost:8080/hello" target="_blank" rel="noopener">http://localhost:8080/hello</a> 即可。</p>
-<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>使用工具创建出来的项目结构大致如下图：</p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><hr />
+
+<p>使用工具创建出来的项目结构大致如下图：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E6%96%B0%E4%B8%80%E4%BB%A3java%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6springboot%E6%8B%86%E7%AE%B1%E4%BD%93%E9%AA%8C07.png" alt="img"></p>
 <p>对于我们来说，src 是最熟悉的， Java 代码和配置文件写在这里，test 目录用来做测试，pom.xml 是 Maven 的坐标文件，就这几个。</p>
 <blockquote>

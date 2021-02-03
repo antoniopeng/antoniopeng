@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -397,7 +397,9 @@
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
         <p>mapper 映射文件，是 MyBatis 中最重要的部分，涉及到的细节也是非常非常多。</p>
-<h3 id="parameterType"><a href="#parameterType" class="headerlink" title="parameterType"></a>parameterType</h3><p>这个表示输入的参数类型。</p>
+<h3 id="parameterType"><a href="#parameterType" class="headerlink" title="parameterType"></a>parameterType</h3><hr />
+
+<p>这个表示输入的参数类型。</p>
 <h4 id="和"><a href="#和" class="headerlink" title="$ 和 #"></a><code>$</code> 和 <code>#</code></h4><p>这是一个非常非常高频的面试题，虽然很简单。在面试中，如果涉及到 MyBatis，一般情况下，都是这个问题。在 MyBatis 中，我们在 mapper 引用变量时，默认使用的是 <code>#</code>，像下面这样：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserById"</span> <span class="attr">resultType</span>=<span class="string">"com.antonio.hello.mybatis.entity.User"</span>&gt;</span></span><br><span class="line">    select * from user where id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -426,7 +428,9 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getAllUser"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">    select * from user order by $&#123;orderBy&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>面试中，遇到这个问题，一定要答出来 Statement 和 PreparedStatement 之间的区别，这个问题才算理解到位了。</p>
-<h3 id="简单类型"><a href="#简单类型" class="headerlink" title="简单类型"></a>简单类型</h3><p>简单数据类型传递比较容易，像前面的根据 id 查询一条记录就算是这一类的。这里再举一个例子，比如根据 id 修改用户名：</p>
+<h3 id="简单类型"><a href="#简单类型" class="headerlink" title="简单类型"></a>简单类型</h3><hr />
+
+<p>简单数据类型传递比较容易，像前面的根据 id 查询一条记录就算是这一类的。这里再举一个例子，比如根据 id 修改用户名：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Integer <span class="title">updateUsernameById</span><span class="params">(String username, Integer id)</span></span>;</span><br></pre></td></tr></table></figure>
 
 <p>再定义该方法对应的 mapper：</p>
@@ -446,7 +450,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Integer <span class="title">updateUsernameById</span><span class="params">(@Param(<span class="string">"username"</span>)</span> String username, @<span class="title">Param</span><span class="params">(<span class="string">"id"</span>)</span> Integer id)</span>;</span><br></pre></td></tr></table></figure>
 
 <p>这样定义之后，我们在 mapper.xml 文件中，就可以直接使用 username 和 id 来引用变量了。</p>
-<h3 id="对象参数"><a href="#对象参数" class="headerlink" title="对象参数"></a>对象参数</h3><p>对象参数。</p>
+<h3 id="对象参数"><a href="#对象参数" class="headerlink" title="对象参数"></a>对象参数</h3><hr />
+
+<p>对象参数。</p>
 <p>例如添加一个用户：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Integer <span class="title">addUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
 
@@ -460,18 +466,24 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addUser"</span> <span class="attr">parameterType</span>=<span class="string">"com.antonio.hello.mybatis.entity.User"</span>&gt;</span></span><br><span class="line">    insert into user (username,address) values (#&#123;user.username&#125;,#&#123;user.address&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>注意多了一个前缀，这个前缀不是变量名，而是 <code>@Param</code> 注解中定义名称。如果对象中还存在对象，用 . 继续取访问就可以了。</p>
-<h3 id="Map-参数"><a href="#Map-参数" class="headerlink" title="Map 参数"></a>Map 参数</h3><p>一般不推荐在项目中使用 Map 参数。如果想要使用 Map 传递参数，技术上来说，肯定是没有问题的。</p>
+<h3 id="Map-参数"><a href="#Map-参数" class="headerlink" title="Map 参数"></a>Map 参数</h3><hr />
+
+<p>一般不推荐在项目中使用 Map 参数。如果想要使用 Map 传递参数，技术上来说，肯定是没有问题的。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Integer <span class="title">updateUsernameById</span><span class="params">(HashMap&lt;String,Object&gt; map)</span></span>;</span><br></pre></td></tr></table></figure>
 
 <p>XML 文件写法如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUsernameById"</span>&gt;</span></span><br><span class="line">    update user set username = #&#123;username&#125; where id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>引用的变量名，就是 map 中的 key。基本上和实体类是一样的，如果给 map 取了别名，那么在引用的时候，也要将别名作为前缀加上，这一点和实体类也是一样的。</p>
-<h3 id="resultType"><a href="#resultType" class="headerlink" title="resultType"></a>resultType</h3><p>resultType 是返回类型，在实际开发中，如果返回的数据类型比较复杂，一般我们使用 resultMap，但是，对于一些简单的返回，使用 resultType 就够用了。</p>
+<h3 id="resultType"><a href="#resultType" class="headerlink" title="resultType"></a>resultType</h3><hr />
+
+<p>resultType 是返回类型，在实际开发中，如果返回的数据类型比较复杂，一般我们使用 resultMap，但是，对于一些简单的返回，使用 resultType 就够用了。</p>
 <p>resultType 返回的类型可以是简单类型，可以是对象，可以是集合，也可以是一个 hashmap，如果是 hashmap，map 中的 key 就是字段名，value 就是字段的值。</p>
 <p>输出 pojo 对象和输出 pojo 列表在 sql 中定义的 resultType 是一样的。</p>
 <p>返回单个 pojo 对象要保证 sql 查询出来的结果集为单条，内部使用 sqlSession.selectOne 方法调用，mapper 接口使用 pojo 对象作为方法返回值。返回 pojo 列表表示查询出来的结果集可能为多条，内部使用 sqlSession.selectList 方法，mapper 接口使用 <code>List&lt;pojo&gt;</code> 对象作为方法返回值。</p>
-<h3 id="resultMap"><a href="#resultMap" class="headerlink" title="resultMap"></a>resultMap</h3><p>在实际开发中，resultMap 是使用较多的返回数据类型配置。因为实际项目中，一般的返回数据类型比较丰富，要么字段和属性对不上，要么是一对一、一对多的查询，等等，这些需求，单纯的使用 resultType 是无法满足的，因此我们还需要使用 resultMap，也就是自己定义映射的结果集。</p>
+<h3 id="resultMap"><a href="#resultMap" class="headerlink" title="resultMap"></a>resultMap</h3><hr />
+
+<p>在实际开发中，resultMap 是使用较多的返回数据类型配置。因为实际项目中，一般的返回数据类型比较丰富，要么字段和属性对不上，要么是一对一、一对多的查询，等等，这些需求，单纯的使用 resultType 是无法满足的，因此我们还需要使用 resultMap，也就是自己定义映射的结果集。</p>
 <p>先来看一个基本用法，首先在 mapper.xml 中定义一个 resultMap：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"MyResultMap"</span> <span class="attr">type</span>=<span class="string">"com.antonio.hello.mybatis.entity.User"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"username"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"address"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -486,7 +498,9 @@
 <p>默认情况下，变量名是 arg0、arg1、、、、或者 param1、param2、、、，如果需要自定义，我们可以在构造方法中，手动加上 @Param 注解。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; favorites;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(@Param(<span class="string">"id"</span>)</span> Integer id, @<span class="title">Param</span><span class="params">(<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">        System.out.println(<span class="string">"--------------------"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 省略 getter/setter</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="动态-SQL"><a href="#动态-SQL" class="headerlink" title="动态 SQL"></a>动态 SQL</h3><p>动态 SQL 是 MyBatis 中非常强大的一个功能。例如一些常见的查询场景：</p>
+<h3 id="动态-SQL"><a href="#动态-SQL" class="headerlink" title="动态 SQL"></a>动态 SQL</h3><hr />
+
+<p>动态 SQL 是 MyBatis 中非常强大的一个功能。例如一些常见的查询场景：</p>
 <ul>
 <li>查询条件不确定</li>
 <li>批量插入</li>

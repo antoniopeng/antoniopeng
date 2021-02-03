@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -391,9 +391,11 @@
       
     </h3>
     <div class="post-content-preview">
-      数据卷入门在前面的案例中，如果我们需要将数据从宿主机拷贝到容器中，一般都是使用 Docker 的拷贝命令，这样性能还是稍微有点差，没有办法能够达到让这种拷贝达到本地磁盘 I/O 性能呢？有！
+      数据卷入门
+
+在前面的案例中，如果我们需要将数据从宿主机拷贝到容器中，一般都是使用 Docker 的拷贝命令，这样性能还是稍微有点差，没有办法能够达到让这种拷贝达到本地磁盘 I/O 性能呢？有！
 数据卷可以绕过拷贝系统，在多个容器之间、容器和宿主机之间共享目录或者文件，数据卷绕过了拷贝系统，可以达到本地磁盘 I/O 性能。
-本文先通过一个简单的案例展示数据卷的基本用法。以前面使用的 nginx ......
+本文先通过一个简单的案例展示数据卷的基本用法。以前面使用的 ngin......
     </div>
   </a>
   
@@ -431,11 +433,13 @@
       
 这里以简单定制 Nginx 镜像为例
 
-创建 Dockerfile 文件创建 Dockerfile 文件
+创建 Dockerfile 文件
+
+创建 Dockerfile 文件
 12345$ mkdir /usr/local/docker$ cd /usr/local/docker$ mkdir nginx$ cd nginx$ vi Dockerfile
 
 Dockerfile 文件的内容如下
-12FROM nginxRUN echo '&lt;h1&gt;......
+12FROM nginxRUN echo '&lt;h1&g......
     </div>
   </a>
   
@@ -508,9 +512,11 @@ Dockerfile 文件的内容如下
     </h3>
     <div class="post-content-preview">
       上篇文章介绍了一个 Nginx 的例子，对于 Nginx 这样一个容器而言，当它启动成功后，我们不可避免的需要对 Nginx 进行的配置进行修改，那么这个修改要如何完成呢？
-依附容器1$ docker attach
+依附容器
 
-依附容器这个主要是针对交互型容器而言的，该命令有一定的局限性，可以作为了解即可，真正工作中使用较少。要是用 docker attach 命令，首先要确保容器已经启动，然后使用该......
+1$ docker attach
+
+依附容器这个主要是针对交互型容器而言的，该命令有一定的局限性，可以作为了解即可，真正工作中使用较少。要是用 docker attach 命令，首先要确保容器已经启动，然后使......
     </div>
   </a>
   
@@ -546,10 +552,12 @@ Dockerfile 文件的内容如下
     </h3>
     <div class="post-content-preview">
       docker 中的容器就是一个轻量级的虚拟机，是镜像运行起来的一个状态，本文就先来看看容器的基本操作。镜像就像是一个安装程序，而容器则是程序运行时的一个状态。
-查看容器启动 docker 后，使用 docker ps 命令可以查看当前正在运行的容器：
+查看容器
+
+启动 docker 后，使用 docker ps 命令可以查看当前正在运行的容器：
 1$ docker ps
 
-查看所有容器上面这条命令是查看当前正在运行的容器，如果需要查看所有容器，则可以通过 docker ps -a 命令......
+查看所有容器上面这条命令是查看当前正在运行的容器，如果需要查看所有容器，则可以通过 docker ps -a ......
     </div>
   </a>
   
@@ -584,11 +592,13 @@ Dockerfile 文件的内容如下
       
     </h3>
     <div class="post-content-preview">
-      什么是 DockerDocker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。
+      什么是 Docker
+
+Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。
 
 
 传统虚拟机（VM）和虚拟化容器（Docker）的区别：
-传统的 VM 虚拟机不能共享资源 , 比如在 VMWare 中安装了一个内存为 4GB 的 Linux 操作系统 , 意味着该Linux系统使用了宿主机中固定的 4GB 内存且不能与宿主机或其它虚拟系统共享该资源 , 可......
+传统的 VM 虚拟机不能共享资源 , 比如在 VMWare 中安装了一个内存为 4GB 的 Linux 操作系统 , 意味着该Linux系统使用了宿主机中固定的 4GB 内存且不能与宿主机或其它虚拟系统共享该资源 ,......
     </div>
   </a>
   
@@ -623,8 +633,10 @@ Dockerfile 文件的内容如下
       
     </h3>
     <div class="post-content-preview">
-      关于 MQ 的定义Message Queue（MQ）消息队列中间件，通常我们在网上看到的对其定义是将消息的发送和接受分离来实现应用程序的异步和解耦，给人的直觉是 MQ 是异步的，用来解耦的。但这个只是 MQ 的效果，而不是目的。MQ 真正的目的是为了通讯，屏蔽底层复杂的通讯协议，定义了一套应用层上更加简单的通讯协议。
-一套分布式系统中两个模块之间通讯要么是 HTTP，要么是 TCP，但这两种......
+      关于 MQ 的定义
+
+Message Queue（MQ）消息队列中间件，通常我们在网上看到的对其定义是将消息的发送和接受分离来实现应用程序的异步和解耦，给人的直觉是 MQ 是异步的，用来解耦的。但这个只是 MQ 的效果，而不是目的。MQ 真正的目的是为了通讯，屏蔽底层复杂的通讯协议，定义了一套应用层上更加简单的通讯协议。
+一套分布式系统中两个模块之间通讯要么是 HTTP，要么是 TCP，但这......
     </div>
   </a>
   
@@ -660,10 +672,16 @@ Dockerfile 文件的内容如下
     </h3>
     <div class="post-content-preview">
       下载
+
+
 Ubuntu 官网下载
 
-简介Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、CentOS、Debian 等。
-远程控制管理XShell：是一个强大的安全......
+简介
+
+Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、CentOS、Debian 等。
+远程控制管理
+
+XShell：是一......
     </div>
   </a>
   
@@ -698,9 +716,10 @@ Ubuntu 官网下载
       
     </h3>
     <div class="post-content-preview">
-      什么是索引MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 索引的本质就是数据结构。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。
-可简单理解为 排好序的快速查找数据结构。在数据之外，数据库系统还维护着 满足特定算法查询的数据结构，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引。
-......
+      什么是索引
+
+MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 索引的本质就是数据结构。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。
+可简单理解为 排好序的快速查找数据结构。在数据之外，数据库系统还维护着 满足特定算法查询的数据结构，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引......
     </div>
   </a>
   
@@ -735,9 +754,13 @@ Ubuntu 官网下载
       
     </h3>
     <div class="post-content-preview">
-      Jersey 简介Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
-引入依赖在 pom.xml 中添加 Jersey 相关依赖
-12345&lt;depend......
+      Jersey 简介
+
+Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
+引入依赖
+
+在 pom.xml 中添加 Jersey 相关依赖
+12345&lt;de......
     </div>
   </a>
   
@@ -910,15 +933,11 @@ Ubuntu 官网下载
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
     
     
     
@@ -926,7 +945,7 @@ Ubuntu 官网下载
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
@@ -934,11 +953,11 @@ Ubuntu 官网下载
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -947,6 +966,10 @@ Ubuntu 官网下载
     
     
     <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     

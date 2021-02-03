@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -399,7 +399,9 @@
         <blockquote>
 <p>这里以简单定制 Nginx 镜像为例</p>
 </blockquote>
-<h3 id="创建-Dockerfile-文件"><a href="#创建-Dockerfile-文件" class="headerlink" title="创建 Dockerfile 文件"></a>创建 Dockerfile 文件</h3><p>创建 <code>Dockerfile</code> 文件</p>
+<h3 id="创建-Dockerfile-文件"><a href="#创建-Dockerfile-文件" class="headerlink" title="创建 Dockerfile 文件"></a>创建 Dockerfile 文件</h3><hr />
+
+<p>创建 <code>Dockerfile</code> 文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir /usr/<span class="built_in">local</span>/docker</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/docker</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir nginx</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> nginx</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vi Dockerfile</span></span><br></pre></td></tr></table></figure>
 
 <p>Dockerfile 文件的内容如下</p>
@@ -424,13 +426,17 @@
 <p>这样的话，实现了将 7 层文件简化为 1 层文件。另外，每一层构建完之后要删掉无关文件，否则会造成镜像臃肿。</p>
 </li>
 </ul>
-<h3 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h3><p>在 Dockerfile 文件所在目录下使用 build 命令</p>
+<h3 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h3><hr />
+
+<p>在 Dockerfile 文件所在目录下使用 build 命令</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">build </span>-t nginx:<span class="built_in">v1</span> .</span><br></pre></td></tr></table></figure>
 
 <p>构建完成后，执行以下命令</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker images</span><br></pre></td></tr></table></figure>
 <p>会发现多了一个镜像名为 nginx，标签名为 v1 的镜像</p>
-<h3 id="其他-Dockerfile-指令"><a href="#其他-Dockerfile-指令" class="headerlink" title="其他 Dockerfile 指令"></a>其他 Dockerfile 指令</h3><h4 id="COPY-指令"><a href="#COPY-指令" class="headerlink" title="COPY 指令"></a>COPY 指令</h4><p>一般用于从主机复制文件到容器</p>
+<h3 id="其他-Dockerfile-指令"><a href="#其他-Dockerfile-指令" class="headerlink" title="其他 Dockerfile 指令"></a>其他 Dockerfile 指令</h3><hr />
+
+<h4 id="COPY-指令"><a href="#COPY-指令" class="headerlink" title="COPY 指令"></a>COPY 指令</h4><p>一般用于从主机复制文件到容器</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY <span class="tag">&lt;<span class="name">源路径</span>&gt;</span> <span class="tag">&lt;<span class="name">目标路径</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>比如：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">COPY</span> <span class="keyword">package</span>.json <span class="regexp">/usr/</span>src<span class="regexp">/app/</span></span><br></pre></td></tr></table></figure>

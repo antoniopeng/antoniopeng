@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="配置-SSH-KEY"><a href="#配置-SSH-KEY" class="headerlink" title="配置 SSH KEY"></a>配置 SSH KEY</h3><p>SSH KEY 的配置不是必须的，不配置的话我们就只能使用 HTTPS 协议，这样每次提交时要输入用户名密码，略麻烦，所以还是配置一下。配置 SSH KEY 的原理很简单，采用非对称加密方式生成公钥和私钥，公钥告诉 GitHub ，私钥留在自己电脑上(私钥不可泄露)，当我们向 GitHub 上提交数据时，GitHub 会用我们留给它的公钥加密一段消息返回给我们的电脑，如果我们能够用私钥解密成功，说明是合法的用户，这样就避免我们输入用户名密码了。大致的原理就是这样，现在很多免登录的系统都采用了这种方式，比如 Hadoop 免登录配置也是这样。那我们就来看看这个 SSH　KEY 要怎么生成。</p>
+        <h3 id="配置-SSH-KEY"><a href="#配置-SSH-KEY" class="headerlink" title="配置 SSH KEY"></a>配置 SSH KEY</h3><hr />
+
+<p>SSH KEY 的配置不是必须的，不配置的话我们就只能使用 HTTPS 协议，这样每次提交时要输入用户名密码，略麻烦，所以还是配置一下。配置 SSH KEY 的原理很简单，采用非对称加密方式生成公钥和私钥，公钥告诉 GitHub ，私钥留在自己电脑上(私钥不可泄露)，当我们向 GitHub 上提交数据时，GitHub 会用我们留给它的公钥加密一段消息返回给我们的电脑，如果我们能够用私钥解密成功，说明是合法的用户，这样就避免我们输入用户名密码了。大致的原理就是这样，现在很多免登录的系统都采用了这种方式，比如 Hadoop 免登录配置也是这样。那我们就来看看这个 SSH　KEY 要怎么生成。</p>
 <h4 id="查看本地是否已有-SSHKEY"><a href="#查看本地是否已有-SSHKEY" class="headerlink" title="查看本地是否已有 SSHKEY"></a>查看本地是否已有 SSHKEY</h4><p>查看当前用户目录下是否有 .ssh 文件，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%9301.png" alt="img"></p>
 <p>如果查看之后有结果，则直接跳转到第四步，什么都没有就继续生成。</p>
@@ -411,14 +413,20 @@
 <h4 id="将公钥告诉-GitHub"><a href="#将公钥告诉-GitHub" class="headerlink" title="将公钥告诉 GitHub"></a>将公钥告诉 GitHub</h4><p>登录 GitHub ，点击右上角的向下的箭头，选择 Settings ，在新打开的页面中左边侧栏选择 <strong>SSH and GPG keys</strong> ，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%9302.png" alt="img"></p>
 <p>完了之后点击最下面的 Add SSH key 按钮即可，如此之后，我们的 SSH KEY 就配置成功了。</p>
-<h3 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h3><p>接下来我们在 GitHub 上创建一个仓库，登录成功之后，直接点击右上角绿色的 New repository 按钮，如下：</p>
+<h3 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h3><hr />
+
+<p>接下来我们在 GitHub 上创建一个仓库，登录成功之后，直接点击右上角绿色的 New repository 按钮，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%9303.png" alt="img"></p>
 <p>其实这里我们只需要填一个版本仓库的名字，我填了 test，填好之后，点击 Create repository 就 OK 了。</p>
-<h3 id="关联远程仓库"><a href="#关联远程仓库" class="headerlink" title="关联远程仓库"></a>关联远程仓库</h3><p>创建成功之后，我们会看到仓库的地址，如下： <code>git@github.com:lenve/test.git</code> ，然后我需要将我们之前的本地仓库和这个远程仓库进行关联，使用 git remote add 命令，如下：</p>
+<h3 id="关联远程仓库"><a href="#关联远程仓库" class="headerlink" title="关联远程仓库"></a>关联远程仓库</h3><hr />
+
+<p>创建成功之后，我们会看到仓库的地址，如下： <code>git@github.com:lenve/test.git</code> ，然后我需要将我们之前的本地仓库和这个远程仓库进行关联，使用 git remote add 命令，如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github.com:lenve/test.git</span><br></pre></td></tr></table></figure>
 
 <p>在这条命令中，git 会自动将远程仓库的名字设置为 origin ，方便我们的后续操作。</p>
-<h3 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h3><h4 id="推送到-master-分支"><a href="#推送到-master-分支" class="headerlink" title="推送到 master 分支"></a>推送到 master 分支</h4><p>假设我想将本地 master 分支上的内容推送到远程 master 分支上，方式如下：</p>
+<h3 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h3><hr />
+
+<h4 id="推送到-master-分支"><a href="#推送到-master-分支" class="headerlink" title="推送到 master 分支"></a>推送到 master 分支</h4><p>假设我想将本地 master 分支上的内容推送到远程 master 分支上，方式如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
 
 <p>-u参数可以在推送的同时，将 origin 仓库的 master 分支设置为本地仓库当前分支的 upstream（上游）。添加了这个参数，将来运行 git pull 命令从远程仓库获取内容时，本地仓库的这个分支就可以直接从 origin 的 master 分支获取内容，省去了另外添加参数的麻烦。这个参数也只用在第一次 push 时加上，以后直接运行 git push 命令即可。</p>
@@ -427,7 +435,9 @@
 
 <p>先切换到 fa 分支，然后执行 git push 命令，参数含义和之前的一样，这里我们创建的远程仓库的分支名也为 fa（当然我们可以取任何名字，但是为了不混淆，最好取一致的名字）。这两条命令执行成功之后，此时在网页中我们就可以看到已经有多个分支了，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%9304.png" alt="img"></p>
-<h3 id="从远程仓库获取"><a href="#从远程仓库获取" class="headerlink" title="从远程仓库获取"></a>从远程仓库获取</h3><h4 id="首次获取"><a href="#首次获取" class="headerlink" title="首次获取"></a>首次获取</h4><p>刚刚是我们向远程仓库提交数据，有提交当然就有获取，我们可以通过 git clone 命令克隆一个远程仓库到本地，方式也简单，在本地创建一个空文件夹，执行如下命令：</p>
+<h3 id="从远程仓库获取"><a href="#从远程仓库获取" class="headerlink" title="从远程仓库获取"></a>从远程仓库获取</h3><hr />
+
+<h4 id="首次获取"><a href="#首次获取" class="headerlink" title="首次获取"></a>首次获取</h4><p>刚刚是我们向远程仓库提交数据，有提交当然就有获取，我们可以通过 git clone 命令克隆一个远程仓库到本地，方式也简单，在本地创建一个空文件夹，执行如下命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:lenve/test.git</span><br></pre></td></tr></table></figure>
 
 <p>表示克隆文件到本地仓库。此时克隆的远程仓库的 master 分支到本地仓库，我们可以通过 <code>git branch -a</code> 来查看本地仓库和远程仓库的信息，-a 参数可以同时显示本地仓库和远程仓库的信息，如下：</p>
@@ -443,6 +453,9 @@
 <p>注意由于 fa 分支就是从远程仓库克隆下来的，所以这里可以不添加 -u 参数。</p>
 <h4 id="从远程仓库更新"><a href="#从远程仓库更新" class="headerlink" title="从远程仓库更新"></a>从远程仓库更新</h4><p>此时我们回到第一次最早的那个 test 本地仓库中，那个 test 仓库的 fa 分支现在和远程仓库不一致了，我们可以通过 git pull 命令来更新，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%9307.png" alt="img"></p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

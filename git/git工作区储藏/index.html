@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.2k</span> In Total
+              Words <span class="post-count">1.3k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h3><p>现在有一个 master 分支，master 分支中有一个文件叫 01.txt ，该文件中只有一行数据，然后对 01.txt 执行 add 和 commit ，然后再从 master 分支中创建出一个新的分支 fa ，切换到 fa 分支上，然后向 01.txt 中再添加一行数据，添加成功之后，不做任何事情，再切换回 master 分支，此时用 cat 命令查看 01.txt 文件，发现竟然有两行数据，按理说 master 中的 01.txt 只有一行数据，而 fa 中的 01.txt 有两行数据，整个过程如下图：</p>
+        <h3 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h3><hr />
+
+<p>现在有一个 master 分支，master 分支中有一个文件叫 01.txt ，该文件中只有一行数据，然后对 01.txt 执行 add 和 commit ，然后再从 master 分支中创建出一个新的分支 fa ，切换到 fa 分支上，然后向 01.txt 中再添加一行数据，添加成功之后，不做任何事情，再切换回 master 分支，此时用 cat 命令查看 01.txt 文件，发现竟然有两行数据，按理说 master 中的 01.txt 只有一行数据，而 fa 中的 01.txt 有两行数据，整个过程如下图：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%82%A8%E8%97%8F01.gif" alt="gif"></p>
 <p>要搞清楚这个问题，得先明白下面这个问题：</p>
 <blockquote>
@@ -404,7 +406,9 @@
 </blockquote>
 <p>可能眼尖的小伙伴已经发现端倪了，我们上面这个操作少了两个步骤，那就是 add/commit ，fa 分支中的数据修改之后直接切换回了 master ，而没有 add/commit 。<strong>正常情况下（修改数据后 add/commit），如果 master 和 fa 分支中的数据不一致，我们执行了 <code>git checkout -</code> 进行分支的切换，这个时候工作区中的文件内容也是会跟着变化的（大家可以通过 cat 命令或者直接在记事本中打开工作区的文件来查看这种变化），但是如果我在 fa 分支中修改了文件却没有 add/commit 就切换回 master ，此时如果工作区的文件变化了，可能会导致我在 fa 分支中的修改丢失，因此，这个时候工作区的文件就没有变化，即工作区的文件内容还是 fa 分支中修改的内容。</strong></p>
 <p>解决这个问题，我们有两种方案，请小伙伴们往下看。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h4><p>第一种解决方案就是在某一个分支修改文件之后，先 add 并且 commit 之后再去切换分支，这个操作就比较简单了，我这里就不再演示了。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><hr />
+
+<h4 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h4><p>第一种解决方案就是在某一个分支修改文件之后，先 add 并且 commit 之后再去切换分支，这个操作就比较简单了，我这里就不再演示了。</p>
 <h4 id="方案二（储藏）"><a href="#方案二（储藏）" class="headerlink" title="方案二（储藏）"></a>方案二（储藏）</h4><p>第二种解决方案就是储藏 (Stashing)，储藏适用在如下场景中：</p>
 <blockquote>
 <p>当我在一个分支 fa 中修改了文件，但是还没有完全改好，此时我并不想 add/commit ，但是这个时候有一个更急迫的事情在另外一个分支 fb 上需要我去做，我必须要切换分支。</p>
@@ -434,6 +438,9 @@
 <h4 id="删除某一个储藏"><a href="#删除某一个储藏" class="headerlink" title="删除某一个储藏"></a>删除某一个储藏</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git stash drop stash@&#123;4&#125;</span><br></pre></td></tr></table></figure>
 
 <p>最后一个参数是指储藏的名字。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

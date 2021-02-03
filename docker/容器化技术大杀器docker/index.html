@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,13 +396,17 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="什么是-Docker"><a href="#什么是-Docker" class="headerlink" title="什么是 Docker"></a>什么是 Docker</h3><p>Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。</p>
+        <h3 id="什么是-Docker"><a href="#什么是-Docker" class="headerlink" title="什么是 Docker"></a>什么是 Docker</h3><hr />
+
+<p>Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。</p>
 <p><img src="https://qiniuyun.antoniopeng.com/ubuntu%E5%AE%89%E8%A3%85docker/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS9mNzc1NjhmY2RlNjBhYjM2YjdiM2FiOTc1MjgxZmJkMS94bWxub3RlLzg2N0I0QTQ4MThCMDREMDBBRTg5NDAzMDdCQzcwQzlCLzEzNjgz.jfif" alt="《Linux 安装 Docker》"></p>
 <p><img src="https://qiniuyun.antoniopeng.com/ubuntu%E5%AE%89%E8%A3%85docker/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS9mNzc1NjhmY2RlNjBhYjM2YjdiM2FiOTc1MjgxZmJkMS94bWxub3RlL0QxMzU5NzkwRUREMzQ3QTdCRDFBQTkzMUZCOEY3RDMzLzEzNjg1.jfif" alt="《Linux 安装 Docker》"></p>
 <p>传统虚拟机（VM）和虚拟化容器（Docker）的区别：</p>
 <p>传统的 VM 虚拟机不能共享资源 , 比如在 VMWare 中安装了一个内存为 4GB 的 Linux 操作系统 , 意味着该Linux系统使用了宿主机中固定的 4GB 内存且不能与宿主机或其它虚拟系统共享该资源 , 可能会造成资源浪费或资源溢出。</p>
 <p>Docker 弥补了传统 VM 虚拟机的缺点 , 每个虚拟化操作系统可以互相共享资源 , 解决了资源溢出或者资源浪费等一系列问题。</p>
-<h3 id="Docker-主要概念"><a href="#Docker-主要概念" class="headerlink" title="Docker 主要概念"></a>Docker 主要概念</h3><h4 id="Docker-镜像（Image）"><a href="#Docker-镜像（Image）" class="headerlink" title="Docker 镜像（Image）"></a>Docker 镜像（Image）</h4><p>操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image）就相当于是一个 root 文件系统。</p>
+<h3 id="Docker-主要概念"><a href="#Docker-主要概念" class="headerlink" title="Docker 主要概念"></a>Docker 主要概念</h3><hr />
+
+<h4 id="Docker-镜像（Image）"><a href="#Docker-镜像（Image）" class="headerlink" title="Docker 镜像（Image）"></a>Docker 镜像（Image）</h4><p>操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image）就相当于是一个 root 文件系统。</p>
 <p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如环境变量、用户等）。</p>
 <h4 id="Docker-容器（Container）"><a href="#Docker-容器（Container）" class="headerlink" title="Docker 容器（Container）"></a>Docker 容器（Container）</h4><p>Docker 镜像和 Docker 容器的关系，就像是<strong>面向对象程序设计中的类与对象</strong>，镜像是静态的定义。</p>
 <p>容器是镜像运行时的实体，可以被创建、启动、停止、删除、暂停等。</p>
@@ -410,15 +414,21 @@
 <h4 id="Docker-仓库（Registry）"><a href="#Docker-仓库（Registry）" class="headerlink" title="Docker 仓库（Registry）"></a>Docker 仓库（Registry）</h4><p>镜像构建完成之后，一行命令就可以在当前的宿主机上运行起来，但是如果要在其它服务器上使用这个镜像，就需要一个集中存储镜像的仓库 — 即 Docker 仓库。</p>
 <p>公有 Docker Registry：最常使用的 Registry 公开服务是官方的 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>，但在国内访问会比较慢，而国内的一些云服务商提供了针对 Docker Hub 的镜像服务，常见的有 <a href="https://cr.console.aliyun.com/#/accelerator" target="_blank" rel="noopener">阿里云</a>、<a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="noopener">DaoCloud</a> 加速器，比直接从 Docker Hub 下载速度会提高很多。</p>
 <p>私有 Docker Registry：可以在本地搭建私有 Docker Registry。Docker 官方提供了 Docker Registry 镜像，可以直接使用做为私有 Registry 服务。</p>
-<h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><h4 id="使用脚本自动安装"><a href="#使用脚本自动安装" class="headerlink" title="使用脚本自动安装"></a>使用脚本自动安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL get.docker.com -o get-docker.sh</span><br><span class="line"></span><br><span class="line">$ sudo sh get-docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><hr />
+
+<h4 id="使用脚本自动安装"><a href="#使用脚本自动安装" class="headerlink" title="使用脚本自动安装"></a>使用脚本自动安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL get.docker.com -o get-docker.sh</span><br><span class="line"></span><br><span class="line">$ sudo sh get-docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure>
 
 <p>执行这两行命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 安装在系统中。</p>
 <h4 id="使用-APT-安装"><a href="#使用-APT-安装" class="headerlink" title="使用 APT 安装"></a>使用 APT 安装</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装一些必要的系统工具</span></span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 GPG 证书</span></span><br><span class="line">$ curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入软件源信息</span></span><br><span class="line">$ sudo add-apt-repository <span class="string">"deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu <span class="variable">$(lsb_release -cs)</span> stable"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新软件源</span></span><br><span class="line">$ sudo apt-get -y update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Docker CE</span></span><br><span class="line">$ sudo apt-get -y install docker-ce</span><br></pre></td></tr></table></figure>
 
-<h3 id="Docker-用户组"><a href="#Docker-用户组" class="headerlink" title="Docker 用户组"></a>Docker 用户组</h3><p>安装之后，默认情况下，Docker 命令会使用 Unix socket 与 Docker 引擎通讯，而只有 Root 用户和 Docker 组的用户才可以访问 Docker 引擎的 Unix socket，一般 Linux 系统上不会直接使用 Root 用户。因此，更好地做法是将需要使用 Docker 的用户加入 Docker 用户组。</p>
+<h3 id="Docker-用户组"><a href="#Docker-用户组" class="headerlink" title="Docker 用户组"></a>Docker 用户组</h3><hr />
+
+<p>安装之后，默认情况下，Docker 命令会使用 Unix socket 与 Docker 引擎通讯，而只有 Root 用户和 Docker 组的用户才可以访问 Docker 引擎的 Unix socket，一般 Linux 系统上不会直接使用 Root 用户。因此，更好地做法是将需要使用 Docker 的用户加入 Docker 用户组。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立 Docker 用户组</span></span><br><span class="line">$ sudo groupadd docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将用户加入 Docker 用户组</span></span><br><span class="line">$ sudo usermod -aG docker 用户名</span><br></pre></td></tr></table></figure>
 
-<h3 id="镜像加速器"><a href="#镜像加速器" class="headerlink" title="镜像加速器"></a>镜像加速器</h3><p>由于国内从 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> 下载镜像有时会非常缓慢，因此可以配置国内云服务商提供的镜像加速器：</p>
+<h3 id="镜像加速器"><a href="#镜像加速器" class="headerlink" title="镜像加速器"></a>镜像加速器</h3><hr />
+
+<p>由于国内从 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> 下载镜像有时会非常缓慢，因此可以配置国内云服务商提供的镜像加速器：</p>
 <ul>
 <li><a href="https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror" target="_blank" rel="noopener">Docker 官方提供的中国 registry mirror</a></li>
 <li><a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors" target="_blank" rel="noopener">阿里云加速器</a></li>
@@ -446,7 +456,9 @@
 <p>看到输出以下内容，说明镜像加速器配置成功</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Registry Mirrors:</span><br><span class="line">  镜像加速器地址</span><br></pre></td></tr></table></figure>
 
-<h3 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h3><h4 id="Docker-镜像命令"><a href="#Docker-镜像命令" class="headerlink" title="Docker 镜像命令"></a>Docker 镜像命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出镜像列表</span></span><br><span class="line">$ docker images</span><br><span class="line">$ docker image ls -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行 Docker 镜像（守护态方式）</span></span><br><span class="line">$ docker run -d 镜像名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定 Docker 镜像</span></span><br><span class="line">$ docker image rm 镜像名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 Docker 虚悬镜像</span></span><br><span class="line">$ docker image prune</span><br></pre></td></tr></table></figure>
+<h3 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h3><hr />
+
+<h4 id="Docker-镜像命令"><a href="#Docker-镜像命令" class="headerlink" title="Docker 镜像命令"></a>Docker 镜像命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出镜像列表</span></span><br><span class="line">$ docker images</span><br><span class="line">$ docker image ls -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行 Docker 镜像（守护态方式）</span></span><br><span class="line">$ docker run -d 镜像名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定 Docker 镜像</span></span><br><span class="line">$ docker image rm 镜像名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 Docker 虚悬镜像</span></span><br><span class="line">$ docker image prune</span><br></pre></td></tr></table></figure>
 
 <h4 id="Docker-容器命令"><a href="#Docker-容器命令" class="headerlink" title="Docker 容器命令"></a>Docker 容器命令</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出正在运行的容器</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有容器（包括已停止容器）</span></span><br><span class="line">$ docker ps -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入运行中的 Docker 容器</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it 容器ID /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止 Docker 容器</span></span><br><span class="line">$ docker stop 容器ID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定 Docker 容器</span></span><br><span class="line">$ docker rm -f 容器ID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除停止的 Docker 容器</span></span><br><span class="line">$ docker container prune</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Docker 容器历史运行日志</span></span><br><span class="line">$ docker logs 容器名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时监听 Docker 容器运行日志</span></span><br><span class="line">$ docker logs -f 容器名</span><br></pre></td></tr></table></figure>
 

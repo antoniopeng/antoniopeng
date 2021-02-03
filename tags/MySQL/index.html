@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -391,7 +391,9 @@
       
     </h3>
     <div class="post-content-preview">
-      MyCat 简介MyCat 是一个功能强大的分布式数据库中间件，是一个实现了 MySQL 协议的 Server，前端人员可以把它看做是一个数据库代理中间件，用 MySQL 客户端工具和命令行访问；而后端人员可以用 MySQL 原生协议与多个 MySQL 服务器通信，也可以用 JDBC 协议与大多数主流数据库服务器通信。可以用作 读写分离、分库分表（分片）、容灾备份、多租户应用开发、大数据基础......
+      MyCat 简介
+
+MyCat 是一个功能强大的分布式数据库中间件，是一个实现了 MySQL 协议的 Server，前端人员可以把它看做是一个数据库代理中间件，用 MySQL 客户端工具和命令行访问；而后端人员可以用 MySQL 原生协议与多个 MySQL 服务器通信，也可以用 JDBC 协议与大多数主流数据库服务器通信。可以用作 读写分离、分库分表（分片）、容灾备份、多租户应用开发、大数据......
     </div>
   </a>
   
@@ -426,7 +428,9 @@
       
     </h3>
     <div class="post-content-preview">
-      数据定义语句（DDL）数据库操作
+      数据定义语句（DDL）
+
+数据库操作
 登录数据库：
 1$ mysql -uroot -prootCopy to clipboardErrorCopied
 
@@ -436,7 +440,7 @@
 查看所有数据库：
 1show databasesCopy to clipboardErrorCopied
 
-选择数据库并使用：......
+选择数据库并使......
     </div>
   </a>
   
@@ -471,16 +475,20 @@
       
     </h3>
     <div class="post-content-preview">
-      准备工作我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
+      准备工作
+
+我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
 
 这里，我们准备两台机器：
 
 主机：192.168.248.128
 从机：192.168.248.139
 
-主机配置主机的配置就三个步骤，比较容易：
+主机配置
+
+主机的配置就三个步骤，比较容易：
 授权给从机服务器
-12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identified by......
+12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identifie......
     </div>
   </a>
   
@@ -515,18 +523,22 @@
       
     </h3>
     <div class="post-content-preview">
-      主从规划首先规划两个 MySQL 实例：
+      主从规划
+
+首先规划两个 MySQL 实例：
 
 主机：192.168.66.131:33061
 从机：192.168.66.131:33062
 
 当然大家可以准备多个从机，从机的配置步骤是一样的。接下来，我们就开始主从的配置。
-配置主机主机上的配置，主要是两个地方：
+配置主机
+
+主机上的配置，主要是两个地方：
 
 第一个是配置一个从机登录用户
 第二个配置开启 binlog。
 
-如果是 Docker 中创建的 MySQL 实例，默认只有一个用......
+如果是 Docker 中创建的 MySQL 实例，默认只......
     </div>
   </a>
   
@@ -567,10 +579,12 @@
 CentOS7
 MySQL5.7
 
-安装步骤检查是否安装了 mariadb，如果已经安装了则卸载：
+安装步骤
+
+检查是否安装了 mariadb，如果已经安装了则卸载：
 1$ yum list installed | grep mariadb
 
-如果执行结果如下，表示已经安......
+如果执行结果如下，表示已......
     </div>
   </a>
   
@@ -605,7 +619,9 @@ MySQL5.7
       
     </h3>
     <div class="post-content-preview">
-      基础概念简述锁数据库通过锁机制来解决并发场景 — 共享锁（读锁）和排他锁（写锁）。读锁是不阻塞的，多个客户端可以在同一时刻读取同一个资源；写锁是排他的，并且会阻塞其他的读锁和写锁。
+      基础概念简述
+
+锁数据库通过锁机制来解决并发场景 — 共享锁（读锁）和排他锁（写锁）。读锁是不阻塞的，多个客户端可以在同一时刻读取同一个资源；写锁是排他的，并且会阻塞其他的读锁和写锁。
 简单提下乐观锁和悲观锁：
 
 乐观锁：通常用于数据竞争不激烈的场景，多读少写，通过版本号和时间戳实现
@@ -613,7 +629,7 @@ MySQL5.7
 
 要锁定数据需要一定的锁策略来配合。
 
-表锁：锁定整张......
+表锁：锁定......
     </div>
   </a>
   
@@ -648,9 +664,10 @@ MySQL5.7
       
     </h3>
     <div class="post-content-preview">
-      什么是索引MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 索引的本质就是数据结构。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。
-可简单理解为 排好序的快速查找数据结构。在数据之外，数据库系统还维护着 满足特定算法查询的数据结构，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引。
-......
+      什么是索引
+
+MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 索引的本质就是数据结构。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。
+可简单理解为 排好序的快速查找数据结构。在数据之外，数据库系统还维护着 满足特定算法查询的数据结构，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引......
     </div>
   </a>
   
@@ -819,15 +836,11 @@ MySQL5.7
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
     
     
     
@@ -835,7 +848,7 @@ MySQL5.7
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
@@ -843,11 +856,11 @@ MySQL5.7
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -856,6 +869,10 @@ MySQL5.7
     
     
     <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     

@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,18 +396,24 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="JDBC-存在的问题"><a href="#JDBC-存在的问题" class="headerlink" title="JDBC 存在的问题"></a>JDBC 存在的问题</h3><ol>
+        <h3 id="JDBC-存在的问题"><a href="#JDBC-存在的问题" class="headerlink" title="JDBC 存在的问题"></a>JDBC 存在的问题</h3><hr />
+
+<ol>
 <li>数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。</li>
 <li>Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变 java 代码。</li>
 <li>使用 preparedStatement 向占位符号传参数存在硬编码，因为 sql 语句的 where 条件不一定，可能多也可能少，修改 sql 还要修改代码，系统不易维护。</li>
 <li>对结果集解析存在硬编码（查询列名），sql 变化导致解析代码变化，系统不易维护，如果能将数据库记录封装成 pojo 对象解析比较方便。</li>
 </ol>
 <p>上面的问题，借助于第三方工具如 DBUtils 或者 Spring 中自带的数据库操作框架 JdbcTemplate，都可以在一定程度上解决该问题。但是不完美，真正能解决这些问题的框架就是两大类，一种就是 MyBatis，另一种则是 Jpa。</p>
-<h3 id="MyBatis-介绍"><a href="#MyBatis-介绍" class="headerlink" title="MyBatis 介绍"></a>MyBatis 介绍</h3><p>MyBatis 本是 apache 的一个开源项目 iBatis, 2010 年这个项目由 apache software foundation 迁移到了 google code，并且改名为 MyBatis，实质上 Mybatis 对 iBatis 进行一些改进。MyBatis 是一个优秀的持久层框架，它对 JDBC 的操作数据库的过程进行封装，使开发者只需要关注 SQL 本身，而不需要花费精力去处理例如注册驱动、创建 connection、创建 statement、手动设置参数、结果集检索等 jdbc 繁杂的过程代码。Mybatis 通过 xml 或注解的方式将要执行的各种 statement（statement、preparedStatemnt、CallableStatement）配置起来，并通过 Java 对象和 statement 中的 sql 进行映射生成最终执行的 sql 语句，最后由 mybatis 框架执行 sql 并将结果映射成 java 对象并返回。</p>
+<h3 id="MyBatis-介绍"><a href="#MyBatis-介绍" class="headerlink" title="MyBatis 介绍"></a>MyBatis 介绍</h3><hr />
+
+<p>MyBatis 本是 apache 的一个开源项目 iBatis, 2010 年这个项目由 apache software foundation 迁移到了 google code，并且改名为 MyBatis，实质上 Mybatis 对 iBatis 进行一些改进。MyBatis 是一个优秀的持久层框架，它对 JDBC 的操作数据库的过程进行封装，使开发者只需要关注 SQL 本身，而不需要花费精力去处理例如注册驱动、创建 connection、创建 statement、手动设置参数、结果集检索等 jdbc 繁杂的过程代码。Mybatis 通过 xml 或注解的方式将要执行的各种 statement（statement、preparedStatemnt、CallableStatement）配置起来，并通过 Java 对象和 statement 中的 sql 进行映射生成最终执行的 sql 语句，最后由 mybatis 框架执行 sql 并将结果映射成 java 对象并返回。</p>
 <p>与其他的对象关系映射框架不同，MyBatis 并没有将 Java 对象与数据库表关联起来，而是将 Java 方法与 SQL 语句关联。MyBatis 允许用户充分利用数据库的各种功能，例如存储过程、视图、各种复杂的查询以及某数据库的专有特性。如果要对遗留数据库、不规范的数据库进行操作，或者要完全控制 SQL 的执行，MyBatis 是一个不错的选择。</p>
 <p>MyBatis 官网：<a href="https://mybatis.org/mybatis-3/zh/index.html" target="_blank" rel="noopener">https://mybatis.org/mybatis-3/zh/index.html</a></p>
 <p>官网有中文版，可以非常方便的学习。</p>
-<h3 id="第一个-Mybatis-应用"><a href="#第一个-Mybatis-应用" class="headerlink" title="第一个 Mybatis 应用"></a>第一个 Mybatis 应用</h3><p>我们通过一个简单的 HelloWorld 先来看下 MyBatis 的基本用法。首先来准备一个数据库：</p>
+<h3 id="第一个-Mybatis-应用"><a href="#第一个-Mybatis-应用" class="headerlink" title="第一个 Mybatis 应用"></a>第一个 Mybatis 应用</h3><hr />
+
+<p>我们通过一个简单的 HelloWorld 先来看下 MyBatis 的基本用法。首先来准备一个数据库：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="comment">/*!32312 IF NOT EXISTS*/</span><span class="string">`test01`</span> <span class="comment">/*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */</span> <span class="comment">/*!80016 DEFAULT ENCRYPTION='N' */</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">USE</span> <span class="string">`test01`</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Table structure for table `user` */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`username`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">COLLATE</span> utf8mb4_general_ci <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">COLLATE</span> utf8mb4_general_ci <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">8</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4 <span class="keyword">COLLATE</span>=utf8mb4_general_ci;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Data for the table `user` */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span>  <span class="keyword">into</span> <span class="string">`user`</span>(<span class="string">`id`</span>,<span class="string">`username`</span>,<span class="string">`address`</span>) <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">'antonio'</span>,<span class="string">'antoniopeng.com'</span>);</span><br></pre></td></tr></table></figure>
 
 <h4 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h4><p>接下来创建一个普通的 Maven 工程，不用创建 Web 工程，JavaSE 工程即可。项目创建完成后，添加 MyBatis 依赖：</p>
@@ -446,7 +452,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SqlSessionFactoryUtils</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory SQL_SESSION_FACTORY = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSessionFactory <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (SQL_SESSION_FACTORY == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                SQL_SESSION_FACTORY = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(Resources.getResourceAsStream(<span class="string">"mybatis-config.xml"</span>));</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> SQL_SESSION_FACTORY;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样，在需要使用的时候，通过这个工厂方法来获取 SqlSessionFactory 的实例。</p>
-<h3 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h3><p>上面我们做了一个查询的 Demo，这里我们来看另外四种常见的操作。</p>
+<h3 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h3><hr />
+
+<p>上面我们做了一个查询的 Demo，这里我们来看另外四种常见的操作。</p>
 <h4 id="增"><a href="#增" class="headerlink" title="增"></a>增</h4><p>添加记录，id 有两种不同的处理方式，一种就是自增长，另一种则是 Java 代码传一个 ID 进来，传一个 ID 进来，这个 ID　可以是一个　UUID，也可以是其他的自定义的　ID。在 MyBatis 中，对这两种方式都提供了相应的支持。</p>
 <p><strong>主键自增长</strong></p>
 <p>首先我们在 Mapper 中，添加 SQL 插入语句：</p>

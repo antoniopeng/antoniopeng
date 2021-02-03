@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h3><p>和 Svn 有很大的不同，Git 中引入了暂存区/缓存区 (Stage/Index) 的概念，如下图：</p>
+        <h3 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h3><hr />
+
+<p>和 Svn 有很大的不同，Git 中引入了暂存区/缓存区 (Stage/Index) 的概念，如下图：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C01.png" alt="img"></p>
 <ol>
 <li>工作区很好理解，就是我们能看到的工作目录，就是本地的文件夹。</li>
@@ -404,7 +406,9 @@
 <li>git commit 命令则可以将暂存区中的文件提交到本地仓库中去。</li>
 </ol>
 <p>在 Svn 中我们都是直接将文件提交到版本仓库中去，而在 Git 中，则多了一层关卡。</p>
-<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p>下面我主要介绍一下 Git 中的常见操作。</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><hr />
+
+<p>下面我主要介绍一下 Git 中的常见操作。</p>
 <h4 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h4><p>仓库的初始化有两种方式：一种是直接从远程仓库克隆，另一种则是直接从当前目录初始化，这里我们主要介绍当前目录初始化，远程仓库克隆我们在后面的文章中会说到。从当前目录初始化的方式很简单，直接执行如下命令:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
 
@@ -453,6 +457,9 @@
 <p>此时我们需要执行 git commit 命令将暂存区中的文件提交，提交成功之后，再执行 <code>git diff HEAD</code> 命令，则又恢复宁静了。如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C17.png" alt="img"></p>
 <h4 id="压缩提交历史"><a href="#压缩提交历史" class="headerlink" title="压缩提交历史"></a>压缩提交历史</h4><p><code>git rebase -i</code> 命令可以实现提交历史的压缩。比如我们在开发某一个功能时，提交了很多次，当所有功能都写完时，想将这些提交压缩为一个，就可以使用该命令。该命令执行之后，会自动打开一个vi编辑器，在vi编辑器中将最新提交的日志的 pick 改为 fixup 即可。压缩之后，最新一次的提交日志就没了，但是数据还在。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

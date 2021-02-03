@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -428,9 +428,11 @@
       
     </h3>
     <div class="post-content-preview">
-      @RequestMapping这个注解用来标记一个接口，这算是我们在接口开发中，使用最多的注解之一。
+      @RequestMapping
+
+这个注解用来标记一个接口，这算是我们在接口开发中，使用最多的注解之一。
 请求 URL标记请求 URL 很简单，只需要在相应的方法上添加该注解即可：
-12345678@Controllerpublic class HelloController &#123;        @RequestMapping("/hello")    public ModelAndVi......
+12345678@Controllerpublic class HelloController &#123;        @RequestMapping("/hello")    public ModelAnd......
     </div>
   </a>
   
@@ -511,8 +513,10 @@ StandardServletMultipartResolver·
 全局数据绑定
 全局数据预处理
 
-全局异常处理使用 @ControllerAdvice 实现全局异常处理，只需要定义类，添加该注解即可定义方式如下：
-1234567891011@ControllerAdvicepublic class ......
+全局异常处理
+
+使用 @ControllerAdvice 实现全局异常处理，只需要定义类，添加该注解即可定义方式如下：
+1234567891011@ControllerAdvicepublic clas......
     </div>
   </a>
   
@@ -547,9 +551,11 @@ StandardServletMultipartResolver·
       
     </h3>
     <div class="post-content-preview">
-      DispatcherServlet 作用DispatcherServlet 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。DispatcherServlet 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：
+      DispatcherServlet 作用
 
-文件上传解析，如果请求类型是 mult......
+DispatcherServlet 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。DispatcherServlet 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：
+
+文件上传解析，如果请求类型是 mu......
     </div>
   </a>
   
@@ -586,9 +592,11 @@ StandardServletMultipartResolver·
     <div class="post-content-preview">
       Spring  MVC 的处理器拦截器，类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。
 应用场景
+
+
 日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。
 权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。
-性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完后记......
+性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完......
     </div>
   </a>
   
@@ -623,8 +631,10 @@ StandardServletMultipartResolver·
       
     </h3>
     <div class="post-content-preview">
-      Spring MVC 概述Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的一部分。
- MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 Web 应用程序的组件......
+      Spring MVC 概述
+
+Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的一部分。
+ MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 Web 应用程序的......
     </div>
   </a>
   
@@ -793,15 +803,11 @@ StandardServletMultipartResolver·
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
     
     
     
@@ -809,7 +815,7 @@ StandardServletMultipartResolver·
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
@@ -817,11 +823,11 @@ StandardServletMultipartResolver·
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -830,6 +836,10 @@ StandardServletMultipartResolver·
     
     
     <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     

@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">555</span> In Total
+              Words <span class="post-count">556</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -396,8 +396,12 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="Docker-Registry-简介"><a href="#Docker-Registry-简介" class="headerlink" title="Docker Registry 简介"></a>Docker Registry 简介</h3><p><a href="https://hub.docker.com" target="_blank" rel="noopener">Docker Hub</a> 是 Docker 官方提供的一个管理公共镜像的镜像仓库，我们可以从上面拉取我们想要的镜像，也可以推送自己的镜像上去。但有时候，在无法访问互联网的情况下或者不希望将自己的镜像推送到公网上时，那么 Docker Registry （镜像私服）就可以用来存储管理自己的镜像。</p>
-<h3 id="部署-Docker-Registry"><a href="#部署-Docker-Registry" class="headerlink" title="部署 Docker Registry"></a>部署 Docker Registry</h3><blockquote>
+        <h3 id="Docker-Registry-简介"><a href="#Docker-Registry-简介" class="headerlink" title="Docker Registry 简介"></a>Docker Registry 简介</h3><hr />
+
+<p><a href="https://hub.docker.com" target="_blank" rel="noopener">Docker Hub</a> 是 Docker 官方提供的一个管理公共镜像的镜像仓库，我们可以从上面拉取我们想要的镜像，也可以推送自己的镜像上去。但有时候，在无法访问互联网的情况下或者不希望将自己的镜像推送到公网上时，那么 Docker Registry （镜像私服）就可以用来存储管理自己的镜像。</p>
+<h3 id="部署-Docker-Registry"><a href="#部署-Docker-Registry" class="headerlink" title="部署 Docker Registry"></a>部署 Docker Registry</h3><hr />
+
+<blockquote>
 <p>使用 Docker Compose 编排部署应用容器。服务器地址：192.168.100.1</p>
 </blockquote>
 <p>创建 docker-compose.yml</p>
@@ -428,7 +432,9 @@
 
 </li>
 </ul>
-<h3 id="部署-Docker-Registry-UI"><a href="#部署-Docker-Registry-UI" class="headerlink" title="部署 Docker Registry UI"></a>部署 Docker Registry UI</h3><p><code>Docker Registry</code> 安装成功之后，不太方便只管地查看仓库中的镜像，可以使用 <code>Web UI</code> 界面工具管理镜像，<code>docker-registry-frontend</code> 就是其中之一</p>
+<h3 id="部署-Docker-Registry-UI"><a href="#部署-Docker-Registry-UI" class="headerlink" title="部署 Docker Registry UI"></a>部署 Docker Registry UI</h3><hr />
+
+<p><code>Docker Registry</code> 安装成功之后，不太方便只管地查看仓库中的镜像，可以使用 <code>Web UI</code> 界面工具管理镜像，<code>docker-registry-frontend</code> 就是其中之一</p>
 <p>创建 <code>docker-compose.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.1'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">frontend:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">konradkleine/docker-registry-frontend:v2</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.crt:/etc/apache2/server.crt:ro</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./certs/frontend.key:/etc/apache2/server.key:ro</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_HOST=192.168.100.1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ENV_DOCKER_REGISTRY_PORT=5000</span></span><br></pre></td></tr></table></figure>
 
@@ -447,7 +453,9 @@
 <li>首页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE01.png-watermark" alt=""></li>
 <li>镜像列表页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE02.png-watermark" alt=""></li>
 </ul>
-<h3 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h3><p>从 Docker Hub 公网拉取一个镜像</p>
+<h3 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h3><hr />
+
+<p>从 Docker Hub 公网拉取一个镜像</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull tomcat</span><br></pre></td></tr></table></figure>
 
 <p>标记该镜像指向Docker Registry 私服仓库</p>
@@ -456,7 +464,9 @@
 <p>推送镜像到仓库</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker push 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
 
-<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>删除从 Docker Hub 公网上拉取的镜像</p>
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><hr />
+
+<p>删除从 Docker Hub 公网上拉取的镜像</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm 192.168.100.1:5000/tomcat</span><br></pre></td></tr></table></figure>
 
 <p>从 Docker Registry 私服中拉取镜像</p>

@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="散列"><a href="#散列" class="headerlink" title="散列"></a>散列</h3><p>很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。</p>
+        <h3 id="散列"><a href="#散列" class="headerlink" title="散列"></a>散列</h3><hr />
+
+<p>很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。</p>
 <h4 id="hset"><a href="#hset" class="headerlink" title="hset"></a>hset</h4><p>hset 命令可以用来设置 key 指定的哈希集中指定字段的值，如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hset k1 h1 v1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
 
@@ -437,7 +439,9 @@
 <h4 id="hstrlen"><a href="#hstrlen" class="headerlink" title="hstrlen"></a>hstrlen</h4><p>hstrlen 可以返回 hash 指定 field 的 value 的字符串长度，如果 hash 或者 field 不存在，返回 0 ，如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hstrlen k2 h2</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
 
-<h3 id="有序集合"><a href="#有序集合" class="headerlink" title="有序集合"></a>有序集合</h3><p>有序集合类似 Sets ,但是每个字符串元素都关联到一个叫 score 浮动数值。里面的元素总是通过 score 进行着排序，因此它是可以检索的一系列元素。</p>
+<h3 id="有序集合"><a href="#有序集合" class="headerlink" title="有序集合"></a>有序集合</h3><hr />
+
+<p>有序集合类似 Sets ,但是每个字符串元素都关联到一个叫 score 浮动数值。里面的元素总是通过 score 进行着排序，因此它是可以检索的一系列元素。</p>
 <h4 id="zadd"><a href="#zadd" class="headerlink" title="zadd"></a>zadd</h4><p>zadd 命令可以将所有指定成员添加到键为 key 的有序集合里面。添加时可以指定多个分数/成员（score/member）对。 如果指定添加的成员已经是有序集合里面的成员，则会更新该成员的分数（scrore）并更新到正确的排序位置。如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd k1 60 v1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
 
@@ -485,6 +489,9 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrangebylex k2 [v2 [v4</span><br><span class="line">1) <span class="string">"v2"</span></span><br><span class="line">2) <span class="string">"v3"</span></span><br><span class="line">127.0.0.1:6379&gt; zrangebylex k2 - +</span><br><span class="line">1) <span class="string">"v2"</span></span><br><span class="line">2) <span class="string">"v3"</span></span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
 
 <p>注意 min 和 max 参数的写法和 zlexcount一致。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

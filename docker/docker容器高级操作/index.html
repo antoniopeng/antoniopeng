@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -397,20 +397,30 @@
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
         <p>上篇文章介绍了一个 Nginx 的例子，对于 Nginx 这样一个容器而言，当它启动成功后，我们不可避免的需要对 Nginx 进行的配置进行修改，那么这个修改要如何完成呢？</p>
-<h3 id="依附容器"><a href="#依附容器" class="headerlink" title="依附容器"></a>依附容器</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker attach</span><br></pre></td></tr></table></figure>
+<h3 id="依附容器"><a href="#依附容器" class="headerlink" title="依附容器"></a>依附容器</h3><hr />
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker attach</span><br></pre></td></tr></table></figure>
 
 <p>依附容器这个主要是针对交互型容器而言的，该命令有一定的局限性，可以作为了解即可，真正工作中使用较少。要是用 <code>docker attach</code> 命令，首先要确保容器已经启动，然后使用该命令才能进入到容器中。具体操作步骤如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个容器，然后启动</span></span><br><span class="line">$ docker run --name ubuntu -it ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不关闭当前窗口，再打开一个新的终端</span></span><br><span class="line">$ docker attach ubuntu</span><br></pre></td></tr></table></figure>
 
 <p>此时就能进入到容器的命令行进行操作了。如果容器已经关闭或者容器是一个后台容器，则该命令就无用武之地了。由上面的操作大家可以看到，这个命令的局限性很大，使用场景也不多，因此大家作为一个了解即可。</p>
-<h3 id="容器内执行命令"><a href="#容器内执行命令" class="headerlink" title="容器内执行命令"></a>容器内执行命令</h3><p>如果容器在后台启动，则可以使用 <code>docker exec</code> 在容器内执行命令。不同于 <code>docker attach</code> ，使用 <code>docker exec</code> 即使用户从终端退出，容器也不会停止运行，而使用 <code>docker attach</code> 时，如果用户从终端退出，则容器会停止运行。基于这样的特性， 我们以后在操作容器内部时，基本上都是通过 <code>docker exec</code> 命令来实现。</p>
-<h3 id="查看容器信息"><a href="#查看容器信息" class="headerlink" title="查看容器信息"></a>查看容器信息</h3><p>容器创建成功后，用户可以通过 <code>docker inspect</code> 命令查看容器的详细信息，这些详细信息包括容器的 id 、容器名、环境变量、运行命令、主机配置、网络配置以及数据卷配置等信息。使用 format 参数可以只查看用户关心的数据：</p>
+<h3 id="容器内执行命令"><a href="#容器内执行命令" class="headerlink" title="容器内执行命令"></a>容器内执行命令</h3><hr />
+
+<p>如果容器在后台启动，则可以使用 <code>docker exec</code> 在容器内执行命令。不同于 <code>docker attach</code> ，使用 <code>docker exec</code> 即使用户从终端退出，容器也不会停止运行，而使用 <code>docker attach</code> 时，如果用户从终端退出，则容器会停止运行。基于这样的特性， 我们以后在操作容器内部时，基本上都是通过 <code>docker exec</code> 命令来实现。</p>
+<h3 id="查看容器信息"><a href="#查看容器信息" class="headerlink" title="查看容器信息"></a>查看容器信息</h3><hr />
+
+<p>容器创建成功后，用户可以通过 <code>docker inspect</code> 命令查看容器的详细信息，这些详细信息包括容器的 id 、容器名、环境变量、运行命令、主机配置、网络配置以及数据卷配置等信息。使用 format 参数可以只查看用户关心的数据：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看容器运行状态</span></span><br><span class="line">$ docker inspect -f=<span class="string">'&#123;&#123;.State.Running&#125;&#125;'</span> ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器 IP 地址</span></span><br><span class="line">$ docker inspect -f=<span class="string">'&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;'</span> ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器名、容器ID</span></span><br><span class="line">$ docker inspect -f=<span class="string">'&#123;&#123;.Name&#125;&#125; &#123;&#123;.ID&#125;&#125;'</span> Ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器主机信息</span></span><br><span class="line">$ docker inspect -f=<span class="string">'&#123;&#123;.HostConfig&#125;&#125;'</span> ubuntu</span><br></pre></td></tr></table></figure>
 
-<h3 id="查看容器进程"><a href="#查看容器进程" class="headerlink" title="查看容器进程"></a>查看容器进程</h3><p>使用 <code>docker top</code> 命令可以查看容器中正在运行的进程，首先确保容器已经启动，然后执行 <code>docker top</code> 命令。</p>
+<h3 id="查看容器进程"><a href="#查看容器进程" class="headerlink" title="查看容器进程"></a>查看容器进程</h3><hr />
+
+<p>使用 <code>docker top</code> 命令可以查看容器中正在运行的进程，首先确保容器已经启动，然后执行 <code>docker top</code> 命令。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker top</span><br></pre></td></tr></table></figure>
 
-<h3 id="查看容器日志"><a href="#查看容器日志" class="headerlink" title="查看容器日志"></a>查看容器日志</h3><p>交互型容器查看日志很方便，因为日志就直接在控制台打印出来了，但是对于后台型容器，如果要查看日志，则可以使用docker提供的 <code>docker logs</code> 命令来查看。</p>
+<h3 id="查看容器日志"><a href="#查看容器日志" class="headerlink" title="查看容器日志"></a>查看容器日志</h3><hr />
+
+<p>交互型容器查看日志很方便，因为日志就直接在控制台打印出来了，但是对于后台型容器，如果要查看日志，则可以使用docker提供的 <code>docker logs</code> 命令来查看。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs ubuntu</span><br></pre></td></tr></table></figure>
 
 <p>首先启动一个不停打日志的容器，然后利用 <code>docker logs</code> 命令查看日志，但是默认情况下只能查看到历史日志，无法查看实时日志，使用 <code>-f</code> 参数后，就可以查看实时日志了。</p>
@@ -418,7 +428,9 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs -f --tail=3 -t ubuntu</span><br></pre></td></tr></table></figure>
 
 <p>docker 的一大优势就是可移植性，容器因此 docker 容器可以随意的进行导入导出操作。</p>
-<h3 id="容器导出"><a href="#容器导出" class="headerlink" title="容器导出"></a>容器导出</h3><p>既然是容器，我们当然希望 Docker 也能够像 VMWare 那样方便的在不同系统之间拷贝，不过 Docker 并不像 VMWare 导出容器那样方便（事实上，VMWare 中不存在容器导出操作，直接拷贝安装目录即可），在 Docker 中，使用 export 命令可以导出容器，具体操作如下：</p>
+<h3 id="容器导出"><a href="#容器导出" class="headerlink" title="容器导出"></a>容器导出</h3><hr />
+
+<p>既然是容器，我们当然希望 Docker 也能够像 VMWare 那样方便的在不同系统之间拷贝，不过 Docker 并不像 VMWare 导出容器那样方便（事实上，VMWare 中不存在容器导出操作，直接拷贝安装目录即可），在 Docker 中，使用 export 命令可以导出容器，具体操作如下：</p>
 <p>本案例中我首先创建一个 nginx 容器，然后启动，启动成功后，将本地一个 index.html 文件上传到容器中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd --name nginx -p 80:80 nginx</span><br></pre></td></tr></table></figure>
 
@@ -430,7 +442,9 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">export</span> nginx &gt; ./blog/docker/nginx.tar</span><br></pre></td></tr></table></figure>
 
 <p>该命令将容器导入到 docker 目录下。导出成功之后，我们就可以随意传播这个导出文件了，可以发送给其他小伙伴去使用了，相对于 VMWare 中庞大的文件，这个导出文件非常小。一般可能只有几百兆，当然也看具体情况。</p>
-<h3 id="容器导入"><a href="#容器导入" class="headerlink" title="容器导入"></a>容器导入</h3><p>其他小伙伴拿到这个文件，通过执行如下命令可以导入容器（如果自己重新导入，需要记得将 docker 中和 nginx 相关的容器和镜像删除）：</p>
+<h3 id="容器导入"><a href="#容器导入" class="headerlink" title="容器导入"></a>容器导入</h3><hr />
+
+<p>其他小伙伴拿到这个文件，通过执行如下命令可以导入容器（如果自己重新导入，需要记得将 docker 中和 nginx 相关的容器和镜像删除）：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat nginx.tar | docker import - importednginx:ilatest</span><br></pre></td></tr></table></figure>
 
 <p>容器导入成功后，就可以使用 <code>docker run</code> 命令运行了。运行成功之后，我们发现自己定制的 index.html 页面依然存在，说明这是我们自己的那个容器。</p>

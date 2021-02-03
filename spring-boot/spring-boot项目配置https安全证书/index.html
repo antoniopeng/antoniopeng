@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -397,13 +397,17 @@
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
         <p>https 现在已经越来越普及了，特别是做一些小程序或者公众号开发的时候，https 基本上都是刚需了。不过一个 https 证书还是挺费钱的，个人开发者可以在各个云服务提供商那里申请免费的证书。本文聊的是在 Spring Boot 项目中，如何开启 https 配置，为我们的接口保驾护航。</p>
-<h3 id="HTTPS-简介"><a href="#HTTPS-简介" class="headerlink" title="HTTPS 简介"></a>HTTPS 简介</h3><p>我们先来看看什么是 https，根据 wikipedia 上的介绍：</p>
+<h3 id="HTTPS-简介"><a href="#HTTPS-简介" class="headerlink" title="HTTPS 简介"></a>HTTPS 简介</h3><hr />
+
+<p>我们先来看看什么是 https，根据 wikipedia 上的介绍：</p>
 <blockquote>
 <p>超文本传输安全协议(HyperText Transfer Protocol Secure)，缩写：HTTPS；常称为 HTTP over TLS、HTTP over SSL 或 HTTP Secure）是一种通过计算机网络进行安全通信的传输协议。HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包。HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。这个协议由网景公司(Netscape)在 1994 年首次提出，随后扩展到互联网上。</p>
 </blockquote>
 <p>历史上，HTTPS 连接经常用于网络上的交易支付和企业信息系统中敏感信息的传输。在 2000 年代末至 2010 年代初，HTTPS 开始广泛使用，以确保各类型的网页真实，保护账户和保持用户通信，身份和网络浏览的私密性。</p>
 <p>另外，还有一种安全超文本传输协议（S-HTTP），也是 HTTP 安全传输的一种实现，但是 HTTPS 的广泛应用而成为事实上的 HTTP 安全传输实现，S-HTTP并没有得到广泛支持。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先我们需要有一个 https 证书，我们可以从各个云服务厂商处申请一个免费的，不过自己做实验没有必要这么麻烦，我们可以直接借助 Java 自带的 JDK 管理工具 keytool 来生成一个免费的 https 证书。</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><hr />
+
+<p>首先我们需要有一个 https 证书，我们可以从各个云服务厂商处申请一个免费的，不过自己做实验没有必要这么麻烦，我们可以直接借助 Java 自带的 JDK 管理工具 keytool 来生成一个免费的 https 证书。</p>
 <p>进入到 <code>%JAVVA_HOME%\bin</code> 目录下，执行如下命令生成一个数字证书：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ keytool -genkey -<span class="built_in">alias</span> tomcathttps -keyalg RSA -keysize 2048  -keystore D:\antonio.p12 -validity 365</span><br></pre></td></tr></table></figure>
 
@@ -417,7 +421,9 @@
 <li><code>validity</code> 表示密钥的有效时间，单位为天。</li>
 </ul>
 <p>命令执行完成后 ，我们在 D 盘目录下会看到一个名为 <code>antonio.p12</code> 的文件。有了这个文件之后，我们的准备工作就算是 OK 了。</p>
-<h3 id="引入-HTTPS"><a href="#引入-HTTPS" class="headerlink" title="引入 HTTPS"></a>引入 HTTPS</h3><p>接下来我们需要在项目中引入 https。将上面生成的 antonio.p12 拷贝到 Spring Boot 项目的 resources 目录下。然后在 application.properties 中添加如下配置：</p>
+<h3 id="引入-HTTPS"><a href="#引入-HTTPS" class="headerlink" title="引入 HTTPS"></a>引入 HTTPS</h3><hr />
+
+<p>接下来我们需要在项目中引入 https。将上面生成的 antonio.p12 拷贝到 Spring Boot 项目的 resources 目录下。然后在 application.properties 中添加如下配置：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">server.ssl.key-store</span>=<span class="string">classpath:antonio.p12</span></span><br><span class="line"><span class="meta">server.ssl.key-alias</span>=<span class="string">tomcathttps</span></span><br><span class="line"><span class="meta">server.ssl.key-store-password</span>=<span class="string">111111</span></span><br></pre></td></tr></table></figure>
 
 <p>其中：</p>
@@ -432,10 +438,15 @@
 <p><img src="https://qiniuyun.antoniopeng.com/spring-boot%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AEhttps%E5%AE%89%E5%85%A8%E8%AF%81%E4%B9%A602.png" alt="img"></p>
 <p>这是因为我们自己生成的 https 证书不被浏览器认可，不过没关系，我们直接点击继续访问就可以了（实际项目中只需要更换一个被浏览器认可的 https 证书即可）。</p>
 <p><img src="https://qiniuyun.antoniopeng.com/spring-boot%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AEhttps%E5%AE%89%E5%85%A8%E8%AF%81%E4%B9%A603.png" alt="img"></p>
-<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><p>考虑到 Spring Boot 不支持同时启动 HTTP 和 HTTPS ，为了解决这个问题，我们这里可以配置一个请求转发，当用户发起 HTTP 调用时，自动转发到 HTTPS 上。具体配置如下：</p>
+<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><hr />
+
+<p>考虑到 Spring Boot 不支持同时启动 HTTP 和 HTTPS ，为了解决这个问题，我们这里可以配置一个请求转发，当用户发起 HTTP 调用时，自动转发到 HTTPS 上。具体配置如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TomcatConfig</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">TomcatServletWebServerFactory <span class="title">tomcatServletWebServerFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        TomcatServletWebServerFactory factory = <span class="keyword">new</span> TomcatServletWebServerFactory()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">postProcessContext</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">                SecurityConstraint constraint = <span class="keyword">new</span> SecurityConstraint();</span><br><span class="line">                constraint.setUserConstraint(<span class="string">"CONFIDENTIAL"</span>);</span><br><span class="line">                SecurityCollection collection = <span class="keyword">new</span> SecurityCollection();</span><br><span class="line">                collection.addPattern(<span class="string">"/*"</span>);</span><br><span class="line">                constraint.addCollection(collection);</span><br><span class="line">                context.addConstraint(constraint);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        factory.addAdditionalTomcatConnectors(createTomcatConnector());</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> Connector <span class="title">createTomcatConnector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Connector connector = <span class="keyword">new</span></span><br><span class="line">                Connector(<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span>);</span><br><span class="line">        connector.setScheme(<span class="string">"http"</span>);</span><br><span class="line">        connector.setPort(<span class="number">8081</span>);</span><br><span class="line">        connector.setSecure(<span class="keyword">false</span>);</span><br><span class="line">        connector.setRedirectPort(<span class="number">8080</span>);</span><br><span class="line">        <span class="keyword">return</span> connector;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在这里，我们配置了 Http 的请求端口为 8081，所有来自 8081 的请求，将被自动重定向到 8080 这个 https 的端口上。如此之后，我们再去访问 http 请求，就会自动重定向到 https。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

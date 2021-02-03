@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -406,7 +406,9 @@
 <p>首先，我们需要加入校验需要的依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-validator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.1.0.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="普通校验"><a href="#普通校验" class="headerlink" title="普通校验"></a>普通校验</h3><p>普通校验，是这里最基本的用法。首先在 SpringMVC 的配置文件中配置校验的 Bean：</p>
+<h3 id="普通校验"><a href="#普通校验" class="headerlink" title="普通校验"></a>普通校验</h3><hr />
+
+<p>普通校验，是这里最基本的用法。首先在 SpringMVC 的配置文件中配置校验的 Bean：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"</span> <span class="attr">id</span>=<span class="string">"validatorFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"providerClass"</span> <span class="attr">value</span>=<span class="string">"org.hibernate.validator.HibernateValidator"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">validator</span>=<span class="string">"validatorFactoryBean"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>配置时，提供一个 LocalValidatorFactoryBean 的实例，然后 Bean 的校验使用 HibernateValidator。这样，配置就算完成了。接下来，我们提供一个添加学生的页面：</p>
@@ -441,7 +443,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@NotNull</span>(message = <span class="string">"&#123;student.id.notnull&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="meta">@NotNull</span>(message = <span class="string">"&#123;student.name.notnull&#125;"</span>)</span><br><span class="line">    <span class="meta">@Size</span>(min = <span class="number">2</span>,max = <span class="number">10</span>,message = <span class="string">"&#123;student.name.length&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Email</span>(message = <span class="string">"&#123;student.email.error&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="meta">@Max</span>(value = <span class="number">150</span>,message = <span class="string">"&#123;student.age.error&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">   	<span class="comment">// 省略 getter/setter</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>配置完成后，如果校验再出错，就会展示我们自己的出错信息了。</p>
-<h3 id="分组校验"><a href="#分组校验" class="headerlink" title="分组校验"></a>分组校验</h3><p>由于校验规则都是定义在实体类上面的，但是，在不同的数据提交环境下，校验规则可能不一样。例如，用户的 id 是自增长的，添加的时候，可以不用传递用户 id，但是修改的时候则必须传递用户 id，这种情况下，就需要使用分组校验。</p>
+<h3 id="分组校验"><a href="#分组校验" class="headerlink" title="分组校验"></a>分组校验</h3><hr />
+
+<p>由于校验规则都是定义在实体类上面的，但是，在不同的数据提交环境下，校验规则可能不一样。例如，用户的 id 是自增长的，添加的时候，可以不用传递用户 id，但是修改的时候则必须传递用户 id，这种情况下，就需要使用分组校验。</p>
 <p>分组校验，首先需要定义校验组，所谓的校验组，其实就是空接口：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ValidationGroup1</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ValidationGroup2</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -452,7 +456,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/addstudent"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addStudent</span><span class="params">(@Validated(ValidationGroup2.class)</span> Student student, BindingResult result) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (result != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">//校验未通过，获取所有的异常信息并展示出来</span></span><br><span class="line">            List&lt;ObjectError&gt; allErrors = result.getAllErrors();</span><br><span class="line">            <span class="keyword">for</span> (ObjectError allError : allErrors) &#123;</span><br><span class="line">                System.out.println(allError.getObjectName()+<span class="string">":"</span>+allError.getDefaultMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>配置完成后，属于 ValidationGroup2 这个组的校验规则，才会生效。</p>
-<h3 id="校验注解"><a href="#校验注解" class="headerlink" title="校验注解"></a>校验注解</h3><p>校验注解，主要有如下几种：</p>
+<h3 id="校验注解"><a href="#校验注解" class="headerlink" title="校验注解"></a>校验注解</h3><hr />
+
+<p>校验注解，主要有如下几种：</p>
 <ul>
 <li><code>@Null</code> 被注解的元素必须为 null</li>
 <li><code>@NotNull</code> 被注解的元素必须不为 null</li>
@@ -473,6 +479,9 @@
 <li><code>@NotEmpty</code> 被注解的字符串的必须非空</li>
 <li><code>@Range(min=,max=,message=)</code> 被注解的元素必须在合适的范围内</li>
 </ul>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.9k</span> In Total
+              Words <span class="post-count">2k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -397,7 +397,9 @@
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
         <p>主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。</p>
-<h3 id="配置方式"><a href="#配置方式" class="headerlink" title="配置方式"></a>配置方式</h3><p>假设我有三个 redis 实例，地址分别如下：</p>
+<h3 id="配置方式"><a href="#配置方式" class="headerlink" title="配置方式"></a>配置方式</h3><hr />
+
+<p>假设我有三个 redis 实例，地址分别如下：</p>
 <ul>
 <li>192.168.248.128:6379 </li>
 <li>192.168.248.128:6380</li>
@@ -428,12 +430,16 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6380&gt; INFO replication</span><br><span class="line"><span class="comment">## Replication</span></span><br><span class="line">role:slave</span><br><span class="line">master_host:127.0.0.1</span><br><span class="line">master_port:6379</span><br><span class="line">master_link_status:up</span><br><span class="line">master_last_io_seconds_ago:6</span><br><span class="line">master_sync_in_progress:0</span><br><span class="line">slave_repl_offset:630</span><br><span class="line">slave_priority:100</span><br><span class="line">slave_read_only:1</span><br><span class="line">connected_slaves:0</span><br><span class="line">master_replid:26ca818360d6510b717e471f3f0a6f5985b6225d</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:630</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:630</span><br></pre></td></tr></table></figure>
 
 <p>我们可以看到 6380 是一个从机，从机的信息以及它的主机的信息都展示出来了。此时，我们在主机中存储一条数据，在从机中就可以 get 到这条数据了。</p>
-<h3 id="主从复制注意点"><a href="#主从复制注意点" class="headerlink" title="主从复制注意点"></a>主从复制注意点</h3><ol>
+<h3 id="主从复制注意点"><a href="#主从复制注意点" class="headerlink" title="主从复制注意点"></a>主从复制注意点</h3><hr />
+
+<ol>
 <li>如果主机已经运行了一段时间了，并且了已经存储了一些数据了，此时从机连上来，那么从机会将主机上所有的数据进行备份，而不是从连接的那个时间点开始备份。</li>
 <li>配置了主从复制之后，主机上可读可写，但是从机只能读取不能写入（可以通过修改 redis.conf 中 slave-read-only 的值让从机也可以执行写操作）。</li>
 <li>在整个主从结构运行过程中，如果主机不幸挂掉，重启之后，他依然是主机，主从复制操作也能够继续进行。</li>
 </ol>
-<h3 id="复制原理"><a href="#复制原理" class="headerlink" title="复制原理"></a>复制原理</h3><p>每一个 master 都有一个 replication ID ，这是一个较大的伪随机字符串，标记了一个给定的数据集。每个 master 也持有一个偏移量，master 将自己产生的复制流发送给 slave 时，发送多少个字节的数据，自身的偏移量就会增加多少，目的是当有新的操作修改自己的数据集时，它可以以此更新 slave 的状态。复制偏移量即使在没有一个 slave 连接到 master 时，也会自增，所以基本上每一对给定的 Replication ID, offset 都会标识一个 master 数据集的确切版本。当 slave 连接到 master 时，它们使用 PSYNC 命令来发送它们记录的旧的 master replication ID 和它们至今为止处理的偏移量。通过这种方式，master 能够仅发送 slave 所需的增量部分。但是如果 master 的缓冲区中没有足够的命令积压缓冲记录，或者如果 slave 引用了不再知道的历史记录 （replication ID） ，则会转而进行一个全量重同步：在这种情况下，slave 会得到一个完整的数据集副本，从头开始(参考 redis 官网)。</p>
+<h3 id="复制原理"><a href="#复制原理" class="headerlink" title="复制原理"></a>复制原理</h3><hr />
+
+<p>每一个 master 都有一个 replication ID ，这是一个较大的伪随机字符串，标记了一个给定的数据集。每个 master 也持有一个偏移量，master 将自己产生的复制流发送给 slave 时，发送多少个字节的数据，自身的偏移量就会增加多少，目的是当有新的操作修改自己的数据集时，它可以以此更新 slave 的状态。复制偏移量即使在没有一个 slave 连接到 master 时，也会自增，所以基本上每一对给定的 Replication ID, offset 都会标识一个 master 数据集的确切版本。当 slave 连接到 master 时，它们使用 PSYNC 命令来发送它们记录的旧的 master replication ID 和它们至今为止处理的偏移量。通过这种方式，master 能够仅发送 slave 所需的增量部分。但是如果 master 的缓冲区中没有足够的命令积压缓冲记录，或者如果 slave 引用了不再知道的历史记录 （replication ID） ，则会转而进行一个全量重同步：在这种情况下，slave 会得到一个完整的数据集副本，从头开始(参考 redis 官网)。</p>
 <p>简单来说，就是以下几个步骤：</p>
 <ol>
 <li>slave 启动成功连接到 master 后会发送一个 sync 命令。</li>
@@ -443,7 +449,9 @@
 <li>增量复制：Master 继续将新的所有收集到的修改命令依次传给 slave ,完成同步。</li>
 <li>但是只要是重新连接 master ,一次完全同步（全量复制)将被自动执行。</li>
 </ol>
-<h3 id="一场拉力赛"><a href="#一场拉力赛" class="headerlink" title="一场拉力赛"></a>一场拉力赛</h3><p>上面搭建的主从复制模式是下面这样的：</p>
+<h3 id="一场拉力赛"><a href="#一场拉力赛" class="headerlink" title="一场拉力赛"></a>一场拉力赛</h3><hr />
+
+<p>上面搭建的主从复制模式是下面这样的：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B601.png" alt="img"></p>
 <p>实际上，一主二仆的主从复制，我们可以搭建成下面这种结构：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B602.png" alt="img"></p>
@@ -457,7 +465,9 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6380&gt; info replication</span><br><span class="line"><span class="comment">## Replication</span></span><br><span class="line">role:slave</span><br><span class="line">master_host:127.0.0.1</span><br><span class="line">master_port:6379</span><br><span class="line">master_link_status:up</span><br><span class="line">master_last_io_seconds_ago:1</span><br><span class="line">master_sync_in_progress:0</span><br><span class="line">slave_repl_offset:70</span><br><span class="line">slave_priority:100</span><br><span class="line">slave_read_only:1</span><br><span class="line">connected_slaves:1</span><br><span class="line">slave0:ip=127.0.0.1,port=6381,state=online,offset=70,lag=0</span><br><span class="line">master_replid:4a38bbfa37586c29139b4ca1e04e8a9c88793651</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:70</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:70</span><br></pre></td></tr></table></figure>
 
 <p>6380 此时的角色是一个从机，它的主机是 6379，但是 6380 自己也有一个从机，那就是 6381。</p>
-<h3 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h3><p>上文一共介绍了两种主从模式了，但是这两种，不管是哪一种，都会存在这样一个问题，那就是当主机宕机时，就会发生群龙无首的情况，如果在主机宕机时，能够从从机中选出一个来充当主机，那么就不用我们每次去手动重启主机了，这就涉及到一个新的话题，那就是哨兵模式。</p>
+<h3 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h3><hr />
+
+<p>上文一共介绍了两种主从模式了，但是这两种，不管是哪一种，都会存在这样一个问题，那就是当主机宕机时，就会发生群龙无首的情况，如果在主机宕机时，能够从从机中选出一个来充当主机，那么就不用我们每次去手动重启主机了，这就涉及到一个新的话题，那就是哨兵模式。</p>
 <p>所谓的哨兵模式，其实并不复杂，我们还是在我们前面的基础上来搭建哨兵模式。假设现在我的 master 是 6379 ，两个从机分别是 6380 和 6381 ，两个从机都是从 6379 上复制数据。先按照上文的步骤，我们配置好一主二仆，然后在 redis 目录下打开 sentinel.conf 文件，做如下配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sentinel monitor mymaster 127.0.0.1 6379 1</span><br></pre></td></tr></table></figure>
 
@@ -467,6 +477,9 @@
 <p>然后启动我们的一主二仆架构，启动成功后，关闭 master，观察哨兵窗口输出的日志，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B603.png" alt="img"></p>
 <p>可以看到，6379 挂掉之后，redis 内部重新举行了选举，6380 重新上位。此时，如果 6379 重启，也不再是扛把子了，只能屈身做一个 slave 了。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

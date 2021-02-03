@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -394,12 +394,13 @@
       
 这里使用 Maven 项目管理工具构建项目
 
-初始化项目打开 Intellij  IDEA，点击 Create New Project，使用 Maven 构建项目，选择 JDK 版本和 maven-archetype-webapp 模板（Java Web 项目）
+初始化项目
+
+打开 Intellij  IDEA，点击 Create New Project，使用 Maven 构建项目，选择 JDK 版本和 maven-archetype-webapp 模板（Java Web 项目）
 
 填写项目在 Maven 仓库中的坐标
 
-选择 Maven 安装路径和 Maven 配置文件路径以及 Maven 本地仓库路径
-......
+选择 Maven 安装路径和 Maven 配置文件路径以及 Maven 本地仓库路......
     </div>
   </a>
   
@@ -434,7 +435,9 @@
       
     </h3>
     <div class="post-content-preview">
-      使用线程有三种使用线程的方法：
+      使用线程
+
+有三种使用线程的方法：
 
 实现 Runnable 接口；
 实现 Callable 接口；
@@ -442,7 +445,7 @@
 
 实现 Runnable 和 Callable 接口的类只能当做一个可以在线程中运行的任务，不是真正意义上的线程，因此最后还需要通过 Thread 来调用。可以理解为任务是通过线程驱动从而执行的。
 实现 Runnable 接口需要实现接口中的 run() 方法。
-123......
+1......
     </div>
   </a>
   
@@ -477,7 +480,9 @@
       
     </h3>
     <div class="post-content-preview">
-      概述Java 的 I/O 大概可以分成以下几类：
+      概述
+
+Java 的 I/O 大概可以分成以下几类：
 
 磁盘操作：File
 字节操作：InputStream 和 OutputStream
@@ -486,9 +491,11 @@
 网络操作：Socket
 新的输入/输出：NIO
 
-磁盘操作File 类可以用于表示文件和目录的信息，但是它不表示文件的内容。
+磁盘操作
+
+File 类可以用于表示文件和目录的信息，但是它不表示文件的内容。
 递归地列出一个目录下所有文件：
-12345678910......
+1234567......
     </div>
   </a>
   
@@ -523,8 +530,10 @@
       
     </h3>
     <div class="post-content-preview">
-      为什么要使用集合当我们需要保存一组类型相同的数据的时候，我们应该是用一个容器来保存，这个容器就是数组，但是，使用数组存储对象具有一定的弊端， 因为我们在实际开发中，存储的数据的类型是多种多样的，于是，就出现了“集合”，集合同样也是用来存储多个数据的。
-数组的缺点是一旦声明之后，长度就不可变了；同时，声明数组时的数据类型也决定了该数组存储的数据的类型；而且，数组存储的数据是有序的、可重复的，特......
+      为什么要使用集合
+
+当我们需要保存一组类型相同的数据的时候，我们应该是用一个容器来保存，这个容器就是数组，但是，使用数组存储对象具有一定的弊端， 因为我们在实际开发中，存储的数据的类型是多种多样的，于是，就出现了“集合”，集合同样也是用来存储多个数据的。
+数组的缺点是一旦声明之后，长度就不可变了；同时，声明数组时的数据类型也决定了该数组存储的数据的类型；而且，数组存储的数据是有序的、可重复的......
     </div>
   </a>
   
@@ -559,7 +568,9 @@
       
     </h3>
     <div class="post-content-preview">
-      数据类型基本类型
+      数据类型
+
+基本类型
 
 
 基本类型
@@ -608,7 +619,7 @@ boolean
 ~
 
 
-boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boole......
+boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boo......
     </div>
   </a>
   
@@ -643,9 +654,13 @@ boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是�
       
     </h3>
     <div class="post-content-preview">
-      Jersey 简介Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
-引入依赖在 pom.xml 中添加 Jersey 相关依赖
-12345&lt;depend......
+      Jersey 简介
+
+Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
+引入依赖
+
+在 pom.xml 中添加 Jersey 相关依赖
+12345&lt;de......
     </div>
   </a>
   
@@ -814,15 +829,11 @@ boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是�
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
-    
-    
-    
     <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
     
     
     
@@ -830,7 +841,7 @@ boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是�
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
@@ -838,11 +849,11 @@ boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是�
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
-    
-    
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
@@ -851,6 +862,10 @@ boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是�
     
     
     <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     

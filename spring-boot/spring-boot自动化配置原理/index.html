@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -330,7 +330,7 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">5</span> Minutes
+              Estimated Reading Time <span class="post-count">6</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
@@ -399,8 +399,12 @@
         <p>Spring Boot 中的自动化配置确实够吸引人，甚至有人说 Spring Boot 让 Java 又一次焕发了生机，这话虽然听着有点夸张，但是不可否认的是，曾经臃肿繁琐的 Spring 配置确实让人感到头大，而 Spring Boot 带来的全新自动化配置，又确实缓解了这个问题。</p>
 <p>如果要问这个自动化配置是怎么实现的，很多人会说不就是 starter 嘛！那么 starter 的原理又是什么呢？参阅文章：<a href="https://antoniopeng.com/spring-boot/%E6%89%8B%E6%92%B8%E4%B8%80%E4%B8%AAspring-boot-starter/">手撸一个 spring-boot-stater</a></p>
 <p>这里边有一个非常关键的点，那就是 <strong>条件注解</strong>，甚至可以说条件注解是整个 Spring Boot 的基石。条件注解并非一个新事物，这是一个存在于 Spring 中的东西，我们在 Spring 中常用的 profile 实际上就是条件注解的一个特殊化。想要把 Spring Boot 的原理搞清，条件注解必须要会用。</p>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>Spring4 中提供了更加通用的条件注解，让我们可以在满足不同条件时创建不同的 Bean，这种配置方式在 Spring Boot 中得到了广泛的使用，大量的自动化配置都是通过条件注解来实现的。例如开发环境、生产环境切换的 Profile 多多少少都有用过吧？实际上这就是条件注解的一个特例。</p>
-<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>抛开 Spring Boot，我们来单纯的看看在 Spring 中条件注解的用法。首先我们来创建一个普通的 Maven 项目，然后引入 <code>spring-context</code>，如下：</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><hr />
+
+<p>Spring4 中提供了更加通用的条件注解，让我们可以在满足不同条件时创建不同的 Bean，这种配置方式在 Spring Boot 中得到了广泛的使用，大量的自动化配置都是通过条件注解来实现的。例如开发环境、生产环境切换的 Profile 多多少少都有用过吧？实际上这就是条件注解的一个特例。</p>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><hr />
+
+<p>抛开 Spring Boot，我们来单纯的看看在 Spring 中条件注解的用法。首先我们来创建一个普通的 Maven 项目，然后引入 <code>spring-context</code>，如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>然后定义一个 <code>Food</code> 接口，里面有一个 <code>showName()</code>：</p>
@@ -428,7 +432,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AnnotationConfigApplicationContext ctx = <span class="keyword">new</span> AnnotationConfigApplicationContext();</span><br><span class="line">        ctx.getEnvironment().getSystemProperties().put(<span class="string">"people"</span>, <span class="string">"南方人"</span>);</span><br><span class="line">        ctx.register(JavaConfig<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        ctx.refresh();</span><br><span class="line">        Food food = (Food) ctx.getBean(<span class="string">"food"</span>);</span><br><span class="line">        System.out.println(food.showName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>首先我们创建一个 <code>AnnotationConfigApplicationContext</code> 实例用来加载 Java 配置类，然后我们添加一个 <code>property</code> 到 <code>environment</code> 中，添加完成后，再去注册我们的配置类，然后刷新容器。容器刷新完成后，我们就可以从容器中去获取 <code>food</code> 的实例了，这个实例会根据 <code>people</code> 属性的不同，而创建出来不同的 <code>Food</code> 实例。这个就是 Spring 中的条件注解。</p>
-<h3 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h3><p>条件注解还有一个进化版，那就是 <code>Profile</code>。我们一般利用 Profile 来实现在开发环境和生产环境之间进行快速切换。其实 Profile 就是利用条件注解来实现的。</p>
+<h3 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h3><hr />
+
+<p>条件注解还有一个进化版，那就是 <code>Profile</code>。我们一般利用 Profile 来实现在开发环境和生产环境之间进行快速切换。其实 Profile 就是利用条件注解来实现的。</p>
 <p>还是刚才的例子，我们用 Profile 来稍微改造一下：首先 <code>Food</code>、<code>Rice</code> 以及 <code>Noodles</code> 的定义不用变，条件注解这次我们不需要了，我们直接在 Bean 定义时添加 <code>@Profile</code> 注解，如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaConfig</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span>(<span class="string">"food"</span>)</span><br><span class="line">    <span class="meta">@Profile</span>(<span class="string">"南方人"</span>)</span><br><span class="line">    <span class="function">Food <span class="title">rice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Rice();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span>(<span class="string">"food"</span>)</span><br><span class="line">    <span class="meta">@Profile</span>(<span class="string">"北方人"</span>)</span><br><span class="line">    <span class="function">Food <span class="title">noodles</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Noodles();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -442,6 +448,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfileCondition</span> <span class="keyword">implements</span> <span class="title">Condition</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(ConditionContext context, AnnotatedTypeMetadata metadata)</span> </span>&#123;</span><br><span class="line">		MultiValueMap&lt;String, Object&gt; attrs = metadata.getAllAnnotationAttributes(Profile<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>())</span>;</span><br><span class="line">		<span class="keyword">if</span> (attrs != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">for</span> (Object value : attrs.get(<span class="string">"value"</span>)) &#123;</span><br><span class="line">				<span class="keyword">if</span> (context.getEnvironment().acceptsProfiles(Profiles.of((String[]) value))) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>看到这里就明白了，其实还是我们在条件注解中写的那一套东西，只不过 <code>@Profile</code> 注解自动帮我们实现了而已。<code>@Profile</code> 虽然方便，但是不够灵活，因为具体的判断逻辑不是我们自己实现的。而 <code>@Conditional</code> 则比较灵活。</p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

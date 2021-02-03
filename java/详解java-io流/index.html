@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Java 的 I/O 大概可以分成以下几类：</p>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><hr />
+
+<p>Java 的 I/O 大概可以分成以下几类：</p>
 <ul>
 <li>磁盘操作：File</li>
 <li>字节操作：InputStream 和 OutputStream</li>
@@ -405,12 +407,16 @@
 <li>网络操作：Socket</li>
 <li>新的输入/输出：NIO</li>
 </ul>
-<h3 id="磁盘操作"><a href="#磁盘操作" class="headerlink" title="磁盘操作"></a>磁盘操作</h3><p>File 类可以用于表示文件和目录的信息，但是它不表示文件的内容。</p>
+<h3 id="磁盘操作"><a href="#磁盘操作" class="headerlink" title="磁盘操作"></a>磁盘操作</h3><hr />
+
+<p>File 类可以用于表示文件和目录的信息，但是它不表示文件的内容。</p>
 <p>递归地列出一个目录下所有文件：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">listAllFiles</span><span class="params">(File dir)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dir == <span class="keyword">null</span> || !dir.exists()) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (dir.isFile()) &#123;</span><br><span class="line">        System.out.println(dir.getName());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (File file : dir.listFiles()) &#123;</span><br><span class="line">        listAllFiles(file);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>从 Java7 开始，可以使用 Paths 和 Files 代替 File。</p>
-<h3 id="字节操作"><a href="#字节操作" class="headerlink" title="字节操作"></a>字节操作</h3><h4 id="实现文件复制"><a href="#实现文件复制" class="headerlink" title="实现文件复制"></a>实现文件复制</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFile</span><span class="params">(String src, String dist)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    FileInputStream in = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">    FileOutputStream out = <span class="keyword">new</span> FileOutputStream(dist);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">20</span> * <span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> cnt;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// read() 最多读取 buffer.length 个字节</span></span><br><span class="line">    <span class="comment">// 返回的是实际读取的个数</span></span><br><span class="line">    <span class="comment">// 返回 -1 的时候表示读到 eof，即文件尾</span></span><br><span class="line">    <span class="keyword">while</span> ((cnt = in.read(buffer, <span class="number">0</span>, buffer.length)) != -<span class="number">1</span>) &#123;</span><br><span class="line">        out.write(buffer, <span class="number">0</span>, cnt);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    in.close();</span><br><span class="line">    out.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字节操作"><a href="#字节操作" class="headerlink" title="字节操作"></a>字节操作</h3><hr />
+
+<h4 id="实现文件复制"><a href="#实现文件复制" class="headerlink" title="实现文件复制"></a>实现文件复制</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFile</span><span class="params">(String src, String dist)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    FileInputStream in = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">    FileOutputStream out = <span class="keyword">new</span> FileOutputStream(dist);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">20</span> * <span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> cnt;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// read() 最多读取 buffer.length 个字节</span></span><br><span class="line">    <span class="comment">// 返回的是实际读取的个数</span></span><br><span class="line">    <span class="comment">// 返回 -1 的时候表示读到 eof，即文件尾</span></span><br><span class="line">    <span class="keyword">while</span> ((cnt = in.read(buffer, <span class="number">0</span>, buffer.length)) != -<span class="number">1</span>) &#123;</span><br><span class="line">        out.write(buffer, <span class="number">0</span>, cnt);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    in.close();</span><br><span class="line">    out.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h4><p>Java I/O 使用了装饰者模式来实现。以 InputStream 为例，</p>
 <ul>
@@ -423,7 +429,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(filePath);</span><br><span class="line">BufferedInputStream bufferedInputStream = <span class="keyword">new</span> BufferedInputStream(fileInputStream);</span><br></pre></td></tr></table></figure>
 
 <p>DataInputStream 装饰者提供了对更多数据类型进行输入的操作，比如 int、double 等基本类型。</p>
-<h3 id="字符操作"><a href="#字符操作" class="headerlink" title="字符操作"></a>字符操作</h3><h4 id="编码与解码"><a href="#编码与解码" class="headerlink" title="编码与解码"></a>编码与解码</h4><p>编码就是把字符转换为字节，而解码是把字节重新组合成字符。</p>
+<h3 id="字符操作"><a href="#字符操作" class="headerlink" title="字符操作"></a>字符操作</h3><hr />
+
+<h4 id="编码与解码"><a href="#编码与解码" class="headerlink" title="编码与解码"></a>编码与解码</h4><p>编码就是把字符转换为字节，而解码是把字节重新组合成字符。</p>
 <p>如果编码和解码过程使用不同的编码方式那么就出现了乱码。</p>
 <ul>
 <li>GBK 编码中，中文字符占 2 个字节，英文字符占 1 个字节；</li>
@@ -445,7 +453,9 @@
 </ul>
 <h4 id="实现逐行输出文本文件的内容"><a href="#实现逐行输出文本文件的内容" class="headerlink" title="实现逐行输出文本文件的内容"></a>实现逐行输出文本文件的内容</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFileContent</span><span class="params">(String filePath)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    FileReader fileReader = <span class="keyword">new</span> FileReader(filePath);</span><br><span class="line">    BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(fileReader);</span><br><span class="line"></span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        System.out.println(line);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 装饰者模式使得 BufferedReader 组合了一个 Reader 对象</span></span><br><span class="line">    <span class="comment">// 在调用 BufferedReader 的 close() 方法时会去调用 Reader 的 close() 方法</span></span><br><span class="line">    <span class="comment">// 因此只要一个 close() 调用即可</span></span><br><span class="line">    bufferedReader.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="对象操作"><a href="#对象操作" class="headerlink" title="对象操作"></a>对象操作</h3><h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>序列化就是将一个对象转换成字节序列，方便存储和传输。</p>
+<h3 id="对象操作"><a href="#对象操作" class="headerlink" title="对象操作"></a>对象操作</h3><hr />
+
+<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>序列化就是将一个对象转换成字节序列，方便存储和传输。</p>
 <ul>
 <li>序列化：ObjectOutputStream.writeObject()</li>
 <li>反序列化：ObjectInputStream.readObject()</li>
@@ -458,7 +468,9 @@
 <p>ArrayList 中存储数据的数组 elementData 是用 transient 修饰的，因为这个数组是动态扩展的，并不是所有的空间都被使用，因此就不需要所有的内容都被序列化。通过重写序列化和反序列化方法，使得可以只序列化数组中有内容的那部分数据。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> Object[] elementData;</span><br></pre></td></tr></table></figure>
 
-<h3 id="网络操作"><a href="#网络操作" class="headerlink" title="网络操作"></a>网络操作</h3><p>Java 中的网络支持：</p>
+<h3 id="网络操作"><a href="#网络操作" class="headerlink" title="网络操作"></a>网络操作</h3><hr />
+
+<p>Java 中的网络支持：</p>
 <ul>
 <li>InetAddress：用于表示网络上的硬件资源，即 IP 地址；</li>
 <li>URL：统一资源定位符；</li>
@@ -481,7 +493,9 @@
 <li>DatagramSocket：通信类</li>
 <li>DatagramPacket：数据包类</li>
 </ul>
-<h3 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h3><p>新的输入/输出 (NIO) 库是在 JDK 1.4 中引入的，弥补了原来的 I/O 的不足，提供了高速的、面向块的 I/O。</p>
+<h3 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h3><hr />
+
+<p>新的输入/输出 (NIO) 库是在 JDK 1.4 中引入的，弥补了原来的 I/O 的不足，提供了高速的、面向块的 I/O。</p>
 <h4 id="流与块"><a href="#流与块" class="headerlink" title="流与块"></a>流与块</h4><p>I/O 与 NIO 最重要的区别是数据打包和传输的方式，I/O 以流的方式处理数据，而 NIO 以块的方式处理数据。</p>
 <p>面向流的 I/O 一次处理一个字节数据：一个输入流产生一个字节数据，一个输出流消费一个字节数据。为流式数据创建过滤器非常容易，链接几个过滤器，以便每个过滤器只负责复杂处理机制的一部分。不利的一面是，面向流的 I/O 通常相当慢。</p>
 <p>面向块的 I/O 一次处理一个数据块，按块处理数据比按流处理数据要快得多。但是面向块的 I/O 缺少一些面向流的 I/O 所具有的优雅性和简单性。</p>
@@ -593,7 +607,7 @@
 <li>NIO 面向块，I/O 面向流。</li>
 </ul>
 <blockquote>
-<p>本文发于：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
 </blockquote>
 
 

@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="轻量级标签"><a href="#轻量级标签" class="headerlink" title="轻量级标签"></a>轻量级标签</h3><p>轻量级标签就像是个不会变化的分支，实际上它就是个指向特定提交对象的引用。</p>
+        <h3 id="轻量级标签"><a href="#轻量级标签" class="headerlink" title="轻量级标签"></a>轻量级标签</h3><hr />
+
+<p>轻量级标签就像是个不会变化的分支，实际上它就是个指向特定提交对象的引用。</p>
 <p>首先我们可以通过如下命令来查看当前仓库中的所有标签：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br></pre></td></tr></table></figure>
 
@@ -417,14 +419,18 @@
 
 <p>表示给 commit 的哈希码为 7d519 的那一次 commit 打上一个标签，如下图：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8604.png" alt="img"></p>
-<h3 id="含附注的标签"><a href="#含附注的标签" class="headerlink" title="含附注的标签"></a>含附注的标签</h3><p>而含附注标签，实际上是存储在仓库中的一个独立对象，它有自身的校验和信息，包含着标签的名字，电子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard (GPG) 来签署或验证。</p>
+<h3 id="含附注的标签"><a href="#含附注的标签" class="headerlink" title="含附注的标签"></a>含附注的标签</h3><hr />
+
+<p>而含附注标签，实际上是存储在仓库中的一个独立对象，它有自身的校验和信息，包含着标签的名字，电子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard (GPG) 来签署或验证。</p>
 <p>打一个含附注的标签很简单，使用 <code>git tag -a &lt;tagname&gt; -m &lt;msg&gt;</code> 命令,如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a v0.0 -m <span class="string">"文件初次建立"</span> 7d519</span><br></pre></td></tr></table></figure>
 
 <p>如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8605.png" alt="img"></p>
 <p>如果不加最后的版本号参数，表示给最新的一次 commit 打标签。</p>
-<h3 id="签署标签"><a href="#签署标签" class="headerlink" title="签署标签"></a>签署标签</h3><p>说到签署标签我们得先介绍一下 GPG ：</p>
+<h3 id="签署标签"><a href="#签署标签" class="headerlink" title="签署标签"></a>签署标签</h3><hr />
+
+<p>说到签署标签我们得先介绍一下 GPG ：</p>
 <blockquote>
 <p>GPG 是加密软件，可以使用 GPG 生成的公钥在网上安全的传播你的文件、代码。为什么说安全的？以 Google 所开发的 repo 为例，repo 即采用 GPG 验证的方式，每个里程碑 tag 都带有 GPG 加密验证，假如在里程碑 v1.12.3 处你想要做修改，修改完后将这个 tag 删除，然后又创建同名 tag 指向你的修改点，这必然是可以的。但是，在你再次 clone 你修改后的项目时，你会发现，你对此里程碑 tag 的改变不被认可，验证失败，导致你的修改在这里无法正常实现。这就是 GPG 验证的作用，这样就能够保证项目作者（私钥持有者）所制定的里程碑别人将无法修改。那么，就可以说，作者的代码是安全传播的。为什么会有这种需求？一个项目从开发到发布，再到后期的更新迭代，一定会存在若干的稳定版本与开发版本（存在不稳定因素）。作为项目发起者、持有者，有权定义他（们）所认可的稳定版本，这个稳定版本，将不允许其他开发者进行改动。还以 Google 的 repo 项目为例，项目所有者定义项目开发过程中的点 A 为稳定版 v1.12.3，那么用户在下载 v1.12.3 版本后，使用的肯定是 A 点所生成的项目、产品，就算其他开发者能够在本地对 v1.12.3 进行重新指定，指定到他们修改后的B点，但是最终修改后的版本给用户用的时候，会出现 GPG 签名验证不通过的问题，也就是说这样的修改是不生效的。</p>
 </blockquote>
@@ -437,13 +443,18 @@
 <p>就把上面的 -a 换成 -s，然后添加 -u 参数，-u 参数的值是我们在生成 GPG Key 的时候配置的 name 属性的值，注意 -u 参数不可以写错，否则标签会创建失败，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8606.png" alt="img"></p>
 <p>如上图，-u 参数写错时，标签创建失败。</p>
-<h3 id="标签推送到远程仓库"><a href="#标签推送到远程仓库" class="headerlink" title="标签推送到远程仓库"></a>标签推送到远程仓库</h3><p>git push 命令并不会把tag提交到远程仓库中去，需要我们手动提交，如下：</p>
+<h3 id="标签推送到远程仓库"><a href="#标签推送到远程仓库" class="headerlink" title="标签推送到远程仓库"></a>标签推送到远程仓库</h3><hr />
+
+<p>git push 命令并不会把tag提交到远程仓库中去，需要我们手动提交，如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin v0.0</span><br></pre></td></tr></table></figure>
 
 <p>表示将 v0.0 标签提交到远程仓库，也可以通过 <code>$ git push origin --tags</code> 提交所有的 tag 到远程仓库，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8607.png" alt="img"></p>
 <p>此时别人调用 git pull 更新代码之后，就能看到我们的 tag。如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%8608.png" alt="img"></p>
+<blockquote>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+</blockquote>
 
 
         <hr>

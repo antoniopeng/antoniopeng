@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">981</span> In Total
+              Words <span class="post-count">985</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -397,14 +397,18 @@
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
         <p><code>Spring  MVC</code> 的处理器拦截器，类似于 <code>Servlet</code> 开发中的过滤器 <code>Filter</code>，用于对处理器进行预处理和后处理。</p>
-<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><hr />
+
+<ul>
 <li>日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。</li>
 <li>权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。</li>
 <li>性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完后记录结束时间，从而得到该请求的处理时间。</li>
 <li>通用行为：读取 Cookie 得到用户信息并将用户对象放入请求，从而方便后续流程使用。</li>
 </ul>
 <p>这里我们简单实现登录拦截功能。</p>
-<h4 id="实现拦截"><a href="#实现拦截" class="headerlink" title="实现拦截"></a>实现拦截</h4><p><code>Spring MVC</code> 拦截器需要实现 <code>HandlerInterceptor</code> 接口，该接口定义了 3 个方法，分别为 <code>preHandle()</code>、<code>postHandle()</code> 和 <code>afterCompletion()</code>，需要通过重写这 3 个方法来对用户的请求进行拦截处理的。</p>
+<h3 id="Spring-MVC-拦截器"><a href="#Spring-MVC-拦截器" class="headerlink" title="Spring MVC 拦截器"></a>Spring MVC 拦截器</h3><hr />
+
+<p><code>Spring MVC</code> 拦截器需要实现 <code>HandlerInterceptor</code> 接口，该接口定义了 3 个方法，分别为 <code>preHandle()</code>、<code>postHandle()</code> 和 <code>afterCompletion()</code>，需要通过重写这 3 个方法来对用户的请求进行拦截处理的。</p>
 <ul>
 <li><code>preHandle()</code>：该方法在请求处理之前进行调用。该方法的返回值是布尔值 <code>Boolean</code> 类型的，当它返回为 <code>false</code> 时，表示请求结束，后续的 <code>Interceptor</code> 和 <code>Controller</code> 都不会再执行；当返回值为 <code>true</code> 时，就会继续调用下一个拦截器的 <code>preHandle</code> 方法，如果已经是最后一个拦截器的时候，就会是调用当前请求的 <code>Controller</code> 中的方法。</li>
 <li><code>postHandle()</code>：只能在当前所属拦截器的 <code>preHandle()</code> 的返回值为 <code>true</code> 的时候，才能被调用。<code>postHandle()</code> 在当前请求进行处理之后，也就是在 <code>Controller</code> 中的方法调用之后执行，但是它会在 <code>DispatcherServlet</code> 进行视图返回渲染之前被调用，所以在这个方法中对 <code>Controller</code> 处理之后的 <code>ModelAndView</code> 对象进行操作。</li>
@@ -425,7 +429,7 @@
 <li><code>bean</code>：配置指定的拦截器对象</li>
 </ul>
 <blockquote>
-<p>本文发于：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
+<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
 </blockquote>
 
 
@@ -523,7 +527,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#应用场景"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">应用场景</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#实现拦截"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">实现拦截</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建拦截器"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">创建拦截器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置拦截器"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">配置拦截器</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#应用场景"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">应用场景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-MVC-拦截器"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Spring MVC 拦截器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建拦截器"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">创建拦截器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置拦截器"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">配置拦截器</span></a></li></ol></li></ol>
         
         </div>
       </aside>

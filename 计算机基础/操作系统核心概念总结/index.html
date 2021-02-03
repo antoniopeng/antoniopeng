@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,7 +396,9 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="操作系统基础"><a href="#操作系统基础" class="headerlink" title="操作系统基础"></a>操作系统基础</h3><h4 id="什么是操作系统"><a href="#什么是操作系统" class="headerlink" title="什么是操作系统"></a>什么是操作系统</h4><p>操作系统是管理 <strong>计算机硬件</strong> 与 <strong>软件资源</strong> 的程序，是计算机系统的内核与基石，本质上是运行在计算机上的软件程序，为用户提供一个与系统交互的操作界面。它分为内核和外壳，内核是能操作硬件的程序，而外壳即围绕着内核的应用程序。</p>
+        <h3 id="操作系统基础"><a href="#操作系统基础" class="headerlink" title="操作系统基础"></a>操作系统基础</h3><hr />
+
+<h4 id="什么是操作系统"><a href="#什么是操作系统" class="headerlink" title="什么是操作系统"></a>什么是操作系统</h4><p>操作系统是管理 <strong>计算机硬件</strong> 与 <strong>软件资源</strong> 的程序，是计算机系统的内核与基石，本质上是运行在计算机上的软件程序，为用户提供一个与系统交互的操作界面。它分为内核和外壳，内核是能操作硬件的程序，而外壳即围绕着内核的应用程序。</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%9301.png-watermark" alt=""></p>
 <h4 id="什么是系统调用"><a href="#什么是系统调用" class="headerlink" title="什么是系统调用"></a>什么是系统调用</h4><p>介绍系统调用之前，先了解一下 <strong>用户态</strong> 和 <strong>系统态</strong>。根据进程访问资源的特点，可以把进程在系统上的运行分为以下两个级别：</p>
 <ol>
@@ -411,7 +413,9 @@
 <li><strong>进程通信</strong>：完成进程之间的消息传递或信号传递等功能。</li>
 <li><strong>内存管理</strong>：完成内存的分配、回收以及获取作业占用内存区大小及地等功能。</li>
 </ul>
-<h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><h4 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h4><p>下图是 <code>Java</code> 内存区域，我们从 <code>JVM</code> 的角度说一下线程和进程之间的关系。</p>
+<h3 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h3><hr />
+
+<h4 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h4><p>下图是 <code>Java</code> 内存区域，我们从 <code>JVM</code> 的角度说一下线程和进程之间的关系。</p>
 <p><img src="https://qiniuyun.antoniopeng.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%9302.png-watermark" alt=""></p>
 <p>从上图可以看出，一个进程中可以有多个线程，多个线程共享进程的 <strong>堆</strong> 和 <strong>方法区（JDK8 之后的元空间）</strong> 资源，但是每个线程有自己的 <strong>虚拟机栈</strong>、<strong>本地方法栈</strong>、<strong>程序计数器</strong>。</p>
 <p>总的来说，进程和线程有以下几点区别：</p>
@@ -462,7 +466,9 @@
 <li><p><strong>优先级调度</strong>：为每个流程分配优先级，首先执行具有最高优先级的进程，以此类推。可以根据内存要求、时间要求或任何其它资源要求来确定优先级。</p>
 </li>
 </ul>
-<h3 id="内存管理基础"><a href="#内存管理基础" class="headerlink" title="内存管理基础"></a>内存管理基础</h3><h4 id="内存管理介绍"><a href="#内存管理介绍" class="headerlink" title="内存管理介绍"></a>内存管理介绍</h4><p>操作系统的内存管理主要负责 <strong>内存的分配与回收</strong>，另外地址转换也就是将逻辑地址转换成相应的物理地址等功能。</p>
+<h3 id="内存管理基础"><a href="#内存管理基础" class="headerlink" title="内存管理基础"></a>内存管理基础</h3><hr />
+
+<h4 id="内存管理介绍"><a href="#内存管理介绍" class="headerlink" title="内存管理介绍"></a>内存管理介绍</h4><p>操作系统的内存管理主要负责 <strong>内存的分配与回收</strong>，另外地址转换也就是将逻辑地址转换成相应的物理地址等功能。</p>
 <h4 id="常见的几种内存管理机制"><a href="#常见的几种内存管理机制" class="headerlink" title="常见的几种内存管理机制"></a>常见的几种内存管理机制</h4><p>简单分为 <strong>连续分配管理方式</strong> 和 <strong>非连续分配管理方式</strong> 这两种。<strong>连续分配管理方式</strong> 是指为一个用户程序分配一个连续的内存空间，常见的的如 <strong>块式管理</strong>；<strong>非连续分配管理方式</strong> 允许一个程序使用的内存分布在离散或者说不相邻的内存中，常见的如 <strong>页式管理</strong> 和 <strong>段式管理</strong>。</p>
 <ul>
 <li><strong>块式管理</strong>：将内存分为几个固定大小的块，每个块中只包含一个进程。如果程序运行需要内存的话，操作系统就分配给它一块，如果程序运行只需要很小的空间的话，分配的这块内存很大一部分几乎就浪费了。这些在每个块中未被利用的空间称之为碎片。</li>
@@ -510,7 +516,9 @@
 <li>程序可以使用一系列虚拟地址来访问大于可用物理内存的内存缓冲区。当物理内存的供应量变小时，内存管理器会将物理内存页保存到磁盘文件。</li>
 <li>不同进程使用的虚拟地址彼此隔离，一个进程中的代码无法更改正在由另一进程或操作系统使用的物理内存。</li>
 </ol>
-<h3 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h3><h4 id="什么是虚拟内存？"><a href="#什么是虚拟内存？" class="headerlink" title="什么是虚拟内存？"></a>什么是虚拟内存？</h4><p>通过虚拟内存可以让程序可以拥有超过系统物理内存大小的可用内存空间。并且虚拟内存为每个进程提供了一个一致的、私有的地址空间。</p>
+<h3 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h3><hr />
+
+<h4 id="什么是虚拟内存？"><a href="#什么是虚拟内存？" class="headerlink" title="什么是虚拟内存？"></a>什么是虚拟内存？</h4><p>通过虚拟内存可以让程序可以拥有超过系统物理内存大小的可用内存空间。并且虚拟内存为每个进程提供了一个一致的、私有的地址空间。</p>
 <p>虚拟内存是计算机系统内存管理的一种技术，我们可以手动设置自己电脑的虚拟内存。虚拟内存的重要意义是它定义了一个连续的虚拟地址空间，并且把内存扩展到硬盘空间。</p>
 <h4 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h4><p>局部性原理是虚拟内存技术的基础，正是因为程序运行具有局部性原理，才可以只装入部分程序到内存就开始运行。</p>
 <p>局部性原理表现在以下两方面：</p>

@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -397,8 +397,12 @@
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
         <p>我们使用 Spring Boot，基本上都是沉醉在它 Stater 的方便之中。Starter 为我们带来了众多的自动化配置，有了这些自动化配置，我们可以不费吹灰之力就能搭建一个生产级开发环境，有的小伙伴会觉得这个 Starter 好神奇呀！其实 Starter 也都是 Spring + SpringMVC 中的基础知识点实现的，接下来带大家自己来撸一个 Starter ，慢慢揭开 Starter 的神秘面纱！</p>
-<h3 id="核心知识"><a href="#核心知识" class="headerlink" title="核心知识"></a>核心知识</h3><p>其实 Starter 的核心就是条件注解 <code>@Conditional</code> ，当 classpath 下存在某一个 Class 时，某个配置才会生效。</p>
-<h3 id="定义自己的-Starter"><a href="#定义自己的-Starter" class="headerlink" title="定义自己的 Starter"></a>定义自己的 Starter</h3><p>所谓的 Starter ，其实就是一个普通的 Maven 项目，因此我们自定义 Starter ，需要首先创建一个普通的 Maven 项目，创建完成后，添加 Starter 的自动化配置类即可，如下：</p>
+<h3 id="核心知识"><a href="#核心知识" class="headerlink" title="核心知识"></a>核心知识</h3><hr />
+
+<p>其实 Starter 的核心就是条件注解 <code>@Conditional</code> ，当 classpath 下存在某一个 Class 时，某个配置才会生效。</p>
+<h3 id="定义自己的-Starter"><a href="#定义自己的-Starter" class="headerlink" title="定义自己的 Starter"></a>定义自己的 Starter</h3><hr />
+
+<p>所谓的 Starter ，其实就是一个普通的 Maven 项目，因此我们自定义 Starter ，需要首先创建一个普通的 Maven 项目，创建完成后，添加 Starter 的自动化配置类即可，如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-autoconfigure<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.8.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>配置完成后，我们首先创建一个 <code>HelloProperties</code> 类，用来接受 <code>application.properties</code> 中注入的值，如下：</p>
@@ -430,10 +434,14 @@
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">org.springframework.boot.autoconfigure.EnableAutoConfiguration</span>=<span class="string">com.antonio.mystarter.HelloServiceAutoConfiguration</span></span><br></pre></td></tr></table></figure>
 
 <p>在这里指定我们的自动化配置类的路径即可。如此之后我们的自动化配置类就算完成了。</p>
-<h3 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h3><p>如果在公司里，大伙可能需要将刚刚写好的自动化配置类打包，然后上传到 Maven 私服上，供其他同事下载使用，我这里就简单一些，我就不上传私服了，我将这个自动化配置类安装到本地仓库，然后在其他项目中使用即可。安装方式很简单，在 IntelliJ IDEA 中，点击右边的 Maven Project ，然后选择 Lifecycle 中的 install ，双击即可，如下：</p>
+<h3 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h3><hr />
+
+<p>如果在公司里，大伙可能需要将刚刚写好的自动化配置类打包，然后上传到 Maven 私服上，供其他同事下载使用，我这里就简单一些，我就不上传私服了，我将这个自动化配置类安装到本地仓库，然后在其他项目中使用即可。安装方式很简单，在 IntelliJ IDEA 中，点击右边的 Maven Project ，然后选择 Lifecycle 中的 install ，双击即可，如下：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/spring-boot%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89starter02.png" alt="img"></p>
 <p>双击完成后，这个 Starter 就安装到我们本地仓库了，当然小伙伴也可以使用 Maven 命令去安装。</p>
-<h3 id="使用-Starter"><a href="#使用-Starter" class="headerlink" title="使用 Starter"></a>使用 Starter</h3><p>接下来，我们来新建一个普通的 Spring Boot 工程，这个 Spring Boot 创建成功之后，加入我们自定义 Starter 的依赖，如下：</p>
+<h3 id="使用-Starter"><a href="#使用-Starter" class="headerlink" title="使用 Starter"></a>使用 Starter</h3><hr />
+
+<p>接下来，我们来新建一个普通的 Spring Boot 工程，这个 Spring Boot 创建成功之后，加入我们自定义 Starter 的依赖，如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.antonio<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mystarter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>此时我们引入了上面自定义的 Starter ，也即我们项目中现在有一个默认的 HelloService 实例可以使用，而且关于这个实例的数据，我们还可以在 <code>application.properties</code> 中进行配置，如下：</p>

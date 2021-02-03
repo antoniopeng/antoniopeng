@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -398,15 +398,23 @@
 
         <p>镜像也是 docker 的核心组件之一，镜像时容器运行的基础，容器是镜像运行后的形态。前面我们介绍了容器的用法，今天来和大家聊聊镜像的问题。</p>
 <p>总体来说，镜像是一个包含程序运行必要以来环境和代码的只读文件，它采用分层的文件系统，将每一层的改变以读写层的形式增加到原来的只读文件上。这有点像洋葱，一层一层的，当我们后面学习了 Dockerfile ，相信大家对于这样的架构理解将更为准确。</p>
-<h3 id="镜像与容器的关系"><a href="#镜像与容器的关系" class="headerlink" title="镜像与容器的关系"></a>镜像与容器的关系</h3><p>前文已经向读者介绍过容器的使用了，细心的读者可能已经发现，容器在启动或者创建时，必须指定一个镜像的名称或者 id ，其实，这时镜像所扮演的角色就是容器的模版，不同的镜像可以构造出不同的容器，同一个镜像，我们也可以通过配置不同参数来构造出不通的容器。如下命令：</p>
+<h3 id="镜像与容器的关系"><a href="#镜像与容器的关系" class="headerlink" title="镜像与容器的关系"></a>镜像与容器的关系</h3><hr />
+
+<p>前文已经向读者介绍过容器的使用了，细心的读者可能已经发现，容器在启动或者创建时，必须指定一个镜像的名称或者 id ，其实，这时镜像所扮演的角色就是容器的模版，不同的镜像可以构造出不同的容器，同一个镜像，我们也可以通过配置不同参数来构造出不通的容器。如下命令：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd --name nginx nginx</span><br></pre></td></tr></table></figure>
 
 <p>命令中的最后一个 nginx 即表示创建该容器所需要的镜像（模版），当然这里还省略了一些信息，例如版本号等，这些我们后文会详细介绍。</p>
-<h3 id="镜像的体系结构"><a href="#镜像的体系结构" class="headerlink" title="镜像的体系结构"></a>镜像的体系结构</h3><p>镜像的最底层是一个启动文件系统（bootfs）镜像，bootfs 的上层镜像叫做根镜像，一般来说，根镜像是一个操作系统，例如 Ubuntu、CentOS 等，用户的镜像必须构建于根镜像之上，在根镜像之上，用户可以构建出各种各样的其他镜像。<br>从上面的介绍读者可以看出，镜像的本质其实就是一系列文件的集合，一层套一层的结构有点类似于 Git ，也有点类似于生活中的洋葱里面的样子。</p>
-<h3 id="镜像的写时复制机制"><a href="#镜像的写时复制机制" class="headerlink" title="镜像的写时复制机制"></a>镜像的写时复制机制</h3><p>通过 <code>docker run</code> 命令指定一个容器创建镜像时，实际上是在该镜像之上创建一个空的可读写的文件系统层级，可以将这个文件系统层级当成一个临时的镜像来对待，而命令中所指的模版镜像则可以称之为父镜像。父镜像的内容都是以只读的方式挂载进来的，容器会读取共享父镜像的内容，用户所做的所有修改都是在文件系统中，不会对父镜像造成任何影响。当然用户可以通过其他一些手段使修改持久化到父镜像中，这个我们后面会详细介绍到。</p>
+<h3 id="镜像的体系结构"><a href="#镜像的体系结构" class="headerlink" title="镜像的体系结构"></a>镜像的体系结构</h3><hr />
+
+<p>镜像的最底层是一个启动文件系统（bootfs）镜像，bootfs 的上层镜像叫做根镜像，一般来说，根镜像是一个操作系统，例如 Ubuntu、CentOS 等，用户的镜像必须构建于根镜像之上，在根镜像之上，用户可以构建出各种各样的其他镜像。<br>从上面的介绍读者可以看出，镜像的本质其实就是一系列文件的集合，一层套一层的结构有点类似于 Git ，也有点类似于生活中的洋葱里面的样子。</p>
+<h3 id="镜像的写时复制机制"><a href="#镜像的写时复制机制" class="headerlink" title="镜像的写时复制机制"></a>镜像的写时复制机制</h3><hr />
+
+<p>通过 <code>docker run</code> 命令指定一个容器创建镜像时，实际上是在该镜像之上创建一个空的可读写的文件系统层级，可以将这个文件系统层级当成一个临时的镜像来对待，而命令中所指的模版镜像则可以称之为父镜像。父镜像的内容都是以只读的方式挂载进来的，容器会读取共享父镜像的内容，用户所做的所有修改都是在文件系统中，不会对父镜像造成任何影响。当然用户可以通过其他一些手段使修改持久化到父镜像中，这个我们后面会详细介绍到。</p>
 <p>简而言之，镜像就是一个固定的不会变化的模版文件，容器是根据这个模版创建出来的，容器会在模版的基础上做一些修改，这些修改本身并不会影响到模版，我们还可以根据模版（镜像）创建出来更多的容器。</p>
 <p>如果有必要，我们是可以修改模版（镜像）的。</p>
-<h3 id="镜像查看"><a href="#镜像查看" class="headerlink" title="镜像查看"></a>镜像查看</h3><p>用户可以通过 <code>docker images</code> 命令查看本地所有镜像：</p>
+<h3 id="镜像查看"><a href="#镜像查看" class="headerlink" title="镜像查看"></a>镜像查看</h3><hr />
+
+<p>用户可以通过 <code>docker images</code> 命令查看本地所有镜像：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br></pre></td></tr></table></figure>
 
 <p>这里一共有五个参数，含义分别如下：</p>
@@ -426,7 +434,9 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker images n*</span><br></pre></td></tr></table></figure>
 
 <p>如果需要查看镜像的详细信息，也可以通过上文提到的 <code>docker inspect</code> 命令来查看。</p>
-<h3 id="镜像下载"><a href="#镜像下载" class="headerlink" title="镜像下载"></a>镜像下载</h3><p>当用户执行 <code>docker run</code> 命令时，就会自动去 Docker Hub 上下载相关的镜像，这个就不再重复演示，开发者也可以通过 search 命令去 Docker Hub 上搜索符合要求的镜像：</p>
+<h3 id="镜像下载"><a href="#镜像下载" class="headerlink" title="镜像下载"></a>镜像下载</h3><hr />
+
+<p>当用户执行 <code>docker run</code> 命令时，就会自动去 Docker Hub 上下载相关的镜像，这个就不再重复演示，开发者也可以通过 search 命令去 Docker Hub 上搜索符合要求的镜像：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker search ubuntu</span><br></pre></td></tr></table></figure>
 
 <p>搜索结果的参数如下：</p>
@@ -443,12 +453,16 @@
 <p>运行命令如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd -name 163nginx -p 80:80 hub.c.163.com/library/ngxin:latest</span><br></pre></td></tr></table></figure>
 
-<h3 id="镜像删除"><a href="#镜像删除" class="headerlink" title="镜像删除"></a>镜像删除</h3><p>镜像可以通过 <code>docker rmi</code> 命令进行删除，参数为镜像的 id 或者镜像名，参数可以有多个，多个参数之间用空格隔开。如下：</p>
+<h3 id="镜像删除"><a href="#镜像删除" class="headerlink" title="镜像删除"></a>镜像删除</h3><hr />
+
+<p>镜像可以通过 <code>docker rmi</code> 命令进行删除，参数为镜像的 id 或者镜像名，参数可以有多个，多个参数之间用空格隔开。如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker rmi 345342433 ngxin:latest</span><br></pre></td></tr></table></figure>
 
 <p>有的时候，无法删除一个镜像，大部分原因是因为该镜像被一个容器所依赖，此时需要先删除容器，然后就可以删除镜像了，删除容器的命令可以参考本系列前面的文章。</p>
 <p>通过前面文章的阅读，已经了解到所谓的容器实际上是在父镜像的基础上创建了一个可读写的文件层级，所有的修改操作都在这个文件层级上进行，而父镜像并未受影响，如果读者需要根据这种修改创建一个新的本地镜像，有两种不同的方式，先来看第一种方式：commit。</p>
-<h3 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h3><p>首先，根据本地镜像运行一个容器：</p>
+<h3 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h3><hr />
+
+<p>首先，根据本地镜像运行一个容器：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd --name nginx -p 80:80 43523432434</span><br></pre></td></tr></table></figure>
 
 <p>命令解释：</p>
@@ -460,7 +474,9 @@
 <li>接下来再重新创建一个容器，名为 nginx2。</li>
 <li>访问 nginx2，发现 nginx2 中默认的页面还是 nginx 的默认页面，并未发生改变。</li>
 </ol>
-<h3 id="commint-创建本地镜像"><a href="#commint-创建本地镜像" class="headerlink" title="commint 创建本地镜像"></a>commint 创建本地镜像</h3><p>接下来，根据刚刚创建的第一个容器，创建一个本地镜像：</p>
+<h3 id="commint-创建本地镜像"><a href="#commint-创建本地镜像" class="headerlink" title="commint 创建本地镜像"></a>commint 创建本地镜像</h3><hr />
+
+<p>接下来，根据刚刚创建的第一个容器，创建一个本地镜像：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit -m <span class="string">"update index.html"</span> --author=<span class="string">'sang'</span> a123434234 sang/nginx:v1</span><br></pre></td></tr></table></figure>
 
 <p>然后运行刚刚创建的本地镜像。</p>
@@ -475,7 +491,9 @@
 <li>通过刚刚创建的镜像运行一个容器，访问该容器，发现 nginx 默认的首页已经发生改变。</li>
 </ol>
 <p>这是我们通过 commint 方式创建本地镜像的方式，但是 commit 方式存在一些问题，比如不够透明化，无法重复，体积较大，为了解决这些问题，可以考虑使用 Dockerfile ，实际上，主流方案也是 Dockerfile。</p>
-<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>Dockerfile 就是一个普通的文本文件，其内包含了一条条的指令，每一条指令都会构建一层。先来看一个简单的例子。首先在一个空白目录下创建一个名为 Dockerfile 的文件，内容如下：</p>
+<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><hr />
+
+<p>Dockerfile 就是一个普通的文本文件，其内包含了一条条的指令，每一条指令都会构建一层。先来看一个简单的例子。首先在一个空白目录下创建一个名为 Dockerfile 的文件，内容如下：</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ngxin</span><br><span class="line"><span class="keyword">MAINTAINER</span> sang <span class="string">"antoniopeng@foxmail.com"</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'hello docker!'</span>&gt;/usr/share/nginx/html/index.html</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./hello.html /usr/share/nginx/html/</span></span><br></pre></td></tr></table></figure>
 
 <p>命令解释：</p>
