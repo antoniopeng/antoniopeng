@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">2.6k</span> In Total
+              Words <span class="post-count">2.5k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -438,8 +438,7 @@
 <p>在 UserService 中添加实现方法，这里忽略了 NullPointerException，当id为1时抛出 IndexOutOfBoundsException，id为2时抛出 NullPointerException</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HystrixCommand</span>(fallbackMethod = <span class="string">"getDefaultUser2"</span>, ignoreExceptions = &#123;NullPointerException<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">CommonResult</span> <span class="title">getUserException</span>(<span class="title">Long</span> <span class="title">id</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (id == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (id == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> restTemplate.getForObject(userServiceUrl + <span class="string">"/user/&#123;1&#125;"</span>, CommonResult<span class="class">.<span class="keyword">class</span>, <span class="title">id</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> CommonResult <span class="title">getDefaultUser2</span><span class="params">(@PathVariable Long id, Throwable e)</span> </span>&#123;</span><br><span class="line">    LOGGER.error(<span class="string">"getDefaultUser2 id:&#123;&#125;,throwable class:&#123;&#125;"</span>, id, e.getClass());</span><br><span class="line">    User defaultUser = <span class="keyword">new</span> User(-<span class="number">2L</span>, <span class="string">"defaultUser2"</span>, <span class="string">"123456"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> CommonResult&lt;&gt;(defaultUser);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>调用接口进行测试：<a href="http://localhost:8401/user/tesException/1" target="_blank" rel="noopener">http://localhost:8401/user/tesException/1</a></p>
-<p>调用接口进行测试：<a href="http://localhost:8401/user/tesException/2" target="_blank" rel="noopener">http://localhost:8401/user/tesException/1</a></p>
+<p>调用接口进行测试：<a href="http://localhost:8401/user/tesException/1" target="_blank" rel="noopener">http://localhost:8401/user/tesException/1</a> 和 <a href="http://localhost:8401/user/tesException/2" target="_blank" rel="noopener">http://localhost:8401/user/tesException/1</a></p>
 <h3 id="Hytrix-的请求缓存"><a href="#Hytrix-的请求缓存" class="headerlink" title="Hytrix 的请求缓存"></a>Hytrix 的请求缓存</h3><hr />
 
 <p>当系统并发量越来越大时，我们需要使用缓存来优化系统，达到减轻并发请求线程数，提供响应速度的效果。</p>
@@ -503,7 +502,7 @@
           
           
           <li class="next">
-            <a href="/spring-cloud/spring-cloud-ribbon负载均衡的服务调用/" data-toggle="tooltip" data-placement="top" title="Spring Cloud Ribbon 负载均衡的服务调用">Next Post &rarr;</a>
+            <a href="/spring-cloud/spring-cloud-ribbon负载均衡调用服务/" data-toggle="tooltip" data-placement="top" title="Spring Cloud Ribbon 负载均衡调用服务">Next Post &rarr;</a>
           </li>
           
         </ul>
