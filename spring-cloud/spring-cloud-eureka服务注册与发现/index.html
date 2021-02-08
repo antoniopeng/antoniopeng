@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -396,18 +396,16 @@
 
 		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
 
-        <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><hr />
+        <h3 id="Eureka-简介"><a href="#Eureka-简介" class="headerlink" title="Eureka 简介"></a>Eureka 简介</h3><hr />
 
 <p>Spring Cloud Eureka 是 Spring Cloud Netflix 子项目的核心组件之一，主要用于微服务架构中的服务治理。 本文将对搭建 Eureka 注册中心，搭建 Eureka 客户端，搭建 Eureka 集群及给 Eureka 注册中心添加登录认证进行介绍。</p>
-<h3 id="Eureka-简介"><a href="#Eureka-简介" class="headerlink" title="Eureka 简介"></a>Eureka 简介</h3><hr />
-
 <p>在微服务架构中往往会有一个注册中心，每个微服务都会向注册中心去注册自己的地址及端口信息，注册中心维护着服务名称与服务实例的对应关系。每个微服务都会定时从注册中心获取服务列表，同时汇报自己的运行情况，这样当有的服务需要调用其他服务时，就可以从自己获取到的服务列表中获取实例地址进行调用，Eureka实现了这套服务注册与发现机制。</p>
 <h3 id="搭建-Eureka-注册中心"><a href="#搭建-Eureka-注册中心" class="headerlink" title="搭建 Eureka 注册中心"></a>搭建 Eureka 注册中心</h3><hr />
 
 <blockquote>
 <p>这里我们以创建并运行 Eureka 注册中心来看看在 IDEA 中创建并运行 Spring Cloud 应用的正确姿势。</p>
 </blockquote>
-<h4 id="使用-IDEA-创建项目"><a href="#使用-IDEA-创建项目" class="headerlink" title="使用 IDEA 创建项目"></a>使用 IDEA 创建项目</h4><p>创建一个 eureka-server 模块，并使用 Spring Initializer 初始化一个 Spring Boot 项目</p>
+<p>创建一个 eureka-server 模块，并使用 Spring Initializer 初始化一个 Spring Boot 项目</p>
 <p><img src="https://qiniuyun.antoniopeng.com/spring-cloud-eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B001.png" alt="img"></p>
 <p>填写应用信息</p>
 <p><img src="https://qiniuyun.antoniopeng.com/spring-cloud-eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B002.png" alt="img"></p>
@@ -441,9 +439,7 @@
 <p><img src="https://qiniuyun.antoniopeng.com/spring-cloud-eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B006.png" alt="img"></p>
 <h3 id="搭建-Eureka-注册中心集群"><a href="#搭建-Eureka-注册中心集群" class="headerlink" title="搭建 Eureka 注册中心集群"></a>搭建 Eureka 注册中心集群</h3><hr />
 
-<blockquote>
 <p>由于所有服务都会注册到注册中心去，服务之间的调用都是通过从注册中心获取的服务列表来调用，注册中心一旦宕机，所有服务调用都会出现问题。所以我们需要多个注册中心组成集群来提供服务，下面将搭建一个双节点的注册中心集群。</p>
-</blockquote>
 <h4 id="相关配置-2"><a href="#相关配置-2" class="headerlink" title="相关配置"></a>相关配置</h4><p>给 eureka-sever 添加配置文件 application-replica1.yml 配置第一个注册中心</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8002</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eureka-server</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">replica1</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">serviceUrl:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://replica2:8003/eureka/</span> <span class="comment">#注册到另一个Eureka注册中心</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">register-with-eureka:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
@@ -499,6 +495,10 @@
         <hr>
         <!-- Pager -->
         <ul class="pager">
+          
+          <li class="previous">
+            <a href="/spring-cloud/spring-cloud-ribbon负载均衡的服务调用/" data-toggle="tooltip" data-placement="top" title="Spring Cloud Ribbon 负载均衡的服务调用">&larr; Previous Post</a>
+          </li>
           
           
           <li class="next">
@@ -586,7 +586,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#摘要"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">摘要</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Eureka-简介"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Eureka 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#搭建-Eureka-注册中心"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">搭建 Eureka 注册中心</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用-IDEA-创建项目"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">使用 IDEA 创建项目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">相关配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#搭建-Eureka-客户端"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">搭建 Eureka 客户端</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖-1"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置-1"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">相关配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#搭建-Eureka-注册中心集群"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">搭建 Eureka 注册中心集群</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置-2"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">相关配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行-Eureka-注册中心集群"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">运行 Eureka 注册中心集群</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#给-Eureka-注册中心添加认证"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">给 Eureka 注册中心添加认证</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖-2"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置-3"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#eureka-client-注册到有登录认证的注册中心"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">eureka-client 注册到有登录认证的注册中心</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Eureka的常用配置"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">Eureka的常用配置</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Eureka-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Eureka 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#搭建-Eureka-注册中心"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">搭建 Eureka 注册中心</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">相关配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#搭建-Eureka-客户端"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">搭建 Eureka 客户端</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖-1"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置-1"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">相关配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#搭建-Eureka-注册中心集群"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">搭建 Eureka 注册中心集群</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置-2"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">相关配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行-Eureka-注册中心集群"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">运行 Eureka 注册中心集群</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#给-Eureka-注册中心添加认证"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">给 Eureka 注册中心添加认证</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖-2"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置-3"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">相关配置</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#eureka-client-注册到有登录认证的注册中心"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">eureka-client 注册到有登录认证的注册中心</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Eureka的常用配置"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">Eureka的常用配置</span></a></li></ol>
         
         </div>
       </aside>
