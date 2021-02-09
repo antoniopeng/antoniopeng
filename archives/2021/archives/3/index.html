@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -373,6 +373,150 @@
 
       <!-- Main Content -->
 
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/mysql读写分离/">
+    <h2 class="post-title">
+      MySQL 读写分离
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      准备工作
+
+我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
+
+这里，我们准备两台机器：
+
+主机：192.168.248.128
+从机：192.168.248.139
+
+主机配置
+
+主机的配置就三个步骤，比较容易：
+授权给从机服务器
+12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identifie......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/mysql主从复制/">
+    <h2 class="post-title">
+      MySQL 主从复制
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      主从规划
+
+首先规划两个 MySQL 实例：
+
+主机：192.168.66.131:33061
+从机：192.168.66.131:33062
+
+当然大家可以准备多个从机，从机的配置步骤是一样的。接下来，我们就开始主从的配置。
+配置主机
+
+主机上的配置，主要是两个地方：
+
+第一个是配置一个从机登录用户
+第二个配置开启 binlog。
+
+如果是 Docker 中创建的 MySQL 实例，默认只......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/centos上安装mysql/">
+    <h2 class="post-title">
+      CentOS 上安装 MySQL
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      平时我一般首选 Ubuntu，不过公司里边使用一般还是 CentOS 为主，因此这里就以 CentOS 为例来向大家演示整个过程，今天这篇文章主要来看看 MySQL 的安装。
+安装环境：
+
+CentOS7
+MySQL5.7
+
+安装步骤
+
+检查是否安装了 mariadb，如果已经安装了则卸载：
+1$ yum list installed | grep mariadb
+
+如果执行结果如下，表示已......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -655,120 +799,6 @@ lrange返回列表 key 中指定区间内的......
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/高性能缓存数据库redis入门篇/">
-    <h2 class="post-title">
-      高性能缓存数据库 Redis 入门篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      什么是 Redis
-
-Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。从 2015 年 6 月开始，Redis 的开发由 Redis Labs 赞助，而 2013 年 5 月至 2015 年 6 月期间，其开发由 Pivotal 赞助。在 2013 年 5 月之前，其开发由 VMware 赞助。根据月度排行网站 DB-Engines.com......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-24
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot中邮件发送的五种姿势/">
-    <h2 class="post-title">
-      Spring Boot 中邮件发送的五种姿势
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      邮件发送其实是一个非常常见的需求，用户注册，找回密码等地方，都会用到，使用 JavaSE 代码发送邮件，步骤还是挺繁琐的，Spring Boot 中对于邮件发送，提供了相关的自动化配置类，使得邮件发送变得非常容易，本文我们看看使用 Spring Boot 发送邮件的 5 中姿势。
-邮件基础
-
-我们经常会听到各种各样的邮件协议，比如 SMTP、POP3、IMAP ，那么这些协议有什么作用，有什......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-24
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot中使用cors解决跨域问题/">
-    <h2 class="post-title">
-      Spring Boot 中使用 CORS 解决跨域问题
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      同源策略
-
-很多人对跨域有一种误解，以为这是前端的事，和后端没关系，其实不是这样的，说到跨域，就不得不说说浏览器的同源策略。
-
-同源策略是由 Netscape 提出的一个著名的安全策略，它是浏览器最核心也最基本的安全功能，现在所有支持 JavaScript 的浏览器都会使用这个策略。所谓同源是指协议、域名以及端口要相同。同源策略是基于安全方面的考虑提出来的，这个策略本身没问题，但是我们在实际......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-24
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -915,11 +945,11 @@ Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可
     
     
     
-    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
-    
-    
-    
     <a href="/tags/#Git" title="Git" rel="7">Git</a>
+    
+    
+    
+    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
     
     
     
@@ -927,15 +957,11 @@ Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可
     
     
     
-    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
-    
-    
-    
     <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
@@ -943,11 +969,15 @@ Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可
     
     
     
-    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
     <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
     
     
     
@@ -959,7 +989,7 @@ Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可
     
     
     
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="7">Spring Cloud</a>
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="10">Spring Cloud</a>
     
     
     
@@ -1021,7 +1051,7 @@ Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../02/">February 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../01/">January 2021</a><span class="archive-list-count">64</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../02/">February 2021</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../01/">January 2021</a><span class="archive-list-count">64</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 

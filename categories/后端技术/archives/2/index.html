@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -373,6 +373,124 @@
 
       <!-- Main Content -->
 
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/git/git工作区储藏/">
+    <h2 class="post-title">
+      Git 工作区储藏
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      问题场景
+
+现在有一个 master 分支，master 分支中有一个文件叫 01.txt ，该文件中只有一行数据，然后对 01.txt 执行 add 和 commit ，然后再从 master 分支中创建出一个新的分支 fa ，切换到 fa 分支上，然后向 01.txt 中再添加一行数据，添加成功之后，不做任何事情，再切换回 master 分支，此时用 cat 命令查看 01.txt 文件......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-02-01
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Git" title="Git">Git</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/git/git标签管理/">
+    <h2 class="post-title">
+      Git 标签管理
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      轻量级标签
+
+轻量级标签就像是个不会变化的分支，实际上它就是个指向特定提交对象的引用。
+首先我们可以通过如下命令来查看当前仓库中的所有标签：
+1$ git tag
+
+打标签的方式很简单，直接通过 git tag &lt;tagname&gt; 来完成即可，如下命令：
+1$ git tag v1
+
+表示创建了一个名为 v1 的 tag ，这个 tag 默认是创建在最新一次的 commit 上的......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-02-01
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Git" title="Git">Git</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/git/git关联远程仓库/">
+    <h2 class="post-title">
+      Git 关联远程仓库
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      配置 SSH KEY
+
+SSH KEY 的配置不是必须的，不配置的话我们就只能使用 HTTPS 协议，这样每次提交时要输入用户名密码，略麻烦，所以还是配置一下。配置 SSH KEY 的原理很简单，采用非对称加密方式生成公钥和私钥，公钥告诉 GitHub ，私钥留在自己电脑上(私钥不可泄露)，当我们向 GitHub 上提交数据时，GitHub 会用我们留给它的公钥加密一段消息返回给我们的电脑，......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-31
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Git" title="Git">Git</a>
+    
+  </div>
+  
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -652,122 +770,6 @@ MyCat 是一个功能强大的分布式数据库中间件，是一个实现了 M
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot项目配置https安全证书/">
-    <h2 class="post-title">
-      Spring Boot 项目配置 HTTPS 安全证书
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      https 现在已经越来越普及了，特别是做一些小程序或者公众号开发的时候，https 基本上都是刚需了。不过一个 https 证书还是挺费钱的，个人开发者可以在各个云服务提供商那里申请免费的证书。本文聊的是在 Spring Boot 项目中，如何开启 https 配置，为我们的接口保驾护航。
-HTTPS 简介
-
-我们先来看看什么是 https，根据 wikipedia 上的介绍：
-
-超文本传......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot整合shiro实现登录认证和权限控制/">
-    <h2 class="post-title">
-      Spring Boot 整合 Shiro 实现登录认证和权限控制
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      在 Spring Boot 中做权限管理，一般来说，主流的方案是 Spring Security ，但是，仅仅从技术角度来说，也可以使用 Shiro。
-一般来说，Spring Security 和 Shiro 的比较如下：
-
-Spring Security 是一个重量级的安全管理框架；Shiro 则是一个轻量级的安全管理框架
-Spring Security 概念复杂，配置繁琐；Shiro 概......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-boot/spring-boot整合redis实现缓存功能/">
-    <h2 class="post-title">
-      Spring Boot 整合 Redis 实现缓存功能
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      使用 Java 操作 Redis 的方案很多，Jedis 是目前较为流行的一种方案，除了 Jedis，还有很多其他解决方案，如下：
-
-除了这些方案之外，还有一个使用也相当多的方案，就是 Spring Data Redis。在传统的 SSM 中，需要开发者自己来配置 Spring Data Redis，这个配置比较繁琐，主要配置 3 个东西：连接池、连接器信息以及 key 和 value 的序......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -914,11 +916,11 @@ Spring Security 概念复杂，配置繁琐；Shiro 概......
     
     
     
-    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
-    
-    
-    
     <a href="/tags/#Git" title="Git" rel="7">Git</a>
+    
+    
+    
+    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
     
     
     
@@ -926,15 +928,11 @@ Spring Security 概念复杂，配置繁琐；Shiro 概......
     
     
     
-    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
-    
-    
-    
     <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+    <a href="/tags/#Maven" title="Maven" rel="3">Maven</a>
     
     
     
@@ -942,11 +940,15 @@ Spring Security 概念复杂，配置繁琐；Shiro 概......
     
     
     
-    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
     
     
     
     <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="8">Redis</a>
     
     
     
@@ -958,7 +960,7 @@ Spring Security 概念复杂，配置繁琐；Shiro 概......
     
     
     
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="7">Spring Cloud</a>
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="10">Spring Cloud</a>
     
     
     
@@ -1020,7 +1022,7 @@ Spring Security 概念复杂，配置繁琐；Shiro 概......
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/02/">February 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/01/">January 2021</a><span class="archive-list-count">64</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/02/">February 2021</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2021/01/">January 2021</a><span class="archive-list-count">64</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
