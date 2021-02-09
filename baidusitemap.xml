@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://antoniopeng.com/spring-cloud/spring-cloud-openfeign%E5%A3%B0%E6%98%8E%E5%BC%8F%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/</loc>
+    <lastmod>2021-02-09</lastmod>
+  </url>
+  <url>
     <loc>https://antoniopeng.com/spring-boot/spring-boot%E4%B8%AD%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81%E7%9A%84%E4%BA%94%E7%A7%8D%E5%A7%BF%E5%8A%BF/</loc>
     <lastmod>2021-02-09</lastmod>
   </url>
@@ -26,10 +30,6 @@
   </url>
   <url>
     <loc>https://antoniopeng.com/spring-cloud/spring-cloud-config%E5%A4%96%E9%83%A8%E9%9B%86%E4%B8%AD%E5%8C%96%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2021-02-09</lastmod>
-  </url>
-  <url>
-    <loc>https://antoniopeng.com/spring-cloud/spring-cloud-open-feign%E5%A3%B0%E6%98%8E%E5%BC%8F%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/</loc>
     <lastmod>2021-02-09</lastmod>
   </url>
   <url>
