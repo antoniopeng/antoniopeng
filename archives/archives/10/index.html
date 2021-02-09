@@ -83,12 +83,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../../css/highlight.css">
-<link rel="stylesheet" href="../../css/widget.css">
-<link rel="stylesheet" href="../../css/rocket.css">
-<link rel="stylesheet" href="../../css/signature.css">
-<link rel="stylesheet" href="../../css/catalog.css">
-<link rel="stylesheet" href="../../css/livemylife.css">
+<link rel="stylesheet" href="../../../css/highlight.css">
+<link rel="stylesheet" href="../../../css/widget.css">
+<link rel="stylesheet" href="../../../css/rocket.css">
+<link rel="stylesheet" href="../../../css/signature.css">
+<link rel="stylesheet" href="../../../css/catalog.css">
+<link rel="stylesheet" href="../../../css/livemylife.css">
 
 
   
@@ -145,7 +145,7 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/tags/Spring/">
+  <link rel="canonical" href="https://antoniopeng.com/archives/archives/10/">
   <title>
     
     彭超的博客 | Antonio Blog
@@ -383,29 +383,35 @@
   
 
 
-  <a href="/spring/spring事务解决方案/">
+  <a href="/linux/ubuntu入门操作指北/">
     <h2 class="post-title">
-      Spring 事务解决方案
+      Ubuntu 操作指北
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Spring 中的事务主要是利用 Aop 思想，简化事务的配置，可以通过 Java 配置也可以通过 XML 配置。
-我们通过一个转账操作来看下 Spring 中的事务配置。
-准备工作
+      下载
 
-创建数据库123456789101112131415161718CREATE DATABASE /*!32312 IF NOT EXISTS*/`test01` /*!40100 DEFAULT CHARAC......
+
+Ubuntu 官网下载
+
+简介
+
+Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、CentOS、Debian 等。
+远程控制管理
+
+XShell：是一......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2021-01-13
+    2020-05-30
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#Linux" title="Linux">Linux</a>
     
   </div>
   
@@ -422,29 +428,28 @@
   
 
 
-  <a href="/spring/spring整合jdbctemplate连接操作mysql/">
+  <a href="/mysql/一文快速入门mysql索引/">
     <h2 class="post-title">
-      Spring 整合 JdbcTemplate 连接操作 MySQL
+      一文快速上手使用 MySQL 索引
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      JdbcTemplate 是 Spring 利用 Aop 思想封装的 JDBC 操作工具。
-准备工作
+      什么是索引
 
-引入依赖创建一个新项目，添加如下依赖：
-123456789101112131415161718&lt;dependency&gt;    &lt;groupId&gt;org.springframework&lt;/groupId&gt;    &lt;artifactId&gt;spri......
+MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 索引的本质就是数据结构。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。
+可简单理解为 排好序的快速查找数据结构。在数据之外，数据库系统还维护着 满足特定算法查询的数据结构，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2021-01-13
+    2020-05-15
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
     
   </div>
   
@@ -461,114 +466,31 @@
   
 
 
-  <a href="/spring/spring核心技术aop实例/">
+  <a href="/java/java中使用jersey实现上传文件(附加密和解密)/">
     <h2 class="post-title">
-      Spring 核心技术 AOP 实例
+      Java 中使用 Jersey 实现上传文件（附加密和解密）
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      AOP 简介
+      Jersey 简介
 
-Aop（Aspect Oriented Programming），面向切面编程，这是对面向对象思想的一种补充。
-面向切面编程，就是在程序运行时，不改变程序源码的情况下，动态的增强方法的功能，常见的使用场景非常多：
+Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
+引入依赖
 
-日志
-事务
-数据库操作
-….
-
-这些操作中，无一例外，都有很多模板化的代码，而解决模板化代码，消除臃肿就是 Aop 的强项。在 Aop 中，有几个常见的概念：
-
-......
+在 pom.xml 中添加 Jersey 相关依赖
+12345&lt;de......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2021-01-13
+    2020-04-09
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring" title="Spring">Spring</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/spring核心技术ioc&di详解/">
-    <h2 class="post-title">
-      Spring 核心技术 IoC & DI 详解
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      IoC 概念
-
-IoC（Inversion of Control），中文叫做控制反转。这是一个概念，也是一种思想。控制反转，实际上就是指对一个对象的控制权的反转。如下代码：
-12345678910111213141516171819public class Book &#123;    private Integer id;    private String name;    privat......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/java框架领域佼佼者spring初识篇/">
-    <h2 class="post-title">
-      Java 框架领域佼佼者 Spring 初识篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring 简介
-
-Spring 是一个轻量级的 Java 开发框架，它是为了解决企业应用开发的复杂性而创建的，常年雄踞于企业开发必选框架之首。Spring 的核心是控制反转（IoC）和面向切面编程（AOP）。简单来说，Spring 是一个分层的 Java EE 一站式轻量级开源框架。
-Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
-在一个系统中，根据功能的不同，代码分为 ......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#Java" title="Java">Java</a>
     
   </div>
   
@@ -580,6 +502,10 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
 
   <!-- Pager -->
   <ul class="pager">
+    
+    <li class="previous">
+      <a href="/archives/archives/9/">&larr; Newer Posts</a>
+    </li>
     
     
   </ul>
@@ -820,7 +746,7 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/02/">February 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/01/">January 2021</a><span class="archive-list-count">64</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/02/">February 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">64</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
