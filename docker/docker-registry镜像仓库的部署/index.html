@@ -412,26 +412,23 @@
 
 <p>访问地址：<a href="http://192.168.100.1:5000/v2/" target="_blank" rel="noopener">http://192.168.100.1:5000/v2/</a></p>
 <h4 id="配置-Docker-Registry"><a href="#配置-Docker-Registry" class="headerlink" title="配置 Docker Registry"></a>配置 Docker Registry</h4><p><code>Docker Registry</code> 服务启动以后还需要以下配置：</p>
-<ul>
-<li><p>编辑 <code>daemon.json</code> （如果不存在则新建）</p>
+<p>编辑 <code>daemon.json</code> （如果不存在则新建）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
 
 <p>完整文件如下：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [</span><br><span class="line">    <span class="string">"&#123;镜像加速器地址&#125;"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"insecure-registries"</span>: [</span><br><span class="line">    <span class="string">"&#123;docker registry ip&#125;:5000"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启服务</p>
+
+<p>重启服务</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>检查配置是否生效</p>
+
+<p>检查配置是否生效</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>出现以下内容，说明配置成功</p>
+
+<p>出现以下内容，说明配置成功</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Insecure Registries:</span><br><span class="line"> 192.168.100.1:5000</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
 <h3 id="部署-Docker-Registry-UI"><a href="#部署-Docker-Registry-UI" class="headerlink" title="部署 Docker Registry UI"></a>部署 Docker Registry UI</h3><hr />
 
 <p><code>Docker Registry</code> 安装成功之后，不太方便只管地查看仓库中的镜像，可以使用 <code>Web UI</code> 界面工具管理镜像，<code>docker-registry-frontend</code> 就是其中之一</p>
@@ -449,10 +446,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose up -d</span></span><br></pre></td></tr></table></figure>
 
 <p>访问地址：<a href="http://192.168.100.1:8080" target="_blank" rel="noopener">http://192.168.100.1:8080</a></p>
-<ul>
-<li>首页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE01.png-watermark" alt=""></li>
-<li>镜像列表页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE02.png-watermark" alt=""></li>
-</ul>
+<p>首页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE01.png-watermark" alt=""></p>
+<p>镜像列表页<br><img src="https://qiniuyun.antoniopeng.com/%E4%BD%BF%E7%94%A8%20Docker%20Compose%20%E6%90%AD%E5%BB%BA%20Registry%20%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E5%8F%8A%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE02.png-watermark" alt=""></p>
 <h3 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h3><hr />
 
 <p>从 Docker Hub 公网拉取一个镜像</p>
