@@ -83,12 +83,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../../css/highlight.css">
-<link rel="stylesheet" href="../../css/widget.css">
-<link rel="stylesheet" href="../../css/rocket.css">
-<link rel="stylesheet" href="../../css/signature.css">
-<link rel="stylesheet" href="../../css/catalog.css">
-<link rel="stylesheet" href="../../css/livemylife.css">
+<link rel="stylesheet" href="../../../css/highlight.css">
+<link rel="stylesheet" href="../../../css/widget.css">
+<link rel="stylesheet" href="../../../css/rocket.css">
+<link rel="stylesheet" href="../../../css/signature.css">
+<link rel="stylesheet" href="../../../css/catalog.css">
+<link rel="stylesheet" href="../../../css/livemylife.css">
 
 
   
@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/maven/idea中使用maven/">
+  <link rel="canonical" href="https://antoniopeng.com/archives/archives/11/">
   <title>
     
-    IDEA 中使用 Maven - 彭超的博客 | Antonio Blog
+    彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
+       /*page*/
+        background-image: url('');
       
     }
 
@@ -312,40 +312,10 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="post-heading">
-            <div class="tags">
-              
-              <a class="tag" href="https://antoniopeng.com/tags/#Maven" title="Maven">Maven</a>
-              
-            </div>
-            <h1>IDEA 中使用 Maven</h1>
-            <h2 class="subheading"></h2>
-            <span class="meta">
-              Posted by 暮夏有五 on
-              2021-01-12
-            </span>
-
-
-            
-            <!-- WordCount start -->
-            <div class="blank_box"></div>
-            <span class="meta">
-              Estimated Reading Time <span class="post-count">2</span> Minutes
-            </span>
-            <div class="blank_box"></div>
-            <span class="meta">
-              Words <span class="post-count">583</span> In Total
-            </span>
-            <div class="blank_box"></div>
-            <!-- 不蒜子统计 start -->
-            <span class="meta">
-              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
-            </span>
-            <!-- 不蒜子统计 end -->
-            <!-- WordCount end -->
-            
-
-
+          <div class="site-heading">
+            <h1>彭超</h1>
+            <!--<hr class="small">-->
+            <span class="subheading">生命不息，奋斗不止</span>
           </div>
           
         </div>
@@ -386,266 +356,434 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Modify by Yu-Hsuan Yen -->
-<!-- Post Content -->
-<article>
-  <div class="container">
-    <div class="row">
-      <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+	<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    
 
-		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
+    <!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
 
-        <h3 id="Maven-相关配置"><a href="#Maven-相关配置" class="headerlink" title="Maven 相关配置"></a>Maven 相关配置</h3><hr />
+      <!-- Main Content -->
 
-<p>IDEA 中，Maven 的配置在 <code>File-&gt;Settings-&gt;Build,Execution,Deployment-&gt;Build Tools-&gt;Maven</code>:</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven01.png" alt="img"></p>
-<h3 id="Java-SE-工程"><a href="#Java-SE-工程" class="headerlink" title="Java SE 工程"></a>Java SE 工程</h3><hr />
 
-<p>首先在创建一个工程时，选择 Maven 工程：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven02.png" alt="img"></p>
-<p>如果勾选上 Create from archetype ，则表示可以根据一个项目骨架（项目模板）来创建一个新的工程，不过，如果只是创建 JavaSE 项目，则不用选择项目骨架。直接 Next 即可。然后填入项目的坐标，即 groupId 和 artifactId。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven03.png" alt="img"></p>
-<p>填完之后，直接 Next 即可。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven04.png" alt="img"></p>
-<p>然后再分别创建源码目录和配置文件目录</p>
-<h3 id="Java-Web-工程"><a href="#Java-Web-工程" class="headerlink" title="Java Web 工程"></a>Java Web 工程</h3><hr />
+<div class="post-preview">
 
-<p>在 IDEA 中，创建 Maven Web 项目，有两种思路：</p>
-<ul>
-<li>首先创建一个 JavaSE 项目，然后手动将 JavaSE 项目改造成一个 JavaWeb 项目</li>
-<li>创建项目时选择项目骨架，骨架就选择 webapp</li>
-</ul>
-<p>两种方式中，推荐使用第一种方式。</p>
-<h4 id="改造-JavaSE-项目"><a href="#改造-JavaSE-项目" class="headerlink" title="改造 JavaSE 项目"></a>改造 JavaSE 项目</h4><p>这种方式，首先创建一个 JavaSE 项目，创建步骤和上面的一致。</p>
-<p>项目创建完成后，<strong>首先修改 pom.xml ，配置项目的打包格式为 war 包。</strong> 这样，IDEA 就知道当前项目是一个 Web 项目：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven05.png" alt="img"></p>
-<p>刷新刚才的配置</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven06.png" alt="img"></p>
-<p>然后，选中 JavaSE 工程，右键单击，选择 Open Module Settings，选择 Web，如下图：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven07.png" alt="img"></p>
-<p>接下来，在 webapp 目录中，添加 web.xml 文件。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven08.png" alt="img"></p>
-<p><strong>注意，一定要修改 web.xml 文件位置：</strong></p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven09.png" alt="img"></p>
-<p>配置完成后，点击 OK 退出。</p>
-<p>项目创建完成后，接下来就是部署了。首先点击 IDEA 右上角的 Edit Configurations，然后配置 Tomcat：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven10.png" alt="img"></p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven11.png" alt="img"></p>
-<p>接下来选择 Deployment 选项卡，配置要发布的项目：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven12.png" alt="img"></p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven13.png" alt="img"></p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven14.png" alt="img"></p>
-<p>最后，点击 IDEA 右上角的三角符号，启动项目。</p>
-<h4 id="通过-webapp-骨架直接创建"><a href="#通过-webapp-骨架直接创建" class="headerlink" title="通过 webapp 骨架直接创建"></a>通过 webapp 骨架直接创建</h4><p>这种方式比较简单，基本上不需要额外的配置，项目创建完成后，就是一个 web 项目。只需要我们在创建项目时，选择 webapp 骨架即可。</p>
-<p><img src="https://qiniuyun.antoniopeng.com/idea%E4%B8%AD%E4%BD%BF%E7%94%A8maven15.png" alt="img"></p>
-<p>选择骨架之后，后面的步骤和前文一致。</p>
-<p>项目创建成功后，只有 webapp 目录，这个时候，自己手动创建 java 和 resources 目录，创建完成后，右键单击，选择 Mark Directory As，将 java 目录标记为 sources root，将 resources 目录标记为 resources root 即可。</p>
-<p><strong>凡是在 IDEA 右下角看到了 Enable Auto Import 按钮，一定点一下</strong></p>
-<blockquote>
-<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
-</blockquote>
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/linux/ubuntu入门操作指北/">
+    <h2 class="post-title">
+      Ubuntu 操作指北
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      下载
+
+
+Ubuntu 官网下载
+
+简介
+
+Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、CentOS、Debian 等。
+远程控制管理
+
+XShell：是一......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-05-30
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Linux" title="Linux">Linux</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/一文快速入门mysql索引/">
+    <h2 class="post-title">
+      一文快速上手使用 MySQL 索引
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      什么是索引
+
+MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 索引的本质就是数据结构。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。
+可简单理解为 排好序的快速查找数据结构。在数据之外，数据库系统还维护着 满足特定算法查询的数据结构，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-05-15
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/java/java中使用jersey实现上传文件(附加密和解密)/">
+    <h2 class="post-title">
+      Java 中使用 Jersey 实现上传文件（附加密和解密）
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      Jersey 简介
+
+Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
+引入依赖
+
+在 pom.xml 中添加 Jersey 相关依赖
+12345&lt;de......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2020-04-09
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Java" title="Java">Java</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+
+
+  <!-- Pager -->
+  <ul class="pager">
+    
+    <li class="previous">
+      <a href="/archives/archives/10/">&larr; Newer Posts</a>
+    </li>
+    
+    
+  </ul>
+
+
+      <!-- 如果开启评论功能 -->
+      
+    </div>
+
+    <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        
+<!-- <h5>VISITORS</h5> -->
+<h5>VISITORS</h5>
+<div class="widget">
+  <span>
+    本站总访问量 <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 次
+  </span>
+  <br />
+  <span>
+    本站总访客数 <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 人
+  </span>
+</div>
 
 
         <hr>
-        <!-- Pager -->
-        <ul class="pager">
-          
-          <li class="previous">
-            <a href="/maven/maven依赖私服nexus的部署及项目应用/" data-toggle="tooltip" data-placement="top" title="Maven 私服 Nexus 的部署及项目应用">&larr; Previous Post</a>
-          </li>
-          
-          
-          <li class="next">
-            <a href="/maven/java项目管理工具maven/" data-toggle="tooltip" data-placement="top" title="Java 项目管理工具 Maven">Next Post &rarr;</a>
-          </li>
-          
-        </ul>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+  <h5>ABOUT ME</h5>
+  <div class="short-about">
 
-        
-        <!-- tip start -->
-        <div class="tip">
-          <p>
-            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
-          </p>
-        </div>
-        <!-- tip end -->
-        
+    
+    <img id="avatar_pic" src="https://qiniuyun.antoniopeng.com/my_photo.png" alt="彭超"  />
+    
 
-        
-        <!-- Sharing Srtart -->
-        <!-- Social Social Share Post -->
-<!-- Docs:https://github.com/overtrue/share.js -->
+    
+    <!--<p>我究竟拿时间换了什么 Self discipline produces joy</p>-->
+	<p>
+		<span>我究竟拿时间换了什么</span>
+		<br>
+		<span>Self discipline produces joy</span>
+	</p>
+    
 
-<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
-  <ul class="list-inline text-center social-share-ul">
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-twitter">
-        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a class="social-share-icon icon-wechat">
-        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-weibo">
-        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-qq">
-        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=IDEA 中使用 Maven&body=Hi,I found this website and thought you might like it https://antoniopeng.com/maven/idea中使用maven/">
-        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
+    <!-- SNS Link -->
+    <ul class="list-inline">
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="微信" href="https://qiniuyun.antoniopeng.com/my_wx.png">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 20px; height: 20px; background: url('https://qiniuyun.antoniopeng.com/wx01.png') no-repeat;margin: 8px 0px 0px 9px"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+	  
+	  
+      <li>
+        <a target="_blank" title="CSDN" href="https://blog.csdn.net/monianqing">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/csdn.png') no-repeat;margin: 10px 0px 0px 11px"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+
+      
+
+      
+
+      
+
+      
+
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="博客园" href="https://www.cnblogs.com/antoniopeng">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/bokeyuan.png') no-repeat;margin: 10px 0px 0px 11px"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="GitHub" href="https://github.com/antoniopeng">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+	  
+	  
+
+    </ul>
+  </div>
+</section>
+
+        <hr>
+    
+        <!-- Featured Tags -->
+
+<section>
+  <!-- no hr -->
+  <h5><a href="/tags/">FEATURED TAGS</a></h5>
+  <div class="tags">
+    
+    
+    <a href="/tags/#Docker" title="Docker" rel="9">Docker</a>
+    
+    
+    
+    <a href="/tags/#Git" title="Git" rel="7">Git</a>
+    
+    
+    
+    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
+    
+    
+    
+    <a href="/tags/#IDEA" title="IDEA" rel="4">IDEA</a>
+    
+    
+    
+    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    
+    
+    
+    <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+    
+    
+    
+    <a href="/tags/#Maven" title="Maven" rel="2">Maven</a>
+    
+    
+    
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
+    
+    
+    
+    <a href="/tags/#MySQL" title="MySQL" rel="8">MySQL</a>
+    
+    
+    
+    <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="9">Redis</a>
+    
+    
+    
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
+    <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="12">Spring Cloud</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
+    
+    
+    
+    <a href="/tags/#操作系统" title="操作系统" rel="1">操作系统</a>
+    
+    
+    
+    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
+    
+    
+    
+    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
+    
+    
+  </div>
+</section>
+
+
+        <hr>
+    
+        <!-- Categories -->
+
+<!-- <h5>categories</h5> -->
+<h5><a href="/categories/">CATEGORIES</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="/categories/#运维">
+      <li>运维</li>
+    </a>
+    
+    <a href="/categories/#后端技术">
+      <li>后端技术</li>
+    </a>
+    
+    <a href="/categories/#开发工具">
+      <li>开发工具</li>
+    </a>
+    
+    <a href="/categories/#数据库">
+      <li>数据库</li>
+    </a>
+    
+    <a href="/categories/#计算机基础">
+      <li>计算机基础</li>
+    </a>
+    
+    <a href="/categories/#杂记">
+      <li>杂记</li>
+    </a>
+    
   </ul>
 </div>
 
-<!-- css & js -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
-<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <!-- Sharing End -->
-        
         <hr>
-
-        <!-- comments start -->
-        <!-- 1. gitalk comment -->
-
-
-
-
-<!-- 2. gitment comment -->
-
-
-
-<!-- 3. disqus comment -->
-
-
-        <!-- comments end -->
-        <hr>
-
-      </div>
-
-      <!-- Catalog: Tabe of Content -->
-      <!-- Table of Contents -->
-
     
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Maven-相关配置"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Maven 相关配置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Java-SE-工程"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Java SE 工程</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Java-Web-工程"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Java Web 工程</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#改造-JavaSE-项目"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">改造 JavaSE 项目</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#通过-webapp-骨架直接创建"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">通过 webapp 骨架直接创建</span></a></li></ol></li></ol>
-        
-        </div>
-      </aside>
-    
-
-
-      <!-- Sidebar Container -->
-      <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-        <!-- Featured Tags -->
-        
-        <section>
-          <!-- no hr -->
-          <h5>
-            <a href="/tags/">FEATURED TAGS</a>
-          </h5>
-          <div class="tags">
-            
-            <a class="tag" href="/tags/#Maven" title="Maven">Maven</a>
-            
-          </div>
-        </section>
-        
-
-        <!-- Friends Blog -->
-        
-        <hr>
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
-
-          
-          <li>
-            <a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a>
-          </li>
-          
-          <li>
-            <a href="https://lusongsong.com/" target="_blank">卢松松博客</a>
-          </li>
-          
-          <li>
-            <a href="http://www.xldn333.com/" target="_blank">广州办公设备网</a>
-          </li>
-          
-          <li>
-            <a href="http://pclrj.com/" target="_blank">软件开发网</a>
-          </li>
-          
-        </ul>
-        
-      </div>
+    <!-- <h5>ARCHIVES</h5> -->
+    <h5><a href="/archive/">ARCHIVES</a></h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/02/">February 2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">64</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
+
+
+        <hr>
+    
+        <!-- Friends Blog -->
+
+<!-- <h5>FRIENDS</h5> -->
+<h5><a href="javascript:void(0)">FRIENDS</a></h5>
+<ul class="list-inline">
+  
+  <li><a href="mailto:antoniopeng@foxmail.com" target="_blank">交换友链</a></li>
+  
+  <li><a href="https://lusongsong.com/" target="_blank">卢松松博客</a></li>
+  
+  <li><a href="http://www.xldn333.com/" target="_blank">广州办公设备网</a></li>
+  
+  <li><a href="http://pclrj.com/" target="_blank">软件开发网</a></li>
+  
+</ul>
+
+
+        <hr>
+    
+</div>
+
+    
   </div>
-</article>
-
-
-
-<!-- anchorjs start -->
-<!-- async load function -->
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script type="text/javascript">
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function(e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  };
-</script>
-<script type="text/javascript">
-  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
-  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
-    anchors.options = {
-      visible: 'hover',
-      placement: 'left',
-      // icon: 'ℬ'
-      icon: '❡'
-    };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-  });
-</script>
-<style>
-  /* place left on bigger screen */
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-      font-size: 1.1em;
-      margin-top: -0.1em;
-    }
-  }
-</style>
-
-<!-- anchorjs end -->
-
+</div>
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->

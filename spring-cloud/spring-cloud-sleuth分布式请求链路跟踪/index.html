@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">853</span> In Total
+              Words <span class="post-count">844</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -400,14 +400,18 @@
 
 <p>Spring Cloud Sleuth 是分布式系统中跟踪服务间调用的工具，它可以直观地展示出一次请求的调用过程，本文将对其用法进行详细介绍。</p>
 <p>随着我们的系统越来越庞大，各个服务间的调用关系也变得越来越复杂。当客户端发起一个请求时，这个请求经过多个服务后，最终返回了结果，经过的每一个服务都有可能发生延迟或错误，从而导致请求失败。这时候我们就需要请求链路跟踪工具来帮助我们，理清请求调用的服务链路，解决问题。</p>
-<h3 id="给服务添加请求链路跟踪"><a href="#给服务添加请求链路跟踪" class="headerlink" title="给服务添加请求链路跟踪"></a>给服务添加请求链路跟踪</h3><p>我们将通过 user-service 和 ribbon-service 之间的服务调用来演示该功能，这里我们调用 ribbon-service 的接口时，ribbon-service 会通过 RestTemplate 来调用 user-service 提供的接口。</p>
+<h3 id="给服务添加请求链路跟踪"><a href="#给服务添加请求链路跟踪" class="headerlink" title="给服务添加请求链路跟踪"></a>给服务添加请求链路跟踪</h3><hr />
+
+<p>我们将通过 user-service 和 ribbon-service 之间的服务调用来演示该功能，这里我们调用 ribbon-service 的接口时，ribbon-service 会通过 RestTemplate 来调用 user-service 提供的接口。</p>
 <h4 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h4><p>首先给 user-service 和 ribbon-service 添加请求链路跟踪功能的支持；在 user-service 和 ribbon-service 中添加相关依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-zipkin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h4><p>修改 application.yml 文件，配置收集日志的 zipkin-server 访问地址：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">zipkin:</span></span><br><span class="line">    <span class="attr">base-url:</span> <span class="string">http://localhost:9411</span></span><br><span class="line">  <span class="attr">sleuth:</span></span><br><span class="line">    <span class="attr">sampler:</span></span><br><span class="line">      <span class="attr">probability:</span> <span class="number">0.1</span> <span class="comment">#设置Sleuth的抽样收集概率</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="整合-Zipkin-获取及分析日志"><a href="#整合-Zipkin-获取及分析日志" class="headerlink" title="整合 Zipkin 获取及分析日志"></a>整合 Zipkin 获取及分析日志</h3><p>Zipkin 是 Twitter 的一个开源项目，可以用来获取和分析 Spring Cloud Sleuth 中产生的请求链路跟踪日志，它提供了 Web 界面来帮助我们直观地查看请求链路跟踪信息。</p>
+<h3 id="整合-Zipkin-获取及分析日志"><a href="#整合-Zipkin-获取及分析日志" class="headerlink" title="整合 Zipkin 获取及分析日志"></a>整合 Zipkin 获取及分析日志</h3><hr />
+
+<p>Zipkin 是 Twitter 的一个开源项目，可以用来获取和分析 Spring Cloud Sleuth 中产生的请求链路跟踪日志，它提供了 Web 界面来帮助我们直观地查看请求链路跟踪信息。</p>
 <p>Spring Boot 2.0以上版本已经不需要自行搭建 zipkin-server，我们可以从该地址下载 zipkin-server：<a href="https://repo1.maven.org/maven2/io/zipkin/java/zipkin-server/2.12.9/zipkin-server-2.12.9-exec.jar" target="_blank" rel="noopener">repo1.maven.org/maven2/io/z…</a></p>
 <p>下载完成后使用以下命令运行zipkin-server：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar zipkin-server-2.12.9-exec.jar</span><br></pre></td></tr></table></figure>
@@ -425,7 +429,7 @@
 <p>如果我们把 zipkin-server 重启一下就会发现刚刚的存储的跟踪信息全部丢失了，可见其是存储在内存中的，有时候我们需要将所有信息存储下来，这里以存储到 Elasticsearch 为例，来演示下该功能。</p>
 <h4 id="安装-Elasticsearch"><a href="#安装-Elasticsearch" class="headerlink" title="安装 Elasticsearch"></a>安装 Elasticsearch</h4><p>下载 Elasticsearch6.2.2 的 zip 包，并解压到指定目录，下载地址：<a href="https://www.elastic.co/cn/downloads/past-releases/elasticsearch-6-2-2" target="_blank" rel="noopener">www.elastic.co/cn/download…</a></p>
 <p>运行 bin 目录下的 elasticsearch.bat 启动 Elasticsearch。</p>
-<h4 id="修改启动参数将信息存储到-Elasticsearch"><a href="#修改启动参数将信息存储到-Elasticsearch" class="headerlink" title="修改启动参数将信息存储到 Elasticsearch"></a>修改启动参数将信息存储到 Elasticsearch</h4><p>使用以下命令运行，就可以把跟踪信息存储到 Elasticsearch 里面去了，重新启动也不会丢失：</p>
+<h4 id="存储到-Elasticsearch"><a href="#存储到-Elasticsearch" class="headerlink" title="存储到 Elasticsearch"></a>存储到 Elasticsearch</h4><p>使用以下命令运行，就可以把跟踪信息存储到 Elasticsearch 里面去了，重新启动也不会丢失：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># STORAGE_TYPE：表示存储类型 ES_HOSTS：表示ES的访问地址</span></span><br><span class="line">$ java -jar zipkin-server-2.12.9-exec.jar --STORAGE_TYPE=elasticsearch --ES_HOSTS=localhost:9200</span><br></pre></td></tr></table></figure>
 
 <p>之后需要重新启动 user-service 和 ribbon-service 才能生效，重启后多次调用 ribbon-service 的接口 <a href="http://localhost:8301/user/1" target="_blank" rel="noopener">http://localhost:8301/user/1</a>；</p>
@@ -533,7 +537,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-Cloud-Sleuth-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Spring Cloud Sleuth 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#给服务添加请求链路跟踪"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">给服务添加请求链路跟踪</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">相关配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#整合-Zipkin-获取及分析日志"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">整合 Zipkin 获取及分析日志</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用-Elasticsearch-存储跟踪信息"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">使用 Elasticsearch 存储跟踪信息</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#安装-Elasticsearch"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">安装 Elasticsearch</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改启动参数将信息存储到-Elasticsearch"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">修改启动参数将信息存储到 Elasticsearch</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-Cloud-Sleuth-简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Spring Cloud Sleuth 简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#给服务添加请求链路跟踪"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">给服务添加请求链路跟踪</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#引入依赖"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">引入依赖</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相关配置"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">相关配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#整合-Zipkin-获取及分析日志"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">整合 Zipkin 获取及分析日志</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用-Elasticsearch-存储跟踪信息"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">使用 Elasticsearch 存储跟踪信息</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#安装-Elasticsearch"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">安装 Elasticsearch</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#存储到-Elasticsearch"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">存储到 Elasticsearch</span></a></li></ol></li></ol>
         
         </div>
       </aside>
