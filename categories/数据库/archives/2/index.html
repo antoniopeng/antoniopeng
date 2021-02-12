@@ -145,7 +145,7 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/categories/运维/archives/3/">
+  <link rel="canonical" href="https://antoniopeng.com/categories/数据库/archives/2/">
   <title>
     
     彭超的博客 | Antonio Blog
@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -383,32 +383,31 @@
   
 
 
-  <a href="/docker/docker常用命令总结/">
+  <a href="/redis/reids列表与集合命令使用/">
     <h2 class="post-title">
-      Docker 常用命令总结
+      Reids 列表与集合命令使用
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Docker 镜像常用命令
+      列表
 
-搜索镜像1$ docker search javaCopy to clipboardErrorCopied
+列表是 Redis 中另外一种数据类型。下面我们来看看列表中一些基本的操作命令。
+lpush将一个或多个值 value 插入到列表 key 的表头，如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表头，如下：
+12127.0.0.1:6379&gt; lpush k1 v1 v2 v3(integer) 3
 
-下载镜像1$ docker pull java:8Copy to clipboardErrorCopied
-
-查看镜像版本
-由于docker search命令只能查找出是否有该镜像，不能找到该镜像支持的版本，所以我们需要通过Docker Hub来搜索支持......
+lrange返回列表 key 中指定区间内的......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2020-07-20
+    2021-01-25
   </p>
   <div class="tags">
     
-    <a href="/tags/#Docker" title="Docker">Docker</a>
+    <a href="/tags/#Redis" title="Redis">Redis</a>
     
   </div>
   
@@ -425,29 +424,26 @@
   
 
 
-  <a href="/docker/docker数据卷操作/">
+  <a href="/redis/reids字符串命令使用/">
     <h2 class="post-title">
-      Docker 数据卷操作
+      Reids 字符串命令使用
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      数据卷入门
-
-在前面的案例中，如果我们需要将数据从宿主机拷贝到容器中，一般都是使用 Docker 的拷贝命令，这样性能还是稍微有点差，没有办法能够达到让这种拷贝达到本地磁盘 I/O 性能呢？有！
-数据卷可以绕过拷贝系统，在多个容器之间、容器和宿主机之间共享目录或者文件，数据卷绕过了拷贝系统，可以达到本地磁盘 I/O 性能。
-本文先通过一个简单的案例展示数据卷的基本用法。以前面使用的 ngin......
+      append使用 append 命令时，如果 key 已经存在，则会直接在 value 后追加值，如果 key 不存在，则会先创建一个 value 为空字符串的 key ，然后再追加：
+12345678127.0.0.1:6379&gt; append k1 hello(integer) 5127.0.0.1:6379&gt; get k1"hello"127.0.0.1:6379&gt; ......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2020-07-10
+    2021-01-25
   </p>
   <div class="tags">
     
-    <a href="/tags/#Docker" title="Docker">Docker</a>
+    <a href="/tags/#Redis" title="Redis">Redis</a>
     
   </div>
   
@@ -464,238 +460,27 @@
   
 
 
-  <a href="/docker/使用dockerfile定制镜像/">
+  <a href="/redis/高性能缓存数据库redis入门篇/">
     <h2 class="post-title">
-      使用 Dockerfile 定制镜像
+      高性能缓存数据库 Redis 入门篇
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      
-这里以简单定制 Nginx 镜像为例
+      什么是 Redis
 
-创建 Dockerfile 文件
-
-创建 Dockerfile 文件
-12345$ mkdir /usr/local/docker$ cd /usr/local/docker$ mkdir nginx$ cd nginx$ vi Dockerfile
-
-Dockerfile 文件的内容如下
-12FROM nginxRUN echo '&lt;h1&g......
+Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。从 2015 年 6 月开始，Redis 的开发由 Redis Labs 赞助，而 2013 年 5 月至 2015 年 6 月期间，其开发由 Pivotal 赞助。在 2013 年 5 月之前，其开发由 VMware 赞助。根据月度排行网站 DB-Engines.com......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2020-07-09
+    2021-01-24
   </p>
   <div class="tags">
     
-    <a href="/tags/#Docker" title="Docker">Docker</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/docker/docker镜像操作/">
-    <h2 class="post-title">
-      Docker 镜像操作
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      镜像也是 docker 的核心组件之一，镜像时容器运行的基础，容器是镜像运行后的形态。前面我们介绍了容器的用法，今天来和大家聊聊镜像的问题。
-总体来说，镜像是一个包含程序运行必要以来环境和代码的只读文件，它采用分层的文件系统，将每一层的改变以读写层的形式增加到原来的只读文件上。这有点像洋葱，一层一层的，当我们后面学习了 Dockerfile ，相信大家对于这样的架构理解将更为准确。
-镜像与容......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-07-08
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Docker" title="Docker">Docker</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/docker/docker容器高级操作/">
-    <h2 class="post-title">
-      Docker 容器高级操作
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      上篇文章介绍了一个 Nginx 的例子，对于 Nginx 这样一个容器而言，当它启动成功后，我们不可避免的需要对 Nginx 进行的配置进行修改，那么这个修改要如何完成呢？
-依附容器
-
-1$ docker attach
-
-依附容器这个主要是针对交互型容器而言的，该命令有一定的局限性，可以作为了解即可，真正工作中使用较少。要是用 docker attach 命令，首先要确保容器已经启动，然后使......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-07-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Docker" title="Docker">Docker</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/docker/docker容器基本操作/">
-    <h2 class="post-title">
-      Docker 容器基本操作
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      docker 中的容器就是一个轻量级的虚拟机，是镜像运行起来的一个状态，本文就先来看看容器的基本操作。镜像就像是一个安装程序，而容器则是程序运行时的一个状态。
-查看容器
-
-启动 docker 后，使用 docker ps 命令可以查看当前正在运行的容器：
-1$ docker ps
-
-查看所有容器上面这条命令是查看当前正在运行的容器，如果需要查看所有容器，则可以通过 docker ps -a ......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-07-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Docker" title="Docker">Docker</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/docker/容器化技术大杀器docker/">
-    <h2 class="post-title">
-      容器化技术大杀器 Docker
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      什么是 Docker
-
-Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。
-
-
-传统虚拟机（VM）和虚拟化容器（Docker）的区别：
-传统的 VM 虚拟机不能共享资源 , 比如在 VMWare 中安装了一个内存为 4GB 的 Linux 操作系统 , 意味着该Linux系统使用了宿主机中固定的 4GB 内存且不能与宿主机或其它虚拟系统共享该资源 ,......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-07-06
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Docker" title="Docker">Docker</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/linux/ubuntu入门操作指北/">
-    <h2 class="post-title">
-      Ubuntu 操作指北
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      下载
-
-
-Ubuntu 官网下载
-
-简介
-
-Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、CentOS、Debian 等。
-远程控制管理
-
-XShell：是一......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2020-05-30
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Linux" title="Linux">Linux</a>
+    <a href="/tags/#Redis" title="Redis">Redis</a>
     
   </div>
   
@@ -709,7 +494,7 @@ XShell：是一......
   <ul class="pager">
     
     <li class="previous">
-      <a href="/categories/运维/archives/2/">&larr; Newer Posts</a>
+      <a href="/categories/数据库/">&larr; Newer Posts</a>
     </li>
     
     
@@ -853,15 +638,15 @@ XShell：是一......
     
     
     
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
-    
-    
-    
     <a href="/tags/#IDEA" title="IDEA" rel="4">IDEA</a>
     
     
     
     <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+    
+    
+    
+    <a href="/tags/#Java" title="Java" rel="6">Java</a>
     
     
     
@@ -873,19 +658,11 @@ XShell：是一......
     
     
     
-    <a href="/tags/#MySQL" title="MySQL" rel="8">MySQL</a>
-    
-    
-    
     <a href="/tags/#Nginx" title="Nginx" rel="4">Nginx</a>
     
     
     
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
-    
-    
-    
-    <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
+    <a href="/tags/#MySQL" title="MySQL" rel="8">MySQL</a>
     
     
     
@@ -893,15 +670,23 @@ XShell：是一......
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="12">Spring Cloud</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot" rel="16">Spring Boot</a>
     
     
     
     <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="12">Spring Cloud</a>
     
     
     
