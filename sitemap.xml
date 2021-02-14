@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://antoniopeng.com/spring-boot/spring-boot%E6%95%B4%E5%90%88oss%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</loc>
+    
+    <lastmod>2021-02-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://antoniopeng.com/spring-boot/spring-boot%E6%95%B4%E5%90%88spring-security&jwt%E5%AE%9E%E7%8E%B0%E8%AE%A4%E8%AF%81%E5%92%8C%E6%8E%88%E6%9D%83/</loc>
+    
+    <lastmod>2021-02-14</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://antoniopeng.com/spring-cloud/%E8%81%9A%E5%90%88%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%AD%E7%9A%84swagger%E6%96%87%E6%A1%A3/</loc>
     
     <lastmod>2021-02-14</lastmod>
@@ -31,13 +45,6 @@
   
   <url>
     <loc>https://antoniopeng.com/spring-boot/spring-boot%E6%95%B4%E5%90%88redis%E5%AE%9E%E7%8E%B0%E7%BC%93%E5%AD%98%E5%8A%9F%E8%83%BD/</loc>
-    
-    <lastmod>2021-02-14</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://antoniopeng.com/spring-boot/spring-boot%E6%95%B4%E5%90%88spring-security&jwt%E5%AE%9E%E7%8E%B0%E8%AE%A4%E8%AF%81%E5%92%8C%E6%8E%88%E6%9D%83/</loc>
     
     <lastmod>2021-02-14</lastmod>
     
@@ -830,14 +837,14 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/IDEA/</loc>
+    <loc>https://antoniopeng.com/tags/Git/</loc>
     <lastmod>2021-02-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/Git/</loc>
+    <loc>https://antoniopeng.com/tags/IDEA/</loc>
     <lastmod>2021-02-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -858,7 +865,7 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/MySQL/</loc>
+    <loc>https://antoniopeng.com/tags/MyBatis/</loc>
     <lastmod>2021-02-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -872,7 +879,7 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/MyBatis/</loc>
+    <loc>https://antoniopeng.com/tags/MySQL/</loc>
     <lastmod>2021-02-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -944,14 +951,14 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://antoniopeng.com/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2021-02-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/categories/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://antoniopeng.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-02-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
