@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://antoniopeng.com/%E9%97%B2%E8%81%8A/%E7%9B%98%E7%82%B9%E4%B8%80%E4%B8%8B%E6%88%91%E7%94%A8%E7%9A%84%E9%A1%BA%E6%89%8B%E7%9A%84%E9%82%A3%E4%BA%9B%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2021-02-20</lastmod>
+  </url>
+  <url>
     <loc>https://antoniopeng.com/fastdfs/%E5%AE%9E%E6%88%98fastdfs-java%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</loc>
     <lastmod>2021-02-16</lastmod>
   </url>
