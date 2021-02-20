@@ -383,56 +383,6 @@
   
 
 
-  <a href="/mysql/mysql主从复制/">
-    <h2 class="post-title">
-      MySQL 主从复制
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      主从规划
-
-首先规划两个 MySQL 实例：
-
-主机：192.168.66.131:33061
-从机：192.168.66.131:33062
-
-当然大家可以准备多个从机，从机的配置步骤是一样的。接下来，我们就开始主从的配置。
-配置主机
-
-主机上的配置，主要是两个地方：
-
-第一个是配置一个从机登录用户
-第二个配置开启 binlog。
-
-如果是 Docker 中创建的 MySQL 实例，默认只......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-28
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
   <a href="/mysql/centos上安装mysql/">
     <h2 class="post-title">
       CentOS 上安装 MySQL
@@ -794,6 +744,47 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
 </div>
 <hr>
 
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/redis/reids列表与集合命令使用/">
+    <h2 class="post-title">
+      Reids 列表与集合命令使用
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      列表
+
+列表是 Redis 中另外一种数据类型。下面我们来看看列表中一些基本的操作命令。
+lpush将一个或多个值 value 插入到列表 key 的表头，如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表头，如下：
+12127.0.0.1:6379&gt; lpush k1 v1 v2 v3(integer) 3
+
+lrange返回列表 key 中指定区间内的......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-25
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Redis" title="Redis">Redis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
 
 
   <!-- Pager -->
@@ -970,19 +961,11 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#Nginx" title="Nginx" rel="4">Nginx</a>
-    
-    
-    
-    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
-    
-    
-    
     <a href="/tags/#Redis" title="Redis" rel="9">Redis</a>
     
     
     
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="17">Spring Cloud</a>
+    <a href="/tags/#Nginx" title="Nginx" rel="4">Nginx</a>
     
     
     
@@ -990,11 +973,15 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
     <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
     
-    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="17">Spring Cloud</a>
     
     
     
@@ -1002,7 +989,7 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#开发工具" title="开发工具" rel="1">开发工具</a>
+    <a href="/tags/#读书分享" title="读书分享" rel="3">读书分享</a>
     
     
   </div>
@@ -1038,10 +1025,6 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
       <li>杂记</li>
     </a>
     
-    <a href="/categories/#闲聊">
-      <li>闲聊</li>
-    </a>
-    
   </ul>
 </div>
 
@@ -1052,7 +1035,7 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/02/">February 2021</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">74</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/02/">February 2021</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">74</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
