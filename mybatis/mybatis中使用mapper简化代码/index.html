@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -394,7 +394,7 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-		<a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a>
+		<!-- <a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a> -->
 
         <p>前面文章所写的增删改查是存在问题的。主要问题就是冗余代码过多，模板化代码过多。</p>
 <p>例如，我想开发一个 UserDao，可能是下面这样。此时，我们分析这个 UserDao，发现它有很多可以优化的地方。每个方法中都要获取 SqlSession，涉及到增删改的方法，还需要 commit，SqlSession 用完之后，还需要关闭，sqlSession 执行时需要的参数就是方法的参数，sqlSession 要执行的 SQL ，和 XML 中的定义是一一对应的。这是一个模板化程度很高的代码。</p>
