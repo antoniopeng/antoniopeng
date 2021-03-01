@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -383,7 +383,230 @@
   
 
 
-  <a href="/kubernetes/初识容器集群管理系统Kubernetes/">
+  <a href="/kubernetes/kubernetes数据持久化实现/">
+    <h2 class="post-title">
+      Kubernetes 数据持久化实现
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      概述
+
+存储管理与计算管理是两个不同的问题。Persistent Volume 子系统，对存储的供应和使用做了抽象，以 API 形式提供给管理员和用户使用。要完成这一任务，我们引入了两个新的 API 资源：Persistent Volume（持久卷） 和 Persistent Volume Claim（持久卷消费者）。
+Persistent Volume（PV）是集群之中的一块网络存储。跟 ......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-03-01
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/kubernetes/kubernetes数据持久化准备/">
+    <h2 class="post-title">
+      Kubernetes 数据持久化准备
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      概述
+
+在 Docker 中就有数据卷的概念，当容器删除时，数据也一起会被删除，想要持久化使用数据，需要把主机上的目录挂载到 Docker 中去，在 K8S 中，数据卷是通过 Pod 实现持久化的，如果 Pod 删除，数据卷也会一起删除，k8s 的数据卷是 docker 数据卷的扩展，K8S 适配各种存储系统，包括本地存储 EmptyDir，HostPath， 网络存储（NFS，Gluste......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-02-27
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/kubernetes/kubernetes中通过ingress统一访问入口/">
+    <h2 class="post-title">
+      Kubernetes 中通过 Ingress 统一访问入口
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      术语
+
+
+节点：Kubernetes 集群中的服务器
+集群：Kubernetes 管理的一组服务器集合
+边界路由器：为局域网和 Internet 路由数据包的路由器，执行防火墙保护局域网络
+集群网络：遵循 Kubernetes 网络模型实现集群内的通信的具体实现，比如 Flannel 和 Calico
+服务：Kubernetes 的服务 (Service) 是使用标签选择器标识的一组 Pod......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-02-25
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/kubernetes/kubernetes中通过资源配置运行容器/">
+    <h2 class="post-title">
+      Kubernetes 中通过资源配置运行容器
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      概述
+
+我们知道通过 run 命令启动容器非常麻烦，Docker 提供了 Compose 为我们解决了这个问题。那 Kubernetes 是如何解决这个问题的呢？其实很简单，使用 kubectl create 命令就可以做到和 Compose 一样的效果了，该命令可以通过配置文件快速创建一个集群资源对象。
+创建 YAML 配置文件
+
+以部署 Nginx 为例
+部署 Deployment创建一......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-02-22
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/kubernetes/kubernetes高可用实践/">
+    <h2 class="post-title">
+      Kubernetes 高可用实践
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      统一环境配置
+
+节点配置
+
+
+主机名
+IP
+角色
+系统
+CPU/内存
+磁盘
+
+
+
+kubernetes-master-01
+192.168.141.150
+Master
+Ubuntu Server 18.04
+2核2G
+20G
+
+
+kubernetes-master-02
+192.168.141.151
+Master
+Ubuntu Server 18.04
+2核2G
+20G
+
+
+kubern......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-02-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/kubernetes/初识容器集群管理系统kubernetes/">
     <h2 class="post-title">
       初识容器集群管理系统 Kubernetes
     </h2>
@@ -406,7 +629,7 @@ Kubernetes 是容器集群管理系统，是一个开源的平台，可以实现
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by 暮夏有五 on
-    2021-02-27
+    2021-02-15
   </p>
   <div class="tags">
     
@@ -575,198 +798,6 @@ Consul 是 HashiCorp 公司推出的开源软件，提供了微服务系统中�
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-cloud/spring-cloud-gateway新一代api网关服务/">
-    <h2 class="post-title">
-      Spring Cloud Gateway 新一代 API 网关服务
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring Cloud Gateway 为 SpringBoot 应用提供了 API 网关支持，具有强大的智能路由与过滤器功能，本文将对其用法进行详细介绍。
-Gateway 简介
-
-Gateway 是在 Spring 生态系统之上构建的 API 网关服务，基于 Spring 5，Spring Boot 2 和 Project Reactor 等技术。Gateway 旨在提供一种简单而有效的......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-02-12
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-cloud/使用seata彻底解决spring-cloud中的分布式事务问题/">
-    <h2 class="post-title">
-      使用 Seata 彻底解决 Spring Cloud 中的分布式事务问题
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Seata 是 Alibaba 开源的一款分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务，本文将通过一个简单的下单业务场景来对其用法进行详细介绍。
-什么是分布式事务问题
-
-单体应用单体应用中，一个业务操作需要调用三个模块完成，此时数据的一致性由本地事务来保证。
-
-微服务应用随着业务需求的变化，单体应用被拆分成微服务应用，原来的三个模块被拆分成三个独立的应用，分别使用独立的数据......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-02-09
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-cloud/spring-boot-admin微服务应用监控/">
-    <h2 class="post-title">
-      Spring Boot Admin 微服务应用监控
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring Boot Admin 简介
-
-Spring Boot Admin 可以对 Spring Boot 应用的各项指标进行监控，可以作为微服务架构中的监控中心来使用，本文将对其用法进行详细介绍。
-SpringBoot 应用可以通过 Actuator 来暴露应用运行过程中的各项指标，Spring Boot Admin 通过这些指标来监控 SpringBoot 应用，然后通过图形化界面呈......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-02-08
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-cloud/spring-cloud-sleuth分布式请求链路跟踪/">
-    <h2 class="post-title">
-      Spring Cloud Sleuth 分布式请求链路跟踪
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring Cloud Sleuth 简介
-
-Spring Cloud Sleuth 是分布式系统中跟踪服务间调用的工具，它可以直观地展示出一次请求的调用过程，本文将对其用法进行详细介绍。
-随着我们的系统越来越庞大，各个服务间的调用关系也变得越来越复杂。当客户端发起一个请求时，这个请求经过多个服务后，最终返回了结果，经过的每一个服务都有可能发生延迟或错误，从而导致请求失败。这时候我们就需要......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-02-08
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-cloud/spring-cloud-bus消息总线/">
-    <h2 class="post-title">
-      Spring Cloud Bus 消息总线
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring Cloud Bus 简介
-
-Spring Cloud Bus 使用轻量级的消息代理来连接微服务架构中的各个服务，可以将其用于广播状态更改（例如配置中心配置更改）或其他管理指令，本文将对其用法进行详细介绍。
-我们通常会使用消息代理来构建一个主题，然后把微服务架构中的所有服务都连接到这个主题上去，当我们向该主题发送消息时，所有订阅该主题的服务都会收到消息并进行消费。使用 Sprin......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-02-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -903,15 +934,11 @@ Spring Cloud Bus 使用轻量级的消息代理来连接微服务架构中的各
   <div class="tags">
     
     
-    <a href="/tags/#Docker" title="Docker" rel="9">Docker</a>
-    
-    
-    
     <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
     
     
     
-    <a href="/tags/#Git" title="Git" rel="7">Git</a>
+    <a href="/tags/#Docker" title="Docker" rel="9">Docker</a>
     
     
     
@@ -919,11 +946,15 @@ Spring Cloud Bus 使用轻量级的消息代理来连接微服务架构中的各
     
     
     
+    <a href="/tags/#Git" title="Git" rel="7">Git</a>
+    
+    
+    
     <a href="/tags/#Java" title="Java" rel="6">Java</a>
     
     
     
-    <a href="/tags/#Kubernetes" title="Kubernetes" rel="1">Kubernetes</a>
+    <a href="/tags/#Kubernetes" title="Kubernetes" rel="6">Kubernetes</a>
     
     
     
@@ -955,15 +986,11 @@ Spring Cloud Bus 使用轻量级的消息代理来连接微服务架构中的各
     
     
     
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="17">Spring Cloud</a>
-    
-    
-    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="19">Spring Boot</a>
     
     
     
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="17">Spring Cloud</a>
     
     
     
@@ -972,6 +999,10 @@ Spring Cloud Bus 使用轻量级的消息代理来连接微服务架构中的各
     
     
     <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
   </div>
@@ -1017,7 +1048,7 @@ Spring Cloud Bus 使用轻量级的消息代理来连接微服务架构中的各
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/02/">February 2021</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/01/">January 2021</a><span class="archive-list-count">74</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/02/">February 2021</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/01/">January 2021</a><span class="archive-list-count">74</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 

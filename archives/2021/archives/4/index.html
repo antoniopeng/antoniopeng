@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
@@ -373,6 +373,218 @@
 
       <!-- Main Content -->
 
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/linux/linux命令总结/">
+    <h2 class="post-title">
+      还在网上查 Linux 命令吗？推荐一套我常用的命令
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      系统服务管理
+
+systemctl
+systemctl命令是service和chkconfig命令的组合体，可用于管理系统。
+
+
+输出系统中各个服务的状态：
+1$ systemctl list-units --type=serviceCopy to clipboardErrorCopied
+
+查看服务的运行状态：
+1$ systemctl status firewalldCopy to cl......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Linux" title="Linux">Linux</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/分布式数据库中间件mycat/">
+    <h2 class="post-title">
+      分布式数据库中间件 MyCat
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      MyCat 简介
+
+MyCat 是一个功能强大的分布式数据库中间件，是一个实现了 MySQL 协议的 Server，前端人员可以把它看做是一个数据库代理中间件，用 MySQL 客户端工具和命令行访问；而后端人员可以用 MySQL 原生协议与多个 MySQL 服务器通信，也可以用 JDBC 协议与大多数主流数据库服务器通信。可以用作 读写分离、分库分表（分片）、容灾备份、多租户应用开发、大数据......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/开发者必备的mysql命令/">
+    <h2 class="post-title">
+      开发者必备的 MySQL 命令
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      数据定义语句（DDL）
+
+数据库操作登录数据库：
+1$ mysql -uroot -prootCopy to clipboardErrorCopied
+
+创建数据库：
+1create database testCopy to clipboardErrorCopied
+
+查看所有数据库：
+1show databasesCopy to clipboardErrorCopied
+
+选择数据库并使用......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/navicat实用功能-数据备份与结构同步/">
+    <h2 class="post-title">
+      Navicat 实用功能 — 数据备份与结构同步
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      当我们要对数据库做有风险的操作时需要对数据库备份，每次上线项目时，线上与线下数据库结构总会有不一致的情况，本文将讲解如何利用 Navicat 来方便的解决这两个问题。
+Navicat 是一套快速、可靠的数据库管理工具，专为简化数据库的管理及降低系统管理成本而设。它的设计符合数据库管理员、开发人员及中小企业的需要。Navicat 是以直觉化的图形用户界面而建的，让你可以以安全并且简单的方式创建......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/mysql/mysql读写分离/">
+    <h2 class="post-title">
+      MySQL 读写分离
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      准备工作
+
+我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
+
+这里，我们准备两台机器：
+
+主机：192.168.248.128
+从机：192.168.248.139
+
+主机配置
+
+主机的配置就三个步骤，比较容易：
+授权给从机服务器
+12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identifie......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -595,205 +807,6 @@ Redis 集群运行原理如下：
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/redis主从复制/">
-    <h2 class="post-title">
-      Redis 主从复制
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。
-配置方式
-
-假设我有三个 redis 实例，地址分别如下：
-
-192.168.248.128:6379 
-192.168.248.128:6380
-192......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-27
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/免费又好用的redis客户端工具/">
-    <h2 class="post-title">
-      免费又好用的 Redis 客户端工具
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      最近在寻找一款免费又好用的 Redis 客户端工具，于是找到了AnotherRedisDesktopManager，界面漂亮而且支持 Redis 集群，推荐给大家！
-以前一直使用的是 RedisDesktopManager 这款 Redis 客户端工具，由于很久没更新界面有点古老，最近想更新升级下，进到官网一看，发现收费了……
-于是就去 GitHub 上找了下，发现了另一个 RedisDes......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-26
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/redis数据持久化/">
-    <h2 class="post-title">
-      Redis 数据持久化
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Redis 持久化
-
-整体上来说，Redis 持久化有两种方式，快照持久化和 AOF ，在项目中我们可以根据实际情况选择合适的持久化方式，也可以不用持久化，这关键看我们的 Redis 在项目中扮演了什么样的角色。
-快照持久化
-
-快照持久化，顾名思义，就是通过拍摄快照的方式实现数据的持久化，redis 可以在某个时间点上对内存中的数据创建一个副本文件，副本文件中的数据在 redis 重启时会被......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-26
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/redis中的发布订阅和事务/">
-    <h2 class="post-title">
-      Redis 中的发布订阅和事务
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      发布订阅
-
-Redis 的发布订阅系统有点类似于我们生活中的电台，电台可以在某一个频率上发送广播，而我们可以接收任何一个频率的广播。订阅消息的方式如下:
-1234567891011127.0.0.1:6379&gt; subscribe c1 c2 c3Reading messages... (press Ctrl-C to quit)1) "subscribe"2) "c1"3) (int......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-26
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/reids散列与有序集合命令使用/">
-    <h2 class="post-title">
-      Reids 散列与有序集合命令使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      散列
-
-很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。
-hsethset 命令可以用来设置 key 指定的哈希集中指定字段的值，如下：
-12127.0.0.1:6379&gt; hset k1 h1 v1(integer) 1
-
-hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的值，如下：
-12127.0.0.1:63......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 暮夏有五 on
-    2021-01-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -934,15 +947,11 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
   <div class="tags">
     
     
-    <a href="/tags/#Docker" title="Docker" rel="9">Docker</a>
-    
-    
-    
     <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
     
     
     
-    <a href="/tags/#Git" title="Git" rel="7">Git</a>
+    <a href="/tags/#Docker" title="Docker" rel="9">Docker</a>
     
     
     
@@ -950,11 +959,15 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
+    <a href="/tags/#Git" title="Git" rel="7">Git</a>
+    
+    
+    
     <a href="/tags/#Java" title="Java" rel="6">Java</a>
     
     
     
-    <a href="/tags/#Kubernetes" title="Kubernetes" rel="1">Kubernetes</a>
+    <a href="/tags/#Kubernetes" title="Kubernetes" rel="6">Kubernetes</a>
     
     
     
@@ -986,15 +999,11 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="17">Spring Cloud</a>
-    
-    
-    
     <a href="/tags/#Spring Boot" title="Spring Boot" rel="19">Spring Boot</a>
     
     
     
-    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="17">Spring Cloud</a>
     
     
     
@@ -1003,6 +1012,10 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
     
     
   </div>
@@ -1048,7 +1061,7 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../02/">February 2021</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../01/">January 2021</a><span class="archive-list-count">74</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../02/">February 2021</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../01/">January 2021</a><span class="archive-list-count">74</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
