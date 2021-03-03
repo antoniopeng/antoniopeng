@@ -83,12 +83,12 @@
 
   <!-- Pygments Highlight CSS -->
   
-<link rel="stylesheet" href="../../css/highlight.css">
-<link rel="stylesheet" href="../../css/widget.css">
-<link rel="stylesheet" href="../../css/rocket.css">
-<link rel="stylesheet" href="../../css/signature.css">
-<link rel="stylesheet" href="../../css/catalog.css">
-<link rel="stylesheet" href="../../css/livemylife.css">
+<link rel="stylesheet" href="../../../../css/highlight.css">
+<link rel="stylesheet" href="../../../../css/widget.css">
+<link rel="stylesheet" href="../../../../css/rocket.css">
+<link rel="stylesheet" href="../../../../css/signature.css">
+<link rel="stylesheet" href="../../../../css/catalog.css">
+<link rel="stylesheet" href="../../../../css/livemylife.css">
 
 
   
@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
+  <link rel="canonical" href="https://antoniopeng.com/archives/2021/archives/11/">
   <title>
     
-    使用 Spring MVC 的拦截器实现登录功能 - 彭超的博客 | Antonio Blog
+    彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -289,8 +289,8 @@
 
   <style type="text/css">
     header.intro-header {
-       /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
+       /*page*/
+        background-image: url('');
       
     }
 
@@ -312,40 +312,10 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="post-heading">
-            <div class="tags">
-              
-              <a class="tag" href="https://antoniopeng.com/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-              
-            </div>
-            <h1>使用 Spring MVC 的拦截器实现登录功能</h1>
-            <h2 class="subheading"></h2>
-            <span class="meta">
-              Posted by 暮夏有五 on
-              2021-01-14
-            </span>
-
-
-            
-            <!-- WordCount start -->
-            <div class="blank_box"></div>
-            <span class="meta">
-              Estimated Reading Time <span class="post-count">3</span> Minutes
-            </span>
-            <div class="blank_box"></div>
-            <span class="meta">
-              Words <span class="post-count">985</span> In Total
-            </span>
-            <div class="blank_box"></div>
-            <!-- 不蒜子统计 start -->
-            <span class="meta">
-              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
-            </span>
-            <!-- 不蒜子统计 end -->
-            <!-- WordCount end -->
-            
-
-
+          <div class="site-heading">
+            <h1>彭超</h1>
+            <!--<hr class="small">-->
+            <span class="subheading">生命不息，奋斗不止</span>
           </div>
           
         </div>
@@ -386,256 +356,392 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-	<!-- Modify by Yu-Hsuan Yen -->
-<!-- Post Content -->
-<article>
-  <div class="container">
-    <div class="row">
-      <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+	<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    
 
-		<!-- <a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a> -->
+    <!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
 
-        <p><code>Spring  MVC</code> 的处理器拦截器，类似于 <code>Servlet</code> 开发中的过滤器 <code>Filter</code>，用于对处理器进行预处理和后处理。</p>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><hr />
+      <!-- Main Content -->
 
-<ul>
-<li>日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。</li>
-<li>权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。</li>
-<li>性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完后记录结束时间，从而得到该请求的处理时间。</li>
-<li>通用行为：读取 Cookie 得到用户信息并将用户对象放入请求，从而方便后续流程使用。</li>
-</ul>
-<p>这里我们简单实现登录拦截功能。</p>
-<h3 id="Spring-MVC-拦截器"><a href="#Spring-MVC-拦截器" class="headerlink" title="Spring MVC 拦截器"></a>Spring MVC 拦截器</h3><hr />
 
-<p><code>Spring MVC</code> 拦截器需要实现 <code>HandlerInterceptor</code> 接口，该接口定义了 3 个方法，分别为 <code>preHandle()</code>、<code>postHandle()</code> 和 <code>afterCompletion()</code>，需要通过重写这 3 个方法来对用户的请求进行拦截处理的。</p>
-<ul>
-<li><code>preHandle()</code>：该方法在请求处理之前进行调用。该方法的返回值是布尔值 <code>Boolean</code> 类型的，当它返回为 <code>false</code> 时，表示请求结束，后续的 <code>Interceptor</code> 和 <code>Controller</code> 都不会再执行；当返回值为 <code>true</code> 时，就会继续调用下一个拦截器的 <code>preHandle</code> 方法，如果已经是最后一个拦截器的时候，就会是调用当前请求的 <code>Controller</code> 中的方法。</li>
-<li><code>postHandle()</code>：只能在当前所属拦截器的 <code>preHandle()</code> 的返回值为 <code>true</code> 的时候，才能被调用。<code>postHandle()</code> 在当前请求进行处理之后，也就是在 <code>Controller</code> 中的方法调用之后执行，但是它会在 <code>DispatcherServlet</code> 进行视图返回渲染之前被调用，所以在这个方法中对 <code>Controller</code> 处理之后的 <code>ModelAndView</code> 对象进行操作。</li>
-<li><code>afterCompletion()</code>：也是需要当前对应的当前的 <code>preHandle()</code> 的返回值为 <code>true</code> 时才会执行。因此，该方法将在整个请求结束之后，也就是在 <code>DispatcherServlet</code> 渲染了对应的视图之后执行，这个方法的主要作用是用于进行资源清理的工作。</li>
-</ul>
-<h4 id="创建拦截器"><a href="#创建拦截器" class="headerlink" title="创建拦截器"></a>创建拦截器</h4><p>这里以登录拦截器作为演示示例。当未登录时是无法直接访问需要登录权限的操作的，为了做到这个效果，我们使用登录拦截器来判断用户是否登录，如果用户已登录则放行让用户继续操作，否则就将其跳转到登录页。</p>
-<p>创建 <code>LoginInterceptor</code> 拦截器类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		</span><br><span class="line">        User user = (User) httpServletRequest.getSession().getAttribute(<span class="string">"user"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断用户是否登录</span></span><br><span class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 用户未登录，重定向到登录页</span></span><br><span class="line">            httpServletResponse.sendRedirect(<span class="string">"/login"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 放行</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 如果是以 login 结尾的请求</span></span><br><span class="line">        <span class="keyword">if</span> (modelAndView.getViewName().endsWith(<span class="string">"login"</span>)) &#123;</span><br><span class="line">            <span class="comment">// 则直接重定向到首页不再显示登录页</span></span><br><span class="line">            httpServletResponse.sendRedirect(<span class="string">"/index"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="post-preview">
 
-<h4 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h4><p>拦截器定义后还需要在 <code>spring-mvc.xml</code> 文件中配置拦截器，代码如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 拦截器配置，拦截顺序：先执行后定义的，排在第一位的最后执行。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/**"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:exclude-mapping</span> <span class="attr">path</span>=<span class="string">"/static/**"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:exclude-mapping</span> <span class="attr">path</span>=<span class="string">"/login"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.antoniopeng.springmvc.web.interceptor.LoginInterceptor"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
 
-<p>相关配置说明：</p>
-<ul>
-<li><code>mvc:interceptor</code>：定义一个拦截器</li>
-<li><code>mvc:mapping</code>：映射路径，需要拦截的请求路径</li>
-<li><code>mvc:exclude-mapping</code>：需要排除的请求路径，比如登录页本身是不需要拦截的，这里还包括了静态资源路径也是不需要拦截的</li>
-<li><code>bean</code>：配置指定的拦截器对象</li>
-</ul>
-<blockquote>
-<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
-</blockquote>
+
+  <a href="/java/java基础知识概览/">
+    <h2 class="post-title">
+      Java 基础知识概览
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      数据类型
+
+基本类型
+
+
+基本类型
+字节数
+占位数
+
+
+
+byte
+1
+8
+
+
+char
+2
+16
+
+
+short
+2
+16
+
+
+int
+4
+32
+
+
+float
+4
+32
+
+
+long
+8
+64
+
+
+double
+8
+64
+
+
+boolean
+~
+~
+
+
+boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。JVM 会在编译时期将 boo......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 暮夏有五 on
+    2021-01-05
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Java" title="Java">Java</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+
+
+  <!-- Pager -->
+  <ul class="pager">
+    
+    <li class="previous">
+      <a href="/archives/2021/archives/10/">&larr; Newer Posts</a>
+    </li>
+    
+    
+  </ul>
+
+
+      <!-- 如果开启评论功能 -->
+      
+    </div>
+
+    <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        
+<!-- <h5>VISITORS</h5> -->
+<h5>VISITORS</h5>
+<div class="widget">
+  <span>
+    本站总访问量 <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 次
+  </span>
+  <br />
+  <span>
+    本站总访客数 <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> 人
+  </span>
+</div>
 
 
         <hr>
-        <!-- Pager -->
-        <ul class="pager">
-          
-          <li class="previous">
-            <a href="/spring-mvc/spring-mvc核心组件详解/" data-toggle="tooltip" data-placement="top" title="Spring MVC 核心组件详解">&larr; Previous Post</a>
-          </li>
-          
-          
-          <li class="next">
-            <a href="/spring-mvc/spring-mvc入门就这一篇/" data-toggle="tooltip" data-placement="top" title="Spring MVC 入门就这一篇">Next Post &rarr;</a>
-          </li>
-          
-        </ul>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+  <h5>ABOUT</h5>
+  <div class="short-about">
 
-        
-        <!-- tip start -->
-        <div class="tip">
-          <p>
-            If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
-          </p>
-        </div>
-        <!-- tip end -->
-        
+    
+    <img id="avatar_pic" src="https://qiniuyun.antoniopeng.com/my_photo.png" alt="彭超"  />
+    
 
-        
-        <!-- Sharing Srtart -->
-        <!-- Social Social Share Post -->
-<!-- Docs:https://github.com/overtrue/share.js -->
+    
+    <!--<p>离开世界之前，一切都是过程</p>-->
+	<p>
+		<span>离开世界之前，一切都是过程</span>
+	</p>
+    
 
-<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
-  <ul class="list-inline text-center social-share-ul">
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-twitter">
-        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a class="social-share-icon icon-wechat">
-        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-weibo">
-        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-qq">
-        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=使用 Spring MVC 的拦截器实现登录功能&body=Hi,I found this website and thought you might like it https://antoniopeng.com/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
-        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
+    <!-- SNS Link -->
+    <ul class="list-inline">
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="微信" href="https://qiniuyun.antoniopeng.com/my_wx.png">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 20px; height: 20px; background: url('https://qiniuyun.antoniopeng.com/wx01.png') no-repeat;margin: 8px 0px 0px 9px"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+	  
+	  
+      <li>
+        <a target="_blank" title="CSDN" href="https://blog.csdn.net/monianqing">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/csdn.png') no-repeat;margin: 10px 0px 0px 11px"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+
+      
+
+      
+
+      
+
+      
+
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="博客园" href="https://www.cnblogs.com/antoniopeng">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-stack-1x fa-inverse" style="display: inline-block; width: 16px; height: 16px; background: url('https://qiniuyun.antoniopeng.com/bokeyuan.png') no-repeat;margin: 10px 0px 0px 11px"></i>
+          </span>
+        </a>
+      </li>
+      
+	  
+	  
+      <li>
+        <a target="_blank" title="GitHub" href="https://github.com/antoniopeng">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+	  
+	  
+
+    </ul>
+  </div>
+</section>
+
+        <hr>
+    
+        <!-- Featured Tags -->
+
+<section>
+  <!-- no hr -->
+  <h5><a href="/tags/">FEATURED TAGS</a></h5>
+  <div class="tags">
+    
+    
+    <a href="/tags/#Docker" title="Docker" rel="9">Docker</a>
+    
+    
+    
+    <a href="/tags/#FastDFS" title="FastDFS" rel="2">FastDFS</a>
+    
+    
+    
+    <a href="/tags/#Git" title="Git" rel="7">Git</a>
+    
+    
+    
+    <a href="/tags/#IDEA" title="IDEA" rel="4">IDEA</a>
+    
+    
+    
+    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    
+    
+    
+    <a href="/tags/#Kubernetes" title="Kubernetes" rel="7">Kubernetes</a>
+    
+    
+    
+    <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+    
+    
+    
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
+    
+    
+    
+    <a href="/tags/#Maven" title="Maven" rel="2">Maven</a>
+    
+    
+    
+    <a href="/tags/#MySQL" title="MySQL" rel="8">MySQL</a>
+    
+    
+    
+    <a href="/tags/#Nginx" title="Nginx" rel="4">Nginx</a>
+    
+    
+    
+    <a href="/tags/#Spring" title="Spring" rel="5">Spring</a>
+    
+    
+    
+    <a href="/tags/#Redis" title="Redis" rel="9">Redis</a>
+    
+    
+    
+    <a href="/tags/#Spring Boot" title="Spring Boot" rel="19">Spring Boot</a>
+    
+    
+    
+    <a href="/tags/#Spring Cloud" title="Spring Cloud" rel="17">Spring Cloud</a>
+    
+    
+    
+    <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
+    
+    
+    
+    <a href="/tags/#读书分享" title="读书分享" rel="4">读书分享</a>
+    
+    
+    
+    <a href="/tags/#闲聊" title="闲聊" rel="2">闲聊</a>
+    
+    
+  </div>
+</section>
+
+
+        <hr>
+    
+        <!-- Categories -->
+
+<!-- <h5>categories</h5> -->
+<h5><a href="/categories/">CATEGORIES</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="/categories/#运维">
+      <li>运维</li>
+    </a>
+    
+    <a href="/categories/#后端技术">
+      <li>后端技术</li>
+    </a>
+    
+    <a href="/categories/#开发工具">
+      <li>开发工具</li>
+    </a>
+    
+    <a href="/categories/#数据库">
+      <li>数据库</li>
+    </a>
+    
+    <a href="/categories/#杂记">
+      <li>杂记</li>
+    </a>
+    
   </ul>
 </div>
 
-<!-- css & js -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
-<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <!-- Sharing End -->
-        
         <hr>
-
-        <!-- comments start -->
-        <!-- 1. gitalk comment -->
-
-
-
-
-<!-- 2. gitment comment -->
-
-
-
-<!-- 3. disqus comment -->
-
-
-        <!-- comments end -->
-        <hr>
-
-      </div>
-
-      <!-- Catalog: Tabe of Content -->
-      <!-- Table of Contents -->
-
     
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#应用场景"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">应用场景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-MVC-拦截器"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Spring MVC 拦截器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建拦截器"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">创建拦截器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置拦截器"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">配置拦截器</span></a></li></ol></li></ol>
-        
-        </div>
-      </aside>
-    
-
-
-      <!-- Sidebar Container -->
-      <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-        <!-- Featured Tags -->
-        
-        <section>
-          <!-- no hr -->
-          <h5>
-            <a href="/tags/">FEATURED TAGS</a>
-          </h5>
-          <div class="tags">
-            
-            <a class="tag" href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-            
-          </div>
-        </section>
-        
-
-        <!-- Friends Blog -->
-        
-        <hr>
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
-
-          
-          <li>
-            <a href="http://www.gzkzrj.com/" target="_blank">广州科智软件</a>
-          </li>
-          
-          <li>
-            <a href="http://www.gzkzbg.com/" target="_blank">广州科智办公</a>
-          </li>
-          
-          <li>
-            <a href="https://lusongsong.com/" target="_blank">卢松松博客</a>
-          </li>
-          
-          <li>
-            <a href="http://www.xldn333.com/" target="_blank"></a>
-          </li>
-          
-          <li>
-            <a href="http://www.pclrj.com/" target="_blank"></a>
-          </li>
-          
-        </ul>
-        
-      </div>
+    <!-- <h5>ARCHIVES</h5> -->
+    <h5><a href="/archive/">ARCHIVES</a></h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../03/">March 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../02/">February 2021</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../01/">January 2021</a><span class="archive-list-count">74</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
+
+
+        <hr>
+    
+        <!-- Friends Blog -->
+
+<!-- <h5>FRIENDS</h5> -->
+<h5><a href="javascript:void(0)">FRIENDS</a></h5>
+<ul class="list-inline">
+  
+  <li><a href="http://www.gzkzrj.com/" target="_blank">广州科智软件</a></li>
+  
+  <li><a href="http://www.gzkzbg.com/" target="_blank">广州科智办公</a></li>
+  
+  <li><a href="https://lusongsong.com/" target="_blank">卢松松博客</a></li>
+  
+  <li><a href="http://www.xldn333.com/" target="_blank"></a></li>
+  
+  <li><a href="http://www.pclrj.com/" target="_blank"></a></li>
+  
+</ul>
+
+
+        <hr>
+    
+</div>
+
+    
   </div>
-</article>
-
-
-
-<!-- anchorjs start -->
-<!-- async load function -->
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script type="text/javascript">
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function(e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  };
-</script>
-<script type="text/javascript">
-  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
-  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
-    anchors.options = {
-      visible: 'hover',
-      placement: 'left',
-      // icon: 'ℬ'
-      icon: '❡'
-    };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-  });
-</script>
-<style>
-  /* place left on bigger screen */
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-      font-size: 1.1em;
-      margin-top: -0.1em;
-    }
-  }
-</style>
-
-<!-- anchorjs end -->
-
+</div>
 
 
 	<!-- Footer (contains ThemeColor、viewer) -->

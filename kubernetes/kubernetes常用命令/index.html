@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
+  <link rel="canonical" href="https://antoniopeng.com/kubernetes/kubernetes常用命令/">
   <title>
     
-    使用 Spring MVC 的拦截器实现登录功能 - 彭超的博客 | Antonio Blog
+    Kubernetes 常用命令 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
               
             </div>
-            <h1>使用 Spring MVC 的拦截器实现登录功能</h1>
+            <h1>Kubernetes 常用命令</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 暮夏有五 on
-              2021-01-14
+              2021-03-01
             </span>
 
 
@@ -334,7 +334,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">985</span> In Total
+              Words <span class="post-count">634</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -396,54 +396,111 @@
 
 		<!-- <a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a> -->
 
-        <p><code>Spring  MVC</code> 的处理器拦截器，类似于 <code>Servlet</code> 开发中的过滤器 <code>Filter</code>，用于对处理器进行预处理和后处理。</p>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><hr />
+        <h3 id="Kubectl-与-Docker-命令"><a href="#Kubectl-与-Docker-命令" class="headerlink" title="Kubectl 与 Docker 命令"></a>Kubectl 与 Docker 命令</h3><hr />
 
-<ul>
-<li>日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。</li>
-<li>权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。</li>
-<li>性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完后记录结束时间，从而得到该请求的处理时间。</li>
-<li>通用行为：读取 Cookie 得到用户信息并将用户对象放入请求，从而方便后续流程使用。</li>
-</ul>
-<p>这里我们简单实现登录拦截功能。</p>
-<h3 id="Spring-MVC-拦截器"><a href="#Spring-MVC-拦截器" class="headerlink" title="Spring MVC 拦截器"></a>Spring MVC 拦截器</h3><hr />
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Docker 命令和 Kubectl 命令有很多相似的地方，Docker 操作容器，Kubectl 操作 Pod（容器的集合）等</p>
+<h4 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h4><p><strong>Docker</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d --restart=always -e DOMAIN=cluster --name nginx-app -p 80:80 nginx</span><br></pre></td></tr></table></figure>
 
-<p><code>Spring MVC</code> 拦截器需要实现 <code>HandlerInterceptor</code> 接口，该接口定义了 3 个方法，分别为 <code>preHandle()</code>、<code>postHandle()</code> 和 <code>afterCompletion()</code>，需要通过重写这 3 个方法来对用户的请求进行拦截处理的。</p>
-<ul>
-<li><code>preHandle()</code>：该方法在请求处理之前进行调用。该方法的返回值是布尔值 <code>Boolean</code> 类型的，当它返回为 <code>false</code> 时，表示请求结束，后续的 <code>Interceptor</code> 和 <code>Controller</code> 都不会再执行；当返回值为 <code>true</code> 时，就会继续调用下一个拦截器的 <code>preHandle</code> 方法，如果已经是最后一个拦截器的时候，就会是调用当前请求的 <code>Controller</code> 中的方法。</li>
-<li><code>postHandle()</code>：只能在当前所属拦截器的 <code>preHandle()</code> 的返回值为 <code>true</code> 的时候，才能被调用。<code>postHandle()</code> 在当前请求进行处理之后，也就是在 <code>Controller</code> 中的方法调用之后执行，但是它会在 <code>DispatcherServlet</code> 进行视图返回渲染之前被调用，所以在这个方法中对 <code>Controller</code> 处理之后的 <code>ModelAndView</code> 对象进行操作。</li>
-<li><code>afterCompletion()</code>：也是需要当前对应的当前的 <code>preHandle()</code> 的返回值为 <code>true</code> 时才会执行。因此，该方法将在整个请求结束之后，也就是在 <code>DispatcherServlet</code> 渲染了对应的视图之后执行，这个方法的主要作用是用于进行资源清理的工作。</li>
-</ul>
-<h4 id="创建拦截器"><a href="#创建拦截器" class="headerlink" title="创建拦截器"></a>创建拦截器</h4><p>这里以登录拦截器作为演示示例。当未登录时是无法直接访问需要登录权限的操作的，为了做到这个效果，我们使用登录拦截器来判断用户是否登录，如果用户已登录则放行让用户继续操作，否则就将其跳转到登录页。</p>
-<p>创建 <code>LoginInterceptor</code> 拦截器类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		</span><br><span class="line">        User user = (User) httpServletRequest.getSession().getAttribute(<span class="string">"user"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断用户是否登录</span></span><br><span class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 用户未登录，重定向到登录页</span></span><br><span class="line">            httpServletResponse.sendRedirect(<span class="string">"/login"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 放行</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 如果是以 login 结尾的请求</span></span><br><span class="line">        <span class="keyword">if</span> (modelAndView.getViewName().endsWith(<span class="string">"login"</span>)) &#123;</span><br><span class="line">            <span class="comment">// 则直接重定向到首页不再显示登录页</span></span><br><span class="line">            httpServletResponse.sendRedirect(<span class="string">"/index"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Kubectl</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl run --image=nginx nginx-app --port=80 --env=<span class="string">"DOMAIN=cluster"</span></span><br><span class="line">$ kubectl expose deployment nginx-app --port=80 --name=nginx-http</span><br></pre></td></tr></table></figure>
 
-<h4 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h4><p>拦截器定义后还需要在 <code>spring-mvc.xml</code> 文件中配置拦截器，代码如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 拦截器配置，拦截顺序：先执行后定义的，排在第一位的最后执行。--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/**"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:exclude-mapping</span> <span class="attr">path</span>=<span class="string">"/static/**"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:exclude-mapping</span> <span class="attr">path</span>=<span class="string">"/login"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.antoniopeng.springmvc.web.interceptor.LoginInterceptor"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> <code>kubectl run</code> 会创建一个 <strong>Deployment</strong> 并且默认会在后台运行，以上面的代码为例它的名称为 <strong>nginx-app</strong>。默认情况 Deployment 并不会将端口暴露出去，所以我们还需要使用 <code>kubectl expose</code> 暴露端口以供访问，此时还会创建一个同名的 <strong>Service</strong>。</p>
+<h4 id="查看已运行的容器"><a href="#查看已运行的容器" class="headerlink" title="查看已运行的容器"></a>查看已运行的容器</h4><p><strong>Docker</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker ps</span><br></pre></td></tr></table></figure>
 
-<p>相关配置说明：</p>
-<ul>
-<li><code>mvc:interceptor</code>：定义一个拦截器</li>
-<li><code>mvc:mapping</code>：映射路径，需要拦截的请求路径</li>
-<li><code>mvc:exclude-mapping</code>：需要排除的请求路径，比如登录页本身是不需要拦截的，这里还包括了静态资源路径也是不需要拦截的</li>
-<li><code>bean</code>：配置指定的拦截器对象</li>
-</ul>
-<blockquote>
-<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
-</blockquote>
+<p><strong>Kubectl</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pods</span><br><span class="line">$ kubectl get deployment</span><br><span class="line">$ kubectl get service</span><br></pre></td></tr></table></figure>
 
+<h4 id="交互式进入容器"><a href="#交互式进入容器" class="headerlink" title="交互式进入容器"></a>交互式进入容器</h4><p><strong>Docker</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">exec</span> -it 容器 ID/NAME /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p><strong>Kubectl</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl <span class="built_in">exec</span> -it 容器名 -- /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h4 id="打印日志"><a href="#打印日志" class="headerlink" title="打印日志"></a>打印日志</h4><p><strong>Docker</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs -f 容器 ID/NAME</span><br></pre></td></tr></table></figure>
+
+<p><strong>Kubectl</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl logs -f 容器名</span><br></pre></td></tr></table></figure>
+
+<h4 id="停止和删除容器"><a href="#停止和删除容器" class="headerlink" title="停止和删除容器"></a>停止和删除容器</h4><p><strong>Docker</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker stop 容器 ID/NAME</span><br><span class="line">$ docker rm 容器 ID/NAME</span><br></pre></td></tr></table></figure>
+
+<p><strong>Kubectl</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl delete deployment Deployment 名称</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl delete service Service 名称</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 不要直接删除 Pod，使用 kubectl 请删除拥有该 Pod 的 Deployment。如果直接删除 Pod，则 Deployment 将会重新创建该 Pod。</p>
+<h4 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a>查看版本</h4><p><strong>Docker</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker version</span><br></pre></td></tr></table></figure>
+
+<p><strong>Kubectl</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl version</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看环境信息"><a href="#查看环境信息" class="headerlink" title="查看环境信息"></a>查看环境信息</h4><p><strong>Docker</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker info</span><br></pre></td></tr></table></figure>
+
+<p><strong>Kubectl</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl cluster-info</span><br></pre></td></tr></table></figure>
+
+<h3 id="Kubectl-常用命令"><a href="#Kubectl-常用命令" class="headerlink" title="Kubectl 常用命令"></a>Kubectl 常用命令</h3><hr />
+
+<p><strong>小提示：</strong> 所有命令前都可以加上 <code>watch</code> 命令来观察状态的实时变化，如：<code>watch kubectl get pods --all-namespaces</code></p>
+<h4 id="查看组件状态"><a href="#查看组件状态" class="headerlink" title="查看组件状态"></a>查看组件状态</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get cs</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看环境信息-1"><a href="#查看环境信息-1" class="headerlink" title="查看环境信息"></a>查看环境信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl cluster-info</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看-Node"><a href="#查看-Node" class="headerlink" title="查看 Node"></a>查看 Node</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get nodes -o wide</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看集群配置"><a href="#查看集群配置" class="headerlink" title="查看集群配置"></a>查看集群配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl -n kube-system get cm kubeadm-config -oyaml</span><br></pre></td></tr></table></figure>
+
+<h4 id="运行容器-1"><a href="#运行容器-1" class="headerlink" title="运行容器"></a>运行容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl run nginx --image=nginx --replicas=2 --port=80</span><br></pre></td></tr></table></figure>
+
+<h4 id="暴露服务"><a href="#暴露服务" class="headerlink" title="暴露服务"></a>暴露服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl expose deployment nginx --port=80 --<span class="built_in">type</span>=LoadBalancer</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看命名空间"><a href="#查看命名空间" class="headerlink" title="查看命名空间"></a>查看命名空间</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get namespace</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建命名空间"><a href="#创建命名空间" class="headerlink" title="创建命名空间"></a>创建命名空间</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Namespace</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">development</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pods -o wide</span><br><span class="line">$ kubectl get deployment -o wide</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看服务"><a href="#查看服务" class="headerlink" title="查看服务"></a>查看服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get service -o wide</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看详情"><a href="#查看详情" class="headerlink" title="查看详情"></a>查看详情</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl describe pod &lt;Pod Name&gt;</span><br><span class="line">$ kubectl describe deployment &lt;Deployment Name&gt;</span><br><span class="line">$ kubectl describe service &lt;Service Name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl logs -f &lt;Pod Name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除容器和服务"><a href="#删除容器和服务" class="headerlink" title="删除容器和服务"></a>删除容器和服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl delete deployment &lt;Deployment Name&gt;</span><br><span class="line">$ kubectl delete service &lt;Service Name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置方式运行"><a href="#配置方式运行" class="headerlink" title="配置方式运行"></a>配置方式运行</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl create -f &lt;YAML&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置方式删除"><a href="#配置方式删除" class="headerlink" title="配置方式删除"></a>配置方式删除</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl delete -f &lt;YAML&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看配置"><a href="#查看配置" class="headerlink" title="查看配置"></a>查看配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubeadm config view</span><br><span class="line">$ kubectl config view</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看-Ingress"><a href="#查看-Ingress" class="headerlink" title="查看 Ingress"></a>查看 Ingress</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get ingress</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看持久卷"><a href="#查看持久卷" class="headerlink" title="查看持久卷"></a>查看持久卷</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pv</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看持久卷消费者"><a href="#查看持久卷消费者" class="headerlink" title="查看持久卷消费者"></a>查看持久卷消费者</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get pvc</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看-ConfigMap"><a href="#查看-ConfigMap" class="headerlink" title="查看 ConfigMap"></a>查看 ConfigMap</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get cm &lt;ConfigMap Name&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改-ConfigMap"><a href="#修改-ConfigMap" class="headerlink" title="修改 ConfigMap"></a>修改 ConfigMap</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl edit cm &lt;ConfigMap Name&gt;</span><br></pre></td></tr></table></figure>
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
           <li class="previous">
-            <a href="/spring-mvc/spring-mvc核心组件详解/" data-toggle="tooltip" data-placement="top" title="Spring MVC 核心组件详解">&larr; Previous Post</a>
+            <a href="/读书分享/刻意练习/" data-toggle="tooltip" data-placement="top" title="《刻意练习》读书分享">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/spring-mvc/spring-mvc入门就这一篇/" data-toggle="tooltip" data-placement="top" title="Spring MVC 入门就这一篇">Next Post &rarr;</a>
+            <a href="/kubernetes/kubernetes数据持久化实现/" data-toggle="tooltip" data-placement="top" title="Kubernetes 数据持久化实现">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -486,7 +543,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=使用 Spring MVC 的拦截器实现登录功能&body=Hi,I found this website and thought you might like it https://antoniopeng.com/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Kubernetes 常用命令&body=Hi,I found this website and thought you might like it https://antoniopeng.com/kubernetes/kubernetes常用命令/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -527,7 +584,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#应用场景"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">应用场景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Spring-MVC-拦截器"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Spring MVC 拦截器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建拦截器"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">创建拦截器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置拦截器"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">配置拦截器</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Kubectl-与-Docker-命令"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Kubectl 与 Docker 命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#概述"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">概述</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#运行容器"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">运行容器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看已运行的容器"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">查看已运行的容器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#交互式进入容器"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">交互式进入容器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#打印日志"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">打印日志</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#停止和删除容器"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">停止和删除容器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看版本"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">查看版本</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看环境信息"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">查看环境信息</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Kubectl-常用命令"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Kubectl 常用命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看组件状态"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">查看组件状态</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看环境信息-1"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">查看环境信息</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看-Node"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">查看 Node</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看集群配置"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">查看集群配置</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#运行容器-1"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">运行容器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#暴露服务"><span class="toc-nav-number">2.6.</span> <span class="toc-nav-text">暴露服务</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看命名空间"><span class="toc-nav-number">2.7.</span> <span class="toc-nav-text">查看命名空间</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建命名空间"><span class="toc-nav-number">2.8.</span> <span class="toc-nav-text">创建命名空间</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看容器"><span class="toc-nav-number">2.9.</span> <span class="toc-nav-text">查看容器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看服务"><span class="toc-nav-number">2.10.</span> <span class="toc-nav-text">查看服务</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看详情"><span class="toc-nav-number">2.11.</span> <span class="toc-nav-text">查看详情</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看日志"><span class="toc-nav-number">2.12.</span> <span class="toc-nav-text">查看日志</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#删除容器和服务"><span class="toc-nav-number">2.13.</span> <span class="toc-nav-text">删除容器和服务</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置方式运行"><span class="toc-nav-number">2.14.</span> <span class="toc-nav-text">配置方式运行</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#配置方式删除"><span class="toc-nav-number">2.15.</span> <span class="toc-nav-text">配置方式删除</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看配置"><span class="toc-nav-number">2.16.</span> <span class="toc-nav-text">查看配置</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看-Ingress"><span class="toc-nav-number">2.17.</span> <span class="toc-nav-text">查看 Ingress</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看持久卷"><span class="toc-nav-number">2.18.</span> <span class="toc-nav-text">查看持久卷</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看持久卷消费者"><span class="toc-nav-number">2.19.</span> <span class="toc-nav-text">查看持久卷消费者</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#查看-ConfigMap"><span class="toc-nav-number">2.20.</span> <span class="toc-nav-text">查看 ConfigMap</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改-ConfigMap"><span class="toc-nav-number">2.21.</span> <span class="toc-nav-text">修改 ConfigMap</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -549,7 +606,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+            <a class="tag" href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
             
           </div>
         </section>
