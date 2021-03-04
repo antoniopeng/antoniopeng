@@ -886,6 +886,13 @@
 
   
   <url>
+    <loc>https://antoniopeng.com/tags/Docker/</loc>
+    <lastmod>2021-03-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://antoniopeng.com/tags/FastDFS/</loc>
     <lastmod>2021-03-04</lastmod>
     <changefreq>daily</changefreq>
@@ -894,13 +901,6 @@
   
   <url>
     <loc>https://antoniopeng.com/tags/Git/</loc>
-    <lastmod>2021-03-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://antoniopeng.com/tags/Docker/</loc>
     <lastmod>2021-03-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -949,13 +949,6 @@
   </url>
   
   <url>
-    <loc>https://antoniopeng.com/tags/MySQL/</loc>
-    <lastmod>2021-03-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://antoniopeng.com/tags/Nginx/</loc>
     <lastmod>2021-03-04</lastmod>
     <changefreq>daily</changefreq>
@@ -964,6 +957,13 @@
   
   <url>
     <loc>https://antoniopeng.com/tags/Redis/</loc>
+    <lastmod>2021-03-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://antoniopeng.com/tags/MySQL/</loc>
     <lastmod>2021-03-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
