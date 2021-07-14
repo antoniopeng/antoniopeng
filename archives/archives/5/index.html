@@ -217,14 +217,14 @@
 
           
           <li>
-            <a href="/archive/">Archives</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
           <li>
-            <a href="/categories/">Categories</a>
+            <a href="/archive/">Archives</a>
           </li>
           
           
@@ -383,6 +383,54 @@
   
 
 
+  <a href="/mysql/mysql读写分离/">
+    <h2 class="post-title">
+      MySQL 读写分离
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      准备工作
+
+我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
+
+这里，我们准备两台机器：
+
+主机：192.168.248.128
+从机：192.168.248.139
+
+主机配置
+
+主机的配置就三个步骤，比较容易：
+授权给从机服务器
+12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identifie......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by 彭楷淳 on
+    2021-01-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/mysql/mysql主从复制/">
     <h2 class="post-title">
       MySQL 主从复制
@@ -411,7 +459,7 @@
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
+    Posted by 彭楷淳 on
     2021-01-28
   </p>
   <div class="tags">
@@ -457,7 +505,7 @@ MySQL5.7
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
+    Posted by 彭楷淳 on
     2021-01-28
   </p>
   <div class="tags">
@@ -502,7 +550,7 @@ MySQL5.7
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
+    Posted by 彭楷淳 on
     2021-01-28
   </p>
   <div class="tags">
@@ -540,7 +588,7 @@ MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
+    Posted by 彭楷淳 on
     2021-01-28
   </p>
   <div class="tags">
@@ -582,7 +630,7 @@ Redis 集群运行原理如下：
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
+    Posted by 彭楷淳 on
     2021-01-27
   </p>
   <div class="tags">
@@ -624,7 +672,7 @@ Redis 集群运行原理如下：
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
+    Posted by 彭楷淳 on
     2021-01-27
   </p>
   <div class="tags">
@@ -661,7 +709,7 @@ Redis 集群运行原理如下：
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
+    Posted by 彭楷淳 on
     2021-01-26
   </p>
   <div class="tags">
@@ -701,7 +749,7 @@ Redis 集群运行原理如下：
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
+    Posted by 彭楷淳 on
     2021-01-26
   </p>
   <div class="tags">
@@ -739,50 +787,8 @@ Redis 的发布订阅系统有点类似于我们生活中的电台，电台可�
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
+    Posted by 彭楷淳 on
     2021-01-26
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/reids散列与有序集合命令使用/">
-    <h2 class="post-title">
-      Reids 散列与有序集合命令使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      散列
-
-很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。
-hsethset 命令可以用来设置 key 指定的哈希集中指定字段的值，如下：
-12127.0.0.1:6379&gt; hset k1 h1 v1(integer) 1
-
-hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的值，如下：
-12127.0.0.1:63......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by 楷淳 on
-    2021-01-25
   </p>
   <div class="tags">
     
@@ -942,7 +948,7 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+    <a href="/tags/#Git" title="Git" rel="7">Git</a>
     
     
     
@@ -950,7 +956,11 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#Git" title="Git" rel="7">Git</a>
+    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    
+    
+    
+    <a href="/tags/#Kubernetes" title="Kubernetes" rel="7">Kubernetes</a>
     
     
     
@@ -958,7 +968,11 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#Java" title="Java" rel="6">Java</a>
+    <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+    
+    
+    
+    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
     
     
     
@@ -970,7 +984,7 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#MyBatis" title="MyBatis" rel="6">MyBatis</a>
+    <a href="/tags/#Redis" title="Redis" rel="9">Redis</a>
     
     
     
@@ -978,15 +992,7 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#Redis" title="Redis" rel="9">Redis</a>
-    
-    
-    
-    <a href="/tags/#读书分享" title="读书分享" rel="7">读书分享</a>
-    
-    
-    
-    <a href="/tags/#Kubernetes" title="Kubernetes" rel="7">Kubernetes</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot" rel="19">Spring Boot</a>
     
     
     
@@ -994,11 +1000,11 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#Spring Boot" title="Spring Boot" rel="19">Spring Boot</a>
-    
-    
-    
     <a href="/tags/#Spring MVC" title="Spring MVC" rel="7">Spring MVC</a>
+    
+    
+    
+    <a href="/tags/#读书分享" title="读书分享" rel="8">读书分享</a>
     
     
     
@@ -1052,7 +1058,7 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     <!-- <h5>ARCHIVES</h5> -->
     <h5><a href="/archive/">ARCHIVES</a></h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/03/">March 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/02/">February 2021</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">74</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../2021/07/">July 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/03/">March 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/02/">February 2021</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2021/01/">January 2021</a><span class="archive-list-count">74</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/12/">December 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/10/">October 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/09/">September 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/07/">July 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 

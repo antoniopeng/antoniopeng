@@ -145,10 +145,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/mysql/centos上安装mysql/">
+  <link rel="canonical" href="https://antoniopeng.com/读书分享/关键对话/">
   <title>
     
-    CentOS 上安装 MySQL - 彭超的博客 | Antonio Blog
+    《关键对话》读书分享 - 彭超的博客 | Antonio Blog
     
   </title>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -290,7 +290,7 @@
   <style type="text/css">
     header.intro-header {
        /*post*/
-        background-image: url('https://qiniuyun.antoniopeng.com/work.jpg');
+        background-image: url('https://qiniuyun.antoniopeng.com/%E5%85%B3%E9%94%AE%E5%AF%B9%E8%AF%9D.png');
       
     }
 
@@ -315,14 +315,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#MySQL" title="MySQL">MySQL</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#读书分享" title="读书分享">读书分享</a>
               
             </div>
-            <h1>CentOS 上安装 MySQL</h1>
+            <h1>《关键对话》读书分享</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by 彭楷淳 on
-              2021-01-28
+              2021-07-14
             </span>
 
 
@@ -330,11 +330,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">2</span> Minutes
+              Estimated Reading Time <span class="post-count">9</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">550</span> In Total
+              Words <span class="post-count">2.9k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -396,82 +396,200 @@
 
 		<!-- <a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a> -->
 
-        <p>平时我一般首选 Ubuntu，不过公司里边使用一般还是 CentOS 为主，因此这里就以 CentOS 为例来向大家演示整个过程，今天这篇文章主要来看看 MySQL 的安装。</p>
-<p>安装环境：</p>
-<ul>
-<li>CentOS7</li>
-<li>MySQL5.7</li>
-</ul>
-<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><hr />
+        <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><hr />
 
-<p>检查是否安装了 mariadb，如果已经安装了则卸载：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum list installed | grep mariadb</span><br></pre></td></tr></table></figure>
+<ol>
+<li>什么是关键对话</li>
+<li>人们通常如何面对关键对话</li>
+<li>常见的关键对话</li>
+<li>掌握关键对话的好处</li>
+<li>什么是傻瓜式的选择</li>
+<li>杜绝傻瓜式选择，要从心开始</li>
+<li>正确的做法：关注你的真实目的</li>
+<li>进入关键对话的引导思维</li>
+<li>学会观察对话氛围</li>
+<li>如何保证对话的安全</li>
+<li>如何在愤怒恐惧或受伤的情况下展开对话</li>
+<li>当你要失控时，控制想法的技巧</li>
+<li>关键对话的步骤</li>
+<li>如何帮助对方走出沉默或暴力状态</li>
+<li>为你的下一次关键对话做准备</li>
+<li>你总有一天要用上关键对话，如果你一直不用，那就只有两种情况</li>
+</ol>
+<h3 id="1-什么是关键对话"><a href="#1-什么是关键对话" class="headerlink" title="1. 什么是关键对话"></a>1. 什么是关键对话</h3><hr />
 
-<p>如果执行结果如下，表示已经安装了 mariadb，将之卸载：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mariadb-libs.x86_64                   1:5.5.52-1.el7                   @anaconda</span><br></pre></td></tr></table></figure>
+<h4 id="关键对话有三个特征"><a href="#关键对话有三个特征" class="headerlink" title="关键对话有三个特征"></a>关键对话有三个特征</h4><ol>
+<li><p>对话双方的观点有很大差距：比如双方意见不合的争执，与不同意见的同事沟通；说服你的老板和父母。</p>
+</li>
+<li><p>对话存在很高的风险：比如难得的面试机会，求婚，谈判，要求加薪。</p>
+</li>
+<li><p>对话双方情绪激烈：比如面对叛逆的子女，下属情绪失控，客户生气的投诉。</p>
+</li>
+</ol>
+<h3 id="2-人们通常如何面对关键对话"><a href="#2-人们通常如何面对关键对话" class="headerlink" title="2. 人们通常如何面对关键对话"></a>2. 人们通常如何面对关键对话</h3><hr />
 
-<p>卸载命令如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y remove mariadb*</span><br></pre></td></tr></table></figure>
+<p>我们会逃避关键对话。早就应该解决的问题，我们不愿意提及；或者每次遇到关键对话就避重就轻；甚至假装一切都不要紧，万事太平。</p>
+<p>我们也可能会搞砸。因为从原始社会累积下来的基因会让我们在面临紧张状况的时候选择打或者逃，而这两种行动都需要四肢运动，因此你的血液会流向四肢造成脑部缺血。这就是为什么我们经常在关键的时候觉得头脑一片空白。也就是俗称的掉链子。事后你会为自己说不出话来自责，或者为自己不理智的言辞付出代价。</p>
+<p>也有人会处理得很好。他们能够很好地处理关键时刻的对话，既不会伤害到对方，又能够很好地表达自己的观点和诉求。最终常常能够解决问题，达成目标。</p>
+<h3 id="3-常见的关键对话"><a href="#3-常见的关键对话" class="headerlink" title="3. 常见的关键对话"></a>3. 常见的关键对话</h3><hr />
 
-<p>接下来下载官方提供的 rpm 包。如果 CentOS 上没有 wget 命令，首先通过如下命令安装 wget：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install wget</span><br></pre></td></tr></table></figure>
+<ol>
+<li>结束一段感情</li>
+<li>和总是冒犯你的同事交谈</li>
+<li>让朋友还钱</li>
+<li>指出老板一些不对的地方</li>
+<li>向言行不一的老板提建议</li>
+<li>批评同事的工作表现</li>
+<li>应对处于青春期的叛逆儿女</li>
+<li>探讨关于出轨的问题</li>
+<li>应对配偶严重的家庭暴力问题</li>
+<li>和喜欢打听小道消息的同事交谈</li>
+<li>要求升职加薪</li>
+</ol>
+<h3 id="4-掌握关键对话的好处"><a href="#4-掌握关键对话的好处" class="headerlink" title="4. 掌握关键对话的好处"></a>4. 掌握关键对话的好处</h3><hr />
 
-<p>然后执行如下操作下载 rpm 包：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm</span><br></pre></td></tr></table></figure>
+<ol>
+<li>帮助个人创业</li>
+<li>改善企业管理</li>
+<li>改善人际关系</li>
+<li>改善个人健康</li>
+</ol>
+<h3 id="5-什么是傻瓜式的选择"><a href="#5-什么是傻瓜式的选择" class="headerlink" title="5. 什么是傻瓜式的选择"></a>5. 什么是傻瓜式的选择</h3><hr />
 
-<p>下载完成后，安装 rpm 包：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -ivh mysql57-community-release-el7-11.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>选择一：当面表示反对，把对方惹恼</p>
+<p>选择二：沉默接受对方的错误，不管谁会为此遭殃</p>
+<p>摆脱傻瓜式选择的宗旨：100% 的坦诚，同时 100% 的尊重对方</p>
+<h3 id="6-杜绝傻瓜式选择，要从心开始"><a href="#6-杜绝傻瓜式选择，要从心开始" class="headerlink" title="6. 杜绝傻瓜式选择，要从心开始"></a>6. 杜绝傻瓜式选择，要从心开始</h3><hr />
 
-<p>检查 MySQL 的 yum 源是否安装成功：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum repolist enabled | grep <span class="string">"mysql.*-community.*"</span></span><br></pre></td></tr></table></figure>
+<h4 id="从我做起"><a href="#从我做起" class="headerlink" title="从我做起"></a>从我做起</h4><ol>
+<li>我们总以为苦恼是由他人导致的。这种思维方式会让你的情绪不受控制，并且不由自主地想要伤害对方，或者自认倒霉。</li>
+<li>其实只有改变自己才能改变结果。要知道你永远都有着选择的权利，没有人能够伤害你，除非你自己允许。做到这一点，你才能考虑如何去解决问题，而不是伤害或被伤害。</li>
+</ol>
+<h4 id="常见误区"><a href="#常见误区" class="headerlink" title="常见误区"></a>常见误区</h4><ol>
+<li>战胜对方</li>
+<li>惩罚对方</li>
+<li>保持一团和气</li>
+</ol>
+<p>这三种想法都是阻止你达成双赢沟通的障碍。</p>
+<h4 id="7-正确的做法：关注你的真实目的"><a href="#7-正确的做法：关注你的真实目的" class="headerlink" title="7. 正确的做法：关注你的真实目的"></a>7. 正确的做法：关注你的真实目的</h4><ol>
+<li><p>学会在对话前和对话中问自己问题</p>
+<p>我希望为自己实现什么目标</p>
+<p>我希望为对方实现什么目标</p>
+<p>我希望为我们之间的关系实现什么目标</p>
+<p>要实现这些目标我该怎么做</p>
+</li>
+<li><p>为什么要问自己问题</p>
+<p>首先是为对话寻找意义：在谈话中失控的人，都是因为已经忘记了谈话的初衷。想想看，一个为了挽救孩子的父亲，突然发飙，说随你的便吧！这时候他已经忘记了谈话的目标，成为了自己情绪的奴隶。只要记得谈话的目标，你的情绪就不容易失控。</p>
+<p>其次是控制好自己的身体：做自己的观察者，你的身体和思想才会受控。在紧张的时候，观察自己，和自己对话，能够让自己很快放松下来。</p>
+</li>
+</ol>
+<h3 id="8-进入关键对话的引导思维"><a href="#8-进入关键对话的引导思维" class="headerlink" title="8. 进入关键对话的引导思维"></a>8. 进入关键对话的引导思维</h3><hr />
 
-<p>执行结果如下表示安装成功：</p>
-<p><img src="https://qiniuyun.antoniopeng.com/mysql%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA01.png" alt="img"></p>
-<p>开始安装 MySQL</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install mysql-server</span><br></pre></td></tr></table></figure>
+<h4 id="学会对比说明"><a href="#学会对比说明" class="headerlink" title="学会对比说明"></a>学会对比说明</h4><ol>
+<li><p>首先，阐明自己的真实目的：我今天是想修复咱们俩的关系，解决我们之间长久以来的误解。</p>
+</li>
+<li><p>其次，说明你不想实现的目标：我不想让你觉得我根本不在乎你的感受，或者有任何对你不敬的意思。</p>
+</li>
+<li><p>第三，问自己有没有两全其美的方法：有什么办法能够实现这个目的呢？</p>
+</li>
+</ol>
+<p>做完这三步，恭喜你，你已经摆脱了傻瓜式选择！</p>
+<h3 id="9-学会观察对话氛围"><a href="#9-学会观察对话氛围" class="headerlink" title="9. 学会观察对话氛围"></a>9. 学会观察对话氛围</h3><hr />
 
-<p>安装完成后，启动 MySQL：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+<p>学会做一个双核的对话人，注意内容，同时注意氛围。很多对话的失败，就是因为没有关注氛围。当你发现对方情绪不对或者气氛出现不利于对话的变化时，要停止内容方面的沟通，转而修复氛围。可以用我们前面讲到的对比说明的方法。也可以直接表示你理解对方的情绪。甚至要求把对话停一停，双方冷静一点再继续谈。</p>
+<p>记得《中国合伙人》里面三个合伙人到美国谈判的段落吗？就靠着一个调整氛围的暂停，最终达成了和解。</p>
+<h3 id="10-如何保证对话的安全"><a href="#10-如何保证对话的安全" class="headerlink" title="10. 如何保证对话的安全"></a>10. 如何保证对话的安全</h3><hr />
 
-<p>停止 MySQL：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl stop mysqld.service</span><br></pre></td></tr></table></figure>
+<h4 id="强调共同目的"><a href="#强调共同目的" class="headerlink" title="强调共同目的"></a>强调共同目的</h4><p>我的目的是……</p>
+<p>我不希望……</p>
+<h4 id="保持尊重"><a href="#保持尊重" class="headerlink" title="保持尊重"></a>保持尊重</h4><p>尊重就像空气：它存在的时候，你感觉不到它；但一旦它不存在了，你就立刻会感受到窒息。</p>
+<p>尊重有时不是语言的问题。</p>
+<p>你的心里不尊重一个人，你会通过你的肢体语言和眼神表达出来。甚至你下意识的动作都会被对方感觉。</p>
+<h4 id="具体的做法—道歉"><a href="#具体的做法—道歉" class="headerlink" title="具体的做法—道歉"></a>具体的做法—道歉</h4><p>抱歉我刚刚的话可能不太准确；对不起我没控制好情绪；如果让你觉得被冒犯，我道歉。</p>
+<h4 id="对比说明"><a href="#对比说明" class="headerlink" title="对比说明"></a>对比说明</h4><p>我想要解决的问题是……，我并不希望……</p>
+<h4 id="创建共同目的"><a href="#创建共同目的" class="headerlink" title="创建共同目的"></a>创建共同目的</h4><p>咱们都想让孩子更好，对吗？我们今天的努力，可能会让公司更健康……</p>
+<h3 id="11-如何在愤怒恐惧或受伤的情况下展开对话"><a href="#11-如何在愤怒恐惧或受伤的情况下展开对话" class="headerlink" title="11. 如何在愤怒恐惧或受伤的情况下展开对话"></a>11. 如何在愤怒恐惧或受伤的情况下展开对话</h3><hr />
 
-<p>登录 MySQL</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p</span><br></pre></td></tr></table></figure>
+<h4 id="关于情绪的两个声明"><a href="#关于情绪的两个声明" class="headerlink" title="关于情绪的两个声明"></a>关于情绪的两个声明</h4><ol>
+<li><p>情绪不是别人强加给你的，其他人是无法让你陷入某种情绪的；</p>
+</li>
+<li><p>产生负面情绪后你只有两个选择，控制它，或者被它控制。</p>
+</li>
+</ol>
+<h4 id="所见所闻—主观臆断—形成感受—产生行为"><a href="#所见所闻—主观臆断—形成感受—产生行为" class="headerlink" title="所见所闻—主观臆断—形成感受—产生行为"></a>所见所闻—主观臆断—形成感受—产生行为</h4><p>这是一个情绪产生的过程。看到了吗？这中间有一个主观臆断的过程，通过了你的解读才会形成你的感受。所以我们会看到有的人很难被伤害到，因为他不会庸人自扰，或者天生拥有钝感力。而有的人看到别人一个眼神就会受伤害；</p>
+<p>知道这一点，你应该懂得如何避免被人伤害了。别自己找伤害，你就很难被伤害。这就叫人格强大。</p>
+<h3 id="12-当你要失控时，控制想法的技巧"><a href="#12-当你要失控时，控制想法的技巧" class="headerlink" title="12. 当你要失控时，控制想法的技巧"></a>12. 当你要失控时，控制想法的技巧</h3><hr />
 
-<p>默认无密码。有的版本有默认密码，查看默认密码，首先去 /etc/my.cnf 目录下查看 MySQL 的日志位置，然后打开日志文件，可以看到日志中有一个提示，生成了一个临时的默认密码，使用这个密码登录，登录成功后修改密码即可。</p>
-<p>首先修改密码策略（这一步不是必须的，如果不修改密码策略，需要取一个比较复杂的密码，这里简单起见，就修改下密码策略）：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> global validate_password_policy=0;</span><br></pre></td></tr></table></figure>
+<h4 id="行为方式回顾"><a href="#行为方式回顾" class="headerlink" title="行为方式回顾"></a>行为方式回顾</h4><ol>
+<li>我是否表现出了沉默或暴力的应对方式</li>
+<li>是什么情绪导致我做出这种行为</li>
+<li>产生这种情绪的想法是什么</li>
+<li>这种想法的形成有何依据</li>
+</ol>
+<h4 id="留意三种常见的小聪明"><a href="#留意三种常见的小聪明" class="headerlink" title="留意三种常见的小聪明"></a>留意三种常见的小聪明</h4><ol>
+<li>受害者想法：这可不是我的错</li>
+<li>大反派想法：这都是你造成的</li>
+<li>无助者想法：这事我也没办法</li>
+</ol>
+<h3 id="13-关键对话的步骤"><a href="#13-关键对话的步骤" class="headerlink" title="13. 关键对话的步骤"></a>13. 关键对话的步骤</h3><hr />
 
-<p>然后重置密码：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> password=password(<span class="string">"123"</span>);     </span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>分享事实经过</li>
+<li>说出你的想法</li>
+<li>征询对方观点</li>
+<li>做出试探表述</li>
+<li>鼓励做出尝试</li>
+</ol>
+<h4 id="分享事实经过"><a href="#分享事实经过" class="headerlink" title="分享事实经过"></a>分享事实经过</h4><p>事实是最不会引起争议的内容</p>
+<p>事实是最具说服力的内容</p>
+<p>事实是最不会令人反感的内容</p>
+<p>我们要学会从事实出发。比如：我进入公司到现在已经有三年了，每年的业绩考评都是优秀。而到目前为止还没有得到过一次加薪。我目前的薪资水平还是一个转正毕业生的水平。</p>
+<h4 id="说出你的想法"><a href="#说出你的想法" class="headerlink" title="说出你的想法"></a>说出你的想法</h4><p>不要堆积问题，自信地说出你的想法，注意安全问题</p>
+<p>使用对比法。比如：我的确希望得到加薪。我的目的是为了能够获得相对公平的对待，以便在公司继续做出更大的贡献，我不希望让您觉得我只看重钱。</p>
+<h4 id="征询对方观点"><a href="#征询对方观点" class="headerlink" title="征询对方观点"></a>征询对方观点</h4><p>真想知道结果最好的方法就是让对方说完。</p>
+<p>比如：我想听听您的想法；我想知道您对我的看法；我希望听您坦诚地讲讲对我的意见和建议。</p>
+<h3 id="14-如何帮助对方走出沉默或暴力状态"><a href="#14-如何帮助对方走出沉默或暴力状态" class="headerlink" title="14. 如何帮助对方走出沉默或暴力状态"></a>14. 如何帮助对方走出沉默或暴力状态</h3><hr />
 
-<p>授权远程登录同方式一：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ grant all privileges on *.* to <span class="string">'root'</span>@<span class="string">'%'</span> identified by <span class="string">'123'</span> with grant option;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<h4 id="了解对方的原因"><a href="#了解对方的原因" class="headerlink" title="了解对方的原因"></a>了解对方的原因</h4><p>带有真诚、好奇、坚持、耐心，去询问、确认感受、重新描述、主动引导。</p>
+<h4 id="如果对方观点是错误的怎么办"><a href="#如果对方观点是错误的怎么办" class="headerlink" title="如果对方观点是错误的怎么办"></a>如果对方观点是错误的怎么办</h4><ol>
+<li>寻找共同点，赞同：咱们有三点是一致的……</li>
+<li>找到对方的盲点，补充：我希望补充一个事实……</li>
+<li>不同意的部分，比较：你的建议是……，这样会导致……；我的建议是……，这样能够达成……</li>
+</ol>
+<h3 id="15-为你的下一次关键对话做准备"><a href="#15-为你的下一次关键对话做准备" class="headerlink" title="15. 为你的下一次关键对话做准备"></a>15. 为你的下一次关键对话做准备</h3><hr />
 
-<p>授权远程登录同方式二：</p>
-<p>修改 mysql 库中的 user 表，将 root 用户的 Host 字段的值改为 <code>%</code> ，然后重启 MySQL 即可。关闭防火墙 MySQL 要能远程访问，还需要关闭防火墙：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+<ol>
+<li>从心开始（调整心态，自己首先摆脱暴力或沉默的状态，寻找双赢的可能）</li>
+<li>注意观察（除了内容，还要关注谈话的氛围）</li>
+<li>保证安全（如果对方情绪出现问题，想办法让对方觉得安全）</li>
+<li>控制想法（不要轻易地觉得受到冒犯或者不公平，公平不重要，解决问题才重要）</li>
+<li>陈述观点（说出事实，表达观点，对比说明）</li>
+<li>了解动机（帮助对方调整情绪）</li>
+<li>准备好了，你可以开始行动，去准备一个关键对话吧</li>
+</ol>
+<h3 id="16-你总有一天要用上关键对话，如果你一直不用，那你就只有两种情况"><a href="#16-你总有一天要用上关键对话，如果你一直不用，那你就只有两种情况" class="headerlink" title="16. 你总有一天要用上关键对话，如果你一直不用，那你就只有两种情况"></a>16. 你总有一天要用上关键对话，如果你一直不用，那你就只有两种情况</h3><hr />
 
-<p>禁止 firewall 开机启动:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>你的人生实在没有挑战</p>
+</li>
+<li><p>你不在乎这些谈话的结果</p>
+</li>
+</ol>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><hr />
 
-<blockquote>
-<p>更多干货请移步：<a href="https://antoniopeng.com">https://antoniopeng.com</a></p>
-</blockquote>
+<p>人这一生中总有很多次关键对话的时刻。</p>
+<p>比如关键性的面试，向心爱的女孩求婚，面对一个艰苦的商业谈判，和自己的老婆吵架……</p>
+<p>你有多少次因为不会面对关键对话而丧失机会？尽管你深深自责，但苦于找不到合适的方法来改善自己，只能归咎于自己心理不够强大或者口才不好。这本书就是为了解决这个问题而来。</p>
+<p>根据这本书的指引，你会发现你也可以很好地控制自己的情绪，流畅并且智慧地引导谈话向解决问题的方向前进。</p>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/mysql/mysql主从复制/" data-toggle="tooltip" data-placement="top" title="MySQL 主从复制">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/mysql/mysql性能优化小结/" data-toggle="tooltip" data-placement="top" title="MySQL 性能优化小结">Next Post &rarr;</a>
+            <a href="/读书分享/应对焦虑/" data-toggle="tooltip" data-placement="top" title="《应对焦虑》读书分享">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -514,7 +632,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=CentOS 上安装 MySQL&body=Hi,I found this website and thought you might like it https://antoniopeng.com/mysql/centos上安装mysql/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=《关键对话》读书分享&body=Hi,I found this website and thought you might like it https://antoniopeng.com/读书分享/关键对话/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -555,7 +673,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装步骤"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">安装步骤</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#目录"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">目录</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-什么是关键对话"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">1. 什么是关键对话</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#关键对话有三个特征"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">关键对话有三个特征</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-人们通常如何面对关键对话"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">2. 人们通常如何面对关键对话</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-常见的关键对话"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">3. 常见的关键对话</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#4-掌握关键对话的好处"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">4. 掌握关键对话的好处</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#5-什么是傻瓜式的选择"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">5. 什么是傻瓜式的选择</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-杜绝傻瓜式选择，要从心开始"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">6. 杜绝傻瓜式选择，要从心开始</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#从我做起"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">从我做起</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#常见误区"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">常见误区</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#7-正确的做法：关注你的真实目的"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">7. 正确的做法：关注你的真实目的</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#8-进入关键对话的引导思维"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">8. 进入关键对话的引导思维</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#学会对比说明"><span class="toc-nav-number">8.1.</span> <span class="toc-nav-text">学会对比说明</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#9-学会观察对话氛围"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">9. 学会观察对话氛围</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#10-如何保证对话的安全"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">10. 如何保证对话的安全</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#强调共同目的"><span class="toc-nav-number">10.1.</span> <span class="toc-nav-text">强调共同目的</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#保持尊重"><span class="toc-nav-number">10.2.</span> <span class="toc-nav-text">保持尊重</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#具体的做法—道歉"><span class="toc-nav-number">10.3.</span> <span class="toc-nav-text">具体的做法—道歉</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对比说明"><span class="toc-nav-number">10.4.</span> <span class="toc-nav-text">对比说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#创建共同目的"><span class="toc-nav-number">10.5.</span> <span class="toc-nav-text">创建共同目的</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-如何在愤怒恐惧或受伤的情况下展开对话"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">11. 如何在愤怒恐惧或受伤的情况下展开对话</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#关于情绪的两个声明"><span class="toc-nav-number">11.1.</span> <span class="toc-nav-text">关于情绪的两个声明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#所见所闻—主观臆断—形成感受—产生行为"><span class="toc-nav-number">11.2.</span> <span class="toc-nav-text">所见所闻—主观臆断—形成感受—产生行为</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#12-当你要失控时，控制想法的技巧"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">12. 当你要失控时，控制想法的技巧</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#行为方式回顾"><span class="toc-nav-number">12.1.</span> <span class="toc-nav-text">行为方式回顾</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#留意三种常见的小聪明"><span class="toc-nav-number">12.2.</span> <span class="toc-nav-text">留意三种常见的小聪明</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#13-关键对话的步骤"><span class="toc-nav-number">13.</span> <span class="toc-nav-text">13. 关键对话的步骤</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分享事实经过"><span class="toc-nav-number">13.1.</span> <span class="toc-nav-text">分享事实经过</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#说出你的想法"><span class="toc-nav-number">13.2.</span> <span class="toc-nav-text">说出你的想法</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#征询对方观点"><span class="toc-nav-number">13.3.</span> <span class="toc-nav-text">征询对方观点</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#14-如何帮助对方走出沉默或暴力状态"><span class="toc-nav-number">14.</span> <span class="toc-nav-text">14. 如何帮助对方走出沉默或暴力状态</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#了解对方的原因"><span class="toc-nav-number">14.1.</span> <span class="toc-nav-text">了解对方的原因</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#如果对方观点是错误的怎么办"><span class="toc-nav-number">14.2.</span> <span class="toc-nav-text">如果对方观点是错误的怎么办</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#15-为你的下一次关键对话做准备"><span class="toc-nav-number">15.</span> <span class="toc-nav-text">15. 为你的下一次关键对话做准备</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#16-你总有一天要用上关键对话，如果你一直不用，那你就只有两种情况"><span class="toc-nav-number">16.</span> <span class="toc-nav-text">16. 你总有一天要用上关键对话，如果你一直不用，那你就只有两种情况</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#结语"><span class="toc-nav-number">17.</span> <span class="toc-nav-text">结语</span></a></li></ol>
         
         </div>
       </aside>
@@ -577,7 +695,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
+            <a class="tag" href="/tags/#读书分享" title="读书分享">读书分享</a>
             
           </div>
         </section>
