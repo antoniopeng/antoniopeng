@@ -14767,4 +14767,8 @@
         ]);
 });
 
+$(function(){
+	
+	$('.gitter-open-chat-button').val('留言讨论')
+})
 //# sourceMappingURL=gitalk.js.map

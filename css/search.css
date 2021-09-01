@@ -61,11 +61,11 @@ time.search-result-date {
 @media (min-width: 1080px) {
   .popup-btn-close {
     position: absolute;
-    top: 30px;
-    left: 50px;
+    top: 45px;
+    right: 30px;
     /* border: 1px solid #5d738d; */
     padding: 5px 20px;
-    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     cursor: pointer;
     transition: all ease .3s;
     background-color: #f6f9fc;

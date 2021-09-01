@@ -207,18 +207,23 @@
       <div class="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="/">Home</a>
+            <a style="font-size: 17px;height: 56px;" href="/">主页</a>
+          </li>
+		  
+		  <li>
+            <a style="font-size: 17px;height: 56px;" href="/categories/">文章分类</a>
+          </li>
+		  
+		  <li>
+            <a style="font-size: 17px;height: 56px;" href="/archive/">日期归档</a>
+          </li>
+		  
+		  <li>
+            <a style="font-size: 17px;height: 56px;" href="/tags/">特色标签</a>
           </li>
 
-          
+          <!-- 
 
-          
-          
-
-          
-          <li>
-            <a href="/categories/">Categories</a>
-          </li>
           
           
 
@@ -231,13 +236,20 @@
 
           
           <li>
-            <a href="/tags/">Tags</a>
+            <a href="/categories/">Categories</a>
           </li>
           
           
 
           
-          <li><a class="popup-trigger" title="Search"><span class="search-icon"></span>Search</a></li>
+          <li>
+            <a href="/tags/">Tags</a>
+          </li>
+          
+           -->
+
+          
+          <li><a style="font-size: 17px;height: 56px;" class="popup-trigger" title="Search"><span class="search-icon"></span>搜索本站</a></li>
           
         </ul>
       </div>
@@ -411,7 +423,7 @@
                 <p class="copyright text-muted">
     				<a href="http://beian.miit.gov.cn" target="_blank">粤ICP备19161098号-2</a>
     				<br>
-    				Copyright &copy; <a href="https://antoniopeng.com">彭超</a> 2021
+    				&copy; 2020-2021 <a href="https://antoniopeng.com">彭超</a> 版权所有
     				<!--<br>
     				Powered by <a href="https://hexo.io/zh-cn/" target="_blank">Hexo</a> | Theme by <a href="http://beantech.org/" target="_blank">BeanTech</a>-->
                 </p>
@@ -501,8 +513,8 @@ https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 	<!-- Search -->
 	
 	<div class="popup search-popup local-search-popup">
-  <span class="popup-btn-close">
-    ESC
+ <span class="popup-btn-close" >
+    退出
   </span>
   <div class="container">
     <div class="row">
@@ -515,13 +527,15 @@ https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
             <span class="search-icon">
               <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
             </span>
-            <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            <input autocomplete="off" placeholder="输入关键字" type="text" id="local-search-input">
+			 
           </div>
         </div>
         <div id="local-search-result"></div>
       </div>
     </div>
   </div>
+
 </div>
 
 
