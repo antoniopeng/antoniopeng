@@ -399,28 +399,25 @@
   
 
 
-  <a href="/spring-mvc/spring-mvc的controller使用详解/">
+  <a href="/mysql/navicat实用功能-数据备份与结构同步/">
     <h2 class="post-title">
-      Spring MVC 的 Controller 使用详解
+      Navicat 实用功能 — 数据备份与结构同步
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      @RequestMapping
-
-这个注解用来标记一个接口，这算是我们在接口开发中，使用最多的注解之一。
-请求 URL标记请求 URL 很简单，只需要在相应的方法上添加该注解即可：
-12345678@Controllerpublic class HelloController &#123;        @RequestMapping("/hello")    public ModelAnd......
+      当我们要对数据库做有风险的操作时需要对数据库备份，每次上线项目时，线上与线下数据库结构总会有不一致的情况，本文将讲解如何利用 Navicat 来方便的解决这两个问题。
+Navicat 是一套快速、可靠的数据库管理工具，专为简化数据库的管理及降低系统管理成本而设。它的设计符合数据库管理员、开发人员及中小企业的需要。Navicat 是以直觉化的图形用户界面而建的，让你可以以安全并且简单的方式创建......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-16
+    彭楷淳发布于 2021-01-29
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
     
   </div>
   
@@ -437,29 +434,37 @@
   
 
 
-  <a href="/spring-mvc/spring-mvc中上传文件/">
+  <a href="/mysql/mysql读写分离/">
     <h2 class="post-title">
-      Spring MVC 中上传文件
+      MySQL 读写分离
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      SpringMVC 中对文件上传做了封装，我们可以更加方便的实现文件上传。从 Spring3.1 开始，对于文件上传，提供了两个处理器：
+      准备工作
 
-CommonsMultipartResolver
-StandardServletMultipartResolver·
+我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
 
-第一个处理器兼容性较好，可以兼容 Servlet3.0 之前的版本，但是它依赖了 commons-fileupload 这个第三方工具......
+这里，我们准备两台机器：
+
+主机：192.168.248.128
+从机：192.168.248.139
+
+主机配置
+
+主机的配置就三个步骤，比较容易：
+授权给从机服务器
+12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identifie......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-16
+    彭楷淳发布于 2021-01-28
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
     
   </div>
   
@@ -476,36 +481,39 @@ StandardServletMultipartResolver·
   
 
 
-  <a href="/读书分享/终身成长/">
+  <a href="/mysql/mysql主从复制/">
     <h2 class="post-title">
-      《终身成长》读书分享
+      MySQL 主从复制
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      这本书从思维模式的角度，让我们找到自己恐惧、苦恼和失败的原因。同时，将帮助我们突破这些阻碍，获得成长，达成目标。成长是每个人一辈子的事，它无关年龄。无论何时，停滞成长，才是最可怕的衰老。
-目录
+      主从规划
 
+首先规划两个 MySQL 实例：
 
-人的两种思维模式
-两种思维模式的区别
-能力和成就的真相
-思维模式在不同领域的体现
-培养成长型思维模式
+主机：192.168.66.131:33061
+从机：192.168.66.131:33062
 
-1. 人的两种思维模式
+当然大家可以准备多个从机，从机的配置步骤是一样的。接下来，我们就开始主从的配置。
+配置主机
 
-1.1. 固定型思维模式认为人的才能一成不变。这让人们时刻想证明自......
+主机上的配置，主要是两个地方：
+
+第一个是配置一个从机登录用户
+第二个配置开启 binlog。
+
+如果是 Docker 中创建的 MySQL 实例，默认只......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-16
+    彭楷淳发布于 2021-01-28
   </p>
   <div class="tags">
     
-    <a href="/tags/#读书分享" title="读书分享">读书分享</a>
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
     
   </div>
   
@@ -522,37 +530,35 @@ StandardServletMultipartResolver·
   
 
 
-  <a href="/读书分享/少有人走的路/">
+  <a href="/mysql/centos上安装mysql/">
     <h2 class="post-title">
-      《少有人走的路》读书分享
+      CentOS 上安装 MySQL
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      人生苦难重重，是一场艰辛之旅，心智成熟的旅程相当漫长。这本书可以引导我们过上崭新，宁静而丰富的生活，帮助我们学习爱，也学习独立。归根结底，它告诉我们怎样找到真正的自我。
-目录
+      平时我一般首选 Ubuntu，不过公司里边使用一般还是 CentOS 为主，因此这里就以 CentOS 为例来向大家演示整个过程，今天这篇文章主要来看看 MySQL 的安装。
+安装环境：
 
+CentOS7
+MySQL5.7
 
-自律—解决人生问题的最主要工具
-1.1. 不自律的表现
-1.2. 自律四原则
+安装步骤
 
-爱—不断拓宽自我界限、完善自我的意愿
-2.1. 爱是什么
-2.2. 坠入情网
-2.3. 自我界限
-2.4. 真爱的体验
-2.5. 这些......
+检查是否安装了 mariadb，如果已经安装了则卸载：
+1$ yum list installed | grep mariadb
+
+如果执行结果如下，表示已......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-16
+    彭楷淳发布于 2021-01-28
   </p>
   <div class="tags">
     
-    <a href="/tags/#读书分享" title="读书分享">读书分享</a>
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
     
   </div>
   
@@ -569,233 +575,34 @@ StandardServletMultipartResolver·
   
 
 
-  <a href="/spring-mvc/controller-advice注解的三种使用场景/">
+  <a href="/mysql/mysql性能优化小结/">
     <h2 class="post-title">
-      ControllerAdvice 注解的三种使用场景
+      MySQL 性能优化小结
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      @ControllerAdvice，顾名思义，这是一个增强的 Controller。使用这个 Controller ，可以实现三个方面的功能：
+      基础概念简述
 
-全局异常处理
-全局数据绑定
-全局数据预处理
+锁数据库通过锁机制来解决并发场景 — 共享锁（读锁）和排他锁（写锁）。读锁是不阻塞的，多个客户端可以在同一时刻读取同一个资源；写锁是排他的，并且会阻塞其他的读锁和写锁。
+简单提下乐观锁和悲观锁：
 
-全局异常处理
+乐观锁：通常用于数据竞争不激烈的场景，多读少写，通过版本号和时间戳实现
+悲观锁：通常用于数据竞争激烈的场景，每次操作都会锁定数据
 
-使用 @ControllerAdvice 实现全局异常处理，只需要定义类，添加该注解即可定义方式如下：
-1234567891011@ControllerAdvicepublic clas......
+要锁定数据需要一定的锁策略来配合。
+
+表锁：锁定......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-15
+    彭楷淳发布于 2021-01-28
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/读书分享/原生家庭/">
-    <h2 class="post-title">
-      《原生家庭》读书分享
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      本书收获
-
-
-了解问题父母的行为模式
-认知原生家庭对孩子的伤害
-学会摆脱原生家庭的负面影响
-
-金句精选
-
-
-父母在我们心里种下了精神和情感的种子，它们会随我们一同成长。（第 5 页）
-一纸离婚判决书并不能成为不称职的父母遗弃子女的许可证。（第 32 页）
-把正面的自我感受建立在别人的看法上，就等于把自尊心交到他们手里任其摆布。（第 114 页）
-孩子应该拥有犯错误和改正错误的权利。（第 11......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-15
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#读书分享" title="读书分享">读书分享</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc核心组件详解/">
-    <h2 class="post-title">
-      Spring MVC 核心组件详解
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      DispatcherServlet 作用
-
-DispatcherServlet 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。DispatcherServlet 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：
-
-文件上传解析，如果请求类型是 mu......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-15
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
-    <h2 class="post-title">
-      使用 Spring MVC 的拦截器实现登录功能
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring  MVC 的处理器拦截器，类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。
-应用场景
-
-
-日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。
-权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。
-性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-14
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc入门就这一篇/">
-    <h2 class="post-title">
-      Spring MVC 入门就这一篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring MVC 概述
-
-Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的一部分。
- MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 Web 应用程序的......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-14
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/spring事务解决方案/">
-    <h2 class="post-title">
-      Spring 事务解决方案
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring 中的事务主要是利用 Aop 思想，简化事务的配置，可以通过 Java 配置也可以通过 XML 配置。
-我们通过一个转账操作来看下 Spring 中的事务配置。
-准备工作
-
-创建数据库123456789101112131415161718CREATE DATABASE /*!32312 IF NOT EXISTS*/`test01` /*!40100 DEFAULT CHARAC......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
     
   </div>
   

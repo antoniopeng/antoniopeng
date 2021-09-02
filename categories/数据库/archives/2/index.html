@@ -399,26 +399,27 @@
   
 
 
-  <a href="/redis/reids列表与集合命令使用/">
+  <a href="/redis/redis集群搭建/">
     <h2 class="post-title">
-      Reids 列表与集合命令使用
+      Redis 集群搭建
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      列表
+      由于主从复制所有的写操作都是先在 Master 上操作，然后同步更新到 Slave 上，所以从 Master 同步到 Slave 机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave 机器数量的增加也会使这个问题更加严重。因此我们还需要集群来进一步提升 redis 性能。
+集群原理
 
-列表是 Redis 中另外一种数据类型。下面我们来看看列表中一些基本的操作命令。
-lpush将一个或多个值 value 插入到列表 key 的表头，如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表头，如下：
-12127.0.0.1:6379&gt; lpush k1 v1 v2 v3(integer) 3
+Redis 集群架构如下图：
 
-lrange返回列表 key 中指定区间内的......
+Redis 集群运行原理如下：
+
+所有的 Redis 节点彼......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-25
+    彭楷淳发布于 2021-01-27
   </p>
   <div class="tags">
     
@@ -439,21 +440,27 @@ lrange返回列表 key 中指定区间内的......
   
 
 
-  <a href="/redis/reids字符串命令使用/">
+  <a href="/redis/redis主从复制/">
     <h2 class="post-title">
-      Reids 字符串命令使用
+      Redis 主从复制
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      append使用 append 命令时，如果 key 已经存在，则会直接在 value 后追加值，如果 key 不存在，则会先创建一个 value 为空字符串的 key ，然后再追加：
-12345678127.0.0.1:6379&gt; append k1 hello(integer) 5127.0.0.1:6379&gt; get k1"hello"127.0.0.1:6379&gt; ......
+      主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。
+配置方式
+
+假设我有三个 redis 实例，地址分别如下：
+
+192.168.248.128:6379 
+192.168.248.128:6380
+192......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-25
+    彭楷淳发布于 2021-01-27
   </p>
   <div class="tags">
     
@@ -474,22 +481,103 @@ lrange返回列表 key 中指定区间内的......
   
 
 
-  <a href="/redis/高性能缓存数据库redis入门篇/">
+  <a href="/redis/redis数据持久化/">
     <h2 class="post-title">
-      高性能缓存数据库 Redis 入门篇
+      Redis 数据持久化
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      什么是 Redis
+      Redis 持久化
 
-Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。从 2015 年 6 月开始，Redis 的开发由 Redis Labs 赞助，而 2013 年 5 月至 2015 年 6 月期间，其开发由 Pivotal 赞助。在 2013 年 5 月之前，其开发由 VMware 赞助。根据月度排行网站 DB-Engines.com......
+整体上来说，Redis 持久化有两种方式，快照持久化和 AOF ，在项目中我们可以根据实际情况选择合适的持久化方式，也可以不用持久化，这关键看我们的 Redis 在项目中扮演了什么样的角色。
+快照持久化
+
+快照持久化，顾名思义，就是通过拍摄快照的方式实现数据的持久化，redis 可以在某个时间点上对内存中的数据创建一个副本文件，副本文件中的数据在 redis 重启时会被......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-24
+    彭楷淳发布于 2021-01-26
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Redis" title="Redis">Redis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/redis/redis中的发布订阅和事务/">
+    <h2 class="post-title">
+      Redis 中的发布订阅和事务
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      发布订阅
+
+Redis 的发布订阅系统有点类似于我们生活中的电台，电台可以在某一个频率上发送广播，而我们可以接收任何一个频率的广播。订阅消息的方式如下:
+1234567891011127.0.0.1:6379&gt; subscribe c1 c2 c3Reading messages... (press Ctrl-C to quit)1) "subscribe"2) "c1"3) (int......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2021-01-26
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Redis" title="Redis">Redis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/redis/reids散列与有序集合命令使用/">
+    <h2 class="post-title">
+      Reids 散列与有序集合命令使用
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      散列
+
+很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。
+hsethset 命令可以用来设置 key 指定的哈希集中指定字段的值，如下：
+12127.0.0.1:6379&gt; hset k1 h1 v1(integer) 1
+
+hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的值，如下：
+12127.0.0.1:63......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2021-01-25
   </p>
   <div class="tags">
     
@@ -510,6 +598,10 @@ Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可
       <a style="font-size: 17px;" href="/categories/数据库/">&larr; 上一页</a>
     </li>
     
+    
+    <li class="next">
+      <a style="font-size: 17px;" href="/categories/数据库/archives/3/">下一页 &rarr;</a>
+    </li>
     
   </ul>
 

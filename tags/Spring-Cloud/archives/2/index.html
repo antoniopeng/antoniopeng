@@ -399,23 +399,25 @@
   
 
 
-  <a href="/spring-cloud/spring-cloud-zuul网关服务/">
+  <a href="/spring-cloud/使用seata彻底解决spring-cloud中的分布式事务问题/">
     <h2 class="post-title">
-      Spring Cloud Zuul 网关服务
+      使用 Seata 彻底解决 Spring Cloud 中的分布式事务问题
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Zuul 简介
+      Seata 是 Alibaba 开源的一款分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务，本文将通过一个简单的下单业务场景来对其用法进行详细介绍。
+什么是分布式事务问题
 
-Spring Cloud Zuul 是Spring Cloud Netflix 子项目的核心组件之一，可以作为微服务架构中的API网关使用，支持动态路由与过滤功能，本文将对其用法进行详细介绍。
-API 网关为微服务架构中的服务提供了统一的访问入口，客户端通过 API 网关访问相关服务。API 网关的定义类似于设计模式中的门面模式，它相当于整个微服务架构中的门面，所有客户端的......
+单体应用单体应用中，一个业务操作需要调用三个模块完成，此时数据的一致性由本地事务来保证。
+
+微服务应用随着业务需求的变化，单体应用被拆分成微服务应用，原来的三个模块被拆分成三个独立的应用，分别使用独立的数据......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-02-06
+    彭楷淳发布于 2021-02-09
   </p>
   <div class="tags">
     
@@ -436,23 +438,23 @@ API 网关为微服务架构中的服务提供了统一的访问入口，客户�
   
 
 
-  <a href="/spring-cloud/spring-cloud-openfeign声明式服务调用/">
+  <a href="/spring-cloud/spring-boot-admin微服务应用监控/">
     <h2 class="post-title">
-      Spring Cloud OpenFeign 声明式服务调用
+      Spring Boot Admin 微服务应用监控
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Feign 简介
+      Spring Boot Admin 简介
 
-Spring Cloud Open Feign 是声明式的服务调用工具，它整合了 Ribbon 和 Hystrix，拥有负载均衡和服务容错功能，本文将对其用法进行详细介绍。
-Feign 是声明式的服务调用工具，我们只需创建一个接口并用注解的方式来配置它，就可以实现对某个服务接口的调用，简化了直接使用 RestTemplate 来调用服务接口的开发量。Feign 具备可插拔......
+Spring Boot Admin 可以对 Spring Boot 应用的各项指标进行监控，可以作为微服务架构中的监控中心来使用，本文将对其用法进行详细介绍。
+SpringBoot 应用可以通过 Actuator 来暴露应用运行过程中的各项指标，Spring Boot Admin 通过这些指标来监控 SpringBoot 应用，然后通过图形化界面呈......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-02-06
+    彭楷淳发布于 2021-02-08
   </p>
   <div class="tags">
     
@@ -473,23 +475,23 @@ Feign 是声明式的服务调用工具，我们只需创建一个接口并用�
   
 
 
-  <a href="/spring-cloud/spring-cloud-hystrix-dashboard服务监控仪表盘/">
+  <a href="/spring-cloud/spring-cloud-sleuth分布式请求链路跟踪/">
     <h2 class="post-title">
-      Spring Cloud Hystrix Dashboard 服务监控仪表盘
+      Spring Cloud Sleuth 分布式请求链路跟踪
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Hystrix Dashboard 简介
+      Spring Cloud Sleuth 简介
 
-Hystrix Dashboard 是 Spring Cloud 中查看 Hystrix 实例执行情况的一种仪表盘组件，支持查看单个实例和查看集群实例，本文将对其用法进行详细介绍。
-Hystrix 提供了 Hystrix Dashboard 来实时监控 HystrixCommand 方法的执行情况。 Hystrix Dashboard 可以有效地反......
+Spring Cloud Sleuth 是分布式系统中跟踪服务间调用的工具，它可以直观地展示出一次请求的调用过程，本文将对其用法进行详细介绍。
+随着我们的系统越来越庞大，各个服务间的调用关系也变得越来越复杂。当客户端发起一个请求时，这个请求经过多个服务后，最终返回了结果，经过的每一个服务都有可能发生延迟或错误，从而导致请求失败。这时候我们就需要......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-02-05
+    彭楷淳发布于 2021-02-08
   </p>
   <div class="tags">
     
@@ -510,23 +512,23 @@ Hystrix 提供了 Hystrix Dashboard 来实时监控 HystrixCommand 方法的执�
   
 
 
-  <a href="/spring-cloud/spring-cloud-hystrix服务容错保护/">
+  <a href="/spring-cloud/spring-cloud-bus消息总线/">
     <h2 class="post-title">
-      Spring Cloud Hystrix 服务容错保护
+      Spring Cloud Bus 消息总线
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Hystrix 简介
+      Spring Cloud Bus 简介
 
-Spring Cloud Hystrix 是 Spring Cloud Netflix 子项目的核心组件之一，具有服务容错及线程隔离等一系列服务保护功能，本文将对其用法进行详细介绍。
-在微服务架构中，服务与服务之间通过远程调用的方式进行通信，一旦某个被调用的服务发生了故障，其依赖服务也会发生故障，此时就会发生故障的蔓延，最终导致系统瘫痪。Hystrix实现了断路器模式......
+Spring Cloud Bus 使用轻量级的消息代理来连接微服务架构中的各个服务，可以将其用于广播状态更改（例如配置中心配置更改）或其他管理指令，本文将对其用法进行详细介绍。
+我们通常会使用消息代理来构建一个主题，然后把微服务架构中的所有服务都连接到这个主题上去，当我们向该主题发送消息时，所有订阅该主题的服务都会收到消息并进行消费。使用 Sprin......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-02-05
+    彭楷淳发布于 2021-02-07
   </p>
   <div class="tags">
     
@@ -547,97 +549,23 @@ Spring Cloud Hystrix 是 Spring Cloud Netflix 子项目的核心组件之一，�
   
 
 
-  <a href="/spring-cloud/spring-cloud-ribbon负载均衡调用服务/">
+  <a href="/spring-cloud/spring-cloud-config外部集中化配置管理/">
     <h2 class="post-title">
-      Spring Cloud Ribbon 负载均衡调用服务
+      Spring Cloud Config 外部集中化配置管理
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Ribbon 简介
+      Spring Cloud Config 简介
 
-Spring Cloud Ribbon 是 Spring Cloud Netflix 子项目的核心组件之一，主要给服务间调用及 API 网关转发提供负载均衡的功能，本文将对其用法进行详细介绍。
-在微服务架构中，很多服务都会部署多个，其他服务去调用该服务的时候，如何保证负载均衡是个不得不去考虑的问题。负载均衡可以增加系统的可用性和扩展性，当我们使用RestTemplate......
+Spring Cloud Config 可以为微服务架构中的应用提供集中化的外部配置支持，它分为服务端和客户端两个部分，本文将对其用法进行详细介绍。
+Spring Cloud Config 分为服务端和客户端两个部分。服务端被称为分布式配置中心，它是个独立的应用，可以从配置仓库获取配置信息并提供给客户端使用。客户端可以通过配置中心来获取配置信息......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-02-05
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-cloud/spring-cloud-eureka服务注册与发现/">
-    <h2 class="post-title">
-      Spring Cloud Eureka 服务注册与发现
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Eureka 简介
-
-Spring Cloud Eureka 是 Spring Cloud Netflix 子项目的核心组件之一，主要用于微服务架构中的服务治理。 本文将对搭建 Eureka 注册中心，搭建 Eureka 客户端，搭建 Eureka 集群及给 Eureka 注册中心添加登录认证进行介绍。
-在微服务架构中往往会有一个注册中心，每个微服务都会向注册中心去注册自己的地址及端口信息，......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-02-04
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-cloud/spring-cloud整体架构概览/">
-    <h2 class="post-title">
-      Spring Cloud 整体架构概览
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      什么是 SpringCloud
-
-目标协调任何服务，简化分布式系统开发。
-简介构建分布式系统不应该是复杂的，SpringCloud对常见的分布式系统模式提供了简单易用的编程模型，帮助开发者构建弹性、可靠、协调的应用程序。 SpringCloud是在SpringBoot的基础上构建的，使开发者可以轻松入门并快速提高工作效率。 SpringCloud为开发人员提供了快速构建分布式系统架构的工具，......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-02-04
+    彭楷淳发布于 2021-02-07
   </p>
   <div class="tags">
     
@@ -658,6 +586,10 @@ Spring Cloud Eureka 是 Spring Cloud Netflix 子项目的核心组件之一，�
       <a style="font-size: 17px;" href="/tags/Spring-Cloud/">&larr; 上一页</a>
     </li>
     
+    
+    <li class="next">
+      <a style="font-size: 17px;" href="/tags/Spring-Cloud/archives/3/">下一页 &rarr;</a>
+    </li>
     
   </ul>
 

@@ -399,29 +399,27 @@
   
 
 
-  <a href="/mybatis/java持久层框架mybatis/">
+  <a href="/spring-boot/spring-boot中邮件发送的五种姿势/">
     <h2 class="post-title">
-      Java 持久层框架 MyBatis
+      Spring Boot 中邮件发送的五种姿势
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      JDBC 存在的问题
+      邮件发送其实是一个非常常见的需求，用户注册，找回密码等地方，都会用到，使用 JavaSE 代码发送邮件，步骤还是挺繁琐的，Spring Boot 中对于邮件发送，提供了相关的自动化配置类，使得邮件发送变得非常容易，本文我们看看使用 Spring Boot 发送邮件的 5 中姿势。
+邮件基础
 
-
-数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。
-Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变 java 代码。
-使用 preparedStatement 向占位符号传参数存在硬编码，因为 sql 语句的 where 条件不一定，可能多也可能少，修改 sql 还要修改......
+我们经常会听到各种各样的邮件协议，比如 SMTP、POP3、IMAP ，那么这些协议有什么作用，有什......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-17
+    彭楷淳发布于 2021-01-24
   </p>
   <div class="tags">
     
-    <a href="/tags/#MyBatis" title="MyBatis">MyBatis</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   
@@ -438,26 +436,28 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
   
 
 
-  <a href="/spring-mvc/spring-mvc整合hibernate-validator实现数据校验/">
+  <a href="/spring-boot/spring-boot中使用cors解决跨域问题/">
     <h2 class="post-title">
-      Spring MVC 整合 Hibernate Validator 实现数据校验
+      Spring Boot 中使用 CORS 解决跨域问题
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      B/S 系统中对 http 请求数据的校验多数在客户端进行，这也是出于简单及用户体验性上考虑，但是在一些安全性要求高的系统中服务端校验是不可缺少的，实际上，几乎所有的系统，凡是涉及到数据校验，都需要在服务端进行二次校验。为什么要在服务端进行二次校验呢？这需要理解客户端校验和服务端校验各自的目的。
+      同源策略
 
-客户端校验，我们主要是为了提高用户体验，例如用户输入一个邮箱地址，要校验这个邮箱地址是否合法，......
+很多人对跨域有一种误解，以为这是前端的事，和后端没关系，其实不是这样的，说到跨域，就不得不说说浏览器的同源策略。
+
+同源策略是由 Netscape 提出的一个著名的安全策略，它是浏览器最核心也最基本的安全功能，现在所有支持 JavaScript 的浏览器都会使用这个策略。所谓同源是指协议、域名以及端口要相同。同源策略是基于安全方面的考虑提出来的，这个策略本身没问题，但是我们在实际......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-17
+    彭楷淳发布于 2021-01-24
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   
@@ -474,28 +474,29 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
   
 
 
-  <a href="/spring-mvc/spring-mvc的controller使用详解/">
+  <a href="/spring-boot/spring-boot项目配置https安全证书/">
     <h2 class="post-title">
-      Spring MVC 的 Controller 使用详解
+      Spring Boot 项目配置 HTTPS 安全证书
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      @RequestMapping
+      https 现在已经越来越普及了，特别是做一些小程序或者公众号开发的时候，https 基本上都是刚需了。不过一个 https 证书还是挺费钱的，个人开发者可以在各个云服务提供商那里申请免费的证书。本文聊的是在 Spring Boot 项目中，如何开启 https 配置，为我们的接口保驾护航。
+HTTPS 简介
 
-这个注解用来标记一个接口，这算是我们在接口开发中，使用最多的注解之一。
-请求 URL标记请求 URL 很简单，只需要在相应的方法上添加该注解即可：
-12345678@Controllerpublic class HelloController &#123;        @RequestMapping("/hello")    public ModelAnd......
+我们先来看看什么是 https，根据 wikipedia 上的介绍：
+
+超文本传......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-16
+    彭楷淳发布于 2021-01-23
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   
@@ -512,29 +513,27 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
   
 
 
-  <a href="/spring-mvc/spring-mvc中上传文件/">
+  <a href="/spring-boot/spring-boot整合oss实现文件上传/">
     <h2 class="post-title">
-      Spring MVC 中上传文件
+      Spring Boot 整合 OSS 实现文件上传
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      SpringMVC 中对文件上传做了封装，我们可以更加方便的实现文件上传。从 Spring3.1 开始，对于文件上传，提供了两个处理器：
+      本文主要讲解整合 OSS 实现文件上传的过程，采用的是服务端签名后前端直传的方式。阿里云对象存储服务（Object Storage Service，简称OSS），是阿里云提供的海量、安全、低成本、高可靠的云存储服务。OSS 可用于图片、音视频、日志等海量文件的存储。各种终端设备、Web 网站程序、移动应用可以直接向 OSS 写入或读取数据。
+OSS 简介
 
-CommonsMultipartResolver
-StandardServletMultipartResolver·
-
-第一个处理器兼容性较好，可以兼容 Servlet3.0 之前的版本，但是它依赖了 commons-fileupload 这个第三方工具......
+阿里云对象存储服务（Object ......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-16
+    彭楷淳发布于 2021-01-23
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   
@@ -551,224 +550,27 @@ StandardServletMultipartResolver·
   
 
 
-  <a href="/spring-mvc/controller-advice注解的三种使用场景/">
+  <a href="/spring-boot/spring-boot整合spring-security&jwt实现认证和授权/">
     <h2 class="post-title">
-      ControllerAdvice 注解的三种使用场景
+      Spring Boot 整合 Spring Security & JWT 实现认证和授权
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      @ControllerAdvice，顾名思义，这是一个增强的 Controller。使用这个 Controller ，可以实现三个方面的功能：
+      本文主要讲解通过整合 Spring Security 和 JWT 实现后台用户的登录和授权功能，同时改造 Swagger UI 的配置使其可以自动记住登录令牌进行发送。
+项目使用框架介绍
 
-全局异常处理
-全局数据绑定
-全局数据预处理
-
-全局异常处理
-
-使用 @ControllerAdvice 实现全局异常处理，只需要定义类，添加该注解即可定义方式如下：
-1234567891011@ControllerAdvicepublic clas......
+Spring SecuritySpring Security 是一个强大的可高度定制的认证和授权框架，对于 Spring 应用来说它是一套 Web 安全标准。Spring Security 注重于为 Ja......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-15
+    彭楷淳发布于 2021-01-23
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc核心组件详解/">
-    <h2 class="post-title">
-      Spring MVC 核心组件详解
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      DispatcherServlet 作用
-
-DispatcherServlet 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。DispatcherServlet 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：
-
-文件上传解析，如果请求类型是 mu......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-15
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
-    <h2 class="post-title">
-      使用 Spring MVC 的拦截器实现登录功能
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring  MVC 的处理器拦截器，类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。
-应用场景
-
-
-日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。
-权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。
-性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-14
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring-mvc/spring-mvc入门就这一篇/">
-    <h2 class="post-title">
-      Spring MVC 入门就这一篇
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring MVC 概述
-
-Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的一部分。
- MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 Web 应用程序的......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-14
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring MVC" title="Spring MVC">Spring MVC</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/spring事务解决方案/">
-    <h2 class="post-title">
-      Spring 事务解决方案
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring 中的事务主要是利用 Aop 思想，简化事务的配置，可以通过 Java 配置也可以通过 XML 配置。
-我们通过一个转账操作来看下 Spring 中的事务配置。
-准备工作
-
-创建数据库123456789101112131415161718CREATE DATABASE /*!32312 IF NOT EXISTS*/`test01` /*!40100 DEFAULT CHARAC......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/spring/spring整合jdbctemplate连接操作mysql/">
-    <h2 class="post-title">
-      Spring 整合 JdbcTemplate 连接操作 MySQL
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      JdbcTemplate 是 Spring 利用 Aop 思想封装的 JDBC 操作工具。
-准备工作
-
-引入依赖创建一个新项目，添加如下依赖：
-123456789101112131415161718&lt;dependency&gt;    &lt;groupId&gt;org.springframework&lt;/groupId&gt;    &lt;artifactId&gt;spri......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   

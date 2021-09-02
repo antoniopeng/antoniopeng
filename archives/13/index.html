@@ -399,31 +399,27 @@
   
 
 
-  <a href="/docker/docker常用命令总结/">
+  <a href="/spring-boot/spring-boot中邮件发送的五种姿势/">
     <h2 class="post-title">
-      Docker 常用命令总结
+      Spring Boot 中邮件发送的五种姿势
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Docker 镜像常用命令
+      邮件发送其实是一个非常常见的需求，用户注册，找回密码等地方，都会用到，使用 JavaSE 代码发送邮件，步骤还是挺繁琐的，Spring Boot 中对于邮件发送，提供了相关的自动化配置类，使得邮件发送变得非常容易，本文我们看看使用 Spring Boot 发送邮件的 5 中姿势。
+邮件基础
 
-搜索镜像1$ docker search javaCopy to clipboardErrorCopied
-
-下载镜像1$ docker pull java:8Copy to clipboardErrorCopied
-
-查看镜像版本
-由于docker search命令只能查找出是否有该镜像，不能找到该镜像支持的版本，所以我们需要通过Docker Hub来搜索支持......
+我们经常会听到各种各样的邮件协议，比如 SMTP、POP3、IMAP ，那么这些协议有什么作用，有什......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-07-20
+    彭楷淳发布于 2021-01-24
   </p>
   <div class="tags">
     
-    <a href="/tags/#Docker" title="Docker">Docker</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   
@@ -440,28 +436,28 @@
   
 
 
-  <a href="/docker/docker数据卷操作/">
+  <a href="/spring-boot/spring-boot中使用cors解决跨域问题/">
     <h2 class="post-title">
-      Docker 数据卷操作
+      Spring Boot 中使用 CORS 解决跨域问题
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      数据卷入门
+      同源策略
 
-在前面的案例中，如果我们需要将数据从宿主机拷贝到容器中，一般都是使用 Docker 的拷贝命令，这样性能还是稍微有点差，没有办法能够达到让这种拷贝达到本地磁盘 I/O 性能呢？有！
-数据卷可以绕过拷贝系统，在多个容器之间、容器和宿主机之间共享目录或者文件，数据卷绕过了拷贝系统，可以达到本地磁盘 I/O 性能。
-本文先通过一个简单的案例展示数据卷的基本用法。以前面使用的 ngin......
+很多人对跨域有一种误解，以为这是前端的事，和后端没关系，其实不是这样的，说到跨域，就不得不说说浏览器的同源策略。
+
+同源策略是由 Netscape 提出的一个著名的安全策略，它是浏览器最核心也最基本的安全功能，现在所有支持 JavaScript 的浏览器都会使用这个策略。所谓同源是指协议、域名以及端口要相同。同源策略是基于安全方面的考虑提出来的，这个策略本身没问题，但是我们在实际......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-07-10
+    彭楷淳发布于 2021-01-24
   </p>
   <div class="tags">
     
-    <a href="/tags/#Docker" title="Docker">Docker</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   
@@ -478,33 +474,29 @@
   
 
 
-  <a href="/docker/使用dockerfile定制镜像/">
+  <a href="/spring-boot/spring-boot项目配置https安全证书/">
     <h2 class="post-title">
-      使用 Dockerfile 定制镜像
+      Spring Boot 项目配置 HTTPS 安全证书
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      
-这里以简单定制 Nginx 镜像为例
+      https 现在已经越来越普及了，特别是做一些小程序或者公众号开发的时候，https 基本上都是刚需了。不过一个 https 证书还是挺费钱的，个人开发者可以在各个云服务提供商那里申请免费的证书。本文聊的是在 Spring Boot 项目中，如何开启 https 配置，为我们的接口保驾护航。
+HTTPS 简介
 
-创建 Dockerfile 文件
+我们先来看看什么是 https，根据 wikipedia 上的介绍：
 
-创建 Dockerfile 文件
-12345$ mkdir /usr/local/docker$ cd /usr/local/docker$ mkdir nginx$ cd nginx$ vi Dockerfile
-
-Dockerfile 文件的内容如下
-12FROM nginxRUN echo '&lt;h1&g......
+超文本传......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-07-09
+    彭楷淳发布于 2021-01-23
   </p>
   <div class="tags">
     
-    <a href="/tags/#Docker" title="Docker">Docker</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   
@@ -521,26 +513,27 @@ Dockerfile 文件的内容如下
   
 
 
-  <a href="/docker/docker镜像操作/">
+  <a href="/spring-boot/spring-boot整合oss实现文件上传/">
     <h2 class="post-title">
-      Docker 镜像操作
+      Spring Boot 整合 OSS 实现文件上传
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      镜像也是 docker 的核心组件之一，镜像时容器运行的基础，容器是镜像运行后的形态。前面我们介绍了容器的用法，今天来和大家聊聊镜像的问题。
-总体来说，镜像是一个包含程序运行必要以来环境和代码的只读文件，它采用分层的文件系统，将每一层的改变以读写层的形式增加到原来的只读文件上。这有点像洋葱，一层一层的，当我们后面学习了 Dockerfile ，相信大家对于这样的架构理解将更为准确。
-镜像与容......
+      本文主要讲解整合 OSS 实现文件上传的过程，采用的是服务端签名后前端直传的方式。阿里云对象存储服务（Object Storage Service，简称OSS），是阿里云提供的海量、安全、低成本、高可靠的云存储服务。OSS 可用于图片、音视频、日志等海量文件的存储。各种终端设备、Web 网站程序、移动应用可以直接向 OSS 写入或读取数据。
+OSS 简介
+
+阿里云对象存储服务（Object ......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-07-08
+    彭楷淳发布于 2021-01-23
   </p>
   <div class="tags">
     
-    <a href="/tags/#Docker" title="Docker">Docker</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   
@@ -557,193 +550,27 @@ Dockerfile 文件的内容如下
   
 
 
-  <a href="/docker/docker容器高级操作/">
+  <a href="/spring-boot/spring-boot整合spring-security&jwt实现认证和授权/">
     <h2 class="post-title">
-      Docker 容器高级操作
+      Spring Boot 整合 Spring Security & JWT 实现认证和授权
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      上篇文章介绍了一个 Nginx 的例子，对于 Nginx 这样一个容器而言，当它启动成功后，我们不可避免的需要对 Nginx 进行的配置进行修改，那么这个修改要如何完成呢？
-依附容器
+      本文主要讲解通过整合 Spring Security 和 JWT 实现后台用户的登录和授权功能，同时改造 Swagger UI 的配置使其可以自动记住登录令牌进行发送。
+项目使用框架介绍
 
-1$ docker attach
-
-依附容器这个主要是针对交互型容器而言的，该命令有一定的局限性，可以作为了解即可，真正工作中使用较少。要是用 docker attach 命令，首先要确保容器已经启动，然后使......
+Spring SecuritySpring Security 是一个强大的可高度定制的认证和授权框架，对于 Spring 应用来说它是一套 Web 安全标准。Spring Security 注重于为 Ja......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-07-07
+    彭楷淳发布于 2021-01-23
   </p>
   <div class="tags">
     
-    <a href="/tags/#Docker" title="Docker">Docker</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/docker/docker容器基本操作/">
-    <h2 class="post-title">
-      Docker 容器基本操作
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      docker 中的容器就是一个轻量级的虚拟机，是镜像运行起来的一个状态，本文就先来看看容器的基本操作。镜像就像是一个安装程序，而容器则是程序运行时的一个状态。
-查看容器
-
-启动 docker 后，使用 docker ps 命令可以查看当前正在运行的容器：
-1$ docker ps
-
-查看所有容器上面这条命令是查看当前正在运行的容器，如果需要查看所有容器，则可以通过 docker ps -a ......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-07-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Docker" title="Docker">Docker</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/docker/容器化技术大杀器docker/">
-    <h2 class="post-title">
-      容器化技术大杀器 Docker
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      什么是 Docker
-
-Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。
-
-
-传统虚拟机（VM）和虚拟化容器（Docker）的区别：
-传统的 VM 虚拟机不能共享资源 , 比如在 VMWare 中安装了一个内存为 4GB 的 Linux 操作系统 , 意味着该Linux系统使用了宿主机中固定的 4GB 内存且不能与宿主机或其它虚拟系统共享该资源 ,......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-07-06
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Docker" title="Docker">Docker</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/linux/ubuntu入门操作指北/">
-    <h2 class="post-title">
-      Ubuntu 操作指北
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      下载
-
-
-Ubuntu 官网下载
-
-简介
-
-Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、CentOS、Debian 等。
-远程控制管理
-
-XShell：是一......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-05-30
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Linux" title="Linux">Linux</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/java/java中使用jersey实现上传文件(附加密和解密)/">
-    <h2 class="post-title">
-      Java 中使用 Jersey 实现上传文件（附加密和解密）
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Jersey 简介
-
-Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
-引入依赖
-
-在 pom.xml 中添加 Jersey 相关依赖
-12345&lt;de......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-04-09
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Java" title="Java">Java</a>
+    <a href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
     
   </div>
   
@@ -760,6 +587,10 @@ Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多�
       <a style="font-size: 17px;" href="/archives/12/">&larr; 上一页</a>
     </li>
     
+    
+    <li class="next">
+      <a style="font-size: 17px;" href="/archives/14/">下一页 &rarr;</a>
+    </li>
     
   </ul>
 

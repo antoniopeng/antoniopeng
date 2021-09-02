@@ -399,28 +399,27 @@
   
 
 
-  <a href="/spring/spring整合jdbctemplate连接操作mysql/">
+  <a href="/mysql/一文快速入门mysql索引/">
     <h2 class="post-title">
-      Spring 整合 JdbcTemplate 连接操作 MySQL
+      一文快速上手使用 MySQL 索引
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      JdbcTemplate 是 Spring 利用 Aop 思想封装的 JDBC 操作工具。
-准备工作
+      什么是索引
 
-引入依赖创建一个新项目，添加如下依赖：
-123456789101112131415161718&lt;dependency&gt;    &lt;groupId&gt;org.springframework&lt;/groupId&gt;    &lt;artifactId&gt;spri......
+MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 索引的本质就是数据结构。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。
+可简单理解为 排好序的快速查找数据结构。在数据之外，数据库系统还维护着 满足特定算法查询的数据结构，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-13
+    彭楷淳发布于 2021-01-28
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
     
   </div>
   
@@ -437,36 +436,31 @@
   
 
 
-  <a href="/spring/spring核心技术aop实例/">
+  <a href="/redis/redis集群搭建/">
     <h2 class="post-title">
-      Spring 核心技术 AOP 实例
+      Redis 集群搭建
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      AOP 简介
+      由于主从复制所有的写操作都是先在 Master 上操作，然后同步更新到 Slave 上，所以从 Master 同步到 Slave 机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave 机器数量的增加也会使这个问题更加严重。因此我们还需要集群来进一步提升 redis 性能。
+集群原理
 
-Aop（Aspect Oriented Programming），面向切面编程，这是对面向对象思想的一种补充。
-面向切面编程，就是在程序运行时，不改变程序源码的情况下，动态的增强方法的功能，常见的使用场景非常多：
+Redis 集群架构如下图：
 
-日志
-事务
-数据库操作
-….
+Redis 集群运行原理如下：
 
-这些操作中，无一例外，都有很多模板化的代码，而解决模板化代码，消除臃肿就是 Aop 的强项。在 Aop 中，有几个常见的概念：
-
-......
+所有的 Redis 节点彼......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-13
+    彭楷淳发布于 2021-01-27
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#Redis" title="Redis">Redis</a>
     
   </div>
   
@@ -483,27 +477,31 @@ Aop（Aspect Oriented Programming），面向切面编程，这是对面向对�
   
 
 
-  <a href="/spring/spring核心技术ioc&di详解/">
+  <a href="/redis/redis主从复制/">
     <h2 class="post-title">
-      Spring 核心技术 IoC & DI 详解
+      Redis 主从复制
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      IoC 概念
+      主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。
+配置方式
 
-IoC（Inversion of Control），中文叫做控制反转。这是一个概念，也是一种思想。控制反转，实际上就是指对一个对象的控制权的反转。如下代码：
-12345678910111213141516171819public class Book &#123;    private Integer id;    private String name;    privat......
+假设我有三个 redis 实例，地址分别如下：
+
+192.168.248.128:6379 
+192.168.248.128:6380
+192......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-13
+    彭楷淳发布于 2021-01-27
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#Redis" title="Redis">Redis</a>
     
   </div>
   
@@ -520,28 +518,26 @@ IoC（Inversion of Control），中文叫做控制反转。这是一个概念，
   
 
 
-  <a href="/spring/java框架领域佼佼者spring初识篇/">
+  <a href="/redis/免费又好用的redis客户端工具/">
     <h2 class="post-title">
-      Java 框架领域佼佼者 Spring 初识篇
+      免费又好用的 Redis 客户端工具
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Spring 简介
-
-Spring 是一个轻量级的 Java 开发框架，它是为了解决企业应用开发的复杂性而创建的，常年雄踞于企业开发必选框架之首。Spring 的核心是控制反转（IoC）和面向切面编程（AOP）。简单来说，Spring 是一个分层的 Java EE 一站式轻量级开源框架。
-Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
-在一个系统中，根据功能的不同，代码分为 ......
+      最近在寻找一款免费又好用的 Redis 客户端工具，于是找到了AnotherRedisDesktopManager，界面漂亮而且支持 Redis 集群，推荐给大家！
+以前一直使用的是 RedisDesktopManager 这款 Redis 客户端工具，由于很久没更新界面有点古老，最近想更新升级下，进到官网一看，发现收费了……
+于是就去 GitHub 上找了下，发现了另一个 RedisDes......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-13
+    彭楷淳发布于 2021-01-26
   </p>
   <div class="tags">
     
-    <a href="/tags/#Spring" title="Spring">Spring</a>
+    <a href="/tags/#Redis" title="Redis">Redis</a>
     
   </div>
   
@@ -558,240 +554,29 @@ Spring 的主要作用就是为代码 解耦，降低代码间的耦合度。
   
 
 
-  <a href="/maven/maven依赖私服nexus的部署及项目应用/">
+  <a href="/redis/redis数据持久化/">
     <h2 class="post-title">
-      Maven 私服 Nexus 的部署及项目应用
+      Redis 数据持久化
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Nexus 简介
+      Redis 持久化
 
-Nexus 是一个强大的依赖仓库管理器，极大地简化了内部仓库的维护和外部仓库的访问。
-2016 年 4 月 6 日 Nexus 3.0 版本发布，相较 2.x 版本 有了很大的改变：
+整体上来说，Redis 持久化有两种方式，快照持久化和 AOF ，在项目中我们可以根据实际情况选择合适的持久化方式，也可以不用持久化，这关键看我们的 Redis 在项目中扮演了什么样的角色。
+快照持久化
 
-对低层代码进行了大规模重构，提升性能，增加可扩展性以及改善用户体验。
-升级界面，极大的简化了用户界面的操作和管理
-提供新的安装包，让部署更加简单
-提供新的管理接口，以及增强对自动任务的管理......
+快照持久化，顾名思义，就是通过拍摄快照的方式实现数据的持久化，redis 可以在某个时间点上对内存中的数据创建一个副本文件，副本文件中的数据在 redis 重启时会被......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-12
+    彭楷淳发布于 2021-01-26
   </p>
   <div class="tags">
     
-    <a href="/tags/#Maven" title="Maven">Maven</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/idea/idea中使用maven/">
-    <h2 class="post-title">
-      IDEA 中使用 Maven
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Maven 相关配置
-
-IDEA 中，Maven 的配置在 File-&gt;Settings-&gt;Build,Execution,Deployment-&gt;Build Tools-&gt;Maven:
-
-Java SE 工程
-
-首先在创建一个工程时，选择 Maven 工程：
-
-如果勾选上 Create from archetype ，则表示可以根据一个项目骨架（项目模板）来创建一个......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-12
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#IDEA" title="IDEA">IDEA</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/maven/java项目管理工具maven/">
-    <h2 class="post-title">
-      Java 项目管理工具 Maven
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      为什么使用项目管理工具
-
-由于 Java 的生态非常丰富，无论你想实现什么功能，都能找到对应的工具类，这些工具类都是以 jar 包的形式出现的，例如 Spring，SpringMVC、MyBatis、数据库驱动，等等，都是以 jar 包的形式出现的，jar 包之间会有关联，在使用一个依赖之前，还需要确定这个依赖所依赖的其他依赖，所以，当项目比较大的时候，依赖管理会变得非常麻烦臃肿，这是 Ma......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-12
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Maven" title="Maven">Maven</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/java/java并发编程要点/">
-    <h2 class="post-title">
-      Java 并发编程要点
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      使用线程
-
-有三种使用线程的方法：
-
-实现 Runnable 接口；
-实现 Callable 接口；
-继承 Thread 类。
-
-实现 Runnable 和 Callable 接口的类只能当做一个可以在线程中运行的任务，不是真正意义上的线程，因此最后还需要通过 Thread 来调用。可以理解为任务是通过线程驱动从而执行的。
-实现 Runnable 接口需要实现接口中的 run() 方法。
-1......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-11
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Java" title="Java">Java</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/java/详解java-io流/">
-    <h2 class="post-title">
-      详解 Java I/O 流
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      概述
-
-Java 的 I/O 大概可以分成以下几类：
-
-磁盘操作：File
-字节操作：InputStream 和 OutputStream
-字符操作：Reader 和 Writer
-对象操作：Serializable
-网络操作：Socket
-新的输入/输出：NIO
-
-磁盘操作
-
-File 类可以用于表示文件和目录的信息，但是它不表示文件的内容。
-递归地列出一个目录下所有文件：
-1234567......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-10
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Java" title="Java">Java</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/java/java容器系列总结/">
-    <h2 class="post-title">
-      Java 容器系列总结
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      为什么要使用集合
-
-当我们需要保存一组类型相同的数据的时候，我们应该是用一个容器来保存，这个容器就是数组，但是，使用数组存储对象具有一定的弊端， 因为我们在实际开发中，存储的数据的类型是多种多样的，于是，就出现了“集合”，集合同样也是用来存储多个数据的。
-数组的缺点是一旦声明之后，长度就不可变了；同时，声明数组时的数据类型也决定了该数组存储的数据的类型；而且，数组存储的数据是有序的、可重复的......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Java" title="Java">Java</a>
+    <a href="/tags/#Redis" title="Redis">Redis</a>
     
   </div>
   
