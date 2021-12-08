@@ -399,6 +399,47 @@
   
 
 
+  <a href="/redis/redis主从复制/">
+    <h2 class="post-title">
+      Redis 主从复制
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。
+配置方式
+
+假设我有三个 redis 实例，地址分别如下：
+
+192.168.248.128:6379 
+192.168.248.128:6380
+192......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2021-01-27
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Redis" title="Redis">Redis</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/redis/免费又好用的redis客户端工具/">
     <h2 class="post-title">
       免费又好用的 Redis 客户端工具
@@ -527,46 +568,6 @@ hsethset 命令可以用来设置 key 指定的哈希集中指定字段的值，
 
 hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的值，如下：
 12127.0.0.1:63......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/reids列表与集合命令使用/">
-    <h2 class="post-title">
-      Reids 列表与集合命令使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      列表
-
-列表是 Redis 中另外一种数据类型。下面我们来看看列表中一些基本的操作命令。
-lpush将一个或多个值 value 插入到列表 key 的表头，如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表头，如下：
-12127.0.0.1:6379&gt; lpush k1 v1 v2 v3(integer) 3
-
-lrange返回列表 key 中指定区间内的......
     </div>
   </a>
   
@@ -774,7 +775,7 @@ lrange返回列表 key 中指定区间内的......
     
     
     
-    <a href="/tags/#闲聊" title="闲聊" rel="8">闲聊</a>
+    <a href="/tags/#闲聊" title="闲聊" rel="9">闲聊</a>
     
     
   </div>
