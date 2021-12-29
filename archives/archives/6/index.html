@@ -399,6 +399,53 @@
   
 
 
+  <a href="/mysql/mysql读写分离/">
+    <h2 class="post-title">
+      MySQL 读写分离
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      准备工作
+
+我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
+
+这里，我们准备两台机器：
+
+主机：192.168.248.128
+从机：192.168.248.139
+
+主机配置
+
+主机的配置就三个步骤，比较容易：
+授权给从机服务器
+12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identifie......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2021-01-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#MySQL" title="MySQL">MySQL</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/mysql/mysql主从复制/">
     <h2 class="post-title">
       MySQL 主从复制
@@ -759,47 +806,6 @@ Redis 的发布订阅系统有点类似于我们生活中的电台，电台可�
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/redis/reids散列与有序集合命令使用/">
-    <h2 class="post-title">
-      Reids 散列与有序集合命令使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      散列
-
-很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。
-hsethset 命令可以用来设置 key 指定的哈希集中指定字段的值，如下：
-12127.0.0.1:6379&gt; hset k1 h1 v1(integer) 1
-
-hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的值，如下：
-12127.0.0.1:63......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Redis" title="Redis">Redis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -987,7 +993,7 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#读书分享" title="读书分享" rel="9">读书分享</a>
+    <a href="/tags/#读书分享" title="读书分享" rel="10">读书分享</a>
     
     
     
