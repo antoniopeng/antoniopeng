@@ -399,47 +399,6 @@
   
 
 
-  <a href="/kubernetes/kubernetes常用命令/">
-    <h2 class="post-title">
-      Kubernetes 常用命令
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Kubectl 与 Docker 命令
-
-概述Docker 命令和 Kubectl 命令有很多相似的地方，Docker 操作容器，Kubectl 操作 Pod（容器的集合）等
-运行容器Docker
-1$ docker run -d --restart=always -e DOMAIN=cluster --name nginx-app -p 80:80 nginx
-
-Kubectl
-12$ k......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-03-01
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
   <a href="/kubernetes/kubernetes数据持久化实现/">
     <h2 class="post-title">
       Kubernetes 数据持久化实现
@@ -574,6 +533,70 @@ Persistent Volume（PV）是集群之中的一块网络存储。跟 ......
   
   <p class="post-meta" style="margin: 10px 0;">
     彭楷淳发布于 2021-02-22
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/kubernetes/kubernetes高可用实践/">
+    <h2 class="post-title">
+      Kubernetes 高可用实践
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      统一环境配置
+
+节点配置
+
+
+主机名
+IP
+角色
+系统
+CPU/内存
+磁盘
+
+
+
+kubernetes-master-01
+192.168.141.150
+Master
+Ubuntu Server 18.04
+2核2G
+20G
+
+
+kubernetes-master-02
+192.168.141.151
+Master
+Ubuntu Server 18.04
+2核2G
+20G
+
+
+kubern......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2021-02-18
   </p>
   <div class="tags">
     
@@ -772,7 +795,7 @@ Persistent Volume（PV）是集群之中的一块网络存储。跟 ......
     
     
     
-    <a href="/tags/#读书分享" title="读书分享" rel="10">读书分享</a>
+    <a href="/tags/#读书分享" title="读书分享" rel="9">读书分享</a>
     
     
     
@@ -886,7 +909,7 @@ Persistent Volume（PV）是集群之中的一块网络存储。跟 ......
                 <p class="copyright text-muted">
     				<a href="http://beian.miit.gov.cn" target="_blank">粤ICP备19161098号-2</a>
     				<br>
-    				&copy; 2020-2021 <a href="https://antoniopeng.com">彭超</a> 版权所有
+    				&copy; 2020-2022 <a href="https://antoniopeng.com">彭超</a> 版权所有
     				<!--<br>
     				Powered by <a href="https://hexo.io/zh-cn/" target="_blank">Hexo</a> | Theme by <a href="http://beantech.org/" target="_blank">BeanTech</a>-->
                 </p>
