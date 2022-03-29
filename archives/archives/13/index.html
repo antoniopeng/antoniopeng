@@ -399,7 +399,45 @@
   
 
 
-  <a href="/运维技术/nginx/nginx实现反向代理及负载均衡配置/">
+  <a href="/编程技术/运维技术/nginx/nginx的妙用之处/">
+    <h2 class="post-title">
+      Nginx 的妙用之处
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      本文将从反向代理、文件压缩、地址重写三方面来讲解 Nginx 的使用技巧！
+反向代理
+
+反向代理就是当请求访问你的代理服务器时，代理服务器会对你的请求进行转发，可以转发到静态的资源路径上去，也可以转发到动态的服务接口上去。下面我们以对域名进行代理为例，来讲讲如何进行静态代理和动态代理。
+静态代理静态代理就是将请求代理到不同的静态资源路径上去，这里我们将对 antoniopeng.com 的请......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2020-10-01
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/编程技术/运维技术/nginx/nginx实现反向代理及负载均衡配置/">
     <h2 class="post-title">
       Nginx 实现反向代理及负载均衡配置
     </h2>
@@ -440,7 +478,7 @@ Nginx 反向代理服务器：192.168.127.130......
   
 
 
-  <a href="/运维技术/nginx/nginx实现虚拟主机/">
+  <a href="/编程技术/运维技术/nginx/nginx实现虚拟主机/">
     <h2 class="post-title">
       Nginx 实现虚拟主机
     </h2>
@@ -481,7 +519,7 @@ HTTP 服务器：Nginx 是一个 HTTP 服务可以独立提供 HTTP 服务。可
   
 
 
-  <a href="/运维技术/docker/docker-registry镜像仓库的部署/">
+  <a href="/编程技术/运维技术/docker/docker-registry镜像仓库的部署/">
     <h2 class="post-title">
       Docker Registry 镜像私服的部署
     </h2>
@@ -521,7 +559,7 @@ Docker Hub 是 Docker 官方提供的一个管理公共镜像的镜像仓库，�
   
 
 
-  <a href="/运维技术/docker/docker容器编排工具docker-compose/">
+  <a href="/编程技术/运维技术/docker/docker容器编排工具docker-compose/">
     <h2 class="post-title">
       Docker 容器编排工具 Docker Compose
     </h2>
@@ -559,7 +597,7 @@ Compose 的定位：定义和运行多个 Docker 个容器的应用。
   
 
 
-  <a href="/运维技术/docker/docker常用命令总结/">
+  <a href="/编程技术/运维技术/docker/docker常用命令总结/">
     <h2 class="post-title">
       Docker 常用命令总结
     </h2>
@@ -600,7 +638,7 @@ Compose 的定位：定义和运行多个 Docker 个容器的应用。
   
 
 
-  <a href="/运维技术/docker/docker数据卷操作/">
+  <a href="/编程技术/运维技术/docker/docker数据卷操作/">
     <h2 class="post-title">
       Docker 数据卷操作
     </h2>
@@ -638,7 +676,7 @@ Compose 的定位：定义和运行多个 Docker 个容器的应用。
   
 
 
-  <a href="/运维技术/docker/使用dockerfile定制镜像/">
+  <a href="/编程技术/运维技术/docker/使用dockerfile定制镜像/">
     <h2 class="post-title">
       使用 Dockerfile 定制镜像
     </h2>
@@ -681,7 +719,7 @@ Dockerfile 文件的内容如下
   
 
 
-  <a href="/运维技术/docker/docker镜像操作/">
+  <a href="/编程技术/运维技术/docker/docker镜像操作/">
     <h2 class="post-title">
       Docker 镜像操作
     </h2>
@@ -717,7 +755,7 @@ Dockerfile 文件的内容如下
   
 
 
-  <a href="/运维技术/docker/docker容器高级操作/">
+  <a href="/编程技术/运维技术/docker/docker容器高级操作/">
     <h2 class="post-title">
       Docker 容器高级操作
     </h2>
@@ -731,46 +769,6 @@ Dockerfile 文件的内容如下
 1$ docker attach
 
 依附容器这个主要是针对交互型容器而言的，该命令有一定的局限性，可以作为了解即可，真正工作中使用较少。要是用 docker attach 命令，首先要确保容器已经启动，然后使......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-07-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/运维技术/docker/docker容器基本操作/">
-    <h2 class="post-title">
-      Docker 容器基本操作
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      docker 中的容器就是一个轻量级的虚拟机，是镜像运行起来的一个状态，本文就先来看看容器的基本操作。镜像就像是一个安装程序，而容器则是程序运行时的一个状态。
-查看容器
-
-启动 docker 后，使用 docker ps 命令可以查看当前正在运行的容器：
-1$ docker ps
-
-查看所有容器上面这条命令是查看当前正在运行的容器，如果需要查看所有容器，则可以通过 docker ps -a ......
     </div>
   </a>
   
@@ -937,6 +935,10 @@ Dockerfile 文件的内容如下
     <a href="/tags/#运维技术" title="运维技术" rel="22">运维技术</a>
     
     
+    
+    <a href="/tags/#商业思维" title="商业思维" rel="1">商业思维</a>
+    
+    
   </div>
 </section>
 
@@ -964,6 +966,10 @@ Dockerfile 文件的内容如下
     
     <a href="/categories/#编程技术">
       <li>编程技术</li>
+    </a>
+    
+    <a href="/categories/#思维成长">
+      <li>思维成长</li>
     </a>
     
   </ul>
