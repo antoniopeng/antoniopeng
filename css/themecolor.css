@@ -391,7 +391,7 @@ hr {
 }
 
 #tag_cloud a {
-  background: var(--tag_cloud-background-color) !important;
+  /**background: var(--tag_cloud-background-color) !important;**/
   background-image: linear-gradient(to bottom, var(--tag_cloud-background-color)0, var(--tag_cloud-background-color2)) !important;
   color: var(--tag_cloud-color);
 }
