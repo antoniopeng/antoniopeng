@@ -407,6 +407,55 @@
   
 
 
+  <a href="/编程技术/数据库技术/mysql/mysql主从复制/">
+    <h2 class="post-title">
+      MySQL 主从复制
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      主从规划
+
+首先规划两个 MySQL 实例：
+
+主机：192.168.66.131:33061
+从机：192.168.66.131:33062
+
+当然大家可以准备多个从机，从机的配置步骤是一样的。接下来，我们就开始主从的配置。
+配置主机
+
+主机上的配置，主要是两个地方：
+
+第一个是配置一个从机登录用户
+第二个配置开启 binlog。
+
+如果是 Docker 中创建的 MySQL 实例，默认只......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2021-01-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/编程技术/数据库技术/mysql/centos上安装mysql/">
     <h2 class="post-title">
       CentOS 上安装 MySQL
@@ -565,47 +614,6 @@ Redis 集群运行原理如下：
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/数据库技术/redis/redis主从复制/">
-    <h2 class="post-title">
-      Redis 主从复制
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。
-配置方式
-
-假设我有三个 redis 实例，地址分别如下：
-
-192.168.248.128:6379 
-192.168.248.128:6380
-192......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-27
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -729,19 +737,23 @@ Redis 集群运行原理如下：
   <div class="tags">
     
     
-    <a href="/tags/#读书分享" title="读书分享" rel="9">读书分享</a>
-    
-    
-    
     <a href="/tags/#趣闻杂记" title="趣闻杂记" rel="9">趣闻杂记</a>
     
     
     
-    <a href="/tags/#人性思维" title="人性思维" rel="1">人性思维</a>
+    <a href="/tags/#读书分享" title="读书分享" rel="9">读书分享</a>
+    
+    
+    
+    <a href="/tags/#网络创业" title="网络创业" rel="1">网络创业</a>
     
     
     
     <a href="/tags/#商业思维" title="商业思维" rel="1">商业思维</a>
+    
+    
+    
+    <a href="/tags/#人性思维" title="人性思维" rel="2">人性思维</a>
     
     
     
@@ -753,19 +765,15 @@ Redis 集群运行原理如下：
     
     
     
-    <a href="/tags/#网络创业" title="网络创业" rel="1">网络创业</a>
-    
-    
-    
     <a href="/tags/#后端技术" title="后端技术" rel="64">后端技术</a>
     
     
     
-    <a href="/tags/#运维技术" title="运维技术" rel="22">运维技术</a>
-    
-    
-    
     <a href="/tags/#数据库技术" title="数据库技术" rel="17">数据库技术</a>
+    
+    
+    
+    <a href="/tags/#运维技术" title="运维技术" rel="22">运维技术</a>
     
     
   </div>
@@ -781,12 +789,16 @@ Redis 集群运行原理如下：
 <div class="widget">
   <ul>
     
+    <a href="/categories/#趣闻杂记">
+      <li>趣闻杂记</li>
+    </a>
+    
     <a href="/categories/#读书分享">
       <li>读书分享</li>
     </a>
     
-    <a href="/categories/#趣闻杂记">
-      <li>趣闻杂记</li>
+    <a href="/categories/#创业项目">
+      <li>创业项目</li>
     </a>
     
     <a href="/categories/#思维成长">
@@ -795,10 +807,6 @@ Redis 集群运行原理如下：
     
     <a href="/categories/#编程技术">
       <li>编程技术</li>
-    </a>
-    
-    <a href="/categories/#创业项目">
-      <li>创业项目</li>
     </a>
     
   </ul>

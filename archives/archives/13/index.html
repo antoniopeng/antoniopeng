@@ -407,6 +407,43 @@
   
 
 
+  <a href="/编程技术/后端技术/fastdfs/分布式文件系统fastdfs服务端的部署/">
+    <h2 class="post-title">
+      分布式文件系统 FastDFS 服务端的部署
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      FastDFS 简介
+
+FastDFS 服务端有两个角色：跟踪器（tracker）和存储节点（storage）。跟踪器主要做调度工作，在访问上起负载均衡的作用；存储节点存储文件，完成文件管理的所有功能。
+FastDFS 同时对文件的 metadata 进行管理。所谓文件的 metadata 就是文件的相关属性，以键值对方式表示，如：width=1024，其中的 key 为 width，val......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2020-12-23
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/趣闻杂记/普通人的一生经历/">
     <h2 class="post-title">
       普通人的一生平淡经历
@@ -751,49 +788,6 @@ Compose 的定位：定义和运行多个 Docker 个容器的应用。
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/运维技术/docker/使用dockerfile定制镜像/">
-    <h2 class="post-title">
-      使用 Dockerfile 定制镜像
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      
-这里以简单定制 Nginx 镜像为例
-
-创建 Dockerfile 文件
-
-创建 Dockerfile 文件
-12345$ mkdir /usr/local/docker$ cd /usr/local/docker$ mkdir nginx$ cd nginx$ vi Dockerfile
-
-Dockerfile 文件的内容如下
-12FROM nginxRUN echo '&lt;h1&g......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2020-07-09
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -917,19 +911,23 @@ Dockerfile 文件的内容如下
   <div class="tags">
     
     
-    <a href="/tags/#读书分享" title="读书分享" rel="9">读书分享</a>
-    
-    
-    
     <a href="/tags/#趣闻杂记" title="趣闻杂记" rel="9">趣闻杂记</a>
     
     
     
-    <a href="/tags/#人性思维" title="人性思维" rel="1">人性思维</a>
+    <a href="/tags/#读书分享" title="读书分享" rel="9">读书分享</a>
+    
+    
+    
+    <a href="/tags/#网络创业" title="网络创业" rel="1">网络创业</a>
     
     
     
     <a href="/tags/#商业思维" title="商业思维" rel="1">商业思维</a>
+    
+    
+    
+    <a href="/tags/#人性思维" title="人性思维" rel="2">人性思维</a>
     
     
     
@@ -941,19 +939,15 @@ Dockerfile 文件的内容如下
     
     
     
-    <a href="/tags/#网络创业" title="网络创业" rel="1">网络创业</a>
-    
-    
-    
     <a href="/tags/#后端技术" title="后端技术" rel="64">后端技术</a>
     
     
     
-    <a href="/tags/#运维技术" title="运维技术" rel="22">运维技术</a>
-    
-    
-    
     <a href="/tags/#数据库技术" title="数据库技术" rel="17">数据库技术</a>
+    
+    
+    
+    <a href="/tags/#运维技术" title="运维技术" rel="22">运维技术</a>
     
     
   </div>
@@ -969,12 +963,16 @@ Dockerfile 文件的内容如下
 <div class="widget">
   <ul>
     
+    <a href="/categories/#趣闻杂记">
+      <li>趣闻杂记</li>
+    </a>
+    
     <a href="/categories/#读书分享">
       <li>读书分享</li>
     </a>
     
-    <a href="/categories/#趣闻杂记">
-      <li>趣闻杂记</li>
+    <a href="/categories/#创业项目">
+      <li>创业项目</li>
     </a>
     
     <a href="/categories/#思维成长">
@@ -983,10 +981,6 @@ Dockerfile 文件的内容如下
     
     <a href="/categories/#编程技术">
       <li>编程技术</li>
-    </a>
-    
-    <a href="/categories/#创业项目">
-      <li>创业项目</li>
     </a>
     
   </ul>
