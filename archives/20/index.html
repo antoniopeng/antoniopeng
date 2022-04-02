@@ -407,6 +407,43 @@
   
 
 
+  <a href="/编程技术/后端技术/mybatis/再谈mybatis复杂查询/">
+    <h2 class="post-title">
+      再谈 MyBatis 复杂查询
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      一对一查询
+
+在实际开发中，经常会遇到一对一查询，一对多查询等。这里我们先来看一对一查询。例如：每本书都有一个作者，作者都有自己的属性，根据这个，我来定义两个实体类：
+12345678public class Book &#123;        private Integer id;    private String name;    private Author author;	   ......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2021-01-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/编程技术/后端技术/mybatis/mybatis中使用mapper简化代码/">
     <h2 class="post-title">
       MyBatis 中使用 Mapper 简化代码
@@ -540,42 +577,6 @@ dat......
 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。
 Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变 java 代码。
 使用 preparedStatement 向占位符号传参数存在硬编码，因为 sql 语句的 where 条件不一定，可能多也可能少，修改 sql 还要修改......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/后端技术/spring-mvc/spring-mvc整合hibernate-validator实现数据校验/">
-    <h2 class="post-title">
-      Spring MVC 整合 Hibernate Validator 实现数据校验
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      B/S 系统中对 http 请求数据的校验多数在客户端进行，这也是出于简单及用户体验性上考虑，但是在一些安全性要求高的系统中服务端校验是不可缺少的，实际上，几乎所有的系统，凡是涉及到数据校验，都需要在服务端进行二次校验。为什么要在服务端进行二次校验呢？这需要理解客户端校验和服务端校验各自的目的。
-
-客户端校验，我们主要是为了提高用户体验，例如用户输入一个邮箱地址，要校验这个邮箱地址是否合法，......
     </div>
   </a>
   
@@ -727,7 +728,7 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
     
     
     
-    <a href="/tags/#历史朝代" title="历史朝代" rel="1">历史朝代</a>
+    <a href="/tags/#历史朝代" title="历史朝代" rel="2">历史朝代</a>
     
     
     
