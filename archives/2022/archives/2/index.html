@@ -145,7 +145,7 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://antoniopeng.com/categories/编程技术/archives/8/">
+  <link rel="canonical" href="https://antoniopeng.com/archives/2022/archives/2/">
   <title>
     
 		彭楷淳 - 个人独立博客
@@ -407,212 +407,30 @@
   
 
 
-  <a href="/编程技术/数据库技术/mysql/mysql读写分离/">
+  <a href="/创业项目/网络创业/围棋相关产品网络销售经验分享/">
     <h2 class="post-title">
-      MySQL 读写分离
+      围棋相关产品网络销售经验分享
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      准备工作
+      围棋这东西，我在学生时代学过，但很长很长时间都没下来了，有点忘记这里面的规则了。于是，我从B站上找出一些围棋教程来看。不看不知道，一看就了兴趣。
+发现围棋项目的思路
 
-我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
+每当看到一些广告信息的时候，就感觉这有可能就是一个好项目。
+我看到的信息是，在围棋教程的下方，写了这么一段，同时还留了 QQ 群。
 
-这里，我们准备两台机器：
-
-主机：192.168.248.128
-从机：192.168.248.139
-
-主机配置
-
-主机的配置就三个步骤，比较容易：
-授权给从机服务器
-12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identifie......
+根据以往的经验来看，凡是有人在引流的，必然是一个能赚钱的项目，也是一种需求。回想自己下围棋，......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-28
+    彭楷淳发布于 2022-03-21
   </p>
   <div class="tags">
     
-    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/数据库技术/mysql/mysql主从复制/">
-    <h2 class="post-title">
-      MySQL 主从复制
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      主从规划
-
-首先规划两个 MySQL 实例：
-
-主机：192.168.66.131:33061
-从机：192.168.66.131:33062
-
-当然大家可以准备多个从机，从机的配置步骤是一样的。接下来，我们就开始主从的配置。
-配置主机
-
-主机上的配置，主要是两个地方：
-
-第一个是配置一个从机登录用户
-第二个配置开启 binlog。
-
-如果是 Docker 中创建的 MySQL 实例，默认只......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-28
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/数据库技术/mysql/centos上安装mysql/">
-    <h2 class="post-title">
-      CentOS 上安装 MySQL
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      平时我一般首选 Ubuntu，不过公司里边使用一般还是 CentOS 为主，因此这里就以 CentOS 为例来向大家演示整个过程，今天这篇文章主要来看看 MySQL 的安装。
-安装环境：
-
-CentOS7
-MySQL5.7
-
-安装步骤
-
-检查是否安装了 mariadb，如果已经安装了则卸载：
-1$ yum list installed | grep mariadb
-
-如果执行结果如下，表示已......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-28
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/数据库技术/mysql/mysql性能优化小结/">
-    <h2 class="post-title">
-      MySQL 性能优化小结
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      基础概念简述
-
-锁数据库通过锁机制来解决并发场景 — 共享锁（读锁）和排他锁（写锁）。读锁是不阻塞的，多个客户端可以在同一时刻读取同一个资源；写锁是排他的，并且会阻塞其他的读锁和写锁。
-简单提下乐观锁和悲观锁：
-
-乐观锁：通常用于数据竞争不激烈的场景，多读少写，通过版本号和时间戳实现
-悲观锁：通常用于数据竞争激烈的场景，每次操作都会锁定数据
-
-要锁定数据需要一定的锁策略来配合。
-
-表锁：锁定......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-28
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/数据库技术/mysql/一文快速入门mysql索引/">
-    <h2 class="post-title">
-      一文快速上手使用 MySQL 索引
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      什么是索引
-
-MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数据的数据结构。因此 索引的本质就是数据结构。索引的目的在于提高查询效率，可类比字典、书籍的目录等这种形式。
-可简单理解为 排好序的快速查找数据结构。在数据之外，数据库系统还维护着 满足特定算法查询的数据结构，这些数据结构以某种方式指向数据。这样就可以在这些数据结构上实现高级查找算法，这种数据结构就是索引......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-28
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
+    <a href="/tags/#网络创业" title="网络创业">网络创业</a>
     
   </div>
   
@@ -626,13 +444,9 @@ MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数
   <ul class="pager">
     
     <li class="previous">
-      <a style="font-size: 17px;" href="/categories/编程技术/archives/7/">&larr; 上一页</a>
+      <a style="font-size: 17px;" href="/archives/2022/">&larr; 上一页</a>
     </li>
     
-    
-    <li class="next">
-      <a style="font-size: 17px;" href="/categories/编程技术/archives/9/">下一页 &rarr;</a>
-    </li>
     
   </ul>
 
