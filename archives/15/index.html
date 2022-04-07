@@ -407,6 +407,47 @@
   
 
 
+  <a href="/编程技术/数据库技术/redis/redis集群搭建/">
+    <h2 class="post-title">
+      Redis 集群搭建
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      由于主从复制所有的写操作都是先在 Master 上操作，然后同步更新到 Slave 上，所以从 Master 同步到 Slave 机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave 机器数量的增加也会使这个问题更加严重。因此我们还需要集群来进一步提升 redis 性能。
+集群原理
+
+Redis 集群架构如下图：
+
+Redis 集群运行原理如下：
+
+所有的 Redis 节点彼......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2021-01-27
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/编程技术/数据库技术/redis/redis主从复制/">
     <h2 class="post-title">
       Redis 主从复制
@@ -540,47 +581,6 @@ Redis 的发布订阅系统有点类似于我们生活中的电台，电台可�
   
   <p class="post-meta" style="margin: 10px 0;">
     彭楷淳发布于 2021-01-26
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/数据库技术/redis/reids散列与有序集合命令使用/">
-    <h2 class="post-title">
-      Reids 散列与有序集合命令使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      散列
-
-很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。
-hsethset 命令可以用来设置 key 指定的哈希集中指定字段的值，如下：
-12127.0.0.1:6379&gt; hset k1 h1 v1(integer) 1
-
-hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的值，如下：
-12127.0.0.1:63......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-25
   </p>
   <div class="tags">
     
@@ -731,7 +731,7 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
     
     
     
-    <a href="/tags/#权谋思维" title="权谋思维" rel="1">权谋思维</a>
+    <a href="/tags/#权谋思维" title="权谋思维" rel="2">权谋思维</a>
     
     
     
