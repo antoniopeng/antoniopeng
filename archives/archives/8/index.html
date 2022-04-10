@@ -407,6 +407,55 @@
   
 
 
+  <a href="/编程技术/数据库技术/mysql/mysql主从复制/">
+    <h2 class="post-title">
+      MySQL 主从复制
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      主从规划
+
+首先规划两个 MySQL 实例：
+
+主机：192.168.66.131:33061
+从机：192.168.66.131:33062
+
+当然大家可以准备多个从机，从机的配置步骤是一样的。接下来，我们就开始主从的配置。
+配置主机
+
+主机上的配置，主要是两个地方：
+
+第一个是配置一个从机登录用户
+第二个配置开启 binlog。
+
+如果是 Docker 中创建的 MySQL 实例，默认只......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    彭楷淳发布于 2021-01-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/编程技术/数据库技术/mysql/centos上安装mysql/">
     <h2 class="post-title">
       CentOS 上安装 MySQL
@@ -759,46 +808,6 @@ hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/数据库技术/redis/reids列表与集合命令使用/">
-    <h2 class="post-title">
-      Reids 列表与集合命令使用
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      列表
-
-列表是 Redis 中另外一种数据类型。下面我们来看看列表中一些基本的操作命令。
-lpush将一个或多个值 value 插入到列表 key 的表头，如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表头，如下：
-12127.0.0.1:6379&gt; lpush k1 v1 v2 v3(integer) 3
-
-lrange返回列表 key 中指定区间内的......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    彭楷淳发布于 2021-01-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -930,7 +939,7 @@ lrange返回列表 key 中指定区间内的......
     
     
     
-    <a href="/tags/#中国历史" title="中国历史" rel="12">中国历史</a>
+    <a href="/tags/#中国历史" title="中国历史" rel="13">中国历史</a>
     
     
     
