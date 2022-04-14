@@ -2,3 +2,5 @@
 
 #tag_cloud a, #tag_cloud .tag {background: darkgray}
 .post-content-preview{margin-bottom: 10px}
+.post-container ul, .post-container ol{margin-bottom:0px}
+.sidebar-container{padding-top:30px}
