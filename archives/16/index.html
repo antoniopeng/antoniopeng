@@ -407,6 +407,53 @@
   
 
 
+  <a href="/编程技术/数据库技术/mysql/mysql性能优化小结/">
+    <h2 class="post-title">
+      MySQL 性能优化小结
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      基础概念简述
+
+锁数据库通过锁机制来解决并发场景 — 共享锁（读锁）和排他锁（写锁）。读锁是不阻塞的，多个客户端可以在同一时刻读取同一个资源；写锁是排他的，并且会阻塞其他的读锁和写锁。
+简单提下乐观锁和悲观锁：
+
+乐观锁：通常用于数据竞争不激烈的场景，多读少写，通过版本号和时间戳实现
+悲观锁：通常用于数据竞争激烈的场景，每次操作都会锁定数据
+
+要锁定数据需要一定的锁策略来配合。
+
+表锁：锁定......
+    </div>
+  </a>
+  
+
+  <span class="tags">
+    
+    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
+    
+  </span>
+  
+    <span class="post-meta" style="float:right">
+    <!--彭楷淳-->
+	发布于 2021-01-28
+  </span>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
   <a href="/编程技术/数据库技术/mysql/一文快速入门mysql索引/">
     <h2 class="post-title">
       一文快速上手使用 MySQL 索引
@@ -565,48 +612,6 @@ Redis 集群运行原理如下：
 </div>
 <hr>
 
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/数据库技术/redis/redis数据持久化/">
-    <h2 class="post-title">
-      Redis 数据持久化
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Redis 持久化
-
-整体上来说，Redis 持久化有两种方式，快照持久化和 AOF ，在项目中我们可以根据实际情况选择合适的持久化方式，也可以不用持久化，这关键看我们的 Redis 在项目中扮演了什么样的角色。
-快照持久化
-
-快照持久化，顾名思义，就是通过拍摄快照的方式实现数据的持久化，redis 可以在某个时间点上对内存中的数据创建一个副本文件，副本文件中的数据在 redis 重启时会被......
-    </div>
-  </a>
-  
-
-  <span class="tags">
-    
-    <a href="/tags/#数据库技术" title="数据库技术">数据库技术</a>
-    
-  </span>
-  
-    <span class="post-meta" style="float:right">
-    <!--彭楷淳-->
-	发布于 2021-01-26
-  </span>
-  
-
-</div>
-<hr>
-
 
 
   <!-- Pager -->
@@ -742,7 +747,7 @@ Redis 集群运行原理如下：
     
     
     
-    <a href="/tags/#中国历史" title="中国历史" rel="15">中国历史</a>
+    <a href="/tags/#中国历史" title="中国历史" rel="16">中国历史</a>
     
     
     
