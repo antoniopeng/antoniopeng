@@ -332,7 +332,7 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#开发工具" title="开发工具">开发工具</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#编程工具" title="编程工具">编程工具</a>
               
             </div>
             <h1>Git 中的各种后悔药</h1>
@@ -355,8 +355,8 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              <!-- Words <span class="post-count">814</span> In Total -->
-			  总计 <span class="post-count">814</span> 字
+              <!-- Words <span class="post-count">806</span> In Total -->
+			  总计 <span class="post-count">806</span> 字
             </span>
             <div class="blank_box"></div>
             <!-- 不蒜子统计 start -->
@@ -418,20 +418,20 @@
 </ol>
 <p>提交到远程仓库的后悔药我们统一都在关联远程仓库一文中讲解，敬请期待。</p>
 <h3 id="工作区的代码想撤销"><a href="#工作区的代码想撤销" class="headerlink" title="工作区的代码想撤销"></a>工作区的代码想撤销</h3><hr />
+可能有一天我正在写代码，写了很久发现写错了，想恢复到一开始的状态，一个笨办法就是把刚刚写的代码一行一行的删除，不过这种方式成本太高，我们可以通过 `git checkout -- <file>` 命令来撤销工作区的代码修改。如下图：
 
-<p>可能有一天我正在写代码，写了很久发现写错了，想恢复到一开始的状态，一个笨办法就是把刚刚写的代码一行一行的删除，不过这种方式成本太高，我们可以通过 <code>git checkout -- &lt;file&gt;</code> 命令来撤销工作区的代码修改。如下图：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%90%8E%E6%82%94%E8%8D%AF01.gif" alt="img"></p>
 <p>首先我们执行了 git status 命令，发现工作区是干净的，然后执行了 cat 命令，发现文件只有两行内容，然后通过 vi 编辑器向文件中添加一行，保存并退出，退出来之后又执行了 git status 命令，此时工作区的状态已经发生变化，然后我们执行了 git checkout – git01.txt 命令，表示撤销之前的操作，让 git01.txt 恢复到之前的状态，该命令执行成功之后，我们再执行 cat 命令发现文件内容已经恢复了，此时再执行 git status ，状态也恢复了。</p>
 <h3 id="add-到暂存区的代码想撤销"><a href="#add-到暂存区的代码想撤销" class="headerlink" title="add 到暂存区的代码想撤销"></a>add 到暂存区的代码想撤销</h3><hr />
+如果想要撤销，但是代码已经提交到暂存区了，不用担心，也能撤销，分两个步骤：
 
-<p>如果想要撤销，但是代码已经提交到暂存区了，不用担心，也能撤销，分两个步骤：</p>
 <p>1.将暂存区的代码撤销到工作区<br>2.将工作区的代码撤销(具体操作和’工作区的代码想撤销’一致)</p>
 <p>将暂存区的代码撤销，我们可以使用 <code>git reset HEAD</code> 命令来实现。如下图：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%90%8E%E6%82%94%E8%8D%AF02.gif" alt="img"></p>
 <p>这里的代码都比较简单，核心的过程就是先执行 <code>git reset HEAD</code> 命令，从暂存区撤销，剩下的操作参考’工作区的代码想撤销’一节。</p>
 <h3 id="提交到本地仓库的代码想撤销"><a href="#提交到本地仓库的代码想撤销" class="headerlink" title="提交到本地仓库的代码想撤销"></a>提交到本地仓库的代码想撤销</h3><hr />
+同样的，提交到本地仓库的代码一样也可以撤销，我们可以利用 `git reset --hard <版本号>` 命令来实现版本回退，该命令中的版本号有几种不同的写法：
 
-<p>同样的，提交到本地仓库的代码一样也可以撤销，我们可以利用 <code>git reset --hard &lt;版本号&gt;</code> 命令来实现版本回退，该命令中的版本号有几种不同的写法：</p>
 <blockquote>
 <p>1.可以使用 HEAD^ 来描述版本，一个 ^ 表示前一个版本，两个 ^^ 表示前两个版本，以此类推。<br>2.也可以使用数字来代替 ^ ，比如说前 100 个版本可以写作 HEAD~100 。<br>3.也可以直接写版本号，表示跳转到某一个版本处。我们每次提交成功后，都会生成一个哈希码作为版本号，所以这里我们也可以直接填版本号，哈希码很长，但是我们不用全部输入，只需要输入前面几个字符即可，就能识别出来。</p>
 </blockquote>
@@ -565,7 +565,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#开发工具" title="开发工具">开发工具</a>
+            <a class="tag" href="/tags/#编程工具" title="编程工具">编程工具</a>
             
           </div>
         </section>

@@ -332,7 +332,7 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="https://antoniopeng.com/tags/#开发工具" title="开发工具">开发工具</a>
+              <a class="tag" href="https://antoniopeng.com/tags/#编程工具" title="编程工具">编程工具</a>
               
             </div>
             <h1>Git 工作区储藏</h1>
@@ -411,8 +411,8 @@
 		<!-- <a href="https://s.click.taobao.com/HoalEtu" target="_blank" rel="noopener" ><img src="https://qiniuyun.antoniopeng.com/advertisement01.jpg"/></a> -->
 
         <h3 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h3><hr />
+现在有一个 master 分支，master 分支中有一个文件叫 01.txt ，该文件中只有一行数据，然后对 01.txt 执行 add 和 commit ，然后再从 master 分支中创建出一个新的分支 fa ，切换到 fa 分支上，然后向 01.txt 中再添加一行数据，添加成功之后，不做任何事情，再切换回 master 分支，此时用 cat 命令查看 01.txt 文件，发现竟然有两行数据，按理说 master 中的 01.txt 只有一行数据，而 fa 中的 01.txt 有两行数据，整个过程如下图：
 
-<p>现在有一个 master 分支，master 分支中有一个文件叫 01.txt ，该文件中只有一行数据，然后对 01.txt 执行 add 和 commit ，然后再从 master 分支中创建出一个新的分支 fa ，切换到 fa 分支上，然后向 01.txt 中再添加一行数据，添加成功之后，不做任何事情，再切换回 master 分支，此时用 cat 命令查看 01.txt 文件，发现竟然有两行数据，按理说 master 中的 01.txt 只有一行数据，而 fa 中的 01.txt 有两行数据，整个过程如下图：</p>
 <p><img src="https://qiniuyun.antoniopeng.com/git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%82%A8%E8%97%8F01.gif" alt="gif"></p>
 <p>要搞清楚这个问题，得先明白下面这个问题：</p>
 <blockquote>
@@ -421,8 +421,9 @@
 <p>可能眼尖的小伙伴已经发现端倪了，我们上面这个操作少了两个步骤，那就是 add/commit ，fa 分支中的数据修改之后直接切换回了 master ，而没有 add/commit 。<strong>正常情况下（修改数据后 add/commit），如果 master 和 fa 分支中的数据不一致，我们执行了 <code>git checkout -</code> 进行分支的切换，这个时候工作区中的文件内容也是会跟着变化的（大家可以通过 cat 命令或者直接在记事本中打开工作区的文件来查看这种变化），但是如果我在 fa 分支中修改了文件却没有 add/commit 就切换回 master ，此时如果工作区的文件变化了，可能会导致我在 fa 分支中的修改丢失，因此，这个时候工作区的文件就没有变化，即工作区的文件内容还是 fa 分支中修改的内容。</strong></p>
 <p>解决这个问题，我们有两种方案，请小伙伴们往下看。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><hr />
+#### 方案一
 
-<h4 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h4><p>第一种解决方案就是在某一个分支修改文件之后，先 add 并且 commit 之后再去切换分支，这个操作就比较简单了，我这里就不再演示了。</p>
+<p>第一种解决方案就是在某一个分支修改文件之后，先 add 并且 commit 之后再去切换分支，这个操作就比较简单了，我这里就不再演示了。</p>
 <h4 id="方案二（储藏）"><a href="#方案二（储藏）" class="headerlink" title="方案二（储藏）"></a>方案二（储藏）</h4><p>第二种解决方案就是储藏 (Stashing)，储藏适用在如下场景中：</p>
 <blockquote>
 <p>当我在一个分支 fa 中修改了文件，但是还没有完全改好，此时我并不想 add/commit ，但是这个时候有一个更急迫的事情在另外一个分支 fb 上需要我去做，我必须要切换分支。</p>
@@ -467,7 +468,7 @@
           
           
           <li class="previous">
-            <a style="font-size: 17px" href="/编程技术/后端技术/spring-cloud/spring-cloud整体架构概览/" title="Spring Cloud 整体架构概览">下一篇  &rarr;</a>
+            <a style="font-size: 17px" href="/编程技术/后端编程/spring-cloud/spring-cloud整体架构概览/" title="Spring Cloud 整体架构概览">下一篇  &rarr;</a>
           </li>
           
         </ul>
@@ -551,7 +552,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题场景"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">问题场景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#解决方案"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">解决方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#方案一"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">方案一</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#方案二（储藏）"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">方案二（储藏）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#恢复储藏并出栈"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">恢复储藏并出栈</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#删除某一个储藏"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">删除某一个储藏</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题场景"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">问题场景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#解决方案"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">解决方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#方案二（储藏）"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">方案二（储藏）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#恢复储藏并出栈"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">恢复储藏并出栈</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#删除某一个储藏"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">删除某一个储藏</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -573,7 +574,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#开发工具" title="开发工具">开发工具</a>
+            <a class="tag" href="/tags/#编程工具" title="编程工具">编程工具</a>
             
           </div>
         </section>

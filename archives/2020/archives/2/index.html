@@ -407,7 +407,7 @@
   
 
 
-  <a href="/编程技术/运维技术/docker/docker数据卷操作/">
+  <a href="/编程技术/运维编程/docker/docker数据卷操作/">
     <h2 class="post-title">
       Docker 数据卷操作
     </h2>
@@ -416,8 +416,8 @@
     </h3>
     <div class="post-content-preview">
       数据卷入门
-
 在前面的案例中，如果我们需要将数据从宿主机拷贝到容器中，一般都是使用 Docker 的拷贝命令，这样性能还是稍微有点差，没有办法能够达到让这种拷贝达到本地磁盘 I/O 性能呢？有！
+
 数据卷可以绕过拷贝系统，在多个容器之间、容器和宿主机之间共享目录或者文件，数据卷绕过了拷贝系统，可以达到本地磁盘 I/O 性能。
 本文先通过一个简单的案例展示数据卷的基本用法。以前面使用的 ngin......
     </div>
@@ -426,7 +426,7 @@
 
   <span class="tags">
     
-    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
+    <a href="/tags/#运维编程" title="运维编程">运维编程</a>
     
   </span>
   
@@ -448,7 +448,7 @@
   
 
 
-  <a href="/编程技术/运维技术/docker/使用dockerfile定制镜像/">
+  <a href="/编程技术/运维编程/docker/使用dockerfile定制镜像/">
     <h2 class="post-title">
       使用 Dockerfile 定制镜像
     </h2>
@@ -460,19 +460,18 @@
 这里以简单定制 Nginx 镜像为例
 
 创建 Dockerfile 文件
-
-创建 Dockerfile 文件
+创建 `Dockerfile` 文件
 12345$ mkdir /usr/local/docker$ cd /usr/local/docker$ mkdir nginx$ cd nginx$ vi Dockerfile
 
 Dockerfile 文件的内容如下
-12FROM nginxRUN echo '&lt;h1&g......
+12FROM nginxRUN echo '&lt;h1&......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
+    <a href="/tags/#运维编程" title="运维编程">运维编程</a>
     
   </span>
   
@@ -494,7 +493,7 @@ Dockerfile 文件的内容如下
   
 
 
-  <a href="/编程技术/运维技术/docker/docker镜像操作/">
+  <a href="/编程技术/运维编程/docker/docker镜像操作/">
     <h2 class="post-title">
       Docker 镜像操作
     </h2>
@@ -511,7 +510,7 @@ Dockerfile 文件的内容如下
 
   <span class="tags">
     
-    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
+    <a href="/tags/#运维编程" title="运维编程">运维编程</a>
     
   </span>
   
@@ -533,7 +532,7 @@ Dockerfile 文件的内容如下
   
 
 
-  <a href="/编程技术/运维技术/docker/docker容器高级操作/">
+  <a href="/编程技术/运维编程/docker/docker容器高级操作/">
     <h2 class="post-title">
       Docker 容器高级操作
     </h2>
@@ -543,17 +542,16 @@ Dockerfile 文件的内容如下
     <div class="post-content-preview">
       上篇文章介绍了一个 Nginx 的例子，对于 Nginx 这样一个容器而言，当它启动成功后，我们不可避免的需要对 Nginx 进行的配置进行修改，那么这个修改要如何完成呢？
 依附容器
-
 1$ docker attach
 
-依附容器这个主要是针对交互型容器而言的，该命令有一定的局限性，可以作为了解即可，真正工作中使用较少。要是用 docker attach 命令，首先要确保容器已经启动，然后使......
+依附容器这个主要是针对交互型容器而言的，该命令有一定的局限性，可以作为了解即可，真正工作中使用较少。要是用 docker attach 命令，首先要确保容器已经启动，然后使用......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
+    <a href="/tags/#运维编程" title="运维编程">运维编程</a>
     
   </span>
   
@@ -575,7 +573,7 @@ Dockerfile 文件的内容如下
   
 
 
-  <a href="/编程技术/运维技术/docker/docker容器基本操作/">
+  <a href="/编程技术/运维编程/docker/docker容器基本操作/">
     <h2 class="post-title">
       Docker 容器基本操作
     </h2>
@@ -585,18 +583,18 @@ Dockerfile 文件的内容如下
     <div class="post-content-preview">
       docker 中的容器就是一个轻量级的虚拟机，是镜像运行起来的一个状态，本文就先来看看容器的基本操作。镜像就像是一个安装程序，而容器则是程序运行时的一个状态。
 查看容器
+启动 docker 后，使用 `docker ps` 命令可以查看当前正在运行的容器：
 
-启动 docker 后，使用 docker ps 命令可以查看当前正在运行的容器：
 1$ docker ps
 
-查看所有容器上面这条命令是查看当前正在运行的容器，如果需要查看所有容器，则可以通过 docker ps -a ......
+查看所有容器上面这条命令是查看当前正在运行的容器，如果需要查看所有容器，则可以通过 docker ps -......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
+    <a href="/tags/#运维编程" title="运维编程">运维编程</a>
     
   </span>
   
@@ -618,7 +616,7 @@ Dockerfile 文件的内容如下
   
 
 
-  <a href="/编程技术/运维技术/docker/容器化技术大杀器docker/">
+  <a href="/编程技术/运维编程/docker/容器化技术大杀器docker/">
     <h2 class="post-title">
       容器化技术大杀器 Docker
     </h2>
@@ -627,8 +625,8 @@ Dockerfile 文件的内容如下
     </h3>
     <div class="post-content-preview">
       什么是 Docker
-
 Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传统的 VM 虚拟机有很大优势。
+
 
 
 传统虚拟机（VM）和虚拟化容器（Docker）的区别：
@@ -639,7 +637,7 @@ Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传�
 
   <span class="tags">
     
-    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
+    <a href="/tags/#运维编程" title="运维编程">运维编程</a>
     
   </span>
   
@@ -661,7 +659,7 @@ Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传�
   
 
 
-  <a href="/编程技术/运维技术/linux/ubuntu入门操作指北/">
+  <a href="/编程技术/运维编程/linux/ubuntu入门操作指北/">
     <h2 class="post-title">
       Ubuntu 操作指北
     </h2>
@@ -670,23 +668,17 @@ Docker 是一个虚拟化容器引擎，完全使用沙箱隔离机制，较传�
     </h3>
     <div class="post-content-preview">
       下载
-
-
-Ubuntu 官网下载
+> [Ubuntu 官网下载](https://ubuntu.com/download)
 
 简介
-
-Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、CentOS、Debian 等。
-远程控制管理
-
-XShell：是一......
+Linux 是一种自由和开放源码的类 UNIX 操作系统，使用 Linux 内核。通常情况下，Linux 被打包成供桌上型电脑和服务器使用的 Linux 发行版本，Ubuntu 就是 Linux 的发行版本之一，目前比较流行知名的 Linux 发行版有：Ubuntu、RedHat、Cent......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#运维技术" title="运维技术">运维技术</a>
+    <a href="/tags/#运维编程" title="运维编程">运维编程</a>
     
   </span>
   
@@ -708,7 +700,7 @@ XShell：是一......
   
 
 
-  <a href="/编程技术/后端技术/java/java中使用jersey实现上传文件(附加密和解密)/">
+  <a href="/编程技术/后端编程/java/java中使用jersey实现上传文件(附加密和解密)/">
     <h2 class="post-title">
       Java 中使用 Jersey 实现上传文件（附加密和解密）
     </h2>
@@ -717,19 +709,17 @@ XShell：是一......
     </h3>
     <div class="post-content-preview">
       Jersey 简介
+`Jersey` 是开源的 `RESTful` 框架，实现了 `JAX-RS` 规范，提供了更多的特性和工具， 可以进一步地简化 `RESTful service` 和 `client` 开发，与 `Struts` 类似，它同样可以和 `Hibernate`、`Spring` 框架整合。此处使用它实现文件上传功能。
 
-Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多的特性和工具， 可以进一步地简化 RESTful service 和 client 开发，与 Struts 类似，它同样可以和 Hibernate、Spring 框架整合。此处使用它实现文件上传功能。
 引入依赖
-
-在 pom.xml 中添加 Jersey 相关依赖
-12345&lt;de......
+在 `pom.xml` 中添加 `Jerse......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -889,19 +879,15 @@ Jersey 是开源的 RESTful 框架，实现了 JAX-RS 规范，提供了更多�
     
     
     
-    <a href="/tags/#后端技术" title="后端技术" rel="64">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程" rel="81">后端编程</a>
     
     
     
-    <a href="/tags/#数据库技术" title="数据库技术" rel="17">数据库技术</a>
+    <a href="/tags/#运维编程" title="运维编程" rel="22">运维编程</a>
     
     
     
-    <a href="/tags/#开发工具" title="开发工具" rel="11">开发工具</a>
-    
-    
-    
-    <a href="/tags/#运维技术" title="运维技术" rel="22">运维技术</a>
+    <a href="/tags/#编程工具" title="编程工具" rel="11">编程工具</a>
     
     
   </div>

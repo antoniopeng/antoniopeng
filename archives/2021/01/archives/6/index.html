@@ -407,7 +407,7 @@
   
 
 
-  <a href="/编程技术/后端技术/mybatis/mybatis全局配置/">
+  <a href="/编程技术/后端编程/mybatis/mybatis全局配置/">
     <h2 class="post-title">
       MyBatis 全局配置
     </h2>
@@ -433,7 +433,7 @@ dat......
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -455,7 +455,7 @@ dat......
   
 
 
-  <a href="/编程技术/后端技术/mybatis/java持久层框架mybatis/">
+  <a href="/编程技术/后端编程/mybatis/java持久层框架mybatis/">
     <h2 class="post-title">
       Java 持久层框架 MyBatis
     </h2>
@@ -464,18 +464,16 @@ dat......
     </h3>
     <div class="post-content-preview">
       JDBC 存在的问题
-
-
-数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。
-Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变 java 代码。
-使用 preparedStatement 向占位符号传参数存在硬编码，因为 sql 语句的 where 条件不一定，可能多也可能少，修改 sql 还要修改......
+1. 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。
+2. Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变 java 代码。
+3. 使用 preparedStatement 向占位符号传参数存在硬编码，因为 sql 语句的 where 条件不一定，可能多也可能少，修改 s......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -497,7 +495,7 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
   
 
 
-  <a href="/编程技术/后端技术/spring-mvc/spring-mvc整合hibernate-validator实现数据校验/">
+  <a href="/编程技术/后端编程/spring-mvc/spring-mvc整合hibernate-validator实现数据校验/">
     <h2 class="post-title">
       Spring MVC 整合 Hibernate Validator 实现数据校验
     </h2>
@@ -514,7 +512,7 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -536,7 +534,7 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
   
 
 
-  <a href="/编程技术/后端技术/spring-mvc/spring-mvc的controller使用详解/">
+  <a href="/编程技术/后端编程/spring-mvc/spring-mvc的controller使用详解/">
     <h2 class="post-title">
       Spring MVC 的 Controller 使用详解
     </h2>
@@ -545,8 +543,8 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
     </h3>
     <div class="post-content-preview">
       @RequestMapping
-
 这个注解用来标记一个接口，这算是我们在接口开发中，使用最多的注解之一。
+
 请求 URL标记请求 URL 很简单，只需要在相应的方法上添加该注解即可：
 12345678@Controllerpublic class HelloController &#123;        @RequestMapping("/hello")    public ModelAnd......
     </div>
@@ -555,7 +553,7 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -577,7 +575,7 @@ Sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql �
   
 
 
-  <a href="/编程技术/后端技术/spring-mvc/spring-mvc中上传文件/">
+  <a href="/编程技术/后端编程/spring-mvc/spring-mvc中上传文件/">
     <h2 class="post-title">
       Spring MVC 中上传文件
     </h2>
@@ -597,7 +595,7 @@ StandardServletMultipartResolver·
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -719,7 +717,7 @@ StandardServletMultipartResolver·
   
 
 
-  <a href="/编程技术/后端技术/spring-mvc/controller-advice注解的三种使用场景/">
+  <a href="/编程技术/后端编程/spring-mvc/controller-advice注解的三种使用场景/">
     <h2 class="post-title">
       ControllerAdvice 注解的三种使用场景
     </h2>
@@ -734,16 +732,16 @@ StandardServletMultipartResolver·
 全局数据预处理
 
 全局异常处理
+使用 `@ControllerAdvice` 实现全局异常处理，只需要定义类，添加该注解即可定义方式如下：
 
-使用 @ControllerAdvice 实现全局异常处理，只需要定义类，添加该注解即可定义方式如下：
-1234567891011@ControllerAdvicepublic clas......
+1234567891011@ControllerAdvicepublic cl......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -817,7 +815,7 @@ StandardServletMultipartResolver·
   
 
 
-  <a href="/编程技术/后端技术/spring-mvc/spring-mvc核心组件详解/">
+  <a href="/编程技术/后端编程/spring-mvc/spring-mvc核心组件详解/">
     <h2 class="post-title">
       Spring MVC 核心组件详解
     </h2>
@@ -826,17 +824,17 @@ StandardServletMultipartResolver·
     </h3>
     <div class="post-content-preview">
       DispatcherServlet 作用
+`DispatcherServlet` 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。`DispatcherServlet` 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：
 
-DispatcherServlet 是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点，而且负责职责的分派，而且与 Spring IoC 容器无缝集成，从而可以获得 Spring 的所有好处。DispatcherServlet 主要用作职责调度工作，本身主要用于控制流程，主要职责如下：
 
-文件上传解析，如果请求类型是 mu......
+文件上传解析，如果请求类型......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -1000,19 +998,15 @@ DispatcherServlet 是前端控制器设计模式的实现，提供 Spring Web MV
     
     
     
-    <a href="/tags/#后端技术" title="后端技术" rel="64">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程" rel="81">后端编程</a>
     
     
     
-    <a href="/tags/#数据库技术" title="数据库技术" rel="17">数据库技术</a>
+    <a href="/tags/#运维编程" title="运维编程" rel="22">运维编程</a>
     
     
     
-    <a href="/tags/#开发工具" title="开发工具" rel="11">开发工具</a>
-    
-    
-    
-    <a href="/tags/#运维技术" title="运维技术" rel="22">运维技术</a>
+    <a href="/tags/#编程工具" title="编程工具" rel="11">编程工具</a>
     
     
   </div>

@@ -407,7 +407,7 @@
   
 
 
-  <a href="/编程技术/后端技术/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
+  <a href="/编程技术/后端编程/spring-mvc/使用spring-mvc的拦截器实现登录功能/">
     <h2 class="post-title">
       使用 Spring MVC 的拦截器实现登录功能
     </h2>
@@ -417,18 +417,16 @@
     <div class="post-content-preview">
       Spring  MVC 的处理器拦截器，类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。
 应用场景
-
-
-日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。
-权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。
-性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，在处理完......
+- 日志记录：记录请求信息的日志，以便进行信息监控、信息统计、计算 PV 等。
+- 权限检查：如登录检测，进入处理器检测检测是否登录，如果没有直接返回到登录页面。
+- 性能监控：有时候系统在某段时间莫名其妙的慢，可以通过拦截器在进入处理器之前记录开始时间，......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -450,7 +448,7 @@
   
 
 
-  <a href="/编程技术/后端技术/spring-mvc/spring-mvc入门就这一篇/">
+  <a href="/编程技术/后端编程/spring-mvc/spring-mvc入门就这一篇/">
     <h2 class="post-title">
       Spring MVC 入门就这一篇
     </h2>
@@ -459,16 +457,16 @@
     </h3>
     <div class="post-content-preview">
       Spring MVC 概述
+`Spring MVC` 也叫 `Spring Web MVC `，属于展示层框架，是 `Spring` 框架的一部分。
 
-Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的一部分。
- MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 Web 应用程序的......
+ MVC 模式作用在于分离应用程序的不同方面（业务逻辑、 UI 逻辑、输入逻辑），而 Spring MVC 框架分别对应为其提供了 模型（Model）、视图（View）、控制器（Controller） 三层架构和用于开发灵活和松散耦合的 We......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -490,7 +488,7 @@ Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的�
   
 
 
-  <a href="/编程技术/后端技术/spring/spring事务解决方案/">
+  <a href="/编程技术/后端编程/spring/spring事务解决方案/">
     <h2 class="post-title">
       Spring 事务解决方案
     </h2>
@@ -501,15 +499,16 @@ Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的�
       Spring 中的事务主要是利用 Aop 思想，简化事务的配置，可以通过 Java 配置也可以通过 XML 配置。
 我们通过一个转账操作来看下 Spring 中的事务配置。
 准备工作
+#### 创建数据库
 
-创建数据库123456789101112131415161718CREATE DATABASE /*!32312 IF NOT EXISTS*/`test01` /*!40100 DEFAULT CHARAC......
+123456789101112131415161718CREATE DATABASE /*!32312 IF NOT EXISTS*/`test01` /*!40100 DEFAULT ......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -531,7 +530,7 @@ Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的�
   
 
 
-  <a href="/编程技术/后端技术/spring/spring整合jdbctemplate连接操作mysql/">
+  <a href="/编程技术/后端编程/spring/spring整合jdbctemplate连接操作mysql/">
     <h2 class="post-title">
       Spring 整合 JdbcTemplate 连接操作 MySQL
     </h2>
@@ -541,16 +540,17 @@ Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的�
     <div class="post-content-preview">
       JdbcTemplate 是 Spring 利用 Aop 思想封装的 JDBC 操作工具。
 准备工作
+#### 引入依赖
 
-引入依赖创建一个新项目，添加如下依赖：
-123456789101112131415161718&lt;dependency&gt;    &lt;groupId&gt;org.springframework&lt;/groupId&gt;    &lt;artifactId&gt;spri......
+创建一个新项目，添加如下依赖：
+123456789101112131415161718&lt;dependency&gt;    &lt;groupId&gt;org.springframework&lt;/groupId&gt;    &lt;artifactId&g......
     </div>
   </a>
   
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -572,7 +572,7 @@ Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的�
   
 
 
-  <a href="/编程技术/后端技术/spring/spring核心技术aop实例/">
+  <a href="/编程技术/后端编程/spring/spring核心技术aop实例/">
     <h2 class="post-title">
       Spring 核心技术 AOP 实例
     </h2>
@@ -581,8 +581,8 @@ Spring MVC 也叫 Spring Web MVC，属于展示层框架，是 Spring 框架的�
     </h3>
     <div class="post-content-preview">
       AOP 简介
-
 Aop（Aspect Oriented Programming），面向切面编程，这是对面向对象思想的一种补充。
+
 面向切面编程，就是在程序运行时，不改变程序源码的情况下，动态的增强方法的功能，常见的使用场景非常多：
 
 日志
@@ -599,7 +599,7 @@ Aop（Aspect Oriented Programming），面向切面编程，这是对面向对�
 
   <span class="tags">
     
-    <a href="/tags/#后端技术" title="后端技术">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
     
   </span>
   
@@ -763,19 +763,15 @@ Aop（Aspect Oriented Programming），面向切面编程，这是对面向对�
     
     
     
-    <a href="/tags/#后端技术" title="后端技术" rel="64">后端技术</a>
+    <a href="/tags/#后端编程" title="后端编程" rel="81">后端编程</a>
     
     
     
-    <a href="/tags/#数据库技术" title="数据库技术" rel="17">数据库技术</a>
+    <a href="/tags/#运维编程" title="运维编程" rel="22">运维编程</a>
     
     
     
-    <a href="/tags/#开发工具" title="开发工具" rel="11">开发工具</a>
-    
-    
-    
-    <a href="/tags/#运维技术" title="运维技术" rel="22">运维技术</a>
+    <a href="/tags/#编程工具" title="编程工具" rel="11">编程工具</a>
     
     
   </div>
