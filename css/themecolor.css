@@ -811,6 +811,7 @@ textarea.gt-header-textarea::placeholder {
 }
 
 .search-result-list p {
+  display: none;
   color: var(--search-result-p-color);
 }
 
