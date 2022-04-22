@@ -407,94 +407,6 @@
   
 
 
-  <a href="/编程技术/后端编程/redis/redis集群搭建/">
-    <h2 class="post-title">
-      Redis 集群搭建
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      由于主从复制所有的写操作都是先在 Master 上操作，然后同步更新到 Slave 上，所以从 Master 同步到 Slave 机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave 机器数量的增加也会使这个问题更加严重。因此我们还需要集群来进一步提升 redis 性能。
-集群原理
-Redis 集群架构如下图：
-
-
-Redis 集群运行原理如下：
-
-所有的 Redis 节点彼......
-    </div>
-  </a>
-  
-
-  <span class="tags">
-    
-    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
-    
-  </span>
-  
-    <span class="post-meta" style="float:right">
-    <!--彭楷淳-->
-	发布于 2021-01-27
-  </span>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/后端编程/redis/redis主从复制/">
-    <h2 class="post-title">
-      Redis 主从复制
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。
-配置方式
-假设我有三个 redis 实例，地址分别如下：
-
-
-192.168.248.128:6379 
-192.168.248.128:6380
-192......
-    </div>
-  </a>
-  
-
-  <span class="tags">
-    
-    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
-    
-  </span>
-  
-    <span class="post-meta" style="float:right">
-    <!--彭楷淳-->
-	发布于 2021-01-27
-  </span>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
   <a href="/编程技术/后端编程/redis/免费又好用的redis客户端工具/">
     <h2 class="post-title">
       免费又好用的 Redis 客户端工具
@@ -600,6 +512,93 @@ Redis 的发布订阅系统有点类似于我们生活中的电台，电台可�
     <span class="post-meta" style="float:right">
     <!--彭楷淳-->
 	发布于 2021-01-26
+  </span>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/编程技术/后端编程/redis/reids散列与有序集合命令使用/">
+    <h2 class="post-title">
+      Reids 散列与有序集合命令使用
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      散列
+很多时候，散列就像一个微缩版的 redis ，在本文中，对看到的许多散列命令都会有似曾相识的感觉。
+
+hsethset 命令可以用来设置 key 指定的哈希集中指定字段的值，如下：
+12127.0.0.1:6379&gt; hset k1 h1 v1(integer) 1
+
+hgethget 命令可以用来返回 key 指定的哈希集中该字段所关联的值，如下：
+12127.0.0.1:63......
+    </div>
+  </a>
+  
+
+  <span class="tags">
+    
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
+    
+  </span>
+  
+    <span class="post-meta" style="float:right">
+    <!--彭楷淳-->
+	发布于 2021-01-25
+  </span>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/编程技术/后端编程/redis/reids列表与集合命令使用/">
+    <h2 class="post-title">
+      Reids 列表与集合命令使用
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      列表
+列表是 Redis 中另外一种数据类型。下面我们来看看列表中一些基本的操作命令。
+
+lpush将一个或多个值 value 插入到列表 key 的表头，如果有多个 value 值，那么各个 value 值按从左到右的顺序依次插入到表头，如下：
+12127.0.0.1:6379&gt; lpush k1 v1 v2 v3(integer) 3
+
+lrange返回列表 key 中指定区间内的......
+    </div>
+  </a>
+  
+
+  <span class="tags">
+    
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
+    
+  </span>
+  
+    <span class="post-meta" style="float:right">
+    <!--彭楷淳-->
+	发布于 2021-01-25
   </span>
   
 
@@ -737,7 +736,7 @@ Redis 的发布订阅系统有点类似于我们生活中的电台，电台可�
     
     
     
-    <a href="/tags/#人性思维" title="人性思维" rel="3">人性思维</a>
+    <a href="/tags/#人性思维" title="人性思维" rel="2">人性思维</a>
     
     
     
@@ -749,7 +748,7 @@ Redis 的发布订阅系统有点类似于我们生活中的电台，电台可�
     
     
     
-    <a href="/tags/#权谋思维" title="权谋思维" rel="3">权谋思维</a>
+    <a href="/tags/#权谋思维" title="权谋思维" rel="2">权谋思维</a>
     
     
     

@@ -407,94 +407,6 @@
   
 
 
-  <a href="/编程技术/后端编程/redis/redis集群搭建/">
-    <h2 class="post-title">
-      Redis 集群搭建
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      由于主从复制所有的写操作都是先在 Master 上操作，然后同步更新到 Slave 上，所以从 Master 同步到 Slave 机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave 机器数量的增加也会使这个问题更加严重。因此我们还需要集群来进一步提升 redis 性能。
-集群原理
-Redis 集群架构如下图：
-
-
-Redis 集群运行原理如下：
-
-所有的 Redis 节点彼......
-    </div>
-  </a>
-  
-
-  <span class="tags">
-    
-    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
-    
-  </span>
-  
-    <span class="post-meta" style="float:right">
-    <!--彭楷淳-->
-	发布于 2021-01-27
-  </span>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/后端编程/redis/redis主从复制/">
-    <h2 class="post-title">
-      Redis 主从复制
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。
-配置方式
-假设我有三个 redis 实例，地址分别如下：
-
-
-192.168.248.128:6379 
-192.168.248.128:6380
-192......
-    </div>
-  </a>
-  
-
-  <span class="tags">
-    
-    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
-    
-  </span>
-  
-    <span class="post-meta" style="float:right">
-    <!--彭楷淳-->
-	发布于 2021-01-27
-  </span>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
   <a href="/编程技术/后端编程/redis/免费又好用的redis客户端工具/">
     <h2 class="post-title">
       免费又好用的 Redis 客户端工具
@@ -808,6 +720,89 @@ Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可
 </div>
 <hr>
 
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/编程技术/后端编程/spring-boot/spring-boot中使用cors解决跨域问题/">
+    <h2 class="post-title">
+      Spring Boot 中使用 CORS 解决跨域问题
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      同源策略
+很多人对跨域有一种误解，以为这是前端的事，和后端没关系，其实不是这样的，说到跨域，就不得不说说浏览器的同源策略。
+
+
+同源策略是由 Netscape 提出的一个著名的安全策略，它是浏览器最核心也最基本的安全功能，现在所有支持 JavaScript 的浏览器都会使用这个策略。所谓同源是指协议、域名以及端口要相同。同源策略是基于安全方面的考虑提出来的，这个策略本身没问题，但是我们在实际......
+    </div>
+  </a>
+  
+
+  <span class="tags">
+    
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
+    
+  </span>
+  
+    <span class="post-meta" style="float:right">
+    <!--彭楷淳-->
+	发布于 2021-01-24
+  </span>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/编程技术/后端编程/spring-boot/spring-boot项目配置https安全证书/">
+    <h2 class="post-title">
+      Spring Boot 项目配置 HTTPS 安全证书
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      https 现在已经越来越普及了，特别是做一些小程序或者公众号开发的时候，https 基本上都是刚需了。不过一个 https 证书还是挺费钱的，个人开发者可以在各个云服务提供商那里申请免费的证书。本文聊的是在 Spring Boot 项目中，如何开启 https 配置，为我们的接口保驾护航。
+HTTPS 简介
+我们先来看看什么是 https，根据 wikipedia 上的介绍：
+
+
+超文本传......
+    </div>
+  </a>
+  
+
+  <span class="tags">
+    
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
+    
+  </span>
+  
+    <span class="post-meta" style="float:right">
+    <!--彭楷淳-->
+	发布于 2021-01-23
+  </span>
+  
+
+</div>
+<hr>
+
 
 
   <!-- Pager -->
@@ -939,7 +934,7 @@ Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可
     
     
     
-    <a href="/tags/#人性思维" title="人性思维" rel="3">人性思维</a>
+    <a href="/tags/#人性思维" title="人性思维" rel="2">人性思维</a>
     
     
     
@@ -951,7 +946,7 @@ Redis 是一个使用 ANSI C 编写的开源、支持网络、基于内存、可
     
     
     
-    <a href="/tags/#权谋思维" title="权谋思维" rel="3">权谋思维</a>
+    <a href="/tags/#权谋思维" title="权谋思维" rel="2">权谋思维</a>
     
     
     

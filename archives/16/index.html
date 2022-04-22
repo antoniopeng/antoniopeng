@@ -407,108 +407,6 @@
   
 
 
-  <a href="/编程技术/后端编程/mysql/mysql读写分离/">
-    <h2 class="post-title">
-      MySQL 读写分离
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      准备工作
-我这里有一张简单的图向大伙展示 MySQL 读写分离的工作方式：
-
-
-这里，我们准备两台机器：
-
-主机：192.168.248.128
-从机：192.168.248.139
-
-主机配置
-主机的配置就三个步骤，比较容易：
-
-授权给从机服务器
-12$ GRANT REPLICATION SLAVE ON *.* to 'rep1'@'192.168.248.139' identifie......
-    </div>
-  </a>
-  
-
-  <span class="tags">
-    
-    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
-    
-  </span>
-  
-    <span class="post-meta" style="float:right">
-    <!--彭楷淳-->
-	发布于 2021-01-28
-  </span>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/后端编程/mysql/mysql主从复制/">
-    <h2 class="post-title">
-      MySQL 主从复制
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      主从规划
-首先规划两个 MySQL 实例：
-
-
-主机：192.168.66.131:33061
-从机：192.168.66.131:33062
-
-当然大家可以准备多个从机，从机的配置步骤是一样的。接下来，我们就开始主从的配置。
-配置主机
-主机上的配置，主要是两个地方：
-
-
-第一个是配置一个从机登录用户
-第二个配置开启 binlog。
-
-如果是 Docker 中创建的 MySQL 实例，默认只......
-    </div>
-  </a>
-  
-
-  <span class="tags">
-    
-    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
-    
-  </span>
-  
-    <span class="post-meta" style="float:right">
-    <!--彭楷淳-->
-	发布于 2021-01-28
-  </span>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
   <a href="/编程技术/后端编程/mysql/centos上安装mysql/">
     <h2 class="post-title">
       CentOS 上安装 MySQL
@@ -629,6 +527,94 @@ MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数
     <span class="post-meta" style="float:right">
     <!--彭楷淳-->
 	发布于 2021-01-28
+  </span>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/编程技术/后端编程/redis/redis集群搭建/">
+    <h2 class="post-title">
+      Redis 集群搭建
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      由于主从复制所有的写操作都是先在 Master 上操作，然后同步更新到 Slave 上，所以从 Master 同步到 Slave 机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave 机器数量的增加也会使这个问题更加严重。因此我们还需要集群来进一步提升 redis 性能。
+集群原理
+Redis 集群架构如下图：
+
+
+Redis 集群运行原理如下：
+
+所有的 Redis 节点彼......
+    </div>
+  </a>
+  
+
+  <span class="tags">
+    
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
+    
+  </span>
+  
+    <span class="post-meta" style="float:right">
+    <!--彭楷淳-->
+	发布于 2021-01-27
+  </span>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/编程技术/后端编程/redis/redis主从复制/">
+    <h2 class="post-title">
+      Redis 主从复制
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      主从复制可以在一定程度上扩展 redis 性能，redis 的主从复制和关系型数据库的主从复制类似，从机能够精确的复制主机上的内容。实现了主从复制之后，一方面能够实现数据的读写分离，降低 master 的压力，另一方面也能实现数据的备份。
+配置方式
+假设我有三个 redis 实例，地址分别如下：
+
+
+192.168.248.128:6379 
+192.168.248.128:6380
+192......
+    </div>
+  </a>
+  
+
+  <span class="tags">
+    
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
+    
+  </span>
+  
+    <span class="post-meta" style="float:right">
+    <!--彭楷淳-->
+	发布于 2021-01-27
   </span>
   
 
@@ -766,7 +752,7 @@ MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数
     
     
     
-    <a href="/tags/#人性思维" title="人性思维" rel="3">人性思维</a>
+    <a href="/tags/#人性思维" title="人性思维" rel="2">人性思维</a>
     
     
     
@@ -778,7 +764,7 @@ MySQL 官方对索引的定义：索引（Index）是帮助 MySQL高效获取数
     
     
     
-    <a href="/tags/#权谋思维" title="权谋思维" rel="3">权谋思维</a>
+    <a href="/tags/#权谋思维" title="权谋思维" rel="2">权谋思维</a>
     
     
     

@@ -407,86 +407,6 @@
   
 
 
-  <a href="/编程技术/后端编程/spring-cloud/spring-cloud-bus消息总线/">
-    <h2 class="post-title">
-      Spring Cloud Bus 消息总线
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring Cloud Bus 简介
-Spring Cloud Bus 使用轻量级的消息代理来连接微服务架构中的各个服务，可以将其用于广播状态更改（例如配置中心配置更改）或其他管理指令，本文将对其用法进行详细介绍。
-
-我们通常会使用消息代理来构建一个主题，然后把微服务架构中的所有服务都连接到这个主题上去，当我们向该主题发送消息时，所有订阅该主题的服务都会收到消息并进行消费。使用 Sprin......
-    </div>
-  </a>
-  
-
-  <span class="tags">
-    
-    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
-    
-  </span>
-  
-    <span class="post-meta" style="float:right">
-    <!--彭楷淳-->
-	发布于 2021-02-07
-  </span>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
-  <a href="/编程技术/后端编程/spring-cloud/spring-cloud-config外部集中化配置管理/">
-    <h2 class="post-title">
-      Spring Cloud Config 外部集中化配置管理
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Spring Cloud Config 简介
-Spring Cloud Config 可以为微服务架构中的应用提供集中化的外部配置支持，它分为服务端和客户端两个部分，本文将对其用法进行详细介绍。
-
-Spring Cloud Config 分为服务端和客户端两个部分。服务端被称为分布式配置中心，它是个独立的应用，可以从配置仓库获取配置信息并提供给客户端使用。客户端可以通过配置中心来获取配置信息......
-    </div>
-  </a>
-  
-
-  <span class="tags">
-    
-    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
-    
-  </span>
-  
-    <span class="post-meta" style="float:right">
-    <!--彭楷淳-->
-	发布于 2021-02-07
-  </span>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-
   <a href="/编程技术/后端编程/spring-cloud/spring-cloud-zuul网关服务/">
     <h2 class="post-title">
       Spring Cloud Zuul 网关服务
@@ -579,6 +499,86 @@ Feign 是声明式的服务调用工具，我们只需创建一个接口并用�
 Hystrix Dashboard 是 Spring Cloud 中查看 Hystrix 实例执行情况的一种仪表盘组件，支持查看单个实例和查看集群实例，本文将对其用法进行详细介绍。
 
 Hystrix 提供了 Hystrix Dashboard 来实时监控 HystrixCommand 方法的执行情况。 Hystrix Dashboard 可以有效地反......
+    </div>
+  </a>
+  
+
+  <span class="tags">
+    
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
+    
+  </span>
+  
+    <span class="post-meta" style="float:right">
+    <!--彭楷淳-->
+	发布于 2021-02-05
+  </span>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/编程技术/后端编程/spring-cloud/spring-cloud-hystrix服务容错保护/">
+    <h2 class="post-title">
+      Spring Cloud Hystrix 服务容错保护
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      Hystrix 简介
+Spring Cloud Hystrix 是 Spring Cloud Netflix 子项目的核心组件之一，具有服务容错及线程隔离等一系列服务保护功能，本文将对其用法进行详细介绍。
+
+在微服务架构中，服务与服务之间通过远程调用的方式进行通信，一旦某个被调用的服务发生了故障，其依赖服务也会发生故障，此时就会发生故障的蔓延，最终导致系统瘫痪。Hystrix实现了断路器模式......
+    </div>
+  </a>
+  
+
+  <span class="tags">
+    
+    <a href="/tags/#后端编程" title="后端编程">后端编程</a>
+    
+  </span>
+  
+    <span class="post-meta" style="float:right">
+    <!--彭楷淳-->
+	发布于 2021-02-05
+  </span>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+
+  <a href="/编程技术/后端编程/spring-cloud/spring-cloud-ribbon负载均衡调用服务/">
+    <h2 class="post-title">
+      Spring Cloud Ribbon 负载均衡调用服务
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      Ribbon 简介
+Spring Cloud Ribbon 是 Spring Cloud Netflix 子项目的核心组件之一，主要给服务间调用及 API 网关转发提供负载均衡的功能，本文将对其用法进行详细介绍。
+
+在微服务架构中，很多服务都会部署多个，其他服务去调用该服务的时候，如何保证负载均衡是个不得不去考虑的问题。负载均衡可以增加系统的可用性和扩展性，当我们使用RestTemplate......
     </div>
   </a>
   
@@ -729,7 +729,7 @@ Hystrix 提供了 Hystrix Dashboard 来实时监控 HystrixCommand 方法的执�
     
     
     
-    <a href="/tags/#人性思维" title="人性思维" rel="3">人性思维</a>
+    <a href="/tags/#人性思维" title="人性思维" rel="2">人性思维</a>
     
     
     
@@ -741,7 +741,7 @@ Hystrix 提供了 Hystrix Dashboard 来实时监控 HystrixCommand 方法的执�
     
     
     
-    <a href="/tags/#权谋思维" title="权谋思维" rel="3">权谋思维</a>
+    <a href="/tags/#权谋思维" title="权谋思维" rel="2">权谋思维</a>
     
     
     
